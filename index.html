@@ -1,119 +1,235 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Newfortune School Management</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newfortune School Management</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
 
-    header {
-      background: #1f4e79;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+header {
+    background: #1f4e79;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
 
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h2 {
+    color: #1f4e79;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 7px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+button {
+    background: #1f4e79;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.delete-btn {
+    background: #d9534f;
+    width: auto;
+    padding: 8px 12px;
+}
+
+.student {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.empty {
+    text-align: center;
+    color: #777;
+}
+
+@media (max-width: 600px) {
     .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
+        padding: 12px;
     }
-
-    .welcome {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    .card h3 {
-      margin-top: 0;
-      color: #1f4e79;
-    }
-
-    @media (max-width: 600px) {
-      .cards {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <header>
+<header>
     <h1>Newfortune School Management</h1>
     <p>School Management System</p>
-  </header>
+</header>
 
-  <div class="container">
+<div class="container">
 
-    <div class="welcome">
-      <h2>Welcome 👋</h2>
-      <p>Manage students, teachers, classes, attendance, grades and fees.</p>
+    <div class="card">
+        <h2>👨‍🎓 Students</h2>
+
+        <input type="text" id="studentName" placeholder="Student Full Name">
+
+        <input type="text" id="studentId" placeholder="Student ID">
+
+        <input type="text" id="studentClass" placeholder="Class">
+
+        <input type="text" id="studentPhone" placeholder="Parent Phone">
+
+        <button onclick="addStudent()">➕ Add Student</button>
     </div>
 
-    <div class="cards">
+    <div class="card">
+        <h2>🔎 Search Students</h2>
 
-      <div class="card">
-        <h3>Students</h3>
-        <p>Manage students</p>
-      </div>
-
-      <div class="card">
-        <h3>Teachers</h3>
-        <p>Manage teachers</p>
-      </div>
-
-      <div class="card">
-        <h3>Attendance</h3>
-        <p>Track attendance</p>
-      </div>
-
-      <div class="card">
-        <h3>Grades</h3>
-        <p>Manage student grades</p>
-      </div>
-
-      <div class="card">
-        <h3>Fees</h3>
-        <p>Manage school fees</p>
-      </div>
-
-      <div class="card">
-        <h3>Classes</h3>
-        <p>Manage classes</p>
-      </div>
-
+        <input
+            type="text"
+            id="search"
+            placeholder="Search by name or Student ID"
+            oninput="displayStudents()"
+        >
     </div>
 
-  </div>
+    <div class="card">
+        <h2>📋 Student List</h2>
+
+        <div id="studentList"></div>
+    </div>
+
+</div>
+
+<script>
+
+let students = JSON.parse(localStorage.getItem("students")) || [];
+
+function saveStudents() {
+    localStorage.setItem("students", JSON.stringify(students));
+}
+
+function addStudent() {
+
+    const name = document.getElementById("studentName").value.trim();
+    const id = document.getElementById("studentId").value.trim();
+    const studentClass = document.getElementById("studentClass").value.trim();
+    const phone = document.getElementById("studentPhone").value.trim();
+
+    if (name === "" || id === "") {
+        alert("Please enter Student Name and Student ID.");
+        return;
+    }
+
+    const existing = students.find(student => student.id === id);
+
+    if (existing) {
+        alert("This Student ID already exists.");
+        return;
+    }
+
+    const student = {
+        name: name,
+        id: id,
+        className: studentClass,
+        phone: phone
+    };
+
+    students.push(student);
+
+    saveStudents();
+
+    document.getElementById("studentName").value = "";
+    document.getElementById("studentId").value = "";
+    document.getElementById("studentClass").value = "";
+    document.getElementById("studentPhone").value = "";
+
+    displayStudents();
+}
+
+function deleteStudent(id) {
+
+    if (!confirm("Delete this student?")) {
+        return;
+    }
+
+    students = students.filter(student => student.id !== id);
+
+    saveStudents();
+
+    displayStudents();
+}
+
+function displayStudents() {
+
+    const list = document.getElementById("studentList");
+    const search = document.getElementById("search").value.toLowerCase();
+
+    const filtered = students.filter(student =>
+        student.name.toLowerCase().includes(search) ||
+        student.id.toLowerCase().includes(search)
+    );
+
+    list.innerHTML = "";
+
+    if (filtered.length === 0) {
+        list.innerHTML = '<p class="empty">No students found.</p>';
+        return;
+    }
+
+    filtered.forEach(student => {
+
+        const div = document.createElement("div");
+
+        div.className = "student";
+
+        div.innerHTML = `
+            <strong>👤 ${student.name}</strong>
+            <p>Student ID: ${student.id}</p>
+            <p>Class: ${student.className || "Not specified"}</p>
+            <p>Parent Phone: ${student.phone || "Not specified"}</p>
+            <button class="delete-btn" onclick="deleteStudent('${student.id}')">
+                🗑 Delete
+            </button>
+        `;
+
+        list.appendChild(div);
+    });
+}
+
+displayStudents();
+
+</script>
 
 </body>
 </html>
