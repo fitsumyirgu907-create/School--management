@@ -3,73 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Newfortune School Management</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+box-sizing:border-box;
+}
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f6f8;
-    color:#222;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f6f8;
+color:#222;
 }
 
 header{
-    background:#1f4e79;
-    color:white;
-    text-align:center;
-    padding:20px;
+background:#1f4e79;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+header h1{
+margin:0;
 }
 
 .container{
-    max-width:900px;
-    margin:auto;
-    padding:15px;
+max-width:900px;
+margin:auto;
+padding:15px;
 }
 
 .card{
-    background:white;
-    padding:20px;
-    margin-bottom:20px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
+background:white;
+padding:20px;
+margin-bottom:20px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
-h2{color:#1f4e79}
+h2{
+color:#1f4e79;
+}
 
-input,button,select{
-    width:100%;
-    padding:12px;
-    margin:6px 0;
-    border:1px solid #ccc;
-    border-radius:6px;
-    font-size:16px;
+input,select,button{
+width:100%;
+padding:12px;
+margin:6px 0;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:16px;
 }
 
 button{
-    background:#1f4e79;
-    color:white;
-    border:none;
+background:#1f4e79;
+color:white;
+border:none;
 }
 
 .delete{
-    background:#d9534f;
-    width:auto;
-    padding:8px 12px;
+background:#d9534f;
+width:auto;
+padding:8px 12px;
 }
 
 .person{
-    border:1px solid #ddd;
-    padding:15px;
-    margin-top:10px;
-    border-radius:8px;
+border:1px solid #ddd;
+padding:15px;
+margin-top:10px;
+border-radius:8px;
 }
 
 .empty{
-    text-align:center;
-    color:#777;
+text-align:center;
+color:#777;
 }
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.stat{
+background:#eef4f9;
+padding:15px;
+text-align:center;
+border-radius:10px;
+}
+
+.stat strong{
+display:block;
+font-size:28px;
+color:#1f4e79;
+}
+
 </style>
 </head>
 
@@ -82,96 +112,263 @@ button{
 
 <div class="container">
 
-<!-- STUDENTS -->
+<!-- DASHBOARD -->
+
 <div class="card">
+
+<h2>📊 Dashboard</h2>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="studentCount">0</strong>
+Students
+</div>
+
+<div class="stat">
+<strong id="teacherCount">0</strong>
+Teachers
+</div>
+
+<div class="stat">
+<strong id="classCount">0</strong>
+Classes
+</div>
+
+<div class="stat">
+<strong id="attendanceCount">0</strong>
+Attendance
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STUDENTS -->
+
+<div class="card">
+
 <h2>👨‍🎓 Students</h2>
 
 <input id="studentName" placeholder="Full Name">
+
 <input id="studentId" placeholder="Student ID">
+
 <input id="studentClass" placeholder="Class">
+
 <input id="studentPhone" placeholder="Parent Phone">
 
-<button onclick="addStudent()">➕ Add Student</button>
+<button onclick="addStudent()">
+➕ Add Student
+</button>
+
 </div>
 
+
 <div class="card">
+
 <h2>🔎 Search Students</h2>
 
-<input id="studentSearch"
+<input
+id="studentSearch"
 placeholder="Search by name or ID"
-oninput="showStudents()">
+oninput="showStudents()"
+>
 
 <div id="studentList"></div>
+
 </div>
 
 
 <!-- TEACHERS -->
+
 <div class="card">
+
 <h2>👩‍🏫 Teachers</h2>
 
 <input id="teacherName" placeholder="Full Name">
+
 <input id="teacherId" placeholder="Teacher ID">
+
 <input id="teacherSubject" placeholder="Subject">
+
 <input id="teacherPhone" placeholder="Phone">
 
-<button onclick="addTeacher()">➕ Add Teacher</button>
+<button onclick="addTeacher()">
+➕ Add Teacher
+</button>
+
 </div>
 
+
 <div class="card">
+
 <h2>🔎 Search Teachers</h2>
 
-<input id="teacherSearch"
+<input
+id="teacherSearch"
 placeholder="Search by name or ID"
-oninput="showTeachers()">
+oninput="showTeachers()"
+>
 
 <div id="teacherList"></div>
+
 </div>
 
 
 <!-- CLASSES -->
+
 <div class="card">
+
 <h2>🏫 Classes</h2>
 
 <input id="className" placeholder="Class Name">
+
 <input id="grade" placeholder="Grade">
+
 <input id="section" placeholder="Section">
+
 <input id="classTeacher" placeholder="Teacher Name">
 
-<button onclick="addClass()">➕ Add Class</button>
+<button onclick="addClass()">
+➕ Add Class
+</button>
+
 </div>
 
+
 <div class="card">
+
 <h2>🔎 Search Classes</h2>
 
-<input id="classSearch"
+<input
+id="classSearch"
 placeholder="Search by class or grade"
-oninput="showClasses()">
+oninput="showClasses()"
+>
 
 <div id="classList"></div>
+
 </div>
 
 
 <!-- ATTENDANCE -->
+
 <div class="card">
+
 <h2>📋 Attendance</h2>
 
-<input id="attendanceStudent"
-placeholder="Student Name">
+<input
+id="attendanceStudent"
+placeholder="Student Name"
+>
 
-<input id="attendanceDate" type="date">
+<input
+id="attendanceDate"
+type="date"
+>
 
 <select id="attendanceStatus">
+
 <option value="Present">✅ Present</option>
+
 <option value="Absent">❌ Absent</option>
+
 </select>
 
-<button onclick="addAttendance()">➕ Save Attendance</button>
+<button onclick="addAttendance()">
+➕ Save Attendance
+</button>
+
 </div>
 
+
 <div class="card">
+
 <h2>🔎 Attendance List</h2>
 
 <div id="attendanceList"></div>
+
+</div>
+
+
+<!-- GRADES -->
+
+<div class="card">
+
+<h2>📝 Grades</h2>
+
+<input
+id="gradeStudent"
+placeholder="Student Name"
+>
+
+<input
+id="gradeSubject"
+placeholder="Subject"
+>
+
+<input
+id="gradeValue"
+type="number"
+placeholder="Grade / Mark"
+>
+
+<button onclick="addGrade()">
+➕ Save Grade
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📚 Grades List</h2>
+
+<div id="gradeList"></div>
+
+</div>
+
+
+<!-- FEES -->
+
+<div class="card">
+
+<h2>💰 Fees</h2>
+
+<input
+id="feeStudent"
+placeholder="Student Name"
+>
+
+<input
+id="feeAmount"
+type="number"
+placeholder="Amount"
+>
+
+<select id="feeStatus">
+
+<option value="Paid">✅ Paid</option>
+
+<option value="Unpaid">❌ Unpaid</option>
+
+</select>
+
+<button onclick="addFee()">
+➕ Save Fee
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>💵 Fees List</h2>
+
+<div id="feeList"></div>
+
 </div>
 
 </div>
@@ -179,18 +376,82 @@ placeholder="Student Name">
 
 <script>
 
-let students=JSON.parse(localStorage.getItem("students"))||[];
-let teachers=JSON.parse(localStorage.getItem("teachers"))||[];
-let classes=JSON.parse(localStorage.getItem("classes"))||[];
-let attendance=JSON.parse(localStorage.getItem("attendance"))||[];
 
+/* DATA */
+
+let students =
+JSON.parse(localStorage.getItem("students")) || [];
+
+let teachers =
+JSON.parse(localStorage.getItem("teachers")) || [];
+
+let classes =
+JSON.parse(localStorage.getItem("classes")) || [];
+
+let attendance =
+JSON.parse(localStorage.getItem("attendance")) || [];
+
+let grades =
+JSON.parse(localStorage.getItem("grades")) || [];
+
+let fees =
+JSON.parse(localStorage.getItem("fees")) || [];
+
+
+/* SAVE */
 
 function save(){
 
-localStorage.setItem("students",JSON.stringify(students));
-localStorage.setItem("teachers",JSON.stringify(teachers));
-localStorage.setItem("classes",JSON.stringify(classes));
-localStorage.setItem("attendance",JSON.stringify(attendance));
+localStorage.setItem(
+"students",
+JSON.stringify(students)
+);
+
+localStorage.setItem(
+"teachers",
+JSON.stringify(teachers)
+);
+
+localStorage.setItem(
+"classes",
+JSON.stringify(classes)
+);
+
+localStorage.setItem(
+"attendance",
+JSON.stringify(attendance)
+);
+
+localStorage.setItem(
+"grades",
+JSON.stringify(grades)
+);
+
+localStorage.setItem(
+"fees",
+JSON.stringify(fees)
+);
+
+updateDashboard();
+
+}
+
+
+/* DASHBOARD */
+
+function updateDashboard(){
+
+document.getElementById("studentCount").textContent =
+students.length;
+
+document.getElementById("teacherCount").textContent =
+teachers.length;
+
+document.getElementById("classCount").textContent =
+classes.length;
+
+document.getElementById("attendanceCount").textContent =
+attendance.length;
 
 }
 
@@ -199,22 +460,40 @@ localStorage.setItem("attendance",JSON.stringify(attendance));
 
 function addStudent(){
 
-let name=document.getElementById("studentName").value.trim();
-let id=document.getElementById("studentId").value.trim();
-let cls=document.getElementById("studentClass").value.trim();
-let phone=document.getElementById("studentPhone").value.trim();
+let name =
+document.getElementById("studentName").value.trim();
 
-if(!name||!id){
+let id =
+document.getElementById("studentId").value.trim();
+
+let cls =
+document.getElementById("studentClass").value.trim();
+
+let phone =
+document.getElementById("studentPhone").value.trim();
+
+if(!name || !id){
+
 alert("Please enter Full Name and Student ID.");
+
 return;
+
 }
 
-if(students.some(s=>s.id===id)){
+if(students.some(s => s.id === id)){
+
 alert("This Student ID already exists.");
+
 return;
+
 }
 
-students.push({name,id,cls,phone});
+students.push({
+name:name,
+id:id,
+cls:cls,
+phone:phone
+});
 
 save();
 
@@ -230,27 +509,33 @@ showStudents();
 
 function showStudents(){
 
-let search=document.getElementById("studentSearch").value.toLowerCase();
+let search =
+document.getElementById("studentSearch")
+.value.toLowerCase();
 
-let list=document.getElementById("studentList");
+let list =
+document.getElementById("studentList");
 
-let data=students.filter(s=>
-s.name.toLowerCase().includes(search)||
+let data =
+students.filter(s =>
+s.name.toLowerCase().includes(search) ||
 s.id.toLowerCase().includes(search)
 );
 
 list.innerHTML="";
 
-if(data.length===0){
+if(data.length === 0){
 
-list.innerHTML='<p class="empty">No students found.</p>';
+list.innerHTML =
+'<p class="empty">No students found.</p>';
 
 return;
+
 }
 
-data.forEach(s=>{
+data.forEach(s => {
 
-list.innerHTML+=`
+list.innerHTML += `
 
 <div class="person">
 
@@ -258,11 +543,12 @@ list.innerHTML+=`
 
 <p>Student ID: ${s.id}</p>
 
-<p>Class: ${s.cls||"Not specified"}</p>
+<p>Class: ${s.cls || "Not specified"}</p>
 
-<p>Parent Phone: ${s.phone||"Not specified"}</p>
+<p>Parent Phone: ${s.phone || "Not specified"}</p>
 
-<button class="delete"
+<button
+class="delete"
 onclick="deleteStudent('${s.id}')">
 🗑 Delete
 </button>
@@ -280,7 +566,8 @@ function deleteStudent(id){
 
 if(confirm("Delete this student?")){
 
-students=students.filter(s=>s.id!==id);
+students =
+students.filter(s => s.id !== id);
 
 save();
 
@@ -295,26 +582,40 @@ showStudents();
 
 function addTeacher(){
 
-let name=document.getElementById("teacherName").value.trim();
-let id=document.getElementById("teacherId").value.trim();
-let subject=document.getElementById("teacherSubject").value.trim();
-let phone=document.getElementById("teacherPhone").value.trim();
+let name =
+document.getElementById("teacherName").value.trim();
 
-if(!name||!id){
+let id =
+document.getElementById("teacherId").value.trim();
+
+let subject =
+document.getElementById("teacherSubject").value.trim();
+
+let phone =
+document.getElementById("teacherPhone").value.trim();
+
+if(!name || !id){
 
 alert("Please enter Full Name and Teacher ID.");
 
 return;
+
 }
 
-if(teachers.some(t=>t.id===id)){
+if(teachers.some(t => t.id === id)){
 
 alert("This Teacher ID already exists.");
 
 return;
+
 }
 
-teachers.push({name,id,subject,phone});
+teachers.push({
+name:name,
+id:id,
+subject:subject,
+phone:phone
+});
 
 save();
 
@@ -330,27 +631,33 @@ showTeachers();
 
 function showTeachers(){
 
-let search=document.getElementById("teacherSearch").value.toLowerCase();
+let search =
+document.getElementById("teacherSearch")
+.value.toLowerCase();
 
-let list=document.getElementById("teacherList");
+let list =
+document.getElementById("teacherList");
 
-let data=teachers.filter(t=>
-t.name.toLowerCase().includes(search)||
+let data =
+teachers.filter(t =>
+t.name.toLowerCase().includes(search) ||
 t.id.toLowerCase().includes(search)
 );
 
 list.innerHTML="";
 
-if(data.length===0){
+if(data.length === 0){
 
-list.innerHTML='<p class="empty">No teachers found.</p>';
+list.innerHTML =
+'<p class="empty">No teachers found.</p>';
 
 return;
+
 }
 
-data.forEach(t=>{
+data.forEach(t => {
 
-list.innerHTML+=`
+list.innerHTML += `
 
 <div class="person">
 
@@ -358,11 +665,12 @@ list.innerHTML+=`
 
 <p>Teacher ID: ${t.id}</p>
 
-<p>Subject: ${t.subject||"Not specified"}</p>
+<p>Subject: ${t.subject || "Not specified"}</p>
 
-<p>Phone: ${t.phone||"Not specified"}</p>
+<p>Phone: ${t.phone || "Not specified"}</p>
 
-<button class="delete"
+<button
+class="delete"
 onclick="deleteTeacher('${t.id}')">
 🗑 Delete
 </button>
@@ -380,7 +688,8 @@ function deleteTeacher(id){
 
 if(confirm("Delete this teacher?")){
 
-teachers=teachers.filter(t=>t.id!==id);
+teachers =
+teachers.filter(t => t.id !== id);
 
 save();
 
@@ -395,23 +704,38 @@ showTeachers();
 
 function addClass(){
 
-let name=document.getElementById("className").value.trim();
-let grade=document.getElementById("grade").value.trim();
-let section=document.getElementById("section").value.trim();
-let teacher=document.getElementById("classTeacher").value.trim();
+let name =
+document.getElementById("className").value.trim();
 
-if(!name||!grade){
+let grade =
+document.getElementById("grade").value.trim();
+
+let section =
+document.getElementById("section").value.trim();
+
+let teacher =
+document.getElementById("classTeacher").value.trim();
+
+if(!name || !grade){
 
 alert("Please enter Class Name and Grade.");
 
 return;
+
 }
 
 classes.push({
+
+id:Date.now(),
+
 name:name,
+
 grade:grade,
+
 section:section,
+
 teacher:teacher
+
 });
 
 save();
@@ -428,27 +752,33 @@ showClasses();
 
 function showClasses(){
 
-let search=document.getElementById("classSearch").value.toLowerCase();
+let search =
+document.getElementById("classSearch")
+.value.toLowerCase();
 
-let list=document.getElementById("classList");
+let list =
+document.getElementById("classList");
 
-let data=classes.filter(c=>
-c.name.toLowerCase().includes(search)||
+let data =
+classes.filter(c =>
+c.name.toLowerCase().includes(search) ||
 c.grade.toLowerCase().includes(search)
 );
 
 list.innerHTML="";
 
-if(data.length===0){
+if(data.length === 0){
 
-list.innerHTML='<p class="empty">No classes found.</p>';
+list.innerHTML =
+'<p class="empty">No classes found.</p>';
 
 return;
+
 }
 
-data.forEach((c,index)=>{
+data.forEach(c => {
 
-list.innerHTML+=`
+list.innerHTML += `
 
 <div class="person">
 
@@ -456,12 +786,13 @@ list.innerHTML+=`
 
 <p>Grade: ${c.grade}</p>
 
-<p>Section: ${c.section||"Not specified"}</p>
+<p>Section: ${c.section || "Not specified"}</p>
 
-<p>Teacher: ${c.teacher||"Not specified"}</p>
+<p>Teacher: ${c.teacher || "Not specified"}</p>
 
-<button class="delete"
-onclick="deleteClass(${classes.indexOf(c)})">
+<button
+class="delete"
+onclick="deleteClass(${c.id})">
 🗑 Delete
 </button>
 
@@ -474,11 +805,12 @@ onclick="deleteClass(${classes.indexOf(c)})">
 }
 
 
-function deleteClass(index){
+function deleteClass(id){
 
 if(confirm("Delete this class?")){
 
-classes.splice(index,1);
+classes =
+classes.filter(c => c.id !== id);
 
 save();
 
@@ -493,23 +825,36 @@ showClasses();
 
 function addAttendance(){
 
-let student=document.getElementById("attendanceStudent").value.trim();
+let student =
+document.getElementById("attendanceStudent")
+.value.trim();
 
-let date=document.getElementById("attendanceDate").value;
+let date =
+document.getElementById("attendanceDate")
+.value;
 
-let status=document.getElementById("attendanceStatus").value;
+let status =
+document.getElementById("attendanceStatus")
+.value;
 
-if(!student||!date){
+if(!student || !date){
 
 alert("Please enter Student Name and Date.");
 
 return;
+
 }
 
 attendance.push({
+
+id:Date.now(),
+
 student:student,
+
 date:date,
+
 status:status
+
 });
 
 save();
@@ -524,20 +869,23 @@ showAttendance();
 
 function showAttendance(){
 
-let list=document.getElementById("attendanceList");
+let list =
+document.getElementById("attendanceList");
 
 list.innerHTML="";
 
-if(attendance.length===0){
+if(attendance.length === 0){
 
-list.innerHTML='<p class="empty">No attendance records found.</p>';
+list.innerHTML =
+'<p class="empty">No attendance records found.</p>';
 
 return;
+
 }
 
-attendance.forEach((a,index)=>{
+attendance.forEach(a => {
 
-list.innerHTML+=`
+list.innerHTML += `
 
 <div class="person">
 
@@ -547,8 +895,9 @@ list.innerHTML+=`
 
 <p>Status: ${a.status}</p>
 
-<button class="delete"
-onclick="deleteAttendance(${index})">
+<button
+class="delete"
+onclick="deleteAttendance(${a.id})">
 🗑 Delete
 </button>
 
@@ -561,11 +910,12 @@ onclick="deleteAttendance(${index})">
 }
 
 
-function deleteAttendance(index){
+function deleteAttendance(id){
 
-if(confirm("Delete this attendance?")){
+if(confirm("Delete this attendance record?")){
 
-attendance.splice(index,1);
+attendance =
+attendance.filter(a => a.id !== id);
 
 save();
 
@@ -576,14 +926,234 @@ showAttendance();
 }
 
 
+/* GRADES */
+
+function addGrade(){
+
+let student =
+document.getElementById("gradeStudent")
+.value.trim();
+
+let subject =
+document.getElementById("gradeSubject")
+.value.trim();
+
+let value =
+document.getElementById("gradeValue")
+.value.trim();
+
+if(!student || !subject || !value){
+
+alert("Please enter Student, Subject and Grade.");
+
+return;
+
+}
+
+grades.push({
+
+id:Date.now(),
+
+student:student,
+
+subject:subject,
+
+value:value
+
+});
+
+save();
+
+document.getElementById("gradeStudent").value="";
+document.getElementById("gradeSubject").value="";
+document.getElementById("gradeValue").value="";
+
+showGrades();
+
+}
+
+
+function showGrades(){
+
+let list =
+document.getElementById("gradeList");
+
+list.innerHTML="";
+
+if(grades.length === 0){
+
+list.innerHTML =
+'<p class="empty">No grades found.</p>';
+
+return;
+
+}
+
+grades.forEach(g => {
+
+list.innerHTML += `
+
+<div class="person">
+
+<strong>👤 ${g.student}</strong>
+
+<p>Subject: ${g.subject}</p>
+
+<p>Grade: ${g.value}</p>
+
+<button
+class="delete"
+onclick="deleteGrade(${g.id})">
+🗑 Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function deleteGrade(id){
+
+if(confirm("Delete this grade?")){
+
+grades =
+grades.filter(g => g.id !== id);
+
+save();
+
+showGrades();
+
+}
+
+}
+
+
+/* FEES */
+
+function addFee(){
+
+let student =
+document.getElementById("feeStudent")
+.value.trim();
+
+let amount =
+document.getElementById("feeAmount")
+.value.trim();
+
+let status =
+document.getElementById("feeStatus")
+.value;
+
+if(!student || !amount){
+
+alert("Please enter Student Name and Amount.");
+
+return;
+
+}
+
+fees.push({
+
+id:Date.now(),
+
+student:student,
+
+amount:amount,
+
+status:status
+
+});
+
+save();
+
+document.getElementById("feeStudent").value="";
+document.getElementById("feeAmount").value="";
+
+showFees();
+
+}
+
+
+function showFees(){
+
+let list =
+document.getElementById("feeList");
+
+list.innerHTML="";
+
+if(fees.length === 0){
+
+list.innerHTML =
+'<p class="empty">No fee records found.</p>';
+
+return;
+
+}
+
+fees.forEach(f => {
+
+list.innerHTML += `
+
+<div class="person">
+
+<strong>👤 ${f.student}</strong>
+
+<p>Amount: ${f.amount} Birr</p>
+
+<p>Status: ${f.status}</p>
+
+<button
+class="delete"
+onclick="deleteFee(${f.id})">
+🗑 Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function deleteFee(id){
+
+if(confirm("Delete this fee record?")){
+
+fees =
+fees.filter(f => f.id !== id);
+
+save();
+
+showFees();
+
+}
+
+}
+
+
 /* START */
 
 showStudents();
+
 showTeachers();
+
 showClasses();
+
 showAttendance();
+
+showGrades();
+
+showFees();
+
+updateDashboard();
 
 </script>
 
 </body>
-</html>
+    </html>
