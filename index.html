@@ -38,7 +38,7 @@ header{
 
 h2{color:#1f4e79}
 
-input,button{
+input,button,select{
     width:100%;
     padding:12px;
     margin:6px 0;
@@ -96,10 +96,14 @@ button{
 
 <div class="card">
 <h2>🔎 Search Students</h2>
-<input id="studentSearch" placeholder="Search by name or ID"
+
+<input id="studentSearch"
+placeholder="Search by name or ID"
 oninput="showStudents()">
+
 <div id="studentList"></div>
 </div>
+
 
 <!-- TEACHERS -->
 <div class="card">
@@ -115,10 +119,14 @@ oninput="showStudents()">
 
 <div class="card">
 <h2>🔎 Search Teachers</h2>
-<input id="teacherSearch" placeholder="Search by name or ID"
+
+<input id="teacherSearch"
+placeholder="Search by name or ID"
 oninput="showTeachers()">
+
 <div id="teacherList"></div>
 </div>
+
 
 <!-- CLASSES -->
 <div class="card">
@@ -134,227 +142,446 @@ oninput="showTeachers()">
 
 <div class="card">
 <h2>🔎 Search Classes</h2>
-<input id="classSearch" placeholder="Search by class or grade"
+
+<input id="classSearch"
+placeholder="Search by class or grade"
 oninput="showClasses()">
+
 <div id="classList"></div>
 </div>
 
+
+<!-- ATTENDANCE -->
+<div class="card">
+<h2>📋 Attendance</h2>
+
+<input id="attendanceStudent"
+placeholder="Student Name">
+
+<input id="attendanceDate" type="date">
+
+<select id="attendanceStatus">
+<option value="Present">✅ Present</option>
+<option value="Absent">❌ Absent</option>
+</select>
+
+<button onclick="addAttendance()">➕ Save Attendance</button>
 </div>
+
+<div class="card">
+<h2>🔎 Attendance List</h2>
+
+<div id="attendanceList"></div>
+</div>
+
+</div>
+
 
 <script>
 
 let students=JSON.parse(localStorage.getItem("students"))||[];
 let teachers=JSON.parse(localStorage.getItem("teachers"))||[];
 let classes=JSON.parse(localStorage.getItem("classes"))||[];
+let attendance=JSON.parse(localStorage.getItem("attendance"))||[];
+
 
 function save(){
-    localStorage.setItem("students",JSON.stringify(students));
-    localStorage.setItem("teachers",JSON.stringify(teachers));
-    localStorage.setItem("classes",JSON.stringify(classes));
+
+localStorage.setItem("students",JSON.stringify(students));
+localStorage.setItem("teachers",JSON.stringify(teachers));
+localStorage.setItem("classes",JSON.stringify(classes));
+localStorage.setItem("attendance",JSON.stringify(attendance));
+
 }
+
 
 /* STUDENTS */
 
 function addStudent(){
 
-    let name=document.getElementById("studentName").value.trim();
-    let id=document.getElementById("studentId").value.trim();
-    let cls=document.getElementById("studentClass").value.trim();
-    let phone=document.getElementById("studentPhone").value.trim();
+let name=document.getElementById("studentName").value.trim();
+let id=document.getElementById("studentId").value.trim();
+let cls=document.getElementById("studentClass").value.trim();
+let phone=document.getElementById("studentPhone").value.trim();
 
-    if(!name||!id){
-        alert("Please enter Full Name and Student ID.");
-        return;
-    }
-
-    if(students.some(s=>s.id===id)){
-        alert("This Student ID already exists.");
-        return;
-    }
-
-    students.push({name,id,cls,phone});
-    save();
-
-    document.getElementById("studentName").value="";
-    document.getElementById("studentId").value="";
-    document.getElementById("studentClass").value="";
-    document.getElementById("studentPhone").value="";
-
-    showStudents();
+if(!name||!id){
+alert("Please enter Full Name and Student ID.");
+return;
 }
+
+if(students.some(s=>s.id===id)){
+alert("This Student ID already exists.");
+return;
+}
+
+students.push({name,id,cls,phone});
+
+save();
+
+document.getElementById("studentName").value="";
+document.getElementById("studentId").value="";
+document.getElementById("studentClass").value="";
+document.getElementById("studentPhone").value="";
+
+showStudents();
+
+}
+
 
 function showStudents(){
 
-    let search=document.getElementById("studentSearch").value.toLowerCase();
-    let list=document.getElementById("studentList");
+let search=document.getElementById("studentSearch").value.toLowerCase();
 
-    let data=students.filter(s=>
-        s.name.toLowerCase().includes(search)||
-        s.id.toLowerCase().includes(search)
-    );
+let list=document.getElementById("studentList");
 
-    list.innerHTML="";
+let data=students.filter(s=>
+s.name.toLowerCase().includes(search)||
+s.id.toLowerCase().includes(search)
+);
 
-    if(data.length===0){
-        list.innerHTML='<p class="empty">No students found.</p>';
-        return;
-    }
+list.innerHTML="";
 
-    data.forEach(s=>{
-        list.innerHTML+=`
-        <div class="person">
-        <strong>👤 ${s.name}</strong>
-        <p>Student ID: ${s.id}</p>
-        <p>Class: ${s.cls||"Not specified"}</p>
-        <p>Parent Phone: ${s.phone||"Not specified"}</p>
-        <button class="delete" onclick="deleteStudent('${s.id}')">🗑 Delete</button>
-        </div>`;
-    });
+if(data.length===0){
+
+list.innerHTML='<p class="empty">No students found.</p>';
+
+return;
 }
+
+data.forEach(s=>{
+
+list.innerHTML+=`
+
+<div class="person">
+
+<strong>👤 ${s.name}</strong>
+
+<p>Student ID: ${s.id}</p>
+
+<p>Class: ${s.cls||"Not specified"}</p>
+
+<p>Parent Phone: ${s.phone||"Not specified"}</p>
+
+<button class="delete"
+onclick="deleteStudent('${s.id}')">
+🗑 Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
 
 function deleteStudent(id){
 
-    if(confirm("Delete this student?")){
-        students=students.filter(s=>s.id!==id);
-        save();
-        showStudents();
-    }
+if(confirm("Delete this student?")){
+
+students=students.filter(s=>s.id!==id);
+
+save();
+
+showStudents();
+
 }
+
+}
+
 
 /* TEACHERS */
 
 function addTeacher(){
 
-    let name=document.getElementById("teacherName").value.trim();
-    let id=document.getElementById("teacherId").value.trim();
-    let subject=document.getElementById("teacherSubject").value.trim();
-    let phone=document.getElementById("teacherPhone").value.trim();
+let name=document.getElementById("teacherName").value.trim();
+let id=document.getElementById("teacherId").value.trim();
+let subject=document.getElementById("teacherSubject").value.trim();
+let phone=document.getElementById("teacherPhone").value.trim();
 
-    if(!name||!id){
-        alert("Please enter Full Name and Teacher ID.");
-        return;
-    }
+if(!name||!id){
 
-    if(teachers.some(t=>t.id===id)){
-        alert("This Teacher ID already exists.");
-        return;
-    }
+alert("Please enter Full Name and Teacher ID.");
 
-    teachers.push({name,id,subject,phone});
-    save();
-
-    document.getElementById("teacherName").value="";
-    document.getElementById("teacherId").value="";
-    document.getElementById("teacherSubject").value="";
-    document.getElementById("teacherPhone").value="";
-
-    showTeachers();
+return;
 }
+
+if(teachers.some(t=>t.id===id)){
+
+alert("This Teacher ID already exists.");
+
+return;
+}
+
+teachers.push({name,id,subject,phone});
+
+save();
+
+document.getElementById("teacherName").value="";
+document.getElementById("teacherId").value="";
+document.getElementById("teacherSubject").value="";
+document.getElementById("teacherPhone").value="";
+
+showTeachers();
+
+}
+
 
 function showTeachers(){
 
-    let search=document.getElementById("teacherSearch").value.toLowerCase();
-    let list=document.getElementById("teacherList");
+let search=document.getElementById("teacherSearch").value.toLowerCase();
 
-    let data=teachers.filter(t=>
-        t.name.toLowerCase().includes(search)||
-        t.id.toLowerCase().includes(search)
-    );
+let list=document.getElementById("teacherList");
 
-    list.innerHTML="";
+let data=teachers.filter(t=>
+t.name.toLowerCase().includes(search)||
+t.id.toLowerCase().includes(search)
+);
 
-    if(data.length===0){
-        list.innerHTML='<p class="empty">No teachers found.</p>';
-        return;
-    }
+list.innerHTML="";
 
-    data.forEach(t=>{
-        list.innerHTML+=`
-        <div class="person">
-        <strong>👩‍🏫 ${t.name}</strong>
-        <p>Teacher ID: ${t.id}</p>
-        <p>Subject: ${t.subject||"Not specified"}</p>
-        <p>Phone: ${t.phone||"Not specified"}</p>
-        <button class="delete" onclick="deleteTeacher('${t.id}')">🗑 Delete</button>
-        </div>`;
-    });
+if(data.length===0){
+
+list.innerHTML='<p class="empty">No teachers found.</p>';
+
+return;
 }
+
+data.forEach(t=>{
+
+list.innerHTML+=`
+
+<div class="person">
+
+<strong>👩‍🏫 ${t.name}</strong>
+
+<p>Teacher ID: ${t.id}</p>
+
+<p>Subject: ${t.subject||"Not specified"}</p>
+
+<p>Phone: ${t.phone||"Not specified"}</p>
+
+<button class="delete"
+onclick="deleteTeacher('${t.id}')">
+🗑 Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
 
 function deleteTeacher(id){
 
-    if(confirm("Delete this teacher?")){
-        teachers=teachers.filter(t=>t.id!==id);
-        save();
-        showTeachers();
-    }
+if(confirm("Delete this teacher?")){
+
+teachers=teachers.filter(t=>t.id!==id);
+
+save();
+
+showTeachers();
+
 }
+
+}
+
 
 /* CLASSES */
 
 function addClass(){
 
-    let name=document.getElementById("className").value.trim();
-    let grade=document.getElementById("grade").value.trim();
-    let section=document.getElementById("section").value.trim();
-    let teacher=document.getElementById("classTeacher").value.trim();
+let name=document.getElementById("className").value.trim();
+let grade=document.getElementById("grade").value.trim();
+let section=document.getElementById("section").value.trim();
+let teacher=document.getElementById("classTeacher").value.trim();
 
-    if(!name||!grade){
-        alert("Please enter Class Name and Grade.");
-        return;
-    }
+if(!name||!grade){
 
-    classes.push({name,grade,section,teacher});
-    save();
+alert("Please enter Class Name and Grade.");
 
-    document.getElementById("className").value="";
-    document.getElementById("grade").value="";
-    document.getElementById("section").value="";
-    document.getElementById("classTeacher").value="";
-
-    showClasses();
+return;
 }
+
+classes.push({
+name:name,
+grade:grade,
+section:section,
+teacher:teacher
+});
+
+save();
+
+document.getElementById("className").value="";
+document.getElementById("grade").value="";
+document.getElementById("section").value="";
+document.getElementById("classTeacher").value="";
+
+showClasses();
+
+}
+
 
 function showClasses(){
 
-    let search=document.getElementById("classSearch").value.toLowerCase();
-    let list=document.getElementById("classList");
+let search=document.getElementById("classSearch").value.toLowerCase();
 
-    let data=classes.filter(c=>
-        c.name.toLowerCase().includes(search)||
-        c.grade.toLowerCase().includes(search)
-    );
+let list=document.getElementById("classList");
 
-    list.innerHTML="";
+let data=classes.filter(c=>
+c.name.toLowerCase().includes(search)||
+c.grade.toLowerCase().includes(search)
+);
 
-    if(data.length===0){
-        list.innerHTML='<p class="empty">No classes found.</p>';
-        return;
-    }
+list.innerHTML="";
 
-    data.forEach((c,index)=>{
-        list.innerHTML+=`
-        <div class="person">
-        <strong>🏫 ${c.name}</strong>
-        <p>Grade: ${c.grade}</p>
-        <p>Section: ${c.section||"Not specified"}</p>
-        <p>Teacher: ${c.teacher||"Not specified"}</p>
-        <button class="delete" onclick="deleteClass(${index})">🗑 Delete</button>
-        </div>`;
-    });
+if(data.length===0){
+
+list.innerHTML='<p class="empty">No classes found.</p>';
+
+return;
 }
+
+data.forEach((c,index)=>{
+
+list.innerHTML+=`
+
+<div class="person">
+
+<strong>🏫 ${c.name}</strong>
+
+<p>Grade: ${c.grade}</p>
+
+<p>Section: ${c.section||"Not specified"}</p>
+
+<p>Teacher: ${c.teacher||"Not specified"}</p>
+
+<button class="delete"
+onclick="deleteClass(${classes.indexOf(c)})">
+🗑 Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
 
 function deleteClass(index){
 
-    if(confirm("Delete this class?")){
-        classes.splice(index,1);
-        save();
-        showClasses();
-    }
+if(confirm("Delete this class?")){
+
+classes.splice(index,1);
+
+save();
+
+showClasses();
+
 }
+
+}
+
+
+/* ATTENDANCE */
+
+function addAttendance(){
+
+let student=document.getElementById("attendanceStudent").value.trim();
+
+let date=document.getElementById("attendanceDate").value;
+
+let status=document.getElementById("attendanceStatus").value;
+
+if(!student||!date){
+
+alert("Please enter Student Name and Date.");
+
+return;
+}
+
+attendance.push({
+student:student,
+date:date,
+status:status
+});
+
+save();
+
+document.getElementById("attendanceStudent").value="";
+document.getElementById("attendanceDate").value="";
+
+showAttendance();
+
+}
+
+
+function showAttendance(){
+
+let list=document.getElementById("attendanceList");
+
+list.innerHTML="";
+
+if(attendance.length===0){
+
+list.innerHTML='<p class="empty">No attendance records found.</p>';
+
+return;
+}
+
+attendance.forEach((a,index)=>{
+
+list.innerHTML+=`
+
+<div class="person">
+
+<strong>👤 ${a.student}</strong>
+
+<p>📅 Date: ${a.date}</p>
+
+<p>Status: ${a.status}</p>
+
+<button class="delete"
+onclick="deleteAttendance(${index})">
+🗑 Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function deleteAttendance(index){
+
+if(confirm("Delete this attendance?")){
+
+attendance.splice(index,1);
+
+save();
+
+showAttendance();
+
+}
+
+}
+
+
+/* START */
 
 showStudents();
 showTeachers();
 showClasses();
+showAttendance();
 
 </script>
 
