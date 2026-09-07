@@ -7,9 +7,12 @@
 <title>Newfortune School Management</title>
 
 <style>
-
 *{
 box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
@@ -23,11 +26,38 @@ header{
 background:#1f4e79;
 color:white;
 text-align:center;
-padding:20px;
+padding:22px 15px;
 }
 
 header h1{
 margin:0;
+font-size:25px;
+}
+
+header p{
+margin:7px 0 0;
+}
+
+nav{
+background:white;
+padding:10px;
+display:flex;
+gap:8px;
+overflow-x:auto;
+position:sticky;
+top:0;
+z-index:10;
+box-shadow:0 2px 6px rgba(0,0,0,.12);
+}
+
+nav a{
+text-decoration:none;
+background:#eef4f9;
+color:#1f4e79;
+padding:10px 14px;
+border-radius:7px;
+font-weight:bold;
+white-space:nowrap;
 }
 
 .container{
@@ -46,6 +76,7 @@ box-shadow:0 2px 8px rgba(0,0,0,.08);
 
 h2{
 color:#1f4e79;
+margin-top:0;
 }
 
 input,select,button{
@@ -61,6 +92,7 @@ button{
 background:#1f4e79;
 color:white;
 border:none;
+cursor:pointer;
 }
 
 .delete{
@@ -100,15 +132,40 @@ font-size:28px;
 color:#1f4e79;
 }
 
+footer{
+text-align:center;
+padding:25px;
+color:#777;
+}
+
+@media(max-width:500px){
+header h1{
+font-size:21px;
+}
+
+.container{
+padding:10px;
+}
+}
 </style>
 </head>
 
 <body>
 
-<header>
+<header id="dashboard">
 <h1>Newfortune School Management</h1>
 <p>School Management System</p>
 </header>
+
+<nav>
+<a href="#dashboard">🏠 Dashboard</a>
+<a href="#students">👨‍🎓 Students</a>
+<a href="#teachers">👩‍🏫 Teachers</a>
+<a href="#classes">🏫 Classes</a>
+<a href="#attendance">📋 Attendance</a>
+<a href="#grades">📝 Grades</a>
+<a href="#fees">💰 Fees</a>
+</nav>
 
 <div class="container">
 
@@ -147,7 +204,7 @@ Attendance
 
 <!-- STUDENTS -->
 
-<div class="card">
+<div class="card" id="students">
 
 <h2>👨‍🎓 Students</h2>
 
@@ -164,7 +221,6 @@ Attendance
 </button>
 
 </div>
-
 
 <div class="card">
 
@@ -183,7 +239,7 @@ oninput="showStudents()"
 
 <!-- TEACHERS -->
 
-<div class="card">
+<div class="card" id="teachers">
 
 <h2>👩‍🏫 Teachers</h2>
 
@@ -200,7 +256,6 @@ oninput="showStudents()"
 </button>
 
 </div>
-
 
 <div class="card">
 
@@ -219,7 +274,7 @@ oninput="showTeachers()"
 
 <!-- CLASSES -->
 
-<div class="card">
+<div class="card" id="classes">
 
 <h2>🏫 Classes</h2>
 
@@ -236,7 +291,6 @@ oninput="showTeachers()"
 </button>
 
 </div>
-
 
 <div class="card">
 
@@ -255,7 +309,7 @@ oninput="showClasses()"
 
 <!-- ATTENDANCE -->
 
-<div class="card">
+<div class="card" id="attendance">
 
 <h2>📋 Attendance</h2>
 
@@ -272,7 +326,6 @@ type="date"
 <select id="attendanceStatus">
 
 <option value="Present">✅ Present</option>
-
 <option value="Absent">❌ Absent</option>
 
 </select>
@@ -282,7 +335,6 @@ type="date"
 </button>
 
 </div>
-
 
 <div class="card">
 
@@ -295,7 +347,7 @@ type="date"
 
 <!-- GRADES -->
 
-<div class="card">
+<div class="card" id="grades">
 
 <h2>📝 Grades</h2>
 
@@ -321,7 +373,6 @@ placeholder="Grade / Mark"
 
 </div>
 
-
 <div class="card">
 
 <h2>📚 Grades List</h2>
@@ -333,7 +384,7 @@ placeholder="Grade / Mark"
 
 <!-- FEES -->
 
-<div class="card">
+<div class="card" id="fees">
 
 <h2>💰 Fees</h2>
 
@@ -351,7 +402,6 @@ placeholder="Amount"
 <select id="feeStatus">
 
 <option value="Paid">✅ Paid</option>
-
 <option value="Unpaid">❌ Unpaid</option>
 
 </select>
@@ -361,7 +411,6 @@ placeholder="Amount"
 </button>
 
 </div>
-
 
 <div class="card">
 
@@ -373,9 +422,12 @@ placeholder="Amount"
 
 </div>
 
+<footer>
+Newfortune School Management
+</footer>
+
 
 <script>
-
 
 /* DATA */
 
@@ -477,7 +529,6 @@ if(!name || !id){
 alert("Please enter Full Name and Student ID.");
 
 return;
-
 }
 
 if(students.some(s => s.id === id)){
@@ -485,7 +536,6 @@ if(students.some(s => s.id === id)){
 alert("This Student ID already exists.");
 
 return;
-
 }
 
 students.push({
@@ -510,8 +560,7 @@ showStudents();
 function showStudents(){
 
 let search =
-document.getElementById("studentSearch")
-.value.toLowerCase();
+document.getElementById("studentSearch").value.toLowerCase();
 
 let list =
 document.getElementById("studentList");
@@ -530,7 +579,6 @@ list.innerHTML =
 '<p class="empty">No students found.</p>';
 
 return;
-
 }
 
 data.forEach(s => {
@@ -599,7 +647,6 @@ if(!name || !id){
 alert("Please enter Full Name and Teacher ID.");
 
 return;
-
 }
 
 if(teachers.some(t => t.id === id)){
@@ -607,7 +654,6 @@ if(teachers.some(t => t.id === id)){
 alert("This Teacher ID already exists.");
 
 return;
-
 }
 
 teachers.push({
@@ -632,8 +678,7 @@ showTeachers();
 function showTeachers(){
 
 let search =
-document.getElementById("teacherSearch")
-.value.toLowerCase();
+document.getElementById("teacherSearch").value.toLowerCase();
 
 let list =
 document.getElementById("teacherList");
@@ -652,7 +697,6 @@ list.innerHTML =
 '<p class="empty">No teachers found.</p>';
 
 return;
-
 }
 
 data.forEach(t => {
@@ -721,7 +765,6 @@ if(!name || !grade){
 alert("Please enter Class Name and Grade.");
 
 return;
-
 }
 
 classes.push({
@@ -753,8 +796,7 @@ showClasses();
 function showClasses(){
 
 let search =
-document.getElementById("classSearch")
-.value.toLowerCase();
+document.getElementById("classSearch").value.toLowerCase();
 
 let list =
 document.getElementById("classList");
@@ -773,7 +815,6 @@ list.innerHTML =
 '<p class="empty">No classes found.</p>';
 
 return;
-
 }
 
 data.forEach(c => {
@@ -826,23 +867,19 @@ showClasses();
 function addAttendance(){
 
 let student =
-document.getElementById("attendanceStudent")
-.value.trim();
+document.getElementById("attendanceStudent").value.trim();
 
 let date =
-document.getElementById("attendanceDate")
-.value;
+document.getElementById("attendanceDate").value;
 
 let status =
-document.getElementById("attendanceStatus")
-.value;
+document.getElementById("attendanceStatus").value;
 
 if(!student || !date){
 
 alert("Please enter Student Name and Date.");
 
 return;
-
 }
 
 attendance.push({
@@ -880,7 +917,6 @@ list.innerHTML =
 '<p class="empty">No attendance records found.</p>';
 
 return;
-
 }
 
 attendance.forEach(a => {
@@ -931,23 +967,19 @@ showAttendance();
 function addGrade(){
 
 let student =
-document.getElementById("gradeStudent")
-.value.trim();
+document.getElementById("gradeStudent").value.trim();
 
 let subject =
-document.getElementById("gradeSubject")
-.value.trim();
+document.getElementById("gradeSubject").value.trim();
 
 let value =
-document.getElementById("gradeValue")
-.value.trim();
+document.getElementById("gradeValue").value.trim();
 
 if(!student || !subject || !value){
 
 alert("Please enter Student, Subject and Grade.");
 
 return;
-
 }
 
 grades.push({
@@ -986,7 +1018,6 @@ list.innerHTML =
 '<p class="empty">No grades found.</p>';
 
 return;
-
 }
 
 grades.forEach(g => {
@@ -1037,23 +1068,19 @@ showGrades();
 function addFee(){
 
 let student =
-document.getElementById("feeStudent")
-.value.trim();
+document.getElementById("feeStudent").value.trim();
 
 let amount =
-document.getElementById("feeAmount")
-.value.trim();
+document.getElementById("feeAmount").value.trim();
 
 let status =
-document.getElementById("feeStatus")
-.value;
+document.getElementById("feeStatus").value;
 
 if(!student || !amount){
 
 alert("Please enter Student Name and Amount.");
 
 return;
-
 }
 
 fees.push({
@@ -1091,7 +1118,6 @@ list.innerHTML =
 '<p class="empty">No fee records found.</p>';
 
 return;
-
 }
 
 fees.forEach(f => {
@@ -1140,17 +1166,11 @@ showFees();
 /* START */
 
 showStudents();
-
 showTeachers();
-
 showClasses();
-
 showAttendance();
-
 showGrades();
-
 showFees();
-
 updateDashboard();
 
 </script>
