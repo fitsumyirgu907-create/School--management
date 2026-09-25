@@ -1231,6 +1231,22 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     
 </script>
     
+<div id="resetPage" style="display:none; padding:30px; text-align:center;">
+  <h2>New Password</h2>
 
+  <input type="password" id="newPassword"
+    placeholder="New Password"
+    style="display:block; margin:10px auto; padding:12px;">
+
+  <input type="password" id="confirmPassword"
+    placeholder="Confirm Password"
+    style="display:block; margin:10px auto; padding:12px;">
+
+  <button id="savePasswordBtn" style="padding:12px 30px;">
+    Save Password
+  </button>
+
+  <p id="resetMessage"></p>
+</div>
 </body>
     </html>
