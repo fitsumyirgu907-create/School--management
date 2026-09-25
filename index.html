@@ -7,13 +7,9 @@
 <title>Newfortune School Management</title>
 
 <style>
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
-html{
-scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth;}
 
 body{
 margin:0;
@@ -29,14 +25,8 @@ text-align:center;
 padding:22px 15px;
 }
 
-header h1{
-margin:0;
-font-size:25px;
-}
-
-header p{
-margin:7px 0 0;
-}
+header h1{margin:0;font-size:25px;}
+header p{margin:7px 0 0;}
 
 nav{
 background:white;
@@ -139,20 +129,18 @@ color:#777;
 }
 
 @media(max-width:500px){
-header h1{
-font-size:21px;
-}
-
-.container{
-padding:10px;
-}
+header h1{font-size:21px;}
+.container{padding:10px;}
 }
 </style>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
-    <div id="loginPage" style="padding:30px; text-align:center;">
+
+<!-- LOGIN -->
+<div id="loginPage" style="padding:30px; text-align:center;">
   <h2>New Fortune School</h2>
 
   <input
@@ -169,15 +157,70 @@ padding:10px;
     style="display:block; margin:10px auto; padding:12px;"
   >
 
-  <button
-    id="loginBtn"
-    style="padding:12px 30px;"
-  >
+  <button id="loginBtn" style="padding:12px 30px;">
     Login
   </button>
 
+  <button id="forgotPasswordBtn"
+    style="padding:12px 30px; background:#777;">
+    Forgot Password?
+  </button>
+
   <p id="loginMessage"></p>
-    </div>
+</div>
+
+
+<!-- FORGOT PASSWORD -->
+<div id="forgotPage" style="display:none; padding:30px; text-align:center;">
+  <h2>Reset Password</h2>
+
+  <p>Enter your email address</p>
+
+  <input
+    type="email"
+    id="resetEmail"
+    placeholder="Email"
+    style="display:block; margin:10px auto; padding:12px;"
+  >
+
+  <button id="sendResetBtn" style="padding:12px 30px;">
+    Send Reset Link
+  </button>
+
+  <button id="backLoginBtn"
+    style="padding:12px 30px; background:#777;">
+    Back to Login
+  </button>
+
+  <p id="forgotMessage"></p>
+</div>
+
+
+<!-- NEW PASSWORD -->
+<div id="resetPage" style="display:none; padding:30px; text-align:center;">
+  <h2>New Password</h2>
+
+  <input
+    type="password"
+    id="newPassword"
+    placeholder="New Password"
+    style="display:block; margin:10px auto; padding:12px;"
+  >
+
+  <input
+    type="password"
+    id="confirmPassword"
+    placeholder="Confirm Password"
+    style="display:block; margin:10px auto; padding:12px;"
+  >
+
+  <button id="savePasswordBtn" style="padding:12px 30px;">
+    Save Password
+  </button>
+
+  <p id="resetMessage"></p>
+</div>
+
 
 <header id="dashboard">
 <h1>Newfortune School Management</h1>
@@ -197,9 +240,7 @@ padding:10px;
 <div class="container">
 
 <!-- DASHBOARD -->
-
 <div class="card">
-
 <h2>📊 Dashboard</h2>
 
 <div class="stats">
@@ -225,32 +266,22 @@ Attendance
 </div>
 
 </div>
-
 </div>
 
 
 <!-- STUDENTS -->
-
 <div class="card" id="students">
-
 <h2>👨‍🎓 Students</h2>
 
 <input id="studentName" placeholder="Full Name">
-
 <input id="studentId" placeholder="Student ID">
-
 <input id="studentClass" placeholder="Class">
-
 <input id="studentPhone" placeholder="Parent Phone">
 
-<button onclick="addStudent()">
-➕ Add Student
-</button>
-
+<button onclick="addStudent()">➕ Add Student</button>
 </div>
 
 <div class="card">
-
 <h2>🔎 Search Students</h2>
 
 <input
@@ -260,32 +291,22 @@ oninput="showStudents()"
 >
 
 <div id="studentList"></div>
-
 </div>
 
 
 <!-- TEACHERS -->
-
 <div class="card" id="teachers">
-
 <h2>👩‍🏫 Teachers</h2>
 
 <input id="teacherName" placeholder="Full Name">
-
 <input id="teacherId" placeholder="Teacher ID">
-
 <input id="teacherSubject" placeholder="Subject">
-
 <input id="teacherPhone" placeholder="Phone">
 
-<button onclick="addTeacher()">
-➕ Add Teacher
-</button>
-
+<button onclick="addTeacher()">➕ Add Teacher</button>
 </div>
 
 <div class="card">
-
 <h2>🔎 Search Teachers</h2>
 
 <input
@@ -295,32 +316,22 @@ oninput="showTeachers()"
 >
 
 <div id="teacherList"></div>
-
 </div>
 
 
 <!-- CLASSES -->
-
 <div class="card" id="classes">
-
 <h2>🏫 Classes</h2>
 
 <input id="className" placeholder="Class Name">
-
 <input id="grade" placeholder="Grade">
-
 <input id="section" placeholder="Section">
-
 <input id="classTeacher" placeholder="Teacher Name">
 
-<button onclick="addClass()">
-➕ Add Class
-</button>
-
+<button onclick="addClass()">➕ Add Class</button>
 </div>
 
 <div class="card">
-
 <h2>🔎 Search Classes</h2>
 
 <input
@@ -330,121 +341,65 @@ oninput="showClasses()"
 >
 
 <div id="classList"></div>
-
 </div>
 
 
 <!-- ATTENDANCE -->
-
 <div class="card" id="attendance">
-
 <h2>📋 Attendance</h2>
 
-<input
-id="attendanceStudent"
-placeholder="Student Name"
->
-
-<input
-id="attendanceDate"
-type="date"
->
+<input id="attendanceStudent" placeholder="Student Name">
+<input id="attendanceDate" type="date">
 
 <select id="attendanceStatus">
-
 <option value="Present">✅ Present</option>
 <option value="Absent">❌ Absent</option>
-
 </select>
 
-<button onclick="addAttendance()">
-➕ Save Attendance
-</button>
-
+<button onclick="addAttendance()">➕ Save Attendance</button>
 </div>
 
 <div class="card">
-
 <h2>🔎 Attendance List</h2>
-
 <div id="attendanceList"></div>
-
 </div>
 
 
 <!-- GRADES -->
-
 <div class="card" id="grades">
-
 <h2>📝 Grades</h2>
 
-<input
-id="gradeStudent"
-placeholder="Student Name"
->
+<input id="gradeStudent" placeholder="Student Name">
+<input id="gradeSubject" placeholder="Subject">
+<input id="gradeValue" type="number" placeholder="Grade / Mark">
 
-<input
-id="gradeSubject"
-placeholder="Subject"
->
-
-<input
-id="gradeValue"
-type="number"
-placeholder="Grade / Mark"
->
-
-<button onclick="addGrade()">
-➕ Save Grade
-</button>
-
+<button onclick="addGrade()">➕ Save Grade</button>
 </div>
 
 <div class="card">
-
 <h2>📚 Grades List</h2>
-
 <div id="gradeList"></div>
-
 </div>
 
 
 <!-- FEES -->
-
 <div class="card" id="fees">
-
 <h2>💰 Fees</h2>
 
-<input
-id="feeStudent"
-placeholder="Student Name"
->
-
-<input
-id="feeAmount"
-type="number"
-placeholder="Amount"
->
+<input id="feeStudent" placeholder="Student Name">
+<input id="feeAmount" type="number" placeholder="Amount">
 
 <select id="feeStatus">
-
 <option value="Paid">✅ Paid</option>
 <option value="Unpaid">❌ Unpaid</option>
-
 </select>
 
-<button onclick="addFee()">
-➕ Save Fee
-</button>
-
+<button onclick="addFee()">➕ Save Fee</button>
 </div>
 
 <div class="card">
-
 <h2>💵 Fees List</h2>
-
 <div id="feeList"></div>
-
 </div>
 
 </div>
@@ -456,7 +411,9 @@ Newfortune School Management
 
 <script>
 
-/* DATA */
+/* =========================
+   LOCAL DATA
+========================= */
 
 let students =
 JSON.parse(localStorage.getItem("students")) || [];
@@ -477,7 +434,257 @@ let fees =
 JSON.parse(localStorage.getItem("fees")) || [];
 
 
-/* SAVE */
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://ykvkxxxssmfgydqzijby.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_7ii_IQ4dR_JiFOFP86RA8g_T9tx98jr";
+
+const supabaseClient =
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+/* =========================
+   PAGE CONTROL
+========================= */
+
+function hideAllPages(){
+
+document.getElementById("loginPage").style.display="none";
+
+document.getElementById("forgotPage").style.display="none";
+
+document.getElementById("resetPage").style.display="none";
+
+}
+
+
+function showLogin(){
+
+hideAllPages();
+
+document.getElementById("loginPage").style.display="block";
+
+}
+
+
+function showForgot(){
+
+hideAllPages();
+
+document.getElementById("forgotPage").style.display="block";
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+document.getElementById("loginBtn")
+.addEventListener("click", async () => {
+
+const email =
+document.getElementById("loginEmail").value.trim();
+
+const password =
+document.getElementById("loginPassword").value;
+
+const message =
+document.getElementById("loginMessage");
+
+if(!email || !password){
+
+message.textContent =
+"Please enter email and password.";
+
+return;
+}
+
+const { error } =
+await supabaseClient.auth.signInWithPassword({
+
+email:email,
+
+password:password
+
+});
+
+if(error){
+
+message.textContent =
+error.message;
+
+}else{
+
+message.textContent =
+"Login successful!";
+
+document.getElementById("loginPage").style.display="none";
+
+document.querySelectorAll(
+"body > *:not(#loginPage):not(#forgotPage):not(#resetPage):not(script)"
+).forEach(el => {
+
+el.style.display="";
+
+});
+
+}
+
+});
+
+
+/* =========================
+   FORGOT PASSWORD
+========================= */
+
+document.getElementById("forgotPasswordBtn")
+.addEventListener("click", () => {
+
+showForgot();
+
+});
+
+
+document.getElementById("backLoginBtn")
+.addEventListener("click", () => {
+
+showLogin();
+
+});
+
+
+document.getElementById("sendResetBtn")
+.addEventListener("click", async () => {
+
+const email =
+document.getElementById("resetEmail").value.trim();
+
+const message =
+document.getElementById("forgotMessage");
+
+if(!email){
+
+message.textContent =
+"Please enter your email.";
+
+return;
+}
+
+const { error } =
+await supabaseClient.auth.resetPasswordForEmail(
+email,
+{
+redirectTo: window.location.origin +
+window.location.pathname
+}
+);
+
+if(error){
+
+message.textContent =
+error.message;
+
+}else{
+
+message.textContent =
+"Reset link sent! Check your email.";
+
+}
+
+});
+
+
+/* =========================
+   PASSWORD RECOVERY
+========================= */
+
+supabaseClient.auth.onAuthStateChange(
+(event, session) => {
+
+if(event === "PASSWORD_RECOVERY"){
+
+hideAllPages();
+
+document.getElementById("resetPage")
+.style.display="block";
+
+}
+
+});
+
+
+/* =========================
+   SAVE NEW PASSWORD
+========================= */
+
+document.getElementById("savePasswordBtn")
+.addEventListener("click", async () => {
+
+const newPassword =
+document.getElementById("newPassword").value;
+
+const confirmPassword =
+document.getElementById("confirmPassword").value;
+
+const message =
+document.getElementById("resetMessage");
+
+if(newPassword !== confirmPassword){
+
+message.textContent =
+"Passwords do not match!";
+
+return;
+}
+
+if(newPassword.length < 6){
+
+message.textContent =
+"Password must be at least 6 characters!";
+
+return;
+}
+
+const { error } =
+await supabaseClient.auth.updateUser({
+
+password:newPassword
+
+});
+
+if(error){
+
+message.textContent =
+error.message;
+
+}else{
+
+message.textContent =
+"Password updated successfully!";
+
+setTimeout(() => {
+
+showLogin();
+
+}, 1500);
+
+}
+
+});
+
+
+/* =========================
+   SAVE
+========================= */
 
 function save(){
 
@@ -516,7 +723,9 @@ updateDashboard();
 }
 
 
-/* DASHBOARD */
+/* =========================
+   DASHBOARD
+========================= */
 
 function updateDashboard(){
 
@@ -535,7 +744,9 @@ attendance.length;
 }
 
 
-/* STUDENTS */
+/* =========================
+   STUDENTS
+========================= */
 
 function addStudent(){
 
@@ -653,7 +864,9 @@ showStudents();
 }
 
 
-/* TEACHERS */
+/* =========================
+   TEACHERS
+========================= */
 
 function addTeacher(){
 
@@ -771,7 +984,9 @@ showTeachers();
 }
 
 
-/* CLASSES */
+/* =========================
+   CLASSES
+========================= */
 
 function addClass(){
 
@@ -889,7 +1104,9 @@ showClasses();
 }
 
 
-/* ATTENDANCE */
+/* =========================
+   ATTENDANCE
+========================= */
 
 function addAttendance(){
 
@@ -989,7 +1206,9 @@ showAttendance();
 }
 
 
-/* GRADES */
+/* =========================
+   GRADES
+========================= */
 
 function addGrade(){
 
@@ -1090,7 +1309,9 @@ showGrades();
 }
 
 
-/* FEES */
+/* =========================
+   FEES
+========================= */
 
 function addFee(){
 
@@ -1189,12 +1410,18 @@ showFees();
 
 }
 
-document.querySelectorAll("body > *:not(#loginPage)").forEach(el => {
-  if (el.tagName !== "SCRIPT") {
-    el.style.display = "none";
-  }
+
+/* =========================
+   START
+========================= */
+
+document.querySelectorAll(
+"body > *:not(#loginPage):not(#forgotPage):not(#resetPage):not(script)"
+).forEach(el => {
+
+el.style.display="none";
+
 });
-/* START */
 
 showStudents();
 showTeachers();
@@ -1202,85 +1429,9 @@ showClasses();
 showAttendance();
 showGrades();
 showFees();
-updateDashboard()
-    const SUPABASE_URL = "https://ykvkxxxssmfgydqzijby.supabase.co";
-const SUPABASE_KEY  = "sb_publishable_7ii_IQ4dR_JiFOFP86RA8g_T9tx98jr ";
+updateDashboard();
 
-const supabaseClient = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-document.getElementById("loginBtn").addEventListener("click", async () => {
-  const email = document.getElementById("loginEmail").value;
-  const password = document.getElementById("loginPassword").value;
-  const message = document.getElementById("loginMessage");
-
-  const { error } = await supabaseClient.auth.signInWithPassword({
-    email: email,
-    password: password
-  });
-
-  if (error) {
-    message.textContent = error.message;
-  } else {
-    message.textContent = "Login successful!";
-    document.getElementById("loginPage").style.display = "none";
-  }
-});
-    
 </script>
-    
-<div id="resetPage" style="display:none; padding:30px; text-align:center;">
-  <h2>New Password</h2>
 
-  <input type="password" id="newPassword"
-    placeholder="New Password"
-    style="display:block; margin:10px auto; padding:12px;">
-
-  <input type="password" id="confirmPassword"
-    placeholder="Confirm Password"
-    style="display:block; margin:10px auto; padding:12px;">
-
-  <button id="savePasswordBtn" style="padding:12px 30px;">
-    Save Password
-  </button>
-
-  <p id="resetMessage"></p>
-</div>
-    <script>
-supabaseClient.auth.onAuthStateChange((event, session) => {
-  if (event === "PASSWORD_RECOVERY") {
-    document.getElementById("loginPage").style.display = "none";
-    document.getElementById("resetPage").style.display = "block";
-  }
-});
-
-document.getElementById("savePasswordBtn").addEventListener("click", async () => {
-  const newPassword = document.getElementById("newPassword").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
-  const message = document.getElementById("resetMessage");
-
-  if (newPassword !== confirmPassword) {
-    message.textContent = "Passwords do not match!";
-    return;
-  }
-
-  if (newPassword.length < 6) {
-    message.textContent = "Password must be at least 6 characters!";
-    return;
-  }
-
-  const { error } = await supabaseClient.auth.updateUser({
-    password: newPassword
-  });
-
-  if (error) {
-    message.textContent = error.message;
-  } else {
-    message.textContent = "Password updated successfully!";
-  }
-});
-    </script>
 </body>
     </html>
