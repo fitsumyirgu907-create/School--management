@@ -1189,7 +1189,11 @@ showFees();
 
 }
 
-
+document.querySelectorAll("body > *:not(#loginPage)").forEach(el => {
+  if (el.tagName !== "SCRIPT") {
+    el.style.display = "none";
+  }
+});
 /* START */
 
 showStudents();
