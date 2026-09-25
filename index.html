@@ -1248,5 +1248,39 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
 
   <p id="resetMessage"></p>
 </div>
+    <script>
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (event === "PASSWORD_RECOVERY") {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("resetPage").style.display = "block";
+  }
+});
+
+document.getElementById("savePasswordBtn").addEventListener("click", async () => {
+  const newPassword = document.getElementById("newPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const message = document.getElementById("resetMessage");
+
+  if (newPassword !== confirmPassword) {
+    message.textContent = "Passwords do not match!";
+    return;
+  }
+
+  if (newPassword.length < 6) {
+    message.textContent = "Password must be at least 6 characters!";
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.updateUser({
+    password: newPassword
+  });
+
+  if (error) {
+    message.textContent = error.message;
+  } else {
+    message.textContent = "Password updated successfully!";
+  }
+});
+    </script>
 </body>
     </html>
