@@ -21,7 +21,6 @@ color:#222;
 }
 
 button{cursor:pointer}
-
 .hidden{display:none!important}
 
 /* LOGIN */
@@ -52,7 +51,8 @@ width:100%;
 background:rgba(255,255,255,.96);
 padding:32px;
 border-radius:24px;
-box-shadow:0 20px 60px rgba(0,0,0,.30),0 0 0 1px rgba(255,255,255,.5);
+box-shadow:0 20px 60px rgba(0,0,0,.30),
+0 0 0 1px rgba(255,255,255,.5);
 backdrop-filter:blur(8px);
 }
 
@@ -130,7 +130,6 @@ transition:.2s;
 
 .primary-btn:hover{
 transform:translateY(-1px);
-box-shadow:0 10px 22px rgba(7,89,201,.32);
 }
 
 .link-btn{
@@ -224,7 +223,6 @@ overflow:auto;
 }
 
 .section{display:none}
-
 .section.active{display:block}
 
 .page-title{margin-bottom:20px}
@@ -287,7 +285,9 @@ border-radius:7px;
 outline:none;
 }
 
-input:focus,select:focus{border-color:#0d6efd}
+input:focus,select:focus{
+border-color:#0d6efd;
+}
 
 .save-btn{
 margin-top:10px;
@@ -329,7 +329,7 @@ padding:6px 10px;
 border-radius:5px;
 }
 
-/* TEACHER DASHBOARD */
+/* TEACHER */
 .teacher-header{
 background:linear-gradient(135deg,#198754,#20c997);
 color:white;
@@ -381,9 +381,7 @@ border-radius:14px;
 margin-bottom:20px;
 }
 
-.admin-header h2{
-margin-bottom:7px;
-}
+.admin-header h2{margin-bottom:7px}
 
 .admin-role{
 display:inline-block;
@@ -441,7 +439,9 @@ margin-bottom:15px;
 
 .login-title{font-size:24px}
 
-.layout{flex-direction:column}
+.layout{
+flex-direction:column;
+}
 
 .sidebar{
 width:100%;
@@ -469,7 +469,6 @@ margin-bottom:0;
 <body>
 
 <!-- LOGIN -->
-
 <div id="loginPage" class="login-page">
 
 <div class="login-overlay">
@@ -518,19 +517,13 @@ placeholder="Enter your password"
 autocomplete="current-password"
 >
 
-<button
-class="primary-btn"
-onclick="login()"
->
+<button class="primary-btn" onclick="login()">
 Login →
 </button>
 
 <div style="text-align:center">
 
-<button
-class="link-btn"
-onclick="showForgot()"
->
+<button class="link-btn" onclick="showForgot()">
 Forgot Password?
 </button>
 
@@ -542,6 +535,7 @@ Quality Education • Trusted Community • Brighter Future
 </div>
 
 </div>
+
 
 <!-- FORGOT PASSWORD -->
 
@@ -561,25 +555,20 @@ type="email"
 placeholder="Enter your email"
 >
 
-<button
-class="primary-btn"
-onclick="sendReset()"
->
+<button class="primary-btn" onclick="sendReset()">
 Send Reset Link
 </button>
 
 <div style="text-align:center">
 
-<button
-class="link-btn"
-onclick="showLogin()"
->
+<button class="link-btn" onclick="showLogin()">
 ← Back to Login
 </button>
 
 </div>
 
 </div>
+
 
 <!-- NEW PASSWORD -->
 
@@ -599,10 +588,7 @@ type="password"
 placeholder="Enter new password"
 >
 
-<button
-class="primary-btn"
-onclick="updatePassword()"
->
+<button class="primary-btn" onclick="updatePassword()">
 Update Password
 </button>
 
@@ -627,20 +613,16 @@ New Fortune School Management System
 
 <span id="loggedUser"></span>
 
-<button
-class="logout-btn"
-onclick="logout()"
->
+<button class="logout-btn" onclick="logout()">
 Logout
 </button>
 
 </div>
+
 </div>
 
 
 <div class="layout">
-
-<!-- SIDEBAR -->
 
 <div class="sidebar">
 
@@ -704,7 +686,9 @@ onclick="showSection('adminAccountManager',this)"
 
 <div id="dashboard" class="section active">
 
-<h2 class="page-title">Dashboard</h2>
+<h2 class="page-title">
+Dashboard
+</h2>
 
 <div class="cards">
 
@@ -765,10 +749,7 @@ Teacher
 
 </div>
 
-<div
-id="teacherNoProfile"
-class="info-box hidden"
->
+<div id="teacherNoProfile" class="info-box hidden">
 No teacher profile was found for this login email or phone.
 </div>
 
@@ -776,10 +757,7 @@ No teacher profile was found for this login email or phone.
 My Classes
 </h3>
 
-<div
-id="teacherClasses"
-class="teacher-class-grid"
-></div>
+<div id="teacherClasses" class="teacher-class-grid"></div>
 
 <div class="table-box">
 
@@ -790,6 +768,7 @@ My Students
 <table>
 
 <thead>
+
 <tr>
 <th>#</th>
 <th>Student Name</th>
@@ -799,12 +778,15 @@ My Students
 <th>Parent</th>
 <th>Parent Phone</th>
 </tr>
+
 </thead>
 
 <tbody id="teacherStudentsTable"></tbody>
 
 </table>
+
 </div>
+
 </div>
 
 
@@ -833,11 +815,14 @@ ADMIN
 </div>
 
 <div class="admin-info">
+
 <strong>Important:</strong>
+
 User passwords are managed securely by Supabase Authentication.
-This panel displays the school system user information stored in the
-users table.
+This panel displays the school system user information stored in the users table.
+
 </div>
+
 
 <div class="form-box">
 
@@ -849,43 +834,27 @@ Current Administrator
 
 <div class="form-group">
 <label>Name</label>
-<input
-id="adminCurrentName"
-type="text"
-readonly
->
+<input id="adminCurrentName" type="text" readonly>
 </div>
 
 <div class="form-group">
 <label>Email</label>
-<input
-id="adminCurrentEmail"
-type="text"
-readonly
->
+<input id="adminCurrentEmail" type="text" readonly>
 </div>
 
 <div class="form-group">
 <label>Phone</label>
-<input
-id="adminCurrentPhone"
-type="text"
-readonly
->
+<input id="adminCurrentPhone" type="text" readonly>
 </div>
 
 <div class="form-group">
 <label>Role</label>
-<input
-id="adminCurrentRole"
-type="text"
-readonly
->
+<input id="adminCurrentRole" type="text" readonly>
 </div>
 
 </div>
-
 </div>
+
 
 <div class="table-box">
 
@@ -902,10 +871,7 @@ margin-bottom:15px;
 School User Accounts
 </h3>
 
-<button
-class="save-btn"
-onclick="loadAdminUsers()"
->
+<button class="save-btn" onclick="loadAdminUsers()">
 🔄 Refresh Users
 </button>
 
@@ -914,6 +880,7 @@ onclick="loadAdminUsers()"
 <table>
 
 <thead>
+
 <tr>
 <th>#</th>
 <th>Name</th>
@@ -922,6 +889,7 @@ onclick="loadAdminUsers()"
 <th>Role</th>
 <th>Created</th>
 </tr>
+
 </thead>
 
 <tbody id="adminUsersTable"></tbody>
@@ -959,11 +927,23 @@ Students Management
 
 <div class="form-group">
 <label>Gender</label>
+
 <select id="studentGender">
-<option value="">Select Gender</option>
-<option value="Male">Male</option>
-<option value="Female">Female</option>
+
+<option value="">
+Select Gender
+</option>
+
+<option value="Male">
+Male
+</option>
+
+<option value="Female">
+Female
+</option>
+
 </select>
+
 </div>
 
 <div class="form-group">
@@ -973,9 +953,15 @@ Students Management
 
 <div class="form-group">
 <label>Class</label>
+
 <select id="studentClass">
-<option value="">Select Class</option>
+
+<option value="">
+Select Class
+</option>
+
 </select>
+
 </div>
 
 <div class="form-group">
@@ -996,13 +982,17 @@ Save Student
 
 </div>
 
+
 <div class="table-box">
 
-<h3>Students List</h3>
+<h3>
+Students List
+</h3>
 
 <table>
 
 <thead>
+
 <tr>
 <th>#</th>
 <th>Name</th>
@@ -1014,12 +1004,15 @@ Save Student
 <th>Phone</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="studentsTable"></tbody>
 
 </table>
+
 </div>
+
 </div>
 
 
@@ -1033,7 +1026,9 @@ Teachers Management
 
 <div class="form-box">
 
-<h3>Add Teacher</h3>
+<h3>
+Add Teacher
+</h3>
 
 <div class="form-grid">
 
@@ -1070,13 +1065,17 @@ Save Teacher
 
 </div>
 
+
 <div class="table-box">
 
-<h3>Teachers List</h3>
+<h3>
+Teachers List
+</h3>
 
 <table>
 
 <thead>
+
 <tr>
 <th>#</th>
 <th>Name</th>
@@ -1086,12 +1085,15 @@ Save Teacher
 <th>Email</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="teachersTable"></tbody>
 
 </table>
+
 </div>
+
 </div>
 
 
@@ -1105,7 +1107,9 @@ Classes Management
 
 <div class="form-box">
 
-<h3>Add Class</h3>
+<h3>
+Add Class
+</h3>
 
 <div class="form-grid">
 
@@ -1126,10 +1130,16 @@ Classes Management
 
 <div class="form-group">
 
-<label>Class Teacher</label>
+<label>
+Class Teacher
+</label>
 
 <select id="classTeacher">
-<option value="">Select Teacher</option>
+
+<option value="">
+Select Teacher
+</option>
+
 </select>
 
 </div>
@@ -1142,13 +1152,17 @@ Save Class
 
 </div>
 
+
 <div class="table-box">
 
-<h3>Classes List</h3>
+<h3>
+Classes List
+</h3>
 
 <table>
 
 <thead>
+
 <tr>
 <th>#</th>
 <th>Class</th>
@@ -1157,12 +1171,15 @@ Save Class
 <th>Teacher</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="classesTable"></tbody>
 
 </table>
+
 </div>
+
 </div>
 
 
@@ -1176,7 +1193,9 @@ Subjects Management
 
 <div class="form-box">
 
-<h3>Add Subject</h3>
+<h3>
+Add Subject
+</h3>
 
 <input
 id="subjectName"
@@ -1190,24 +1209,31 @@ Save Subject
 
 </div>
 
+
 <div class="table-box">
 
-<h3>Subjects List</h3>
+<h3>
+Subjects List
+</h3>
 
 <table>
 
 <thead>
+
 <tr>
 <th>#</th>
 <th>Subject</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="subjectsTable"></tbody>
 
 </table>
+
 </div>
+
 </div>
 
 
@@ -1221,29 +1247,60 @@ Attendance
 
 <div class="form-box">
 
-<h3>Record Attendance</h3>
+<h3>
+Record Attendance
+</h3>
 
 <div class="form-grid">
 
 <div class="form-group">
-<label>Student</label>
+
+<label>
+Student
+</label>
+
 <select id="attendanceStudent">
-<option value="">Select Student</option>
+
+<option value="">
+Select Student
+</option>
+
 </select>
+
 </div>
 
 <div class="form-group">
-<label>Date</label>
+
+<label>
+Date
+</label>
+
 <input id="attendanceDate" type="date">
+
 </div>
 
 <div class="form-group">
-<label>Status</label>
+
+<label>
+Status
+</label>
+
 <select id="attendanceStatus">
-<option value="Present">Present</option>
-<option value="Absent">Absent</option>
-<option value="Late">Late</option>
+
+<option value="Present">
+Present
+</option>
+
+<option value="Absent">
+Absent
+</option>
+
+<option value="Late">
+Late
+</option>
+
 </select>
+
 </div>
 
 </div>
@@ -1254,13 +1311,17 @@ Save Attendance
 
 </div>
 
+
 <div class="table-box">
 
-<h3>Attendance List</h3>
+<h3>
+Attendance List
+</h3>
 
 <table>
 
 <thead>
+
 <tr>
 <th>#</th>
 <th>Student</th>
@@ -1268,12 +1329,15 @@ Save Attendance
 <th>Status</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="attendanceTable"></tbody>
 
 </table>
+
 </div>
+
 </div>
 
 
@@ -1287,36 +1351,80 @@ Grades
 
 <div class="form-box">
 
-<h3>Add Grade</h3>
+<h3>
+Add Grade
+</h3>
 
 <div class="form-grid">
 
 <div class="form-group">
-<label>Student</label>
+
+<label>
+Student
+</label>
+
 <select id="gradeStudent">
-<option value="">Select Student</option>
+
+<option value="">
+Select Student
+</option>
+
 </select>
+
 </div>
 
 <div class="form-group">
-<label>Subject</label>
+
+<label>
+Subject
+</label>
+
 <select id="gradeSubject">
-<option value="">Select Subject</option>
+
+<option value="">
+Select Subject
+</option>
+
 </select>
+
 </div>
 
 <div class="form-group">
-<label>Score</label>
-<input id="gradeScore" type="number" step="0.01">
+
+<label>
+Score
+</label>
+
+<input
+id="gradeScore"
+type="number"
+step="0.01"
+>
+
 </div>
 
 <div class="form-group">
-<label>Term</label>
+
+<label>
+Term
+</label>
+
 <select id="gradeTerm">
-<option value="Term 1">Term 1</option>
-<option value="Term 2">Term 2</option>
-<option value="Term 3">Term 3</option>
+
+<option value="Term 1">
+Term 1
+</option>
+
+<option value="Term 2">
+Term 2
+</option>
+
+<option value="Term 3">
+Term 3
+</option>
+
 </select>
+
 </div>
 
 </div>
@@ -1327,13 +1435,17 @@ Save Grade
 
 </div>
 
+
 <div class="table-box">
 
-<h3>Grades List</h3>
+<h3>
+Grades List
+</h3>
 
 <table>
 
 <thead>
+
 <tr>
 <th>#</th>
 <th>Student</th>
@@ -1342,12 +1454,15 @@ Save Grade
 <th>Term</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="gradesTable"></tbody>
 
 </table>
+
 </div>
+
 </div>
 
 
@@ -1361,34 +1476,74 @@ Fees & Payments
 
 <div class="form-box">
 
-<h3>Add Payment</h3>
+<h3>
+Add Payment
+</h3>
 
 <div class="form-grid">
 
 <div class="form-group">
-<label>Student</label>
+
+<label>
+Student
+</label>
+
 <select id="feeStudent">
-<option value="">Select Student</option>
+
+<option value="">
+Select Student
+</option>
+
 </select>
+
 </div>
 
 <div class="form-group">
-<label>Amount</label>
-<input id="feeAmount" type="number" step="0.01">
+
+<label>
+Amount
+</label>
+
+<input
+id="feeAmount"
+type="number"
+step="0.01"
+>
+
 </div>
 
 <div class="form-group">
-<label>Payment Date</label>
+
+<label>
+Payment Date
+</label>
+
 <input id="feeDate" type="date">
+
 </div>
 
 <div class="form-group">
-<label>Status</label>
+
+<label>
+Status
+</label>
+
 <select id="feeStatus">
-<option value="Paid">Paid</option>
-<option value="Pending">Pending</option>
-<option value="Partial">Partial</option>
+
+<option value="Paid">
+Paid
+</option>
+
+<option value="Pending">
+Pending
+</option>
+
+<option value="Partial">
+Partial
+</option>
+
 </select>
+
 </div>
 
 </div>
@@ -1399,13 +1554,17 @@ Save Payment
 
 </div>
 
+
 <div class="table-box">
 
-<h3>Payments List</h3>
+<h3>
+Payments List
+</h3>
 
 <table>
 
 <thead>
+
 <tr>
 <th>#</th>
 <th>Student</th>
@@ -1414,12 +1573,15 @@ Save Payment
 <th>Status</th>
 <th>Action</th>
 </tr>
+
 </thead>
 
 <tbody id="feesTable"></tbody>
 
 </table>
+
 </div>
+
 </div>
 
 </div>
@@ -1429,13 +1591,21 @@ Save Payment
 
 <script>
 
-/* SUPABASE */
+/* =====================================================
+   SUPABASE
+===================================================== */
 
 const SUPABASE_URL =
 "https://ykvkxxxssmfgydqzijby.supabase.co";
 
+/*
+ IMPORTANT:
+ This is the exact Publishable Key.
+ Do NOT use the Secret Key here.
+*/
+
 const SUPABASE_KEY =
-"sb_publishable_7ii_IQ4d_R_JiFOFP86RA8g_T9tx98jr";
+"sb_publishable_7ii_IQ4dR_JiFOFP86RA8g_T9tx98jr";
 
 const supabaseClient =
 supabase.createClient(
@@ -1444,7 +1614,9 @@ SUPABASE_KEY
 );
 
 
-/* GLOBAL DATA */
+/* =====================================================
+   GLOBAL DATA
+===================================================== */
 
 let students=[];
 let teachers=[];
@@ -1459,13 +1631,18 @@ let currentUser=null;
 let currentTeacher=null;
 let currentUserRole="";
 
+let appLoading=false;
 
-/* HELPERS */
+
+/* =====================================================
+   HELPERS
+===================================================== */
 
 function escapeHtml(value){
 
-if(value===null || value===undefined)
+if(value===null || value===undefined){
 return "";
+}
 
 return String(value)
 .replace(/&/g,"&amp;")
@@ -1485,33 +1662,47 @@ return new Date()
 }
 
 
-/* LOGIN */
+/* =====================================================
+   LOGIN PAGE
+===================================================== */
 
 function showForgot(){
 
-document.getElementById("loginForm")
+document
+.getElementById("loginForm")
 .classList.add("hidden");
 
-document.getElementById("forgotForm")
+document
+.getElementById("forgotForm")
 .classList.remove("hidden");
 
+document
+.getElementById("newPasswordForm")
+.classList.add("hidden");
+
 }
+
 
 function showLogin(){
 
-document.getElementById("forgotForm")
+document
+.getElementById("forgotForm")
 .classList.add("hidden");
 
-document.getElementById("newPasswordForm")
+document
+.getElementById("newPasswordForm")
 .classList.add("hidden");
 
-document.getElementById("loginForm")
+document
+.getElementById("loginForm")
 .classList.remove("hidden");
 
 }
 
 
-/* EMAIL OR PHONE LOGIN */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 async function login(){
 
@@ -1526,7 +1717,10 @@ document.getElementById("loginPassword")
 
 if(!identifier || !password){
 
-alert("Please enter your email or phone and password.");
+alert(
+"Please enter your email or phone and password."
+);
+
 return;
 
 }
@@ -1565,16 +1759,26 @@ await showApp();
 }
 
 
+/* =====================================================
+   LOGOUT
+===================================================== */
+
 async function logout(){
 
 await supabaseClient.auth.signOut();
+
+currentUser=null;
+currentUserRole="";
+currentTeacher=null;
 
 location.reload();
 
 }
 
 
-/* PASSWORD RESET */
+/* =====================================================
+   PASSWORD RESET
+===================================================== */
 
 async function sendReset(){
 
@@ -1595,9 +1799,12 @@ window.location.origin +
 window.location.pathname;
 
 const {error} =
-await supabaseClient.auth.resetPasswordForEmail(
+await supabaseClient.auth
+.resetPasswordForEmail(
 email,
-{redirectTo}
+{
+redirectTo:redirectTo
+}
 );
 
 if(error){
@@ -1628,32 +1835,52 @@ return;
 
 }
 
+if(password.length<6){
+
+alert(
+"Password must be at least 6 characters."
+);
+
+return;
+
+}
+
 const {error} =
 await supabaseClient.auth.updateUser({
-password
+password:password
 });
 
 if(error){
 
 alert(error.message);
+return;
 
-}else{
+}
 
-alert("Password updated successfully.");
+alert(
+"Password updated successfully."
+);
 
 showLogin();
 
 }
 
-}
 
-
-/* SESSION */
+/* =====================================================
+   SESSION
+===================================================== */
 
 async function checkSession(){
 
-const {data} =
+const {data,error} =
 await supabaseClient.auth.getSession();
+
+if(error){
+
+console.error(error);
+return;
+
+}
 
 if(data.session){
 
@@ -1666,22 +1893,36 @@ await showApp();
 }
 
 
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
 supabaseClient.auth.onAuthStateChange(
 async(event,session)=>{
 
 if(event==="PASSWORD_RECOVERY"){
 
-document.getElementById("loginPage")
+document
+.getElementById("loginPage")
 .classList.remove("hidden");
 
-document.getElementById("loginForm")
+document
+.getElementById("app")
 .classList.add("hidden");
 
-document.getElementById("forgotForm")
+document
+.getElementById("loginForm")
 .classList.add("hidden");
 
-document.getElementById("newPasswordForm")
+document
+.getElementById("forgotForm")
+.classList.add("hidden");
+
+document
+.getElementById("newPasswordForm")
 .classList.remove("hidden");
+
+return;
 
 }
 
@@ -1697,35 +1938,68 @@ await showApp();
 );
 
 
-/* SHOW APP */
+/* =====================================================
+   SHOW APP
+===================================================== */
 
 async function showApp(){
 
-document.getElementById("loginPage")
+if(!currentUser){
+return;
+}
+
+if(appLoading){
+return;
+}
+
+appLoading=true;
+
+try{
+
+document
+.getElementById("loginPage")
 .classList.add("hidden");
 
-document.getElementById("app")
+document
+.getElementById("app")
 .classList.remove("hidden");
 
-document.getElementById("loggedUser")
+document
+.getElementById("loggedUser")
 .textContent =
-currentUser?.email ||
-currentUser?.phone ||
+currentUser.email ||
+currentUser.phone ||
 "";
 
 await loadCurrentUserRole();
 
 await refreshAll();
 
+}catch(error){
+
+console.error(
+"Application loading error:",
+error
+);
+
+}finally{
+
+appLoading=false;
+
+}
+
 }
 
 
-/* CURRENT USER ROLE */
+/* =====================================================
+   CURRENT USER ROLE
+===================================================== */
 
 async function loadCurrentUserRole(){
 
-if(!currentUser)
+if(!currentUser){
 return;
+}
 
 const button =
 document.getElementById(
@@ -1744,14 +2018,17 @@ const phone =
 let data=null;
 let error=null;
 
-/* FIRST TRY EMAIL */
+
+/* EMAIL */
 
 if(email){
 
 const result =
 await supabaseClient
 .from("users")
-.select("id,name,email,phone,role,created_at")
+.select(
+"id,name,email,phone,role,created_at"
+)
 .ilike("email",email)
 .maybeSingle();
 
@@ -1760,14 +2037,17 @@ error=result.error;
 
 }
 
-/* TRY PHONE IF EMAIL DID NOT FIND USER */
+
+/* PHONE */
 
 if(!data && phone){
 
 const result =
 await supabaseClient
 .from("users")
-.select("id,name,email,phone,role,created_at")
+.select(
+"id,name,email,phone,role,created_at"
+)
 .eq("phone",phone)
 .maybeSingle();
 
@@ -1775,6 +2055,7 @@ data=result.data;
 error=result.error;
 
 }
+
 
 if(error){
 
@@ -1785,12 +2066,14 @@ error
 
 currentUserRole="";
 
-if(button)
+if(button){
 button.classList.add("hidden");
+}
 
 return;
 
 }
+
 
 currentUserRole =
 (data?.role||"")
@@ -1798,61 +2081,61 @@ currentUserRole =
 .trim()
 .toLowerCase();
 
+
 if(
 currentUserRole==="admin" ||
 currentUserRole==="administrator"
 ){
 
-if(button)
+if(button){
 button.classList.remove("hidden");
+}
 
 loadCurrentAdminInfo(data);
 
 }else{
 
-if(button)
+if(button){
 button.classList.add("hidden");
-
 }
 
 }
 
+}
 
-/* CURRENT ADMIN INFO */
+
+/* =====================================================
+   ADMIN INFO
+===================================================== */
 
 function loadCurrentAdminInfo(data){
 
-if(!data)
+if(!data){
 return;
+}
 
-const nameInput =
-document.getElementById("adminCurrentName");
+document
+.getElementById("adminCurrentName")
+.value=data.name||"";
 
-const emailInput =
-document.getElementById("adminCurrentEmail");
+document
+.getElementById("adminCurrentEmail")
+.value=data.email||"";
 
-const phoneInput =
-document.getElementById("adminCurrentPhone");
+document
+.getElementById("adminCurrentPhone")
+.value=data.phone||"";
 
-const roleInput =
-document.getElementById("adminCurrentRole");
-
-if(nameInput)
-nameInput.value=data.name||"";
-
-if(emailInput)
-emailInput.value=data.email||"";
-
-if(phoneInput)
-phoneInput.value=data.phone||"";
-
-if(roleInput)
-roleInput.value=data.role||"";
+document
+.getElementById("adminCurrentRole")
+.value=data.role||"";
 
 }
 
 
-/* ADMIN USERS */
+/* =====================================================
+   ADMIN USERS
+===================================================== */
 
 async function loadAdminUsers(){
 
@@ -1861,46 +2144,46 @@ currentUserRole!=="admin" &&
 currentUserRole!=="administrator"
 ){
 
-alert("Admin access required.");
 return;
 
 }
 
 const table =
-document.getElementById("adminUsersTable");
+document.getElementById(
+"adminUsersTable"
+);
 
-if(!table)
+if(!table){
 return;
+}
 
-table.innerHTML=`
-<tr>
-<td colspan="6">
-Loading users...
-</td>
-</tr>
-`;
+table.innerHTML=
+'<tr><td colspan="6">Loading users...</td></tr>';
+
 
 const {data,error} =
 await supabaseClient
 .from("users")
-.select("id,name,email,phone,role,created_at")
-.order("id",{ascending:false});
+.select(
+"id,name,email,phone,role,created_at"
+)
+.order(
+"id",
+{ascending:false}
+);
+
 
 if(error){
 
 console.error(error);
 
-table.innerHTML=`
-<tr>
-<td colspan="6">
-Could not load users. Please check the users table permissions (RLS).
-</td>
-</tr>
-`;
+table.innerHTML=
+'<tr><td colspan="6">Could not load users. Please check users table RLS permissions.</td></tr>';
 
 return;
 
 }
+
 
 adminUsers=data||[];
 
@@ -1912,28 +2195,29 @@ renderAdminUsers();
 function renderAdminUsers(){
 
 const table =
-document.getElementById("adminUsersTable");
+document.getElementById(
+"adminUsersTable"
+);
 
-if(!table)
+if(!table){
 return;
+}
 
 table.innerHTML="";
 
+
 if(adminUsers.length===0){
 
-table.innerHTML=`
-<tr>
-<td colspan="6">
-No users found.
-</td>
-</tr>
-`;
+table.innerHTML=
+'<tr><td colspan="6">No users found.</td></tr>';
 
 return;
 
 }
 
-adminUsers.forEach((user,index)=>{
+
+adminUsers.forEach(
+(user,index)=>{
 
 const role =
 (user.role||"")
@@ -1943,7 +2227,10 @@ const role =
 
 let roleClass="";
 
-if(role==="admin" || role==="administrator"){
+if(
+role==="admin" ||
+role==="administrator"
+){
 roleClass="role-admin";
 }
 
@@ -1955,15 +2242,15 @@ if(role==="accountant"){
 roleClass="role-accountant";
 }
 
-let created="";
+const created =
+user.created_at
+?
+new Date(
+user.created_at
+).toLocaleDateString()
+:
+"";
 
-if(user.created_at){
-
-created =
-new Date(user.created_at)
-.toLocaleDateString();
-
-}
 
 table.innerHTML+=`
 
@@ -2000,7 +2287,9 @@ ${escapeHtml(created)}
 }
 
 
-/* NAVIGATION */
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
 function showSection(id,button){
 
@@ -2015,26 +2304,35 @@ return;
 
 }
 
+
 document
 .querySelectorAll(".section")
-.forEach(section=>{
-section.classList.remove("active");
-});
+.forEach(
+section =>
+section.classList.remove("active")
+);
+
 
 const selected =
 document.getElementById(id);
 
-if(selected)
+if(selected){
 selected.classList.add("active");
+}
+
 
 document
 .querySelectorAll(".sidebar button")
-.forEach(btn=>{
-btn.classList.remove("active");
-});
+.forEach(
+btn =>
+btn.classList.remove("active")
+);
 
-if(button)
+
+if(button){
 button.classList.add("active");
+}
+
 
 if(id==="adminAccountManager"){
 
@@ -2045,7 +2343,9 @@ loadAdminUsers();
 }
 
 
-/* STUDENTS */
+/* =====================================================
+   STUDENTS
+===================================================== */
 
 async function loadStudents(){
 
@@ -2053,12 +2353,17 @@ const {data,error} =
 await supabaseClient
 .from("students")
 .select("*")
-.order("id",{ascending:false});
+.order(
+"id",
+{ascending:false}
+);
 
 if(error){
 
 console.error(error);
+
 students=[];
+
 return;
 
 }
@@ -2066,10 +2371,13 @@ return;
 students=data||[];
 
 renderStudents();
+
 fillStudentDropdowns();
 
-document.getElementById("studentCount")
-.textContent=students.length;
+document
+.getElementById("studentCount")
+.textContent=
+students.length;
 
 }
 
@@ -2077,1295 +2385,23 @@ document.getElementById("studentCount")
 function renderStudents(){
 
 const table =
-document.getElementById("studentsTable");
+document.getElementById(
+"studentsTable"
+);
 
 table.innerHTML="";
 
-students.forEach((student,index)=>{
+
+students.forEach(
+(student,index)=>{
 
 const className =
-classes.find(c=>
-String(c.id)===String(student.class_id)
+classes.find(
+c =>
+String(c.id)===
+String(student.class_id)
 );
 
-table.innerHTML+=`
-
-<tr>
-<td>${index+1}</td>
-<td>${escapeHtml(student.full_name)}</td>
-<td>${escapeHtml(student.student_id)}</td>
-<td>${escapeHtml(student.gender)}</td>
-<td>${escapeHtml(student.date_of_birth)}</td>
-<td>${escapeHtml(className?.name||"")}</td>
-<td>${escapeHtml(student.parent_name)}</td>
-<td>${escapeHtml(student.parent_phone)}</td>
-<td>
-<button class="delete-btn"
-onclick="deleteStudent(${student.id})">
-Delete
-</button>
-</td>
-</tr>
-
-`;
-
-});
-
-}
-
-
-async function addStudent(){
-
-const full_name =
-document.getElementById("studentFullName")
-.value.trim();
-
-const student_id =
-document.getElementById("studentId")
-.value;
-
-const gender =
-document.getElementById("studentGender")
-.value;
-
-const date_of_birth =
-document.getElementById("studentDob")
-.value;
-
-const class_id =
-document.getElementById("studentClass")
-.value;
-
-const parent_name =
-document.getElementById("parentName")
-.value.trim();
-
-const parent_phone =
-document.getElementById("parentPhone")
-.value.trim();
-
-if(
-!full_name||
-!student_id||
-!gender||
-!date_of_birth||
-!class_id||
-!parent_name||
-!parent_phone
-){
-
-alert("Please fill all fields.");
-return;
-
-}
-
-const {error} =
-await supabaseClient
-.from("students")
-.insert([{
-full_name,
-student_id:Number(student_id),
-gender,
-date_of_birth,
-class_id:Number(class_id),
-parent_name,
-parent_phone
-}]);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-alert("Student saved successfully.");
-
-[
-"studentFullName",
-"studentId",
-"studentGender",
-"studentDob",
-"studentClass",
-"parentName",
-"parentPhone"
-].forEach(id=>{
-document.getElementById(id).value="";
-});
-
-await loadStudents();
-
-}
-
-
-async function deleteStudent(id){
-
-if(!confirm("Delete this student?"))
-return;
-
-const {error} =
-await supabaseClient
-.from("students")
-.delete()
-.eq("id",id);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-await refreshAll();
-
-}
-
-
-/* TEACHERS */
-
-async function loadTeachers(){
-
-const {data,error} =
-await supabaseClient
-.from("teachers")
-.select("*")
-.order("id",{ascending:false});
-
-if(error){
-
-console.error(error);
-teachers=[];
-return;
-
-}
-
-teachers=data||[];
-
-renderTeachers();
-fillTeacherDropdown();
-
-document.getElementById("teacherCount")
-.textContent=teachers.length;
-
-}
-
-
-function renderTeachers(){
-
-const table =
-document.getElementById("teachersTable");
-
-table.innerHTML="";
-
-teachers.forEach((teacher,index)=>{
-
-table.innerHTML+=`
-
-<tr>
-<td>${index+1}</td>
-<td>${escapeHtml(teacher.full_name)}</td>
-<td>${escapeHtml(teacher.teacher_id)}</td>
-<td>${escapeHtml(teacher.subject)}</td>
-<td>${escapeHtml(teacher.phone)}</td>
-<td>${escapeHtml(teacher.email)}</td>
-<td>
-<button class="delete-btn"
-onclick="deleteTeacher(${teacher.id})">
-Delete
-</button>
-</td>
-</tr>
-
-`;
-
-});
-
-}
-
-
-async function addTeacher(){
-
-const full_name =
-document.getElementById("teacherFullName")
-.value.trim();
-
-const teacher_id =
-document.getElementById("teacherId")
-.value.trim();
-
-const subject =
-document.getElementById("teacherSubject")
-.value.trim();
-
-const phone =
-document.getElementById("teacherPhone")
-.value.trim();
-
-const email =
-document.getElementById("teacherEmail")
-.value.trim();
-
-if(!full_name){
-
-alert("Teacher name is required.");
-return;
-
-}
-
-const {error} =
-await supabaseClient
-.from("teachers")
-.insert([{
-full_name,
-teacher_id,
-subject,
-phone,
-email:email||null
-}]);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-alert("Teacher saved successfully.");
-
-[
-"teacherFullName",
-"teacherId",
-"teacherSubject",
-"teacherPhone",
-"teacherEmail"
-].forEach(id=>{
-document.getElementById(id).value="";
-});
-
-await loadTeachers();
-await loadTeacherDashboard();
-
-}
-
-
-async function deleteTeacher(id){
-
-if(!confirm("Delete this teacher?"))
-return;
-
-const {error} =
-await supabaseClient
-.from("teachers")
-.delete()
-.eq("id",id);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-await refreshAll();
-
-}
-
-
-/* CLASSES */
-
-async function loadClasses(){
-
-const {data,error} =
-await supabaseClient
-.from("classes")
-.select("*")
-.order("id",{ascending:false});
-
-if(error){
-
-console.error(error);
-classes=[];
-return;
-
-}
-
-classes=data||[];
-
-renderClasses();
-fillClassDropdown();
-
-document.getElementById("classCount")
-.textContent=classes.length;
-
-}
-
-
-function renderClasses(){
-
-const table =
-document.getElementById("classesTable");
-
-table.innerHTML="";
-
-classes.forEach((item,index)=>{
-
-table.innerHTML+=`
-
-<tr>
-<td>${index+1}</td>
-<td>${escapeHtml(item.name)}</td>
-<td>${escapeHtml(item.grade)}</td>
-<td>${escapeHtml(item.section)}</td>
-<td>${escapeHtml(item.teacher_name)}</td>
-<td>
-<button class="delete-btn"
-onclick="deleteClass(${item.id})">
-Delete
-</button>
-</td>
-</tr>
-
-`;
-
-});
-
-}
-
-
-async function addClass(){
-
-const name =
-document.getElementById("className")
-.value.trim();
-
-const grade =
-document.getElementById("classGrade")
-.value.trim();
-
-const section =
-document.getElementById("classSection")
-.value.trim();
-
-const teacherSelect =
-document.getElementById("classTeacher");
-
-const teacher_name =
-teacherSelect.options[
-teacherSelect.selectedIndex
-]?.text||"";
-
-if(!name){
-
-alert("Class name is required.");
-return;
-
-}
-
-const {error} =
-await supabaseClient
-.from("classes")
-.insert([{
-name,
-grade,
-section,
-teacher_name:
-teacherSelect.value?teacher_name:null
-}]);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-alert("Class saved successfully.");
-
-[
-"className",
-"classGrade",
-"classSection",
-"classTeacher"
-].forEach(id=>{
-document.getElementById(id).value="";
-});
-
-await loadClasses();
-
-}
-
-
-async function deleteClass(id){
-
-if(!confirm("Delete this class?"))
-return;
-
-const {error} =
-await supabaseClient
-.from("classes")
-.delete()
-.eq("id",id);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-await refreshAll();
-
-}
-
-
-/* SUBJECTS */
-
-async function loadSubjects(){
-
-const {data,error} =
-await supabaseClient
-.from("subjects")
-.select("*")
-.order("id",{ascending:false});
-
-if(error){
-
-console.error(error);
-subjects=[];
-return;
-
-}
-
-subjects=data||[];
-
-renderSubjects();
-fillSubjectDropdowns();
-
-document.getElementById("subjectCount")
-.textContent=subjects.length;
-
-}
-
-
-function renderSubjects(){
-
-const table =
-document.getElementById("subjectsTable");
-
-table.innerHTML="";
-
-subjects.forEach((subject,index)=>{
-
-table.innerHTML+=`
-
-<tr>
-<td>${index+1}</td>
-<td>${escapeHtml(subject.subject_name)}</td>
-<td>
-<button class="delete-btn"
-onclick="deleteSubject(${subject.id})">
-Delete
-</button>
-</td>
-</tr>
-
-`;
-
-});
-
-}
-
-
-async function addSubject(){
-
-const subject_name =
-document.getElementById("subjectName")
-.value.trim();
-
-if(!subject_name){
-
-alert("Enter subject name.");
-return;
-
-}
-
-const {error} =
-await supabaseClient
-.from("subjects")
-.insert([{subject_name}]);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-alert("Subject saved successfully.");
-
-document.getElementById("subjectName").value="";
-
-await loadSubjects();
-
-}
-
-
-async function deleteSubject(id){
-
-if(!confirm("Delete this subject?"))
-return;
-
-const {error} =
-await supabaseClient
-.from("subjects")
-.delete()
-.eq("id",id);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-await refreshAll();
-
-}
-
-
-/* ATTENDANCE */
-
-async function loadAttendance(){
-
-const {data,error} =
-await supabaseClient
-.from("attendance")
-.select("*")
-.order("id",{ascending:false});
-
-if(error){
-
-console.error(error);
-attendance=[];
-return;
-
-}
-
-attendance=data||[];
-
-renderAttendance();
-
-document.getElementById("attendanceCount")
-.textContent=attendance.length;
-
-}
-
-
-function renderAttendance(){
-
-const table =
-document.getElementById("attendanceTable");
-
-table.innerHTML="";
-
-attendance.forEach((item,index)=>{
-
-const student =
-students.find(s=>
-String(s.id)===String(item.student_id)
-);
-
-table.innerHTML+=`
-
-<tr>
-<td>${index+1}</td>
-<td>${escapeHtml(student?.full_name||"")}</td>
-<td>${escapeHtml(item.attendance_date)}</td>
-<td>${escapeHtml(item.status)}</td>
-<td>
-<button class="delete-btn"
-onclick="deleteAttendance(${item.id})">
-Delete
-</button>
-</td>
-</tr>
-
-`;
-
-});
-
-}
-
-
-async function addAttendance(){
-
-const student_id =
-document.getElementById("attendanceStudent").value;
-
-const attendance_date =
-document.getElementById("attendanceDate").value;
-
-const status =
-document.getElementById("attendanceStatus").value;
-
-if(!student_id||!attendance_date||!status){
-
-alert("Please fill all fields.");
-return;
-
-}
-
-const {error} =
-await supabaseClient
-.from("attendance")
-.insert([{
-student_id:Number(student_id),
-attendance_date,
-status
-}]);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-alert("Attendance saved successfully.");
-
-document.getElementById("attendanceStudent").value="";
-document.getElementById("attendanceDate").value=today();
-
-await loadAttendance();
-
-}
-
-
-async function deleteAttendance(id){
-
-if(!confirm("Delete attendance?"))
-return;
-
-const {error} =
-await supabaseClient
-.from("attendance")
-.delete()
-.eq("id",id);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-await loadAttendance();
-
-}
-
-
-/* GRADES */
-
-async function loadGrades(){
-
-const {data,error} =
-await supabaseClient
-.from("grades")
-.select("*")
-.order("id",{ascending:false});
-
-if(error){
-
-console.error(error);
-grades=[];
-return;
-
-}
-
-grades=data||[];
-
-renderGrades();
-
-document.getElementById("gradeCount")
-.textContent=grades.length;
-
-}
-
-
-function renderGrades(){
-
-const table =
-document.getElementById("gradesTable");
-
-table.innerHTML="";
-
-grades.forEach((item,index)=>{
-
-const student =
-students.find(s=>
-String(s.id)===String(item.student_id)
-);
-
-const subject =
-subjects.find(s=>
-String(s.id)===String(item.subject_id)
-);
-
-table.innerHTML+=`
-
-<tr>
-<td>${index+1}</td>
-<td>${escapeHtml(student?.full_name||"")}</td>
-<td>${escapeHtml(subject?.subject_name||"")}</td>
-<td>${escapeHtml(item.score)}</td>
-<td>${escapeHtml(item.term)}</td>
-<td>
-<button class="delete-btn"
-onclick="deleteGrade(${item.id})">
-Delete
-</button>
-</td>
-</tr>
-
-`;
-
-});
-
-}
-
-
-async function addGrade(){
-
-const student_id =
-document.getElementById("gradeStudent").value;
-
-const subject_id =
-document.getElementById("gradeSubject").value;
-
-const score =
-document.getElementById("gradeScore").value;
-
-const term =
-document.getElementById("gradeTerm").value;
-
-if(!student_id||!subject_id||score===""){
-
-alert("Please fill all fields.");
-return;
-
-}
-
-const {error} =
-await supabaseClient
-.from("grades")
-.insert([{
-student_id:Number(student_id),
-subject_id:Number(subject_id),
-score:Number(score),
-term
-}]);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-alert("Grade saved successfully.");
-
-document.getElementById("gradeStudent").value="";
-document.getElementById("gradeSubject").value="";
-document.getElementById("gradeScore").value="";
-
-await loadGrades();
-
-}
-
-
-async function deleteGrade(id){
-
-if(!confirm("Delete this grade?"))
-return;
-
-const {error} =
-await supabaseClient
-.from("grades")
-.delete()
-.eq("id",id);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-await loadGrades();
-
-}
-
-
-/* FEES */
-
-async function loadFees(){
-
-const {data,error} =
-await supabaseClient
-.from("fees")
-.select("*")
-.order("id",{ascending:false});
-
-if(error){
-
-console.error(error);
-fees=[];
-return;
-
-}
-
-fees=data||[];
-
-renderFees();
-
-document.getElementById("feeCount")
-.textContent=fees.length;
-
-}
-
-
-function renderFees(){
-
-const table =
-document.getElementById("feesTable");
-
-table.innerHTML="";
-
-fees.forEach((item,index)=>{
-
-const student =
-students.find(s=>
-String(s.id)===String(item.student_id)
-);
-
-table.innerHTML+=`
-
-<tr>
-<td>${index+1}</td>
-<td>${escapeHtml(student?.full_name||"")}</td>
-<td>${escapeHtml(item.amount)}</td>
-<td>${escapeHtml(item.payment_date)}</td>
-<td>${escapeHtml(item.status)}</td>
-<td>
-<button class="delete-btn"
-onclick="deleteFee(${item.id})">
-Delete
-</button>
-</td>
-</tr>
-
-`;
-
-});
-
-}
-
-
-async function addFee(){
-
-const student_id =
-document.getElementById("feeStudent").value;
-
-const amount =
-document.getElementById("feeAmount").value;
-
-const payment_date =
-document.getElementById("feeDate").value;
-
-const status =
-document.getElementById("feeStatus").value;
-
-if(!student_id||!amount||!payment_date){
-
-alert("Please fill all fields.");
-return;
-
-}
-
-const {error} =
-await supabaseClient
-.from("fees")
-.insert([{
-student_id:Number(student_id),
-amount:Number(amount),
-payment_date,
-status
-}]);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-alert("Payment saved successfully.");
-
-document.getElementById("feeStudent").value="";
-document.getElementById("feeAmount").value="";
-document.getElementById("feeDate").value=today();
-
-await loadFees();
-
-}
-
-
-async function deleteFee(id){
-
-if(!confirm("Delete this payment?"))
-return;
-
-const {error} =
-await supabaseClient
-.from("fees")
-.delete()
-.eq("id",id);
-
-if(error){
-
-alert(error.message);
-return;
-
-}
-
-await loadFees();
-
-}
-
-
-/* DROPDOWNS */
-
-function fillStudentDropdowns(){
-
-const ids=[
-"attendanceStudent",
-"gradeStudent",
-"feeStudent"
-];
-
-ids.forEach(id=>{
-
-const select =
-document.getElementById(id);
-
-if(!select)return;
-
-const old=select.value;
-
-select.innerHTML=
-`<option value="">Select Student</option>`;
-
-students.forEach(student=>{
-
-select.innerHTML+=`
-<option value="${student.id}">
-${escapeHtml(student.full_name)}
-</option>
-`;
-
-});
-
-select.value=old;
-
-});
-
-}
-
-
-function fillClassDropdown(){
-
-const select =
-document.getElementById("studentClass");
-
-if(!select)return;
-
-const old=select.value;
-
-select.innerHTML=
-`<option value="">Select Class</option>`;
-
-classes.forEach(item=>{
-
-select.innerHTML+=`
-<option value="${item.id}">
-${escapeHtml(item.name)}
-</option>
-`;
-
-});
-
-select.value=old;
-
-}
-
-
-function fillTeacherDropdown(){
-
-const select =
-document.getElementById("classTeacher");
-
-if(!select)return;
-
-const old=select.value;
-
-select.innerHTML=
-`<option value="">Select Teacher</option>`;
-
-teachers.forEach(teacher=>{
-
-select.innerHTML+=`
-<option value="${teacher.id}">
-${escapeHtml(teacher.full_name)}
-</option>
-`;
-
-});
-
-select.value=old;
-
-}
-
-
-function fillSubjectDropdowns(){
-
-const select =
-document.getElementById("gradeSubject");
-
-if(!select)return;
-
-const old=select.value;
-
-select.innerHTML=
-`<option value="">Select Subject</option>`;
-
-subjects.forEach(subject=>{
-
-select.innerHTML+=`
-<option value="${subject.id}">
-${escapeHtml(subject.subject_name)}
-</option>
-`;
-
-});
-
-select.value=old;
-
-}
-
-
-/* TEACHER DASHBOARD */
-
-async function loadTeacherDashboard(){
-
-if(!currentUser)return;
-
-const email =
-(currentUser.email||"").toLowerCase();
-
-const phone =
-(currentUser.phone||"").trim();
-
-currentTeacher =
-teachers.find(t=>
-
-(
-(t.email||"").toLowerCase()===email &&
-email
-)
-||
-(
-(t.phone||"").trim()===phone &&
-phone
-)
-
-);
-
-const button =
-document.getElementById(
-"teacherDashboardBtn"
-);
-
-if(!currentTeacher){
-
-button.classList.add("hidden");
-
-document.getElementById("teacherNoProfile")
-.classList.remove("hidden");
-
-document.getElementById("teacherDashboardName")
-.textContent="Teacher Dashboard";
-
-document.getElementById("teacherDashboardEmail")
-.textContent=email||phone||"";
-
-document.getElementById("teacherClasses")
-.innerHTML="";
-
-document.getElementById("teacherStudentsTable")
-.innerHTML="";
-
-return;
-
-}
-
-button.classList.remove("hidden");
-
-document.getElementById("teacherNoProfile")
-.classList.add("hidden");
-
-document.getElementById("teacherDashboardName")
-.textContent=currentTeacher.full_name;
-
-document.getElementById("teacherDashboardEmail")
-.textContent=
-currentTeacher.email||
-currentTeacher.phone||
-email||
-phone;
-
-const myClasses =
-classes.filter(c=>
-(c.teacher_name||"")
-.trim()
-.toLowerCase()===
-currentTeacher.full_name
-.trim()
-.toLowerCase()
-);
-
-renderTeacherClasses(myClasses);
-
-renderTeacherStudents(myClasses);
-
-}
-
-
-function renderTeacherClasses(myClasses){
-
-const box =
-document.getElementById("teacherClasses");
-
-box.innerHTML="";
-
-if(myClasses.length===0){
-
-box.innerHTML=`
-<div class="info-box">
-No class has been assigned to this teacher yet.
-</div>
-`;
-
-return;
-
-}
-
-myClasses.forEach(classItem=>{
-
-const classStudents =
-students.filter(s=>
-String(s.class_id)===String(classItem.id)
-);
-
-const studentIds =
-classStudents.map(s=>s.id);
-
-const classAttendance =
-attendance.filter(a=>
-studentIds.includes(a.student_id)
-);
-
-const classGrades =
-grades.filter(g=>
-studentIds.includes(g.student_id)
-);
-
-box.innerHTML+=`
-
-<div class="teacher-class-card">
-
-<h3>${escapeHtml(classItem.name)}</h3>
-
-<div class="stat-row">
-<span>Grade</span>
-<strong>${escapeHtml(classItem.grade||"-")}</strong>
-</div>
-
-<div class="stat-row">
-<span>Section</span>
-<strong>${escapeHtml(classItem.section||"-")}</strong>
-</div>
-
-<div class="stat-row">
-<span>Students</span>
-<strong>${classStudents.length}</strong>
-</div>
-
-<div class="stat-row">
-<span>Attendance Records</span>
-<strong>${classAttendance.length}</strong>
-</div>
-
-<div class="stat-row">
-<span>Grade Records</span>
-<strong>${classGrades.length}</strong>
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-function renderTeacherStudents(myClasses){
-
-const table =
-document.getElementById(
-"teacherStudentsTable"
-);
-
-table.innerHTML="";
-
-const classIds =
-myClasses.map(c=>String(c.id));
-
-const myStudents =
-students.filter(s=>
-classIds.includes(String(s.class_id))
-);
-
-if(myStudents.length===0){
-
-table.innerHTML=`
-<tr>
-<td colspan="7">
-No students found in your assigned classes.
-</td>
-</tr>
-`;
-
-return;
-
-}
-
-myStudents.forEach((student,index)=>{
-
-const classItem =
-classes.find(c=>
-String(c.id)===String(student.class_id)
-);
 
 table.innerHTML+=`
 
@@ -3386,7 +2422,11 @@ ${escapeHtml(student.gender)}
 </td>
 
 <td>
-${escapeHtml(classItem?.name||"")}
+${escapeHtml(student.date_of_birth)}
+</td>
+
+<td>
+${escapeHtml(className?.name||"")}
 </td>
 
 <td>
@@ -3395,6 +2435,17 @@ ${escapeHtml(student.parent_name)}
 
 <td>
 ${escapeHtml(student.parent_phone)}
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="deleteStudent(${student.id})"
+>
+Delete
+</button>
+
 </td>
 
 </tr>
@@ -3406,24 +2457,1917 @@ ${escapeHtml(student.parent_phone)}
 }
 
 
-/* REFRESH */
+async function addStudent(){
+
+const full_name =
+document
+.getElementById("studentFullName")
+.value
+.trim();
+
+const student_id =
+document
+.getElementById("studentId")
+.value;
+
+const gender =
+document
+.getElementById("studentGender")
+.value;
+
+const date_of_birth =
+document
+.getElementById("studentDob")
+.value;
+
+const class_id =
+document
+.getElementById("studentClass")
+.value;
+
+const parent_name =
+document
+.getElementById("parentName")
+.value
+.trim();
+
+const parent_phone =
+document
+.getElementById("parentPhone")
+.value
+.trim();
+
+
+if(
+!full_name ||
+!student_id ||
+!gender ||
+!date_of_birth ||
+!class_id ||
+!parent_name ||
+!parent_phone
+){
+
+alert("Please fill all fields.");
+return;
+
+}
+
+
+const {error} =
+await supabaseClient
+.from("students")
+.insert([{
+
+full_name:full_name,
+
+student_id:Number(student_id),
+
+gender:gender,
+
+date_of_birth:date_of_birth,
+
+class_id:Number(class_id),
+
+parent_name:parent_name,
+
+parent_phone:parent_phone
+
+}]);
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+alert(
+"Student saved successfully."
+);
+
+
+[
+"studentFullName",
+"studentId",
+"studentGender",
+"studentDob",
+"studentClass",
+"parentName",
+"parentPhone"
+]
+.forEach(
+id =>
+document
+.getElementById(id)
+.value=""
+);
+
+
+await loadStudents();
+
+}
+
+
+async function deleteStudent(id){
+
+if(!confirm(
+"Delete this student?"
+)){
+return;
+}
+
+const {error} =
+await supabaseClient
+.from("students")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+await refreshAll();
+
+}
+
+
+/* =====================================================
+   TEACHERS
+===================================================== */
+
+async function loadTeachers(){
+
+const {data,error} =
+await supabaseClient
+.from("teachers")
+.select("*")
+.order(
+"id",
+{ascending:false}
+);
+
+if(error){
+
+console.error(error);
+
+teachers=[];
+
+return;
+
+}
+
+teachers=data||[];
+
+renderTeachers();
+
+fillTeacherDropdown();
+
+document
+.getElementById("teacherCount")
+.textContent=
+teachers.length;
+
+}
+
+
+function renderTeachers(){
+
+const table =
+document.getElementById(
+"teachersTable"
+);
+
+table.innerHTML="";
+
+
+teachers.forEach(
+(teacher,index)=>{
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>
+${escapeHtml(teacher.full_name)}
+</td>
+
+<td>
+${escapeHtml(teacher.teacher_id)}
+</td>
+
+<td>
+${escapeHtml(teacher.subject)}
+</td>
+
+<td>
+${escapeHtml(teacher.phone)}
+</td>
+
+<td>
+${escapeHtml(teacher.email)}
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="deleteTeacher(${teacher.id})"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+async function addTeacher(){
+
+const full_name =
+document
+.getElementById("teacherFullName")
+.value
+.trim();
+
+const teacher_id =
+document
+.getElementById("teacherId")
+.value
+.trim();
+
+const subject =
+document
+.getElementById("teacherSubject")
+.value
+.trim();
+
+const phone =
+document
+.getElementById("teacherPhone")
+.value
+.trim();
+
+const email =
+document
+.getElementById("teacherEmail")
+.value
+.trim();
+
+
+if(!full_name){
+
+alert(
+"Teacher name is required."
+);
+
+return;
+
+}
+
+
+const {error} =
+await supabaseClient
+.from("teachers")
+.insert([{
+
+full_name:full_name,
+
+teacher_id:teacher_id,
+
+subject:subject,
+
+phone:phone,
+
+email:email||null
+
+}]);
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+alert(
+"Teacher saved successfully."
+);
+
+
+[
+"teacherFullName",
+"teacherId",
+"teacherSubject",
+"teacherPhone",
+"teacherEmail"
+]
+.forEach(
+id =>
+document
+.getElementById(id)
+.value=""
+);
+
+
+await loadTeachers();
+
+await loadTeacherDashboard();
+
+}
+
+
+async function deleteTeacher(id){
+
+if(!confirm(
+"Delete this teacher?"
+)){
+return;
+}
+
+const {error} =
+await supabaseClient
+.from("teachers")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+await refreshAll();
+
+}
+
+
+/* =====================================================
+   CLASSES
+===================================================== */
+
+async function loadClasses(){
+
+const {data,error} =
+await supabaseClient
+.from("classes")
+.select("*")
+.order(
+"id",
+{ascending:false}
+);
+
+if(error){
+
+console.error(error);
+
+classes=[];
+
+return;
+
+}
+
+classes=data||[];
+
+renderClasses();
+
+fillClassDropdown();
+
+document
+.getElementById("classCount")
+.textContent=
+classes.length;
+
+}
+
+
+function renderClasses(){
+
+const table =
+document.getElementById(
+"classesTable"
+);
+
+table.innerHTML="";
+
+
+classes.forEach(
+(item,index)=>{
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>
+${escapeHtml(item.name)}
+</td>
+
+<td>
+${escapeHtml(item.grade)}
+</td>
+
+<td>
+${escapeHtml(item.section)}
+</td>
+
+<td>
+${escapeHtml(item.teacher_name)}
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="deleteClass(${item.id})"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+async function addClass(){
+
+const name =
+document
+.getElementById("className")
+.value
+.trim();
+
+const grade =
+document
+.getElementById("classGrade")
+.value
+.trim();
+
+const section =
+document
+.getElementById("classSection")
+.value
+.trim();
+
+const teacherSelect =
+document.getElementById(
+"classTeacher"
+);
+
+const teacher_name =
+teacherSelect
+.options[
+teacherSelect.selectedIndex
+]?.text || "";
+
+
+if(!name){
+
+alert(
+"Class name is required."
+);
+
+return;
+
+}
+
+
+const {error} =
+await supabaseClient
+.from("classes")
+.insert([{
+
+name:name,
+
+grade:grade,
+
+section:section,
+
+teacher_name:
+teacherSelect.value
+?
+teacher_name
+:
+null
+
+}]);
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+alert(
+"Class saved successfully."
+);
+
+
+[
+"className",
+"classGrade",
+"classSection",
+"classTeacher"
+]
+.forEach(
+id =>
+document
+.getElementById(id)
+.value=""
+);
+
+
+await loadClasses();
+
+}
+
+
+async function deleteClass(id){
+
+if(!confirm(
+"Delete this class?"
+)){
+return;
+}
+
+const {error} =
+await supabaseClient
+.from("classes")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+await refreshAll();
+
+}
+
+
+/* =====================================================
+   SUBJECTS
+===================================================== */
+
+async function loadSubjects(){
+
+const {data,error} =
+await supabaseClient
+.from("subjects")
+.select("*")
+.order(
+"id",
+{ascending:false}
+);
+
+if(error){
+
+console.error(error);
+
+subjects=[];
+
+return;
+
+}
+
+subjects=data||[];
+
+renderSubjects();
+
+fillSubjectDropdowns();
+
+document
+.getElementById("subjectCount")
+.textContent=
+subjects.length;
+
+}
+
+
+function renderSubjects(){
+
+const table =
+document.getElementById(
+"subjectsTable"
+);
+
+table.innerHTML="";
+
+
+subjects.forEach(
+(subject,index)=>{
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>
+${escapeHtml(subject.subject_name)}
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="deleteSubject(${subject.id})"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+async function addSubject(){
+
+const subject_name =
+document
+.getElementById("subjectName")
+.value
+.trim();
+
+if(!subject_name){
+
+alert(
+"Enter subject name."
+);
+
+return;
+
+}
+
+
+const {error} =
+await supabaseClient
+.from("subjects")
+.insert([{
+subject_name:subject_name
+}]);
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+alert(
+"Subject saved successfully."
+);
+
+document
+.getElementById("subjectName")
+.value="";
+
+await loadSubjects();
+
+}
+
+
+async function deleteSubject(id){
+
+if(!confirm(
+"Delete this subject?"
+)){
+return;
+}
+
+const {error} =
+await supabaseClient
+.from("subjects")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+await refreshAll();
+
+}
+
+
+/* =====================================================
+   ATTENDANCE
+===================================================== */
+
+async function loadAttendance(){
+
+const {data,error} =
+await supabaseClient
+.from("attendance")
+.select("*")
+.order(
+"id",
+{ascending:false}
+);
+
+if(error){
+
+console.error(error);
+
+attendance=[];
+
+return;
+
+}
+
+attendance=data||[];
+
+renderAttendance();
+
+document
+.getElementById("attendanceCount")
+.textContent=
+attendance.length;
+
+}
+
+
+function renderAttendance(){
+
+const table =
+document.getElementById(
+"attendanceTable"
+);
+
+table.innerHTML="";
+
+
+attendance.forEach(
+(item,index)=>{
+
+const student =
+students.find(
+s =>
+String(s.id)===
+String(item.student_id)
+);
+
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>
+${escapeHtml(
+student?.full_name||""
+)}
+</td>
+
+<td>
+${escapeHtml(
+item.attendance_date
+)}
+</td>
+
+<td>
+${escapeHtml(item.status)}
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="deleteAttendance(${item.id})"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+async function addAttendance(){
+
+const student_id =
+document
+.getElementById("attendanceStudent")
+.value;
+
+const attendance_date =
+document
+.getElementById("attendanceDate")
+.value;
+
+const status =
+document
+.getElementById("attendanceStatus")
+.value;
+
+
+if(
+!student_id ||
+!attendance_date ||
+!status
+){
+
+alert(
+"Please fill all fields."
+);
+
+return;
+
+}
+
+
+const {error} =
+await supabaseClient
+.from("attendance")
+.insert([{
+
+student_id:Number(student_id),
+
+attendance_date:
+attendance_date,
+
+status:status
+
+}]);
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+alert(
+"Attendance saved successfully."
+);
+
+document
+.getElementById("attendanceStudent")
+.value="";
+
+document
+.getElementById("attendanceDate")
+.value=today();
+
+await loadAttendance();
+
+}
+
+
+async function deleteAttendance(id){
+
+if(!confirm(
+"Delete attendance?"
+)){
+return;
+}
+
+const {error} =
+await supabaseClient
+.from("attendance")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+await loadAttendance();
+
+}
+
+
+/* =====================================================
+   GRADES
+===================================================== */
+
+async function loadGrades(){
+
+const {data,error} =
+await supabaseClient
+.from("grades")
+.select("*")
+.order(
+"id",
+{ascending:false}
+);
+
+if(error){
+
+console.error(error);
+
+grades=[];
+
+return;
+
+}
+
+grades=data||[];
+
+renderGrades();
+
+document
+.getElementById("gradeCount")
+.textContent=
+grades.length;
+
+}
+
+
+function renderGrades(){
+
+const table =
+document.getElementById(
+"gradesTable"
+);
+
+table.innerHTML="";
+
+
+grades.forEach(
+(item,index)=>{
+
+const student =
+students.find(
+s =>
+String(s.id)===
+String(item.student_id)
+);
+
+const subject =
+subjects.find(
+s =>
+String(s.id)===
+String(item.subject_id)
+);
+
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>
+${escapeHtml(
+student?.full_name||""
+)}
+</td>
+
+<td>
+${escapeHtml(
+subject?.subject_name||""
+)}
+</td>
+
+<td>
+${escapeHtml(item.score)}
+</td>
+
+<td>
+${escapeHtml(item.term)}
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="deleteGrade(${item.id})"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+async function addGrade(){
+
+const student_id =
+document
+.getElementById("gradeStudent")
+.value;
+
+const subject_id =
+document
+.getElementById("gradeSubject")
+.value;
+
+const score =
+document
+.getElementById("gradeScore")
+.value;
+
+const term =
+document
+.getElementById("gradeTerm")
+.value;
+
+
+if(
+!student_id ||
+!subject_id ||
+score===""
+){
+
+alert(
+"Please fill all fields."
+);
+
+return;
+
+}
+
+
+const {error} =
+await supabaseClient
+.from("grades")
+.insert([{
+
+student_id:Number(student_id),
+
+subject_id:Number(subject_id),
+
+score:Number(score),
+
+term:term
+
+}]);
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+alert(
+"Grade saved successfully."
+);
+
+
+document
+.getElementById("gradeStudent")
+.value="";
+
+document
+.getElementById("gradeSubject")
+.value="";
+
+document
+.getElementById("gradeScore")
+.value="";
+
+await loadGrades();
+
+}
+
+
+async function deleteGrade(id){
+
+if(!confirm(
+"Delete this grade?"
+)){
+return;
+}
+
+const {error} =
+await supabaseClient
+.from("grades")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+await loadGrades();
+
+}
+
+
+/* =====================================================
+   FEES
+===================================================== */
+
+async function loadFees(){
+
+const {data,error} =
+await supabaseClient
+.from("fees")
+.select("*")
+.order(
+"id",
+{ascending:false}
+);
+
+if(error){
+
+console.error(error);
+
+fees=[];
+
+return;
+
+}
+
+fees=data||[];
+
+renderFees();
+
+document
+.getElementById("feeCount")
+.textContent=
+fees.length;
+
+}
+
+
+function renderFees(){
+
+const table =
+document.getElementById(
+"feesTable"
+);
+
+table.innerHTML="";
+
+
+fees.forEach(
+(item,index)=>{
+
+const student =
+students.find(
+s =>
+String(s.id)===
+String(item.student_id)
+);
+
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>
+${escapeHtml(
+student?.full_name||""
+)}
+</td>
+
+<td>
+${escapeHtml(item.amount)}
+</td>
+
+<td>
+${escapeHtml(item.payment_date)}
+</td>
+
+<td>
+${escapeHtml(item.status)}
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="deleteFee(${item.id})"
+>
+Delete
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+async function addFee(){
+
+const student_id =
+document
+.getElementById("feeStudent")
+.value;
+
+const amount =
+document
+.getElementById("feeAmount")
+.value;
+
+const payment_date =
+document
+.getElementById("feeDate")
+.value;
+
+const status =
+document
+.getElementById("feeStatus")
+.value;
+
+
+if(
+!student_id ||
+!amount ||
+!payment_date
+){
+
+alert(
+"Please fill all fields."
+);
+
+return;
+
+}
+
+
+const {error} =
+await supabaseClient
+.from("fees")
+.insert([{
+
+student_id:Number(student_id),
+
+amount:Number(amount),
+
+payment_date:payment_date,
+
+status:status
+
+}]);
+
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+
+alert(
+"Payment saved successfully."
+);
+
+
+document
+.getElementById("feeStudent")
+.value="";
+
+document
+.getElementById("feeAmount")
+.value="";
+
+document
+.getElementById("feeDate")
+.value=today();
+
+await loadFees();
+
+}
+
+
+async function deleteFee(id){
+
+if(!confirm(
+"Delete this payment?"
+)){
+return;
+}
+
+const {error} =
+await supabaseClient
+.from("fees")
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert(error.message);
+return;
+
+}
+
+await loadFees();
+
+}
+
+
+/* =====================================================
+   DROPDOWNS
+===================================================== */
+
+function fillStudentDropdowns(){
+
+[
+"attendanceStudent",
+"gradeStudent",
+"feeStudent"
+]
+.forEach(id=>{
+
+const select =
+document.getElementById(id);
+
+if(!select){
+return;
+}
+
+const old=select.value;
+
+select.innerHTML=
+'<option value="">Select Student</option>';
+
+
+students.forEach(
+student=>{
+
+select.innerHTML+=`
+
+<option value="${student.id}">
+${escapeHtml(student.full_name)}
+</option>
+
+`;
+
+});
+
+
+select.value=old;
+
+});
+
+}
+
+
+function fillClassDropdown(){
+
+const select =
+document.getElementById(
+"studentClass"
+);
+
+if(!select){
+return;
+}
+
+const old=select.value;
+
+select.innerHTML=
+'<option value="">Select Class</option>';
+
+
+classes.forEach(
+item=>{
+
+select.innerHTML+=`
+
+<option value="${item.id}">
+${escapeHtml(item.name)}
+</option>
+
+`;
+
+});
+
+
+select.value=old;
+
+}
+
+
+function fillTeacherDropdown(){
+
+const select =
+document.getElementById(
+"classTeacher"
+);
+
+if(!select){
+return;
+}
+
+const old=select.value;
+
+select.innerHTML=
+'<option value="">Select Teacher</option>';
+
+
+teachers.forEach(
+teacher=>{
+
+select.innerHTML+=`
+
+<option value="${teacher.id}">
+${escapeHtml(teacher.full_name)}
+</option>
+
+`;
+
+});
+
+
+select.value=old;
+
+}
+
+
+function fillSubjectDropdowns(){
+
+const select =
+document.getElementById(
+"gradeSubject"
+);
+
+if(!select){
+return;
+}
+
+const old=select.value;
+
+select.innerHTML=
+'<option value="">Select Subject</option>';
+
+
+subjects.forEach(
+subject=>{
+
+select.innerHTML+=`
+
+<option value="${subject.id}">
+${escapeHtml(subject.subject_name)}
+</option>
+
+`;
+
+});
+
+
+select.value=old;
+
+}
+
+
+/* =====================================================
+   TEACHER DASHBOARD
+===================================================== */
+
+async function loadTeacherDashboard(){
+
+if(!currentUser){
+return;
+}
+
+const email =
+(currentUser.email||"")
+.toLowerCase();
+
+const phone =
+(currentUser.phone||"")
+.trim();
+
+
+currentTeacher =
+teachers.find(
+t=>
+
+(
+(t.email||"")
+.toLowerCase()===email &&
+email
+)
+
+||
+
+(
+(t.phone||"")
+.trim()===phone &&
+phone
+)
+
+);
+
+
+const button =
+document.getElementById(
+"teacherDashboardBtn"
+);
+
+
+if(!currentTeacher){
+
+button.classList.add("hidden");
+
+document
+.getElementById("teacherNoProfile")
+.classList.remove("hidden");
+
+document
+.getElementById("teacherDashboardName")
+.textContent=
+"Teacher Dashboard";
+
+document
+.getElementById("teacherDashboardEmail")
+.textContent=
+email ||
+phone ||
+"";
+
+document
+.getElementById("teacherClasses")
+.innerHTML="";
+
+document
+.getElementById("teacherStudentsTable")
+.innerHTML="";
+
+return;
+
+}
+
+
+button.classList.remove("hidden");
+
+document
+.getElementById("teacherNoProfile")
+.classList.add("hidden");
+
+document
+.getElementById("teacherDashboardName")
+.textContent=
+currentTeacher.full_name;
+
+document
+.getElementById("teacherDashboardEmail")
+.textContent=
+currentTeacher.email ||
+currentTeacher.phone ||
+email ||
+phone;
+
+
+const myClasses =
+classes.filter(
+c=>
+(c.teacher_name||"")
+.trim()
+.toLowerCase()===
+
+currentTeacher.full_name
+.trim()
+.toLowerCase()
+);
+
+
+renderTeacherClasses(
+myClasses
+);
+
+renderTeacherStudents(
+myClasses
+);
+
+}
+
+
+function renderTeacherClasses(
+myClasses
+){
+
+const box =
+document.getElementById(
+"teacherClasses"
+);
+
+box.innerHTML="";
+
+
+if(myClasses.length===0){
+
+box.innerHTML=
+'<div class="info-box">No class has been assigned to this teacher yet.</div>';
+
+return;
+
+}
+
+
+myClasses.forEach(
+classItem=>{
+
+const classStudents =
+students.filter(
+s=>
+String(s.class_id)===
+String(classItem.id)
+);
+
+const studentIds =
+classStudents.map(
+s=>s.id
+);
+
+const classAttendance =
+attendance.filter(
+a=>
+studentIds.includes(
+a.student_id
+)
+);
+
+const classGrades =
+grades.filter(
+g=>
+studentIds.includes(
+g.student_id
+)
+);
+
+
+box.innerHTML+=`
+
+<div class="teacher-class-card">
+
+<h3>
+${escapeHtml(
+classItem.name
+)}
+</h3>
+
+<div class="stat-row">
+
+<span>
+Grade
+</span>
+
+<strong>
+${escapeHtml(
+classItem.grade||"-"
+)}
+</strong>
+
+</div>
+
+<div class="stat-row">
+
+<span>
+Section
+</span>
+
+<strong>
+${escapeHtml(
+classItem.section||"-"
+)}
+</strong>
+
+</div>
+
+<div class="stat-row">
+
+<span>
+Students
+</span>
+
+<strong>
+${classStudents.length}
+</strong>
+
+</div>
+
+<div class="stat-row">
+
+<span>
+Attendance Records
+</span>
+
+<strong>
+${classAttendance.length}
+</strong>
+
+</div>
+
+<div class="stat-row">
+
+<span>
+Grade Records
+</span>
+
+<strong>
+${classGrades.length}
+</strong>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function renderTeacherStudents(
+myClasses
+){
+
+const table =
+document.getElementById(
+"teacherStudentsTable"
+);
+
+table.innerHTML="";
+
+
+const classIds =
+myClasses.map(
+c=>String(c.id)
+);
+
+
+const myStudents =
+students.filter(
+s=>
+classIds.includes(
+String(s.class_id)
+)
+);
+
+
+if(myStudents.length===0){
+
+table.innerHTML=
+'<tr><td colspan="7">No students found in your assigned classes.</td></tr>';
+
+return;
+
+}
+
+
+myStudents.forEach(
+(student,index)=>{
+
+const classItem =
+classes.find(
+c=>
+String(c.id)===
+String(student.class_id)
+);
+
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>
+${escapeHtml(
+student.full_name
+)}
+</td>
+
+<td>
+${escapeHtml(
+student.student_id
+)}
+</td>
+
+<td>
+${escapeHtml(
+student.gender
+)}
+</td>
+
+<td>
+${escapeHtml(
+classItem?.name||""
+)}
+</td>
+
+<td>
+${escapeHtml(
+student.parent_name
+)}
+</td>
+
+<td>
+${escapeHtml(
+student.parent_phone
+)}
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* =====================================================
+   REFRESH ALL
+===================================================== */
 
 async function refreshAll(){
 
 await Promise.all([
+
 loadClasses(),
+
 loadTeachers(),
+
 loadSubjects()
+
 ]);
+
 
 await Promise.all([
+
 loadStudents(),
+
 loadAttendance(),
+
 loadGrades(),
+
 loadFees()
+
 ]);
 
+
 await loadTeacherDashboard();
+
 
 if(
 currentUserRole==="admin" ||
@@ -3437,14 +4381,22 @@ await loadAdminUsers();
 }
 
 
-/* DEFAULT DATES */
+/* =====================================================
+   DEFAULT DATES
+===================================================== */
 
-document.getElementById("attendanceDate").value=today();
+document
+.getElementById("attendanceDate")
+.value=today();
 
-document.getElementById("feeDate").value=today();
+document
+.getElementById("feeDate")
+.value=today();
 
 
-/* START */
+/* =====================================================
+   START
+===================================================== */
 
 checkSession();
 
