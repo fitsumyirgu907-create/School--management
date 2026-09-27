@@ -372,6 +372,53 @@ border-radius:8px;
 margin-bottom:20px;
 }
 
+/* ADMIN */
+.admin-header{
+background:linear-gradient(135deg,#212529,#495057);
+color:white;
+padding:22px;
+border-radius:14px;
+margin-bottom:20px;
+}
+
+.admin-header h2{
+margin-bottom:7px;
+}
+
+.admin-role{
+display:inline-block;
+margin-top:10px;
+padding:6px 12px;
+background:#ffc107;
+color:#212529;
+border-radius:20px;
+font-size:13px;
+font-weight:bold;
+}
+
+.admin-info{
+padding:15px;
+background:#e7f1ff;
+border:1px solid #b6d4fe;
+border-radius:8px;
+margin-bottom:20px;
+}
+
+.role-admin{
+font-weight:bold;
+color:#198754;
+}
+
+.role-teacher{
+font-weight:bold;
+color:#0d6efd;
+}
+
+.role-accountant{
+font-weight:bold;
+color:#6f42c1;
+}
+
 /* MOBILE */
 @media(max-width:768px){
 
@@ -612,6 +659,14 @@ onclick="showSection('teacherDashboard',this)"
 👨‍🏫 Teacher Dashboard
 </button>
 
+<button
+id="adminAccountManagerBtn"
+class="hidden"
+onclick="showSection('adminAccountManager',this)"
+>
+👑 Admin Account Manager
+</button>
+
 <button onclick="showSection('students',this)">
 👨‍🎓 Students
 </button>
@@ -750,6 +805,131 @@ My Students
 
 </table>
 </div>
+</div>
+
+
+<!-- ADMIN ACCOUNT MANAGER -->
+
+<div id="adminAccountManager" class="section">
+
+<h2 class="page-title">
+Admin Account Manager
+</h2>
+
+<div class="admin-header">
+
+<h2>
+👑 Administrator Panel
+</h2>
+
+<p>
+Manage school system user accounts and roles.
+</p>
+
+<span class="admin-role">
+ADMIN
+</span>
+
+</div>
+
+<div class="admin-info">
+<strong>Important:</strong>
+User passwords are managed securely by Supabase Authentication.
+This panel displays the school system user information stored in the
+users table.
+</div>
+
+<div class="form-box">
+
+<h3 style="margin-bottom:15px">
+Current Administrator
+</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Name</label>
+<input
+id="adminCurrentName"
+type="text"
+readonly
+>
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input
+id="adminCurrentEmail"
+type="text"
+readonly
+>
+</div>
+
+<div class="form-group">
+<label>Phone</label>
+<input
+id="adminCurrentPhone"
+type="text"
+readonly
+>
+</div>
+
+<div class="form-group">
+<label>Role</label>
+<input
+id="adminCurrentRole"
+type="text"
+readonly
+>
+</div>
+
+</div>
+
+</div>
+
+<div class="table-box">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:15px;
+">
+
+<h3>
+School User Accounts
+</h3>
+
+<button
+class="save-btn"
+onclick="loadAdminUsers()"
+>
+🔄 Refresh Users
+</button>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Role</th>
+<th>Created</th>
+</tr>
+</thead>
+
+<tbody id="adminUsersTable"></tbody>
+
+</table>
+
+</div>
+
 </div>
 
 
@@ -1255,7 +1435,7 @@ const SUPABASE_URL =
 "https://ykvkxxxssmfgydqzijby.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_7ii_IQ4dR_JiFOFP86RA8g_T9tx98jr";
+"sb_publishable_7ii_IQ4d_R_JiFOFP86RA8g_T9tx98jr";
 
 const supabaseClient =
 supabase.createClient(
@@ -1273,9 +1453,11 @@ let subjects=[];
 let attendance=[];
 let grades=[];
 let fees=[];
+let adminUsers=[];
 
 let currentUser=null;
 let currentTeacher=null;
+let currentUserRole="";
 
 
 /* HELPERS */
@@ -1531,9 +1713,289 @@ currentUser?.email ||
 currentUser?.phone ||
 "";
 
+await loadCurrentUserRole();
+
 await refreshAll();
 
-await loadTeacherDashboard();
+}
+
+
+/* CURRENT USER ROLE */
+
+async function loadCurrentUserRole(){
+
+if(!currentUser)
+return;
+
+const button =
+document.getElementById(
+"adminAccountManagerBtn"
+);
+
+const email =
+(currentUser.email||"")
+.trim()
+.toLowerCase();
+
+const phone =
+(currentUser.phone||"")
+.trim();
+
+let data=null;
+let error=null;
+
+/* FIRST TRY EMAIL */
+
+if(email){
+
+const result =
+await supabaseClient
+.from("users")
+.select("id,name,email,phone,role,created_at")
+.ilike("email",email)
+.maybeSingle();
+
+data=result.data;
+error=result.error;
+
+}
+
+/* TRY PHONE IF EMAIL DID NOT FIND USER */
+
+if(!data && phone){
+
+const result =
+await supabaseClient
+.from("users")
+.select("id,name,email,phone,role,created_at")
+.eq("phone",phone)
+.maybeSingle();
+
+data=result.data;
+error=result.error;
+
+}
+
+if(error){
+
+console.error(
+"Could not load current user role:",
+error
+);
+
+currentUserRole="";
+
+if(button)
+button.classList.add("hidden");
+
+return;
+
+}
+
+currentUserRole =
+(data?.role||"")
+.toString()
+.trim()
+.toLowerCase();
+
+if(
+currentUserRole==="admin" ||
+currentUserRole==="administrator"
+){
+
+if(button)
+button.classList.remove("hidden");
+
+loadCurrentAdminInfo(data);
+
+}else{
+
+if(button)
+button.classList.add("hidden");
+
+}
+
+}
+
+
+/* CURRENT ADMIN INFO */
+
+function loadCurrentAdminInfo(data){
+
+if(!data)
+return;
+
+const nameInput =
+document.getElementById("adminCurrentName");
+
+const emailInput =
+document.getElementById("adminCurrentEmail");
+
+const phoneInput =
+document.getElementById("adminCurrentPhone");
+
+const roleInput =
+document.getElementById("adminCurrentRole");
+
+if(nameInput)
+nameInput.value=data.name||"";
+
+if(emailInput)
+emailInput.value=data.email||"";
+
+if(phoneInput)
+phoneInput.value=data.phone||"";
+
+if(roleInput)
+roleInput.value=data.role||"";
+
+}
+
+
+/* ADMIN USERS */
+
+async function loadAdminUsers(){
+
+if(
+currentUserRole!=="admin" &&
+currentUserRole!=="administrator"
+){
+
+alert("Admin access required.");
+return;
+
+}
+
+const table =
+document.getElementById("adminUsersTable");
+
+if(!table)
+return;
+
+table.innerHTML=`
+<tr>
+<td colspan="6">
+Loading users...
+</td>
+</tr>
+`;
+
+const {data,error} =
+await supabaseClient
+.from("users")
+.select("id,name,email,phone,role,created_at")
+.order("id",{ascending:false});
+
+if(error){
+
+console.error(error);
+
+table.innerHTML=`
+<tr>
+<td colspan="6">
+Could not load users. Please check the users table permissions (RLS).
+</td>
+</tr>
+`;
+
+return;
+
+}
+
+adminUsers=data||[];
+
+renderAdminUsers();
+
+}
+
+
+function renderAdminUsers(){
+
+const table =
+document.getElementById("adminUsersTable");
+
+if(!table)
+return;
+
+table.innerHTML="";
+
+if(adminUsers.length===0){
+
+table.innerHTML=`
+<tr>
+<td colspan="6">
+No users found.
+</td>
+</tr>
+`;
+
+return;
+
+}
+
+adminUsers.forEach((user,index)=>{
+
+const role =
+(user.role||"")
+.toString()
+.trim()
+.toLowerCase();
+
+let roleClass="";
+
+if(role==="admin" || role==="administrator"){
+roleClass="role-admin";
+}
+
+if(role==="teacher"){
+roleClass="role-teacher";
+}
+
+if(role==="accountant"){
+roleClass="role-accountant";
+}
+
+let created="";
+
+if(user.created_at){
+
+created =
+new Date(user.created_at)
+.toLocaleDateString();
+
+}
+
+table.innerHTML+=`
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>
+${escapeHtml(user.name||"")}
+</td>
+
+<td>
+${escapeHtml(user.email||"")}
+</td>
+
+<td>
+${escapeHtml(user.phone||"")}
+</td>
+
+<td class="${roleClass}">
+${escapeHtml(user.role||"")}
+</td>
+
+<td>
+${escapeHtml(created)}
+</td>
+
+</tr>
+
+`;
+
+});
 
 }
 
@@ -1541,6 +2003,17 @@ await loadTeacherDashboard();
 /* NAVIGATION */
 
 function showSection(id,button){
+
+if(
+id==="adminAccountManager" &&
+currentUserRole!=="admin" &&
+currentUserRole!=="administrator"
+){
+
+alert("Admin access required.");
+return;
+
+}
 
 document
 .querySelectorAll(".section")
@@ -1562,6 +2035,12 @@ btn.classList.remove("active");
 
 if(button)
 button.classList.add("active");
+
+if(id==="adminAccountManager"){
+
+loadAdminUsers();
+
+}
 
 }
 
@@ -2945,6 +3424,15 @@ loadFees()
 ]);
 
 await loadTeacherDashboard();
+
+if(
+currentUserRole==="admin" ||
+currentUserRole==="administrator"
+){
+
+await loadAdminUsers();
+
+}
 
 }
 
