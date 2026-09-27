@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,7 +18,7 @@
 }
 
 body{
-  background:#f4f6f8;
+  background:#f4f6fb;
   color:#222;
 }
 
@@ -29,406 +28,436 @@ body{
 
 button{
   cursor:pointer;
+  border:none;
 }
 
 input,
 select{
   width:100%;
   padding:11px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  margin-top:6px;
-  margin-bottom:12px;
-  font-size:15px;
+  border:1px solid #d5d9e2;
+  border-radius:7px;
+  margin-top:5px;
+  margin-bottom:10px;
+  background:white;
 }
 
-button{
-  border:none;
-  border-radius:6px;
-  padding:10px 15px;
-  background:#1769aa;
-  color:white;
-  font-size:14px;
+label{
+  font-size:13px;
+  font-weight:bold;
+  color:#444;
 }
 
-button:hover{
-  opacity:.9;
-}
-
-.delete-btn{
-  background:#d32f2f;
-}
-
-.edit-btn{
-  background:#f57c00;
-}
-
-.save-btn{
-  background:#2e7d32;
-}
-
-/* LOGIN */
-
-#loginPage{
+.login-page{
   min-height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   background:
     linear-gradient(
-      rgba(10,25,45,.75),
-      rgba(10,25,45,.75)
+      rgba(0,40,100,.72),
+      rgba(0,70,160,.72)
     ),
-    url("new-fortune-login-bg.webp")
-    center/cover no-repeat;
+    url("new-fortune-login-bg.webp");
+  background-size:cover;
+  background-position:center;
   padding:20px;
 }
 
 .login-box{
   width:100%;
-  max-width:430px;
+  max-width:420px;
   background:white;
-  border-radius:15px;
   padding:30px;
-  box-shadow:0 10px 35px rgba(0,0,0,.3);
-  text-align:center;
+  border-radius:15px;
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
 .login-logo{
-  width:125px;
-  height:125px;
+  width:100px;
+  height:100px;
   object-fit:contain;
-  margin:0 auto 15px;
   display:block;
+  margin:0 auto 15px;
 }
 
-.login-box h1{
-  color:#1769aa;
-  margin-bottom:5px;
-  font-size:25px;
+.login-title{
+  text-align:center;
+  color:#075bc9;
+  margin-bottom:6px;
 }
 
-.login-box h2{
-  color:#555;
-  font-size:16px;
+.login-subtitle{
+  text-align:center;
+  color:#777;
   margin-bottom:25px;
+  font-size:14px;
 }
 
-.login-box button{
+.primary-btn{
   width:100%;
+  padding:12px;
+  background:#0866d5;
+  color:white;
+  border-radius:7px;
+  font-weight:bold;
   margin-top:5px;
 }
 
-.link-btn{
-  background:transparent;
-  color:#1769aa;
-  padding:8px;
-  margin-top:10px;
+.primary-btn:hover{
+  background:#064fa8;
 }
 
-.link-btn:hover{
-  background:#f0f4f8;
+.secondary-btn{
+  width:100%;
+  padding:11px;
+  background:#eef2f7;
+  color:#333;
+  border-radius:7px;
+  margin-top:8px;
 }
 
-/* APP */
+.danger-btn{
+  background:#dc3545;
+  color:white;
+  padding:7px 12px;
+  border-radius:5px;
+}
 
-#app{
-  min-height:100vh;
+.success-btn{
+  background:#198754;
+  color:white;
+  padding:8px 13px;
+  border-radius:6px;
 }
 
 .topbar{
-  height:60px;
-  background:#12395b;
+  height:58px;
+  background:linear-gradient(90deg,#0755bd,#0879e8);
   color:white;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 20px;
+  padding:0 18px;
   position:sticky;
   top:0;
-  z-index:20;
+  z-index:100;
 }
 
-.topbar h2{
-  font-size:19px;
+.school-title{
+  font-size:16px;
+  font-weight:bold;
 }
 
-.logged-user{
+.user-area{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
+  font-size:13px;
 }
 
 .logout-btn{
-  background:#d32f2f;
-  padding:8px 13px;
+  background:#dc3545;
+  color:white;
+  padding:8px 12px;
+  border-radius:6px;
 }
 
-/* SIDEBAR */
+.layout{
+  display:flex;
+  min-height:calc(100vh - 58px);
+}
 
 .sidebar{
-  position:fixed;
-  left:0;
-  top:60px;
-  bottom:0;
-  width:230px;
-  background:#172b3a;
-  padding:15px;
-  overflow-y:auto;
+  width:190px;
+  background:white;
+  border-right:1px solid #e0e4eb;
+  padding:10px 0;
+  flex-shrink:0;
 }
 
-.sidebar button{
+.menu-btn{
   width:100%;
   text-align:left;
-  margin-bottom:7px;
-  background:#213d51;
+  background:white;
+  padding:11px 15px;
+  color:#333;
+  font-size:13px;
 }
 
-.sidebar button:hover{
-  background:#2e5975;
+.menu-btn:hover{
+  background:#eef5ff;
 }
 
-.sidebar .active{
-  background:#1769aa;
+.menu-btn.active{
+  background:#e5efff;
+  color:#075bc9;
+  font-weight:bold;
 }
 
-/* MAIN */
-
-.main{
-  margin-left:230px;
-  padding:25px;
-}
-
-.section{
-  display:none;
-}
-
-.section.active{
-  display:block;
+.content{
+  flex:1;
+  padding:20px;
+  min-width:0;
 }
 
 .section-title{
-  margin-bottom:20px;
-  color:#12395b;
+  font-size:21px;
+  margin-bottom:18px;
+  color:#222;
 }
-
-/* DASHBOARD */
 
 .cards{
   display:grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(180px,1fr));
+  grid-template-columns:repeat(3,1fr);
   gap:15px;
-  margin-bottom:25px;
+  margin-bottom:20px;
 }
 
 .card{
   background:white;
   border-radius:10px;
-  padding:22px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  padding:17px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);
 }
 
-.card h3{
+.card-title{
+  font-size:12px;
   color:#666;
-  font-size:15px;
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
-.card .number{
-  font-size:30px;
+.card-number{
+  font-size:27px;
   font-weight:bold;
-  color:#1769aa;
+  color:#0866d5;
 }
-
-/* FORMS */
 
 .form-card{
   background:white;
+  padding:18px;
   border-radius:10px;
-  padding:20px;
   margin-bottom:20px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
 
 .form-grid{
   display:grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
-  gap:5px 15px;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px 15px;
 }
 
-.form-grid button{
-  align-self:end;
-  margin-bottom:12px;
+.form-group{
+  width:100%;
 }
 
-/* TABLE */
+.full-width{
+  grid-column:1/-1;
+}
 
 .table-card{
   background:white;
-  border-radius:10px;
   padding:15px;
+  border-radius:10px;
   overflow-x:auto;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  box-shadow:0 2px 8px rgba(0,0,0,.05);
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:700px;
+  min-width:650px;
 }
 
 th,
 td{
   padding:10px;
-  border-bottom:1px solid #ddd;
+  border-bottom:1px solid #e7e9ed;
   text-align:left;
+  font-size:13px;
 }
 
 th{
-  background:#eef3f7;
-  color:#12395b;
+  background:#f3f6fa;
+  color:#333;
 }
 
-tr:hover{
-  background:#fafafa;
+.small-btn{
+  padding:6px 10px;
+  border-radius:5px;
+  background:#dc3545;
+  color:white;
 }
-
-/* ADMIN */
 
 .admin-info{
   display:grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(200px,1fr));
-  gap:10px;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px 15px;
 }
 
-/* FEES */
+.admin-box{
+  background:#f8fafc;
+  padding:15px;
+  border-radius:8px;
+}
 
-.fee-summary{
-  display:grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(180px,1fr));
-  gap:15px;
+.admin-box label{
+  display:block;
+}
+
+.admin-box input{
+  background:white;
+}
+
+.search-box{
+  margin-bottom:15px;
+}
+
+.search-box input{
+  max-width:400px;
+}
+
+.teacher-dashboard-box{
+  background:#eef6ff;
+  border-left:4px solid #0866d5;
+  padding:15px;
+  border-radius:8px;
   margin-bottom:20px;
 }
 
-.fee-summary .card{
-  border-left:5px solid #1769aa;
+.empty-message{
+  padding:20px;
+  text-align:center;
+  color:#777;
 }
-
-.status-paid{
-  color:#2e7d32;
-  font-weight:bold;
-}
-
-.status-unpaid{
-  color:#d32f2f;
-  font-weight:bold;
-}
-
-.status-partial{
-  color:#f57c00;
-  font-weight:bold;
-}
-
-/* MOBILE */
 
 @media(max-width:800px){
 
   .sidebar{
-    width:190px;
+    width:160px;
   }
 
-  .main{
-    margin-left:190px;
-    padding:15px;
+  .cards{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .topbar h2{
-    font-size:15px;
+  .form-grid{
+    grid-template-columns:1fr;
   }
 
-  .logged-user{
-    font-size:12px;
+  .admin-info{
+    grid-template-columns:1fr;
   }
 
 }
 
 @media(max-width:600px){
 
-  .sidebar{
-    position:relative;
-    top:0;
-    width:100%;
-    height:auto;
-  }
-
-  .main{
-    margin-left:0;
-  }
-
   .topbar{
-    position:relative;
+    padding:0 10px;
   }
 
-  .sidebar button{
-    display:inline-block;
+  .school-title{
+    font-size:13px;
+  }
+
+  .user-area{
+    font-size:10px;
+    gap:5px;
+  }
+
+  .logout-btn{
+    padding:6px 8px;
+  }
+
+  .layout{
+    display:block;
+  }
+
+  .sidebar{
+    width:100%;
+    display:flex;
+    overflow-x:auto;
+    border-right:none;
+    border-bottom:1px solid #ddd;
+  }
+
+  .menu-btn{
     width:auto;
-    margin-right:5px;
+    white-space:nowrap;
+    padding:10px 12px;
   }
 
-  .table-card{
-    padding:8px;
+  .content{
+    padding:12px;
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+  }
+
+  .card{
+    padding:13px;
   }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
 <!-- ================= LOGIN ================= -->
 
-<div id="loginPage">
+<div id="loginPage" class="login-page">
 
   <div class="login-box">
 
     <img
       src="file_000000008cf0820ea9f8ecdca094bdda.png"
       class="login-logo"
-      alt="New Fortune School Logo"
+      onerror="this.style.display='none'"
     >
 
-    <h1>New Fortune School</h1>
+    <h2 class="login-title">
+      New Fortune School
+    </h2>
 
-    <h2>School Management System</h2>
+    <div class="login-subtitle">
+      Management System
+    </div>
 
     <!-- LOGIN FORM -->
 
     <div id="loginForm">
 
+      <label>Email or Phone</label>
+
       <input
         id="loginEmail"
         type="text"
-        placeholder="Email or Phone"
+        placeholder="Enter email or phone"
       >
+
+      <label>Password</label>
 
       <input
         id="loginPassword"
         type="password"
-        placeholder="Password"
+        placeholder="Enter password"
       >
 
-      <button onclick="login()">
-        Login
+      <button
+        class="primary-btn"
+        onclick="login()"
+      >
+        🔐 Login
       </button>
 
       <button
-        class="link-btn"
+        id="forgotPasswordBtn"
+        class="secondary-btn"
         onclick="showForgot()"
       >
         Forgot Password?
@@ -436,16 +465,15 @@ tr:hover{
 
     </div>
 
-    <!-- FORGOT PASSWORD -->
+    <!-- FORGOT FORM -->
 
-    <div
-      id="forgotForm"
-      class="hidden"
-    >
+    <div id="forgotForm" class="hidden">
 
-      <h3>Reset Password</h3>
+      <h3 style="margin-bottom:15px;">
+        Reset Password
+      </h3>
 
-      <br>
+      <label>Email</label>
 
       <input
         id="forgotEmail"
@@ -453,12 +481,17 @@ tr:hover{
         placeholder="Enter your email"
       >
 
-      <button onclick="sendReset()">
+      <button
+        id="sendResetBtn"
+        class="primary-btn"
+        onclick="sendReset()"
+      >
         Send Reset Link
       </button>
 
       <button
-        class="link-btn"
+        id="backLoginBtn"
+        class="secondary-btn"
         onclick="showLogin()"
       >
         Back to Login
@@ -468,22 +501,25 @@ tr:hover{
 
     <!-- NEW PASSWORD -->
 
-    <div
-      id="newPasswordForm"
-      class="hidden"
-    >
+    <div id="newPasswordForm" class="hidden">
 
-      <h3>Create New Password</h3>
+      <h3 style="margin-bottom:15px;">
+        Create New Password
+      </h3>
 
-      <br>
+      <label>New Password</label>
 
       <input
         id="newPassword"
         type="password"
-        placeholder="New Password"
+        placeholder="Enter new password"
       >
 
-      <button onclick="updatePassword()">
+      <button
+        id="savePasswordBtn"
+        class="primary-btn"
+        onclick="updatePassword()"
+      >
         Update Password
       </button>
 
@@ -494,20 +530,17 @@ tr:hover{
 </div>
 
 
-<!-- ================= APP ================= -->
+<!-- ================= APPLICATION ================= -->
 
-<div
-  id="app"
-  class="hidden"
->
+<div id="app" class="hidden">
 
   <div class="topbar">
 
-    <h2>
+    <div class="school-title">
       New Fortune School Management System
-    </h2>
+    </div>
 
-    <div class="logged-user">
+    <div class="user-area">
 
       <span id="loggedUser"></span>
 
@@ -523,1271 +556,815 @@ tr:hover{
   </div>
 
 
-  <!-- SIDEBAR -->
+  <div class="layout">
 
-  <div class="sidebar">
+    <!-- SIDEBAR -->
 
-    <button
-      class="active"
-      onclick="showSection('dashboard',this)"
-    >
-      🏠 Dashboard
-    </button>
+    <div class="sidebar">
 
-    <button
-      id="teacherDashboardBtn"
-      class="hidden"
-      onclick="showSection('teacherDashboard',this)"
-    >
-      👨‍🏫 Teacher Dashboard
-    </button>
+      <button
+        class="menu-btn active"
+        onclick="showSection('dashboard',this)"
+      >
+        🏠 Dashboard
+      </button>
 
-    <button
-      id="adminAccountManagerBtn"
-      class="hidden"
-      onclick="showSection('adminAccountManager',this)"
-    >
-      👑 Admin Account Manager
-    </button>
+      <button
+        id="teacherDashboardBtn"
+        class="menu-btn hidden"
+        onclick="showSection('teacherDashboard',this)"
+      >
+        👨‍🏫 Teacher Dashboard
+      </button>
 
-    <button
-      onclick="showSection('students',this)"
-    >
-      👨‍🎓 Students
-    </button>
-
-    <button
-      onclick="showSection('teachers',this)"
-    >
-      👨‍🏫 Teachers
-    </button>
-
-    <button
-      onclick="showSection('classes',this)"
-    >
-      🏫 Classes
-    </button>
-
-    <button
-      onclick="showSection('subjects',this)"
-    >
-      📚 Subjects
-    </button>
-
-    <button
-      onclick="showSection('attendance',this)"
-    >
-      📋 Attendance
-    </button>
-
-    <button
-      onclick="showSection('grades',this)"
-    >
-      📝 Grades
-    </button>
-
-    <button
-      onclick="showSection('fees',this)"
-    >
-      💰 Fees
-    </button>
-
-  </div>
-
-
-  <!-- MAIN -->
-
-  <div class="main">
-
-
-    <!-- ================= DASHBOARD ================= -->
-
-    <div
-      id="dashboard"
-      class="section active"
-    >
-
-      <h2 class="section-title">
-        Dashboard
-      </h2>
-
-      <div class="cards">
-
-        <div class="card">
-          <h3>Total Students</h3>
-          <div
-            id="studentCount"
-            class="number"
-          >
-            0
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Total Teachers</h3>
-          <div
-            id="teacherCount"
-            class="number"
-          >
-            0
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Total Classes</h3>
-          <div
-            id="classCount"
-            class="number"
-          >
-            0
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Attendance Records</h3>
-          <div
-            id="attendanceCount"
-            class="number"
-          >
-            0
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Fee Records</h3>
-          <div
-            id="feeCount"
-            class="number"
-          >
-            0
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- ================= TEACHER DASHBOARD ================= -->
-
-    <div
-      id="teacherDashboard"
-      class="section"
-    >
-
-      <h2 class="section-title">
-        Teacher Dashboard
-      </h2>
-
-      <div class="form-card">
-
-        <h3 id="teacherWelcome">
-          Teacher
-        </h3>
-
-        <br>
-
-        <p>
-          Assigned Classes:
-          <strong id="teacherClassCount">0</strong>
-        </p>
-
-        <br>
-
-        <p>
-          Students:
-          <strong id="teacherStudentCount">0</strong>
-        </p>
-
-      </div>
-
-      <div class="table-card">
-
-        <h3>My Classes</h3>
-
-        <br>
-
-        <table>
-
-          <thead>
-
-            <tr>
-              <th>#</th>
-              <th>Class</th>
-              <th>Grade</th>
-              <th>Section</th>
-            </tr>
-
-          </thead>
-
-          <tbody id="teacherClassesTable"></tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-
-    <!-- ================= ADMIN ================= -->
-
-    <div
-      id="adminAccountManager"
-      class="section"
-    >
-
-      <h2 class="section-title">
+      <button
+        id="adminAccountManagerBtn"
+        class="menu-btn hidden"
+        onclick="showSection('adminAccountManager',this)"
+      >
         👑 Admin Account Manager
-      </h2>
+      </button>
 
-      <div class="form-card">
+      <button
+        class="menu-btn"
+        onclick="showSection('students',this)"
+      >
+        👨‍🎓 Students
+      </button>
 
-        <h3>Current Admin</h3>
+      <button
+        class="menu-btn"
+        onclick="showSection('teachers',this)"
+      >
+        👨‍🏫 Teachers
+      </button>
 
-        <div class="admin-info">
+      <button
+        class="menu-btn"
+        onclick="showSection('classes',this)"
+      >
+        🏫 Classes
+      </button>
 
-          <div>
-            <label>Name</label>
+      <button
+        class="menu-btn"
+        onclick="showSection('subjects',this)"
+      >
+        📚 Subjects
+      </button>
 
-            <input
-              id="adminCurrentName"
-              readonly
-            >
-          </div>
+      <button
+        class="menu-btn"
+        onclick="showSection('attendance',this)"
+      >
+        📋 Attendance
+      </button>
 
-          <div>
-            <label>Email</label>
+      <button
+        class="menu-btn"
+        onclick="showSection('grades',this)"
+      >
+        📝 Grades
+      </button>
 
-            <input
-              id="adminCurrentEmail"
-              readonly
-            >
-          </div>
-
-          <div>
-            <label>Phone</label>
-
-            <input
-              id="adminCurrentPhone"
-              readonly
-            >
-          </div>
-
-          <div>
-            <label>Role</label>
-
-            <input
-              id="adminCurrentRole"
-              readonly
-            >
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="table-card">
-
-        <h3>System Users</h3>
-
-        <br>
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Role</th>
-              <th>Created</th>
-
-            </tr>
-
-          </thead>
-
-          <tbody id="adminUsersTable">
-
-            <tr>
-              <td colspan="6">
-                Loading users...
-              </td>
-            </tr>
-
-          </tbody>
-
-        </table>
-
-      </div>
+      <button
+        class="menu-btn"
+        onclick="showSection('fees',this)"
+      >
+        💰 Fees
+      </button>
 
     </div>
 
 
-    <!-- ================= STUDENTS ================= -->
+    <!-- CONTENT -->
 
-    <div
-      id="students"
-      class="section"
-    >
+    <div class="content">
 
-      <h2 class="section-title">
-        Students Management
-      </h2>
 
-      <div class="form-card">
+      <!-- ================= DASHBOARD ================= -->
 
-        <h3>Add Student</h3>
+      <section id="dashboard">
 
-        <div class="form-grid">
+        <h2 class="section-title">
+          Dashboard
+        </h2>
 
-          <div>
+        <div class="cards">
 
-            <label>Full Name</label>
-
-            <input
-              id="studentName"
-              placeholder="Student full name"
-            >
-
+          <div class="card">
+            <div class="card-title">Students</div>
+            <div id="studentCount" class="card-number">0</div>
           </div>
 
-          <div>
-
-            <label>Student ID</label>
-
-            <input
-              id="studentId"
-              type="number"
-              placeholder="Student ID"
-            >
-
+          <div class="card">
+            <div class="card-title">Teachers</div>
+            <div id="teacherCount" class="card-number">0</div>
           </div>
 
-          <div>
-
-            <label>Gender</label>
-
-            <select id="studentGender">
-
-              <option value="">
-                Select Gender
-              </option>
-
-              <option value="Male">
-                Male
-              </option>
-
-              <option value="Female">
-                Female
-              </option>
-
-            </select>
-
+          <div class="card">
+            <div class="card-title">Classes</div>
+            <div id="classCount" class="card-number">0</div>
           </div>
 
-          <div>
-
-            <label>Date of Birth</label>
-
-            <input
-              id="studentDob"
-              type="date"
-            >
-
+          <div class="card">
+            <div class="card-title">Subjects</div>
+            <div id="subjectCount" class="card-number">0</div>
           </div>
 
-          <div>
-
-            <label>Class</label>
-
-            <select id="studentClass">
-
-              <option value="">
-                Select Class
-              </option>
-
-            </select>
-
+          <div class="card">
+            <div class="card-title">Attendance</div>
+            <div id="attendanceCount" class="card-number">0</div>
           </div>
 
-          <div>
-
-            <label>Parent Name</label>
-
-            <input
-              id="parentName"
-              placeholder="Parent name"
-            >
-
+          <div class="card">
+            <div class="card-title">Grades</div>
+            <div id="gradeCount" class="card-number">0</div>
           </div>
 
-          <div>
-
-            <label>Parent Phone</label>
-
-            <input
-              id="parentPhone"
-              placeholder="Parent phone"
-            >
-
-          </div>
-
-          <div>
-
-            <button onclick="addStudent()">
-              Add Student
-            </button>
-
+          <div class="card">
+            <div class="card-title">Fees</div>
+            <div id="feeCount" class="card-number">0</div>
           </div>
 
         </div>
 
-      </div>
+      </section>
 
 
-      <div class="table-card">
+      <!-- ================= TEACHER DASHBOARD ================= -->
 
-        <h3>Students List</h3>
+      <section
+        id="teacherDashboard"
+        class="hidden"
+      >
 
-        <br>
+        <h2 class="section-title">
+          Teacher Dashboard
+        </h2>
 
-        <input
-          id="studentSearch"
-          placeholder="Search student..."
-          oninput="renderStudents()"
+        <div
+          id="teacherDashboardContent"
+          class="teacher-dashboard-box"
         >
+          Loading...
+        </div>
 
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>#</th>
-              <th>Name</th>
-              <th>Student ID</th>
-              <th>Gender</th>
-              <th>Date of Birth</th>
-              <th>Class</th>
-              <th>Parent</th>
-              <th>Phone</th>
-              <th>Action</th>
-
-            </tr>
-
-          </thead>
-
-          <tbody id="studentsTable"></tbody>
-
-        </table>
-
-      </div>
-
-    </div>
+      </section>
 
 
-    <!-- ================= TEACHERS ================= -->
+      <!-- ================= ADMIN ================= -->
 
-    <div
-      id="teachers"
-      class="section"
-    >
+      <section
+        id="adminAccountManager"
+        class="hidden"
+      >
 
-      <h2 class="section-title">
-        Teachers Management
-      </h2>
+        <h2 class="section-title">
+          👑 Admin Account Manager
+        </h2>
 
-      <div class="form-card">
+        <div class="form-card">
 
-        <h3>Add Teacher</h3>
+          <h3 style="margin-bottom:15px;">
+            Current Admin
+          </h3>
 
-        <div class="form-grid">
+          <div class="admin-info">
 
-          <div>
+            <div class="admin-box">
 
-            <label>Full Name</label>
+              <label>Full Name</label>
 
-            <input
-              id="teacherName"
-              placeholder="Teacher name"
-            >
+              <input
+                id="adminCurrentName"
+                readonly
+              >
 
-          </div>
+            </div>
 
-          <div>
+            <div class="admin-box">
 
-            <label>Teacher ID</label>
+              <label>Email</label>
 
-            <input
-              id="teacherId"
-              placeholder="Teacher ID"
-            >
+              <input
+                id="adminCurrentEmail"
+                readonly
+              >
 
-          </div>
+            </div>
 
-          <div>
+            <div class="admin-box">
 
-            <label>Subject</label>
+              <label>Phone</label>
 
-            <input
-              id="teacherSubject"
-              placeholder="Subject"
-            >
+              <input
+                id="adminCurrentPhone"
+                readonly
+              >
 
-          </div>
+            </div>
 
-          <div>
+            <div class="admin-box">
 
-            <label>Phone</label>
+              <label>Role</label>
 
-            <input
-              id="teacherPhone"
-              placeholder="Phone"
-            >
+              <input
+                id="adminCurrentRole"
+                readonly
+              >
 
-          </div>
-
-          <div>
-
-            <label>Email</label>
-
-            <input
-              id="teacherEmail"
-              type="email"
-              placeholder="Email"
-            >
-
-          </div>
-
-          <div>
-
-            <button onclick="addTeacher()">
-              Add Teacher
-            </button>
+            </div>
 
           </div>
 
         </div>
 
-      </div>
 
+        <div class="table-card">
 
-      <div class="table-card">
+          <h3 style="margin-bottom:15px;">
+            System Users
+          </h3>
 
-        <h3>Teachers List</h3>
+          <table>
 
-        <br>
+            <thead>
 
-        <table>
+              <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Created</th>
+              </tr>
 
-          <thead>
+            </thead>
 
-            <tr>
+            <tbody id="adminUsersTable">
 
-              <th>#</th>
-              <th>Name</th>
-              <th>Teacher ID</th>
-              <th>Subject</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Action</th>
+              <tr>
+                <td colspan="6">
+                  Loading users...
+                </td>
+              </tr>
 
-            </tr>
+            </tbody>
 
-          </thead>
-
-          <tbody id="teachersTable"></tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-
-    <!-- ================= CLASSES ================= -->
-
-    <div
-      id="classes"
-      class="section"
-    >
-
-      <h2 class="section-title">
-        Classes Management
-      </h2>
-
-      <div class="form-card">
-
-        <h3>Add Class</h3>
-
-        <div class="form-grid">
-
-          <div>
-
-            <label>Class Name</label>
-
-            <input
-              id="className"
-              placeholder="Example: KG A"
-            >
-
-          </div>
-
-          <div>
-
-            <label>Grade</label>
-
-            <input
-              id="classGrade"
-              placeholder="Example: Grade 1"
-            >
-
-          </div>
-
-          <div>
-
-            <label>Section</label>
-
-            <input
-              id="classSection"
-              placeholder="Example: A"
-            >
-
-          </div>
-
-          <div>
-
-            <label>Class Teacher</label>
-
-            <select id="classTeacher">
-
-              <option value="">
-                Select Teacher
-              </option>
-
-            </select>
-
-          </div>
-
-          <div>
-
-            <button onclick="addClass()">
-              Add Class
-            </button>
-
-          </div>
+          </table>
 
         </div>
 
-      </div>
+      </section>
 
 
-      <div class="table-card">
+      <!-- ================= STUDENTS ================= -->
 
-        <h3>Classes List</h3>
+      <section
+        id="students"
+        class="hidden"
+      >
 
-        <br>
+        <h2 class="section-title">
+          Students Management
+        </h2>
 
-        <table>
+        <div class="form-card">
 
-          <thead>
+          <div class="form-grid">
 
-            <tr>
+            <div class="form-group">
+              <label>Full Name</label>
+              <input id="studentName">
+            </div>
 
-              <th>#</th>
-              <th>Name</th>
-              <th>Grade</th>
-              <th>Section</th>
-              <th>Teacher</th>
-              <th>Action</th>
+            <div class="form-group">
+              <label>Student ID</label>
+              <input id="studentId" type="number">
+            </div>
 
-            </tr>
+            <div class="form-group">
+              <label>Gender</label>
 
-          </thead>
+              <select id="studentGender">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
 
-          <tbody id="classesTable"></tbody>
+            </div>
 
-        </table>
+            <div class="form-group">
+              <label>Date of Birth</label>
+              <input id="studentDOB" type="date">
+            </div>
 
-      </div>
+            <div class="form-group">
+              <label>Class</label>
+              <select id="studentClass"></select>
+            </div>
 
-    </div>
+            <div class="form-group">
+              <label>Parent Name</label>
+              <input id="parentName">
+            </div>
 
-
-    <!-- ================= SUBJECTS ================= -->
-
-    <div
-      id="subjects"
-      class="section"
-    >
-
-      <h2 class="section-title">
-        Subjects Management
-      </h2>
-
-      <div class="form-card">
-
-        <h3>Add Subject</h3>
-
-        <div class="form-grid">
-
-          <div>
-
-            <label>Subject Name</label>
-
-            <input
-              id="subjectName"
-              placeholder="Subject name"
-            >
+            <div class="form-group">
+              <label>Parent Phone</label>
+              <input id="parentPhone">
+            </div>
 
           </div>
 
-          <div>
-
-            <button onclick="addSubject()">
-              Add Subject
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="table-card">
-
-        <h3>Subjects List</h3>
-
-        <br>
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>#</th>
-              <th>Subject</th>
-              <th>Action</th>
-
-            </tr>
-
-          </thead>
-
-          <tbody id="subjectsTable"></tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-
-    <!-- ================= ATTENDANCE ================= -->
-
-    <div
-      id="attendance"
-      class="section"
-    >
-
-      <h2 class="section-title">
-        Attendance Management
-      </h2>
-
-      <div class="form-card">
-
-        <h3>Record Attendance</h3>
-
-        <div class="form-grid">
-
-          <div>
-
-            <label>Student</label>
-
-            <select id="attendanceStudent">
-
-              <option value="">
-                Select Student
-              </option>
-
-            </select>
-
-          </div>
-
-          <div>
-
-            <label>Date</label>
-
-            <input
-              id="attendanceDate"
-              type="date"
-            >
-
-          </div>
-
-          <div>
-
-            <label>Status</label>
-
-            <select id="attendanceStatus">
-
-              <option value="Present">
-                Present
-              </option>
-
-              <option value="Absent">
-                Absent
-              </option>
-
-              <option value="Late">
-                Late
-              </option>
-
-            </select>
-
-          </div>
-
-          <div>
-
-            <button onclick="addAttendance()">
-              Save Attendance
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="table-card">
-
-        <h3>Attendance Records</h3>
-
-        <br>
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>#</th>
-              <th>Student</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Action</th>
-
-            </tr>
-
-          </thead>
-
-          <tbody id="attendanceTable"></tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-
-    <!-- ================= GRADES ================= -->
-
-    <div
-      id="grades"
-      class="section"
-    >
-
-      <h2 class="section-title">
-        Grades Management
-      </h2>
-
-      <div class="form-card">
-
-        <h3>Add Grade</h3>
-
-        <div class="form-grid">
-
-          <div>
-
-            <label>Student</label>
-
-            <select id="gradeStudent">
-
-              <option value="">
-                Select Student
-              </option>
-
-            </select>
-
-          </div>
-
-          <div>
-
-            <label>Subject</label>
-
-            <select id="gradeSubject">
-
-              <option value="">
-                Select Subject
-              </option>
-
-            </select>
-
-          </div>
-
-          <div>
-
-            <label>Score</label>
-
-            <input
-              id="gradeScore"
-              type="number"
-              min="0"
-              max="100"
-              placeholder="Score"
-            >
-
-          </div>
-
-          <div>
-
-            <label>Term</label>
-
-            <select id="gradeTerm">
-
-              <option value="Term 1">
-                Term 1
-              </option>
-
-              <option value="Term 2">
-                Term 2
-              </option>
-
-              <option value="Term 3">
-                Term 3
-              </option>
-
-            </select>
-
-          </div>
-
-          <div>
-
-            <button onclick="addGrade()">
-              Save Grade
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="table-card">
-
-        <h3>Grades List</h3>
-
-        <br>
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>#</th>
-              <th>Student</th>
-              <th>Subject</th>
-              <th>Score</th>
-              <th>Term</th>
-              <th>Action</th>
-
-            </tr>
-
-          </thead>
-
-          <tbody id="gradesTable"></tbody>
-
-        </table>
-
-      </div>
-
-    </div>
-
-
-    <!-- ================= FEES ================= -->
-
-    <div
-      id="fees"
-      class="section"
-    >
-
-      <h2 class="section-title">
-        Fees Management
-      </h2>
-
-      <div class="form-card">
-
-        <h3>Record Payment</h3>
-
-        <div class="form-grid">
-
-          <div>
-
-            <label>Student</label>
-
-            <select id="feeStudent">
-
-              <option value="">
-                Select Student
-              </option>
-
-            </select>
-
-          </div>
-
-          <div>
-
-            <label>Amount</label>
-
-            <input
-              id="feeAmount"
-              type="number"
-              placeholder="Amount"
-            >
-
-          </div>
-
-          <div>
-
-            <label>Payment Date</label>
-
-            <input
-              id="feeDate"
-              type="date"
-            >
-
-          </div>
-
-          <div>
-
-            <label>Status</label>
-
-            <select id="feeStatus">
-
-              <option value="Paid">
-                Paid
-              </option>
-
-              <option value="Pending">
-                Pending
-              </option>
-
-              <option value="Partial">
-                Partial
-              </option>
-
-            </select>
-
-          </div>
-
-          <div>
-
-            <button onclick="addFee()">
-              Save Payment
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="form-card">
-
-        <h3>Monthly Fee Status</h3>
-
-        <label>
-          Select Month
-        </label>
-
-        <input
-          id="feeMonthFilter"
-          type="month"
-          onchange="renderFeeMonthlyStatus()"
-        >
-
-      </div>
-
-
-      <div class="fee-summary">
-
-        <div class="card">
-
-          <h3>Total Students</h3>
-
-          <div
-            id="feeTotalStudents"
-            class="number"
+          <button
+            class="success-btn"
+            onclick="addStudent()"
           >
-            0
-          </div>
+            + Add Student
+          </button>
 
         </div>
 
-        <div class="card">
 
-          <h3>Paid Students</h3>
+        <div class="table-card">
 
-          <div
-            id="feePaidStudents"
-            class="number"
+          <div class="search-box">
+            <input
+              id="studentSearch"
+              placeholder="Search students..."
+              oninput="renderStudents()"
+            >
+          </div>
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Student ID</th>
+                <th>Gender</th>
+                <th>Class</th>
+                <th>Parent</th>
+                <th>Phone</th>
+                <th>Action</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="studentsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= TEACHERS ================= -->
+
+      <section
+        id="teachers"
+        class="hidden"
+      >
+
+        <h2 class="section-title">
+          Teachers Management
+        </h2>
+
+        <div class="form-card">
+
+          <div class="form-grid">
+
+            <div>
+              <label>Full Name</label>
+              <input id="teacherName">
+            </div>
+
+            <div>
+              <label>Teacher ID</label>
+              <input id="teacherId">
+            </div>
+
+            <div>
+              <label>Subject</label>
+              <input id="teacherSubject">
+            </div>
+
+            <div>
+              <label>Phone</label>
+              <input id="teacherPhone">
+            </div>
+
+            <div>
+              <label>Email</label>
+              <input id="teacherEmail" type="email">
+            </div>
+
+          </div>
+
+          <button
+            class="success-btn"
+            onclick="addTeacher()"
           >
-            0
-          </div>
+            + Add Teacher
+          </button>
 
         </div>
 
-        <div class="card">
 
-          <h3>Unpaid Students</h3>
+        <div class="table-card">
 
-          <div
-            id="feeUnpaidStudents"
-            class="number"
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Teacher ID</th>
+                <th>Subject</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="teachersTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= CLASSES ================= -->
+
+      <section
+        id="classes"
+        class="hidden"
+      >
+
+        <h2 class="section-title">
+          Classes Management
+        </h2>
+
+        <div class="form-card">
+
+          <div class="form-grid">
+
+            <div>
+              <label>Class Name</label>
+              <input id="className">
+            </div>
+
+            <div>
+              <label>Grade</label>
+              <input id="classGrade">
+            </div>
+
+            <div>
+              <label>Section</label>
+              <input id="classSection">
+            </div>
+
+            <div>
+              <label>Class Teacher</label>
+              <select id="classTeacher"></select>
+            </div>
+
+          </div>
+
+          <button
+            class="success-btn"
+            onclick="addClass()"
           >
-            0
-          </div>
+            + Add Class
+          </button>
 
         </div>
 
-        <div class="card">
 
-          <h3>Paid Amount</h3>
+        <div class="table-card">
 
-          <div
-            id="feePaidAmount"
-            class="number"
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Section</th>
+                <th>Teacher</th>
+                <th>Action</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="classesTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= SUBJECTS ================= -->
+
+      <section
+        id="subjects"
+        class="hidden"
+      >
+
+        <h2 class="section-title">
+          Subjects Management
+        </h2>
+
+        <div class="form-card">
+
+          <label>Subject Name</label>
+
+          <input
+            id="subjectName"
+            placeholder="Enter subject name"
           >
-            0
-          </div>
+
+          <button
+            class="success-btn"
+            onclick="addSubject()"
+          >
+            + Add Subject
+          </button>
 
         </div>
 
-      </div>
+
+        <div class="table-card">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>#</th>
+                <th>Subject</th>
+                <th>Action</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="subjectsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
 
 
-      <div class="table-card">
+      <!-- ================= ATTENDANCE ================= -->
 
-        <h3>
-          Paid Students
-        </h3>
+      <section
+        id="attendance"
+        class="hidden"
+      >
 
-        <br>
+        <h2 class="section-title">
+          Attendance
+        </h2>
 
-        <table>
+        <div class="form-card">
 
-          <thead>
+          <div class="form-grid">
 
-            <tr>
+            <div>
+              <label>Student</label>
+              <select id="attendanceStudent"></select>
+            </div>
 
-              <th>#</th>
-              <th>Student</th>
-              <th>Student ID</th>
-              <th>Class</th>
-              <th>Amount</th>
-              <th>Latest Payment</th>
-              <th>Month</th>
-              <th>Status</th>
+            <div>
+              <label>Date</label>
+              <input id="attendanceDate" type="date">
+            </div>
 
-            </tr>
+            <div>
+              <label>Status</label>
 
-          </thead>
+              <select id="attendanceStatus">
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="Late">Late</option>
+              </select>
 
-          <tbody id="paidStudentsTable"></tbody>
+            </div>
 
-        </table>
+          </div>
 
-      </div>
+          <button
+            class="success-btn"
+            onclick="addAttendance()"
+          >
+            + Save Attendance
+          </button>
 
-      <br>
+        </div>
 
-      <div class="table-card">
 
-        <h3>
-          Unpaid / Partial Students
-        </h3>
+        <div class="table-card">
 
-        <br>
+          <table>
 
-        <table>
+            <thead>
 
-          <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
 
-            <tr>
+            </thead>
 
-              <th>#</th>
-              <th>Student</th>
-              <th>Student ID</th>
-              <th>Class</th>
-              <th>Parent</th>
-              <th>Phone</th>
-              <th>Status</th>
+            <tbody id="attendanceTable"></tbody>
 
-            </tr>
+          </table>
 
-          </thead>
+        </div>
 
-          <tbody id="unpaidStudentsTable"></tbody>
+      </section>
 
-        </table>
 
-      </div>
+      <!-- ================= GRADES ================= -->
 
-      <br>
+      <section
+        id="grades"
+        class="hidden"
+      >
 
-      <div class="table-card">
+        <h2 class="section-title">
+          Grades
+        </h2>
 
-        <h3>
-          Payment Records
-        </h3>
+        <div class="form-card">
 
-        <br>
+          <div class="form-grid">
 
-        <table>
+            <div>
+              <label>Student</label>
+              <select id="gradeStudent"></select>
+            </div>
 
-          <thead>
+            <div>
+              <label>Subject</label>
+              <select id="gradeSubject"></select>
+            </div>
 
-            <tr>
+            <div>
+              <label>Score</label>
+              <input
+                id="gradeScore"
+                type="number"
+                min="0"
+                max="100"
+              >
+            </div>
 
-              <th>#</th>
-              <th>Student</th>
-              <th>Amount</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Action</th>
+            <div>
+              <label>Term</label>
 
-            </tr>
+              <select id="gradeTerm">
+                <option value="Term 1">Term 1</option>
+                <option value="Term 2">Term 2</option>
+                <option value="Term 3">Term 3</option>
+              </select>
 
-          </thead>
+            </div>
 
-          <tbody id="feesTable"></tbody>
+          </div>
 
-        </table>
+          <button
+            class="success-btn"
+            onclick="addGrade()"
+          >
+            + Save Grade
+          </button>
 
-      </div>
+        </div>
+
+
+        <div class="table-card">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Subject</th>
+                <th>Score</th>
+                <th>Term</th>
+                <th>Action</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="gradesTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ================= FEES ================= -->
+
+      <section
+        id="fees"
+        class="hidden"
+      >
+
+        <h2 class="section-title">
+          Fees / Payments
+        </h2>
+
+        <div class="form-card">
+
+          <div class="form-grid">
+
+            <div>
+              <label>Student</label>
+              <select id="feeStudent"></select>
+            </div>
+
+            <div>
+              <label>Amount</label>
+              <input id="feeAmount" type="number">
+            </div>
+
+            <div>
+              <label>Payment Date</label>
+              <input id="feeDate" type="date">
+            </div>
+
+            <div>
+              <label>Status</label>
+
+              <select id="feeStatus">
+                <option value="Paid">Paid</option>
+                <option value="Pending">Pending</option>
+                <option value="Partial">Partial</option>
+              </select>
+
+            </div>
+
+          </div>
+
+          <button
+            class="success-btn"
+            onclick="addFee()"
+          >
+            + Save Payment
+          </button>
+
+        </div>
+
+
+        <div class="table-card">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="feesTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
 
     </div>
-
-
   </div>
 
 </div>
@@ -1806,30 +1383,30 @@ const SUPABASE_KEY =
 "sb_publishable_7ii_IQ4dR_JiFOFP86RA8g_T9tx98jr";
 
 const supabaseClient =
-window.supabase.createClient(
+supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
 
 /* =====================================================
-   GLOBAL DATA
+   GLOBAL VARIABLES
 ===================================================== */
 
-let students=[];
-let teachers=[];
-let classes=[];
-let subjects=[];
-let attendance=[];
-let grades=[];
-let fees=[];
-let adminUsers=[];
+let students = [];
+let teachers = [];
+let classes = [];
+let subjects = [];
+let attendance = [];
+let grades = [];
+let fees = [];
+let adminUsers = [];
 
-let currentUser=null;
-let currentTeacher=null;
-let currentUserRole="";
+let currentUser = null;
+let currentTeacher = null;
+let currentUserRole = "";
 
-let appLoading=false;
+let appLoading = false;
 
 
 /* =====================================================
@@ -1838,7 +1415,7 @@ let appLoading=false;
 
 function escapeHtml(value){
 
-  if(value===null || value===undefined){
+  if(value === null || value === undefined){
     return "";
   }
 
@@ -1861,64 +1438,19 @@ function today(){
 }
 
 
-function currentMonth(){
-
-  return new Date()
-    .toISOString()
-    .slice(0,7);
-
-}
-
-
 /* =====================================================
-   LOGIN PAGE
+   LOGIN / LOGOUT
 ===================================================== */
-
-function showLogin(){
-
-  document
-    .getElementById("loginForm")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("forgotForm")
-    .classList.add("hidden");
-
-  document
-    .getElementById("newPasswordForm")
-    .classList.add("hidden");
-
-}
-
-
-function showForgot(){
-
-  document
-    .getElementById("loginForm")
-    .classList.add("hidden");
-
-  document
-    .getElementById("forgotForm")
-    .classList.remove("hidden");
-
-  document
-    .getElementById("newPasswordForm")
-    .classList.add("hidden");
-
-}
-
 
 async function login(){
 
   const identifier =
-    document
-      .getElementById("loginEmail")
+    document.getElementById("loginEmail")
       .value
       .trim();
 
   const password =
-    document
-      .getElementById("loginPassword")
+    document.getElementById("loginPassword")
       .value;
 
   if(!identifier || !password){
@@ -1957,7 +1489,8 @@ async function login(){
     return;
   }
 
-  currentUser=result.data.user;
+  currentUser =
+    result.data.user;
 
   await showApp();
 
@@ -1968,9 +1501,9 @@ async function logout(){
 
   await supabaseClient.auth.signOut();
 
-  currentUser=null;
-  currentUserRole="";
-  currentTeacher=null;
+  currentUser = null;
+  currentUserRole = "";
+  currentTeacher = null;
 
   location.reload();
 
@@ -1978,14 +1511,43 @@ async function logout(){
 
 
 /* =====================================================
-   PASSWORD RESET
+   LOGIN SCREENS
 ===================================================== */
+
+function showForgot(){
+
+  document
+    .getElementById("loginForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("forgotForm")
+    .classList.remove("hidden");
+
+}
+
+
+function showLogin(){
+
+  document
+    .getElementById("forgotForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("newPasswordForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("loginForm")
+    .classList.remove("hidden");
+
+}
+
 
 async function sendReset(){
 
   const email =
-    document
-      .getElementById("forgotEmail")
+    document.getElementById("forgotEmail")
       .value
       .trim();
 
@@ -2001,12 +1563,13 @@ async function sendReset(){
     window.location.pathname;
 
   const {error} =
-    await supabaseClient.auth.resetPasswordForEmail(
-      email,
-      {
-        redirectTo:redirectTo
-      }
-    );
+    await supabaseClient.auth
+      .resetPasswordForEmail(
+        email,
+        {
+          redirectTo:redirectTo
+        }
+      );
 
   if(error){
 
@@ -2026,8 +1589,7 @@ async function sendReset(){
 async function updatePassword(){
 
   const password =
-    document
-      .getElementById("newPassword")
+    document.getElementById("newPassword")
       .value;
 
   if(!password){
@@ -2037,7 +1599,7 @@ async function updatePassword(){
     return;
   }
 
-  if(password.length<6){
+  if(password.length < 6){
 
     alert(
       "Password must be at least 6 characters."
@@ -2047,9 +1609,10 @@ async function updatePassword(){
   }
 
   const {error} =
-    await supabaseClient.auth.updateUser({
-      password:password
-    });
+    await supabaseClient.auth
+      .updateUser({
+        password:password
+      });
 
   if(error){
 
@@ -2069,41 +1632,98 @@ async function updatePassword(){
 
 /* =====================================================
    CURRENT USER ROLE
-   IMPORTANT: USE auth_id
+   IMPORTANT:
+   users table uses full_name + auth_id
 ===================================================== */
 
 async function loadCurrentUserRole(){
-
-  if(!currentUser){
-    return;
-  }
 
   const button =
     document.getElementById(
       "adminAccountManagerBtn"
     );
 
-  const authId =
-    currentUser.id;
+  const teacherButton =
+    document.getElementById(
+      "teacherDashboardBtn"
+    );
 
-  if(!authId){
 
-    currentUserRole="";
+  if(button){
 
-    if(button){
-      button.classList.add("hidden");
-    }
+    button.classList.add("hidden");
+
+  }
+
+  if(teacherButton){
+
+    teacherButton.classList.add("hidden");
+
+  }
+
+
+  if(!currentUser){
+
+    currentUserRole = "";
 
     return;
   }
 
 
-  const {data,error} =
-    await supabaseClient
-      .from("users")
-      .select("*")
-      .eq("auth_id",authId)
-      .maybeSingle();
+  const email =
+    (currentUser.email || "")
+      .trim()
+      .toLowerCase();
+
+
+  const authId =
+    currentUser.id;
+
+
+  let data = null;
+  let error = null;
+
+
+  /* ---------------------------------------------
+     FIRST: SEARCH BY AUTH ID
+  --------------------------------------------- */
+
+  if(authId){
+
+    const result =
+      await supabaseClient
+        .from("users")
+        .select(
+          "id,full_name,email,phone,role,auth_id,created_at"
+        )
+        .eq("auth_id",authId)
+        .maybeSingle();
+
+    data = result.data;
+    error = result.error;
+
+  }
+
+
+  /* ---------------------------------------------
+     SECOND: SEARCH BY EMAIL
+  --------------------------------------------- */
+
+  if(!data && email){
+
+    const result =
+      await supabaseClient
+        .from("users")
+        .select(
+          "id,full_name,email,phone,role,auth_id,created_at"
+        )
+        .ilike("email",email)
+        .maybeSingle();
+
+    data = result.data;
+    error = result.error;
+
+  }
 
 
   if(error){
@@ -2113,11 +1733,7 @@ async function loadCurrentUserRole(){
       error
     );
 
-    currentUserRole="";
-
-    if(button){
-      button.classList.add("hidden");
-    }
+    currentUserRole = "";
 
     return;
   }
@@ -2125,51 +1741,61 @@ async function loadCurrentUserRole(){
 
   if(!data){
 
-    console.error(
-      "No users profile found for auth_id:",
-      authId
+    console.warn(
+      "Current user profile was not found."
     );
 
-    currentUserRole="";
-
-    if(button){
-      button.classList.add("hidden");
-    }
+    currentUserRole = "";
 
     return;
   }
 
 
   currentUserRole =
-    (
-      data.role || ""
-    )
-    .toString()
-    .trim()
-    .toLowerCase();
+    (data.role || "")
+      .toString()
+      .trim()
+      .toLowerCase();
 
 
   console.log(
-    "Current user role:",
+    "Current User Role:",
     currentUserRole
   );
 
 
+  /* ---------------------------------------------
+     ADMIN
+  --------------------------------------------- */
+
   if(
-    currentUserRole==="admin" ||
-    currentUserRole==="administrator"
+    currentUserRole === "admin" ||
+    currentUserRole === "administrator"
   ){
 
     if(button){
+
       button.classList.remove("hidden");
+
     }
 
     loadCurrentAdminInfo(data);
 
-  }else{
+  }
 
-    if(button){
-      button.classList.add("hidden");
+
+  /* ---------------------------------------------
+     TEACHER
+  --------------------------------------------- */
+
+  if(
+    currentUserRole === "teacher"
+  ){
+
+    if(teacherButton){
+
+      teacherButton.classList.remove("hidden");
+
     }
 
   }
@@ -2184,33 +1810,29 @@ async function loadCurrentUserRole(){
 function loadCurrentAdminInfo(data){
 
   if(!data){
+
     return;
   }
 
-  document
-    .getElementById("adminCurrentName")
-    .value =
-      data.name ||
-      data.full_name ||
-      "";
+  document.getElementById(
+    "adminCurrentName"
+  ).value =
+    data.full_name || "";
 
-  document
-    .getElementById("adminCurrentEmail")
-    .value =
-      data.email ||
-      "";
+  document.getElementById(
+    "adminCurrentEmail"
+  ).value =
+    data.email || "";
 
-  document
-    .getElementById("adminCurrentPhone")
-    .value =
-      data.phone ||
-      "";
+  document.getElementById(
+    "adminCurrentPhone"
+  ).value =
+    data.phone || "";
 
-  document
-    .getElementById("adminCurrentRole")
-    .value =
-      data.role ||
-      "";
+  document.getElementById(
+    "adminCurrentRole"
+  ).value =
+    data.role || "";
 
 }
 
@@ -2222,14 +1844,17 @@ function loadCurrentAdminInfo(data){
 async function showApp(){
 
   if(!currentUser){
+
     return;
   }
 
   if(appLoading){
+
     return;
   }
 
-  appLoading=true;
+  appLoading = true;
+
 
   try{
 
@@ -2242,17 +1867,18 @@ async function showApp(){
       .classList.remove("hidden");
 
 
-    document
-      .getElementById("loggedUser")
-      .textContent =
-        currentUser.email ||
-        currentUser.phone ||
-        "";
+    document.getElementById(
+      "loggedUser"
+    ).textContent =
+      currentUser.email ||
+      currentUser.phone ||
+      "";
 
 
     await loadCurrentUserRole();
 
     await refreshAll();
+
 
   }catch(error){
 
@@ -2263,7 +1889,7 @@ async function showApp(){
 
   }finally{
 
-    appLoading=false;
+    appLoading = false;
 
   }
 
@@ -2277,9 +1903,9 @@ async function showApp(){
 function showSection(id,button){
 
   if(
-    id==="adminAccountManager" &&
-    currentUserRole!=="admin" &&
-    currentUserRole!=="administrator"
+    id === "adminAccountManager" &&
+    currentUserRole !== "admin" &&
+    currentUserRole !== "administrator"
   ){
 
     alert(
@@ -2291,33 +1917,41 @@ function showSection(id,button){
 
 
   document
-    .querySelectorAll(".section")
-    .forEach(section=>{
-      section.classList.remove("active");
+    .querySelectorAll(".content > section")
+    .forEach(section => {
+
+      section.classList.add("hidden");
+
     });
 
 
-  const section =
+  const target =
     document.getElementById(id);
 
-  if(section){
-    section.classList.add("active");
+  if(target){
+
+    target.classList.remove("hidden");
+
   }
 
 
   document
-    .querySelectorAll(".sidebar button")
-    .forEach(btn=>{
+    .querySelectorAll(".menu-btn")
+    .forEach(btn => {
+
       btn.classList.remove("active");
+
     });
 
 
   if(button){
+
     button.classList.add("active");
+
   }
 
 
-  if(id==="adminAccountManager"){
+  if(id === "adminAccountManager"){
 
     loadAdminUsers();
 
@@ -2333,12 +1967,13 @@ function showSection(id,button){
 async function loadAdminUsers(){
 
   if(
-    currentUserRole!=="admin" &&
-    currentUserRole!=="administrator"
+    currentUserRole !== "admin" &&
+    currentUserRole !== "administrator"
   ){
 
     return;
   }
+
 
   const table =
     document.getElementById(
@@ -2346,6 +1981,7 @@ async function loadAdminUsers(){
     );
 
   if(!table){
+
     return;
   }
 
@@ -2357,8 +1993,15 @@ async function loadAdminUsers(){
   const {data,error} =
     await supabaseClient
       .from("users")
-      .select("*")
-      .order("id",{ascending:false});
+      .select(
+        "id,full_name,email,phone,role,auth_id,created_at"
+      )
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
 
 
   if(error){
@@ -2366,13 +2009,15 @@ async function loadAdminUsers(){
     console.error(error);
 
     table.innerHTML =
-      '<tr><td colspan="6">Could not load users. Please check users table permissions.</td></tr>';
+      '<tr><td colspan="6">Could not load users.</td></tr>';
 
     return;
   }
 
 
-  adminUsers=data||[];
+  adminUsers =
+    data || [];
+
 
   renderAdminUsers();
 
@@ -2387,51 +2032,65 @@ function renderAdminUsers(){
     );
 
   if(!table){
+
     return;
   }
 
-  table.innerHTML="";
+
+  table.innerHTML = "";
 
 
-  adminUsers.forEach((item,index)=>{
+  if(adminUsers.length === 0){
 
-    const name =
-      item.name ||
-      item.full_name ||
-      "";
+    table.innerHTML =
+      '<tr><td colspan="6">No users found.</td></tr>';
+
+    return;
+  }
 
 
-    table.innerHTML += `
+  adminUsers.forEach(
+    (item,index) => {
 
-      <tr>
+      table.innerHTML += `
 
-        <td>${index+1}</td>
+        <tr>
 
-        <td>
-          ${escapeHtml(name)}
-        </td>
+          <td>
+            ${index + 1}
+          </td>
 
-        <td>
-          ${escapeHtml(item.email||"")}
-        </td>
+          <td>
+            ${escapeHtml(item.full_name)}
+          </td>
 
-        <td>
-          ${escapeHtml(item.phone||"")}
-        </td>
+          <td>
+            ${escapeHtml(item.email)}
+          </td>
 
-        <td>
-          ${escapeHtml(item.role||"")}
-        </td>
+          <td>
+            ${escapeHtml(item.phone)}
+          </td>
 
-        <td>
-          ${escapeHtml(item.created_at||"")}
-        </td>
+          <td>
+            ${escapeHtml(item.role)}
+          </td>
 
-      </tr>
+          <td>
+            ${escapeHtml(
+              item.created_at
+                ? item.created_at
+                    .split("T")[0]
+                : ""
+            )}
+          </td>
 
-    `;
+        </tr>
 
-  });
+      `;
+
+    }
+  );
 
 }
 
@@ -2446,29 +2105,37 @@ async function loadStudents(){
     await supabaseClient
       .from("students")
       .select("*")
-      .order("id",{ascending:false});
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
 
 
   if(error){
 
     console.error(error);
 
-    students=[];
+    students = [];
 
     return;
   }
 
 
-  students=data||[];
+  students =
+    data || [];
+
 
   renderStudents();
 
   fillStudentDropdowns();
 
-  document
-    .getElementById("studentCount")
-    .textContent =
-      students.length;
+
+  document.getElementById(
+    "studentCount"
+  ).textContent =
+    students.length;
 
 }
 
@@ -2481,104 +2148,115 @@ function renderStudents(){
     );
 
   if(!table){
+
     return;
   }
 
 
   const search =
     (
-      document
-        .getElementById("studentSearch")
-        ?.value ||
-      ""
+      document.getElementById(
+        "studentSearch"
+      )?.value || ""
     )
-    .trim()
-    .toLowerCase();
+      .toLowerCase()
+      .trim();
 
 
-  table.innerHTML="";
+  table.innerHTML = "";
 
 
   const filtered =
-    students.filter(item=>{
+    students.filter(
+      student => {
 
-      const text =
-        (
-          (item.full_name||"") +
-          " " +
-          (item.student_id||"") +
-          " " +
-          (item.parent_name||"") +
-          " " +
-          (item.parent_phone||"")
-        )
-        .toLowerCase();
+        const text =
+          (
+            (student.full_name || "") +
+            " " +
+            (student.student_id || "") +
+            " " +
+            (student.parent_name || "") +
+            " " +
+            (student.parent_phone || "")
+          )
+            .toLowerCase();
 
-      return text.includes(search);
+        return text.includes(search);
 
-    });
-
-
-  filtered.forEach((item,index)=>{
-
-    const classItem =
-      classes.find(
-        c =>
-          String(c.id) ===
-          String(item.class_id)
-      );
+      }
+    );
 
 
-    table.innerHTML += `
+  if(filtered.length === 0){
 
-      <tr>
+    table.innerHTML =
+      '<tr><td colspan="8">No students found.</td></tr>';
 
-        <td>${index+1}</td>
+    return;
+  }
 
-        <td>
-          ${escapeHtml(item.full_name||"")}
-        </td>
 
-        <td>
-          ${escapeHtml(item.student_id||"")}
-        </td>
+  filtered.forEach(
+    (item,index) => {
 
-        <td>
-          ${escapeHtml(item.gender||"")}
-        </td>
+      const classItem =
+        classes.find(
+          c =>
+            String(c.id) ===
+            String(item.class_id)
+        );
 
-        <td>
-          ${escapeHtml(item.date_of_birth||"")}
-        </td>
 
-        <td>
-          ${escapeHtml(classItem?.name||"")}
-        </td>
+      table.innerHTML += `
 
-        <td>
-          ${escapeHtml(item.parent_name||"")}
-        </td>
+        <tr>
 
-        <td>
-          ${escapeHtml(item.parent_phone||"")}
-        </td>
+          <td>${index+1}</td>
 
-        <td>
+          <td>
+            ${escapeHtml(item.full_name)}
+          </td>
 
-          <button
-            class="delete-btn"
-            onclick="deleteStudent(${item.id})"
-          >
-            Delete
-          </button>
+          <td>
+            ${escapeHtml(item.student_id)}
+          </td>
 
-        </td>
+          <td>
+            ${escapeHtml(item.gender)}
+          </td>
 
-      </tr>
+          <td>
+            ${escapeHtml(
+              classItem?.name || ""
+            )}
+          </td>
 
-    `;
+          <td>
+            ${escapeHtml(item.parent_name)}
+          </td>
 
-  });
+          <td>
+            ${escapeHtml(item.parent_phone)}
+          </td>
+
+          <td>
+
+            <button
+              class="small-btn"
+              onclick="deleteStudent(${item.id})"
+            >
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
 
 }
 
@@ -2586,48 +2264,49 @@ function renderStudents(){
 async function addStudent(){
 
   const full_name =
-    document
-      .getElementById("studentName")
-      .value
-      .trim();
+    document.getElementById(
+      "studentName"
+    ).value.trim();
 
   const student_id =
-    document
-      .getElementById("studentId")
-      .value
-      .trim();
+    document.getElementById(
+      "studentId"
+    ).value.trim();
 
   const gender =
-    document
-      .getElementById("studentGender")
-      .value;
+    document.getElementById(
+      "studentGender"
+    ).value;
 
   const date_of_birth =
-    document
-      .getElementById("studentDob")
-      .value;
+    document.getElementById(
+      "studentDOB"
+    ).value;
 
   const class_id =
-    document
-      .getElementById("studentClass")
-      .value;
+    document.getElementById(
+      "studentClass"
+    ).value;
 
   const parent_name =
-    document
-      .getElementById("parentName")
-      .value
-      .trim();
+    document.getElementById(
+      "parentName"
+    ).value.trim();
 
   const parent_phone =
-    document
-      .getElementById("parentPhone")
-      .value
-      .trim();
+    document.getElementById(
+      "parentPhone"
+    ).value.trim();
 
 
-  if(!full_name){
+  if(
+    !full_name ||
+    !student_id
+  ){
 
-    alert("Please enter student name.");
+    alert(
+      "Please enter student name and student ID."
+    );
 
     return;
   }
@@ -2638,18 +2317,15 @@ async function addStudent(){
       .from("students")
       .insert([{
 
-        full_name:full_name,
-        student_id:
-          student_id ?
-          Number(student_id) :
-          null,
+        full_name,
+        student_id,
         gender:gender || null,
         date_of_birth:
           date_of_birth || null,
         class_id:
-          class_id ?
-          Number(class_id) :
-          null,
+          class_id
+            ? Number(class_id)
+            : null,
         parent_name:
           parent_name || null,
         parent_phone:
@@ -2671,33 +2347,33 @@ async function addStudent(){
   );
 
 
-  document
-    .getElementById("studentName")
-    .value="";
+  document.getElementById(
+    "studentName"
+  ).value = "";
 
-  document
-    .getElementById("studentId")
-    .value="";
+  document.getElementById(
+    "studentId"
+  ).value = "";
 
-  document
-    .getElementById("studentGender")
-    .value="";
+  document.getElementById(
+    "studentGender"
+  ).value = "";
 
-  document
-    .getElementById("studentDob")
-    .value="";
+  document.getElementById(
+    "studentDOB"
+  ).value = "";
 
-  document
-    .getElementById("studentClass")
-    .value="";
+  document.getElementById(
+    "studentClass"
+  ).value = "";
 
-  document
-    .getElementById("parentName")
-    .value="";
+  document.getElementById(
+    "parentName"
+  ).value = "";
 
-  document
-    .getElementById("parentPhone")
-    .value="";
+  document.getElementById(
+    "parentPhone"
+  ).value = "";
 
 
   await loadStudents();
@@ -2712,6 +2388,7 @@ async function deleteStudent(id){
       "Delete this student?"
     )
   ){
+
     return;
   }
 
@@ -2746,29 +2423,39 @@ async function loadTeachers(){
     await supabaseClient
       .from("teachers")
       .select("*")
-      .order("id",{ascending:false});
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
 
 
   if(error){
 
     console.error(error);
 
-    teachers=[];
+    teachers = [];
 
     return;
   }
 
 
-  teachers=data||[];
+  teachers =
+    data || [];
+
 
   renderTeachers();
 
   fillTeacherDropdown();
 
-  document
-    .getElementById("teacherCount")
-    .textContent =
-      teachers.length;
+  await loadTeacherDashboard();
+
+
+  document.getElementById(
+    "teacherCount"
+  ).textContent =
+    teachers.length;
 
 }
 
@@ -2781,56 +2468,69 @@ function renderTeachers(){
     );
 
   if(!table){
+
     return;
   }
 
-  table.innerHTML="";
+
+  table.innerHTML = "";
 
 
-  teachers.forEach((item,index)=>{
+  if(teachers.length === 0){
 
-    table.innerHTML += `
+    table.innerHTML =
+      '<tr><td colspan="7">No teachers found.</td></tr>';
 
-      <tr>
+    return;
+  }
 
-        <td>${index+1}</td>
 
-        <td>
-          ${escapeHtml(item.full_name||"")}
-        </td>
+  teachers.forEach(
+    (item,index) => {
 
-        <td>
-          ${escapeHtml(item.teacher_id||"")}
-        </td>
+      table.innerHTML += `
 
-        <td>
-          ${escapeHtml(item.subject||"")}
-        </td>
+        <tr>
 
-        <td>
-          ${escapeHtml(item.phone||"")}
-        </td>
+          <td>${index+1}</td>
 
-        <td>
-          ${escapeHtml(item.email||"")}
-        </td>
+          <td>
+            ${escapeHtml(item.full_name)}
+          </td>
 
-        <td>
+          <td>
+            ${escapeHtml(item.teacher_id)}
+          </td>
 
-          <button
-            class="delete-btn"
-            onclick="deleteTeacher(${item.id})"
-          >
-            Delete
-          </button>
+          <td>
+            ${escapeHtml(item.subject)}
+          </td>
 
-        </td>
+          <td>
+            ${escapeHtml(item.phone)}
+          </td>
 
-      </tr>
+          <td>
+            ${escapeHtml(item.email)}
+          </td>
 
-    `;
+          <td>
 
-  });
+            <button
+              class="small-btn"
+              onclick="deleteTeacher(${item.id})"
+            >
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
 
 }
 
@@ -2838,34 +2538,29 @@ function renderTeachers(){
 async function addTeacher(){
 
   const full_name =
-    document
-      .getElementById("teacherName")
-      .value
-      .trim();
+    document.getElementById(
+      "teacherName"
+    ).value.trim();
 
   const teacher_id =
-    document
-      .getElementById("teacherId")
-      .value
-      .trim();
+    document.getElementById(
+      "teacherId"
+    ).value.trim();
 
   const subject =
-    document
-      .getElementById("teacherSubject")
-      .value
-      .trim();
+    document.getElementById(
+      "teacherSubject"
+    ).value.trim();
 
   const phone =
-    document
-      .getElementById("teacherPhone")
-      .value
-      .trim();
+    document.getElementById(
+      "teacherPhone"
+    ).value.trim();
 
   const email =
-    document
-      .getElementById("teacherEmail")
-      .value
-      .trim();
+    document.getElementById(
+      "teacherEmail"
+    ).value.trim();
 
 
   if(!full_name){
@@ -2883,11 +2578,15 @@ async function addTeacher(){
       .from("teachers")
       .insert([{
 
-        full_name:full_name,
-        teacher_id:teacher_id || null,
-        subject:subject || null,
-        phone:phone || null,
-        email:email || null
+        full_name,
+        teacher_id:
+          teacher_id || null,
+        subject:
+          subject || null,
+        phone:
+          phone || null,
+        email:
+          email || null
 
       }]);
 
@@ -2905,25 +2604,25 @@ async function addTeacher(){
   );
 
 
-  document
-    .getElementById("teacherName")
-    .value="";
+  document.getElementById(
+    "teacherName"
+  ).value = "";
 
-  document
-    .getElementById("teacherId")
-    .value="";
+  document.getElementById(
+    "teacherId"
+  ).value = "";
 
-  document
-    .getElementById("teacherSubject")
-    .value="";
+  document.getElementById(
+    "teacherSubject"
+  ).value = "";
 
-  document
-    .getElementById("teacherPhone")
-    .value="";
+  document.getElementById(
+    "teacherPhone"
+  ).value = "";
 
-  document
-    .getElementById("teacherEmail")
-    .value="";
+  document.getElementById(
+    "teacherEmail"
+  ).value = "";
 
 
   await loadTeachers();
@@ -2938,6 +2637,7 @@ async function deleteTeacher(id){
       "Delete this teacher?"
     )
   ){
+
     return;
   }
 
@@ -2972,29 +2672,39 @@ async function loadClasses(){
     await supabaseClient
       .from("classes")
       .select("*")
-      .order("id",{ascending:false});
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
 
 
   if(error){
 
     console.error(error);
 
-    classes=[];
+    classes = [];
 
     return;
   }
 
 
-  classes=data||[];
+  classes =
+    data || [];
+
 
   renderClasses();
 
   fillClassDropdown();
 
-  document
-    .getElementById("classCount")
-    .textContent =
-      classes.length;
+  fillStudentDropdowns();
+
+
+  document.getElementById(
+    "classCount"
+  ).textContent =
+    classes.length;
 
 }
 
@@ -3007,52 +2717,65 @@ function renderClasses(){
     );
 
   if(!table){
+
     return;
   }
 
-  table.innerHTML="";
+
+  table.innerHTML = "";
 
 
-  classes.forEach((item,index)=>{
+  if(classes.length === 0){
 
-    table.innerHTML += `
+    table.innerHTML =
+      '<tr><td colspan="6">No classes found.</td></tr>';
 
-      <tr>
+    return;
+  }
 
-        <td>${index+1}</td>
 
-        <td>
-          ${escapeHtml(item.name||"")}
-        </td>
+  classes.forEach(
+    (item,index) => {
 
-        <td>
-          ${escapeHtml(item.grade||"")}
-        </td>
+      table.innerHTML += `
 
-        <td>
-          ${escapeHtml(item.section||"")}
-        </td>
+        <tr>
 
-        <td>
-          ${escapeHtml(item.teacher_name||"")}
-        </td>
+          <td>${index+1}</td>
 
-        <td>
+          <td>
+            ${escapeHtml(item.name)}
+          </td>
 
-          <button
-            class="delete-btn"
-            onclick="deleteClass(${item.id})"
-          >
-            Delete
-          </button>
+          <td>
+            ${escapeHtml(item.grade)}
+          </td>
 
-        </td>
+          <td>
+            ${escapeHtml(item.section)}
+          </td>
 
-      </tr>
+          <td>
+            ${escapeHtml(item.teacher_name)}
+          </td>
 
-    `;
+          <td>
 
-  });
+            <button
+              class="small-btn"
+              onclick="deleteClass(${item.id})"
+            >
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
 
 }
 
@@ -3060,27 +2783,29 @@ function renderClasses(){
 async function addClass(){
 
   const name =
-    document
-      .getElementById("className")
-      .value
-      .trim();
+    document.getElementById(
+      "className"
+    ).value.trim();
 
   const grade =
-    document
-      .getElementById("classGrade")
-      .value
-      .trim();
+    document.getElementById(
+      "classGrade"
+    ).value.trim();
 
   const section =
-    document
-      .getElementById("classSection")
-      .value
-      .trim();
+    document.getElementById(
+      "classSection"
+    ).value.trim();
+
+  const teacherSelect =
+    document.getElementById(
+      "classTeacher"
+    );
 
   const teacher_name =
-    document
-      .getElementById("classTeacher")
-      .value;
+    teacherSelect.options[
+      teacherSelect.selectedIndex
+    ]?.text || "";
 
 
   if(!name){
@@ -3098,9 +2823,11 @@ async function addClass(){
       .from("classes")
       .insert([{
 
-        name:name,
-        grade:grade || null,
-        section:section || null,
+        name,
+        grade:
+          grade || null,
+        section:
+          section || null,
         teacher_name:
           teacher_name || null
 
@@ -3120,21 +2847,21 @@ async function addClass(){
   );
 
 
-  document
-    .getElementById("className")
-    .value="";
+  document.getElementById(
+    "className"
+  ).value = "";
 
-  document
-    .getElementById("classGrade")
-    .value="";
+  document.getElementById(
+    "classGrade"
+  ).value = "";
 
-  document
-    .getElementById("classSection")
-    .value="";
+  document.getElementById(
+    "classSection"
+  ).value = "";
 
-  document
-    .getElementById("classTeacher")
-    .value="";
+  document.getElementById(
+    "classTeacher"
+  ).value = "";
 
 
   await loadClasses();
@@ -3149,6 +2876,7 @@ async function deleteClass(id){
       "Delete this class?"
     )
   ){
+
     return;
   }
 
@@ -3183,24 +2911,37 @@ async function loadSubjects(){
     await supabaseClient
       .from("subjects")
       .select("*")
-      .order("id",{ascending:false});
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
 
 
   if(error){
 
     console.error(error);
 
-    subjects=[];
+    subjects = [];
 
     return;
   }
 
 
-  subjects=data||[];
+  subjects =
+    data || [];
+
 
   renderSubjects();
 
   fillSubjectDropdowns();
+
+
+  document.getElementById(
+    "subjectCount"
+  ).textContent =
+    subjects.length;
 
 }
 
@@ -3213,40 +2954,55 @@ function renderSubjects(){
     );
 
   if(!table){
+
     return;
   }
 
-  table.innerHTML="";
+
+  table.innerHTML = "";
 
 
-  subjects.forEach((item,index)=>{
+  if(subjects.length === 0){
 
-    table.innerHTML += `
+    table.innerHTML =
+      '<tr><td colspan="3">No subjects found.</td></tr>';
 
-      <tr>
+    return;
+  }
 
-        <td>${index+1}</td>
 
-        <td>
-          ${escapeHtml(item.subject_name||"")}
-        </td>
+  subjects.forEach(
+    (item,index) => {
 
-        <td>
+      table.innerHTML += `
 
-          <button
-            class="delete-btn"
-            onclick="deleteSubject(${item.id})"
-          >
-            Delete
-          </button>
+        <tr>
 
-        </td>
+          <td>${index+1}</td>
 
-      </tr>
+          <td>
+            ${escapeHtml(
+              item.subject_name
+            )}
+          </td>
 
-    `;
+          <td>
 
-  });
+            <button
+              class="small-btn"
+              onclick="deleteSubject(${item.id})"
+            >
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
 
 }
 
@@ -3254,16 +3010,15 @@ function renderSubjects(){
 async function addSubject(){
 
   const subject_name =
-    document
-      .getElementById("subjectName")
-      .value
-      .trim();
+    document.getElementById(
+      "subjectName"
+    ).value.trim();
 
 
   if(!subject_name){
 
     alert(
-      "Please enter subject name."
+      "Enter subject name."
     );
 
     return;
@@ -3274,7 +3029,7 @@ async function addSubject(){
     await supabaseClient
       .from("subjects")
       .insert([{
-        subject_name:subject_name
+        subject_name
       }]);
 
 
@@ -3291,9 +3046,9 @@ async function addSubject(){
   );
 
 
-  document
-    .getElementById("subjectName")
-    .value="";
+  document.getElementById(
+    "subjectName"
+  ).value = "";
 
 
   await loadSubjects();
@@ -3308,6 +3063,7 @@ async function deleteSubject(id){
       "Delete this subject?"
     )
   ){
+
     return;
   }
 
@@ -3342,28 +3098,35 @@ async function loadAttendance(){
     await supabaseClient
       .from("attendance")
       .select("*")
-      .order("id",{ascending:false});
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
 
 
   if(error){
 
     console.error(error);
 
-    attendance=[];
+    attendance = [];
 
     return;
   }
 
 
-  attendance=data||[];
+  attendance =
+    data || [];
+
 
   renderAttendance();
 
 
-  document
-    .getElementById("attendanceCount")
-    .textContent =
-      attendance.length;
+  document.getElementById(
+    "attendanceCount"
+  ).textContent =
+    attendance.length;
 
 }
 
@@ -3376,56 +3139,75 @@ function renderAttendance(){
     );
 
   if(!table){
+
     return;
   }
 
-  table.innerHTML="";
+
+  table.innerHTML = "";
 
 
-  attendance.forEach((item,index)=>{
+  if(attendance.length === 0){
 
-    const student =
-      students.find(
-        s =>
-          String(s.id) ===
-          String(item.student_id)
-      );
+    table.innerHTML =
+      '<tr><td colspan="5">No attendance records found.</td></tr>';
+
+    return;
+  }
 
 
-    table.innerHTML += `
+  attendance.forEach(
+    (item,index) => {
 
-      <tr>
+      const student =
+        students.find(
+          s =>
+            String(s.id) ===
+            String(item.student_id)
+        );
 
-        <td>${index+1}</td>
 
-        <td>
-          ${escapeHtml(student?.full_name||"")}
-        </td>
+      table.innerHTML += `
 
-        <td>
-          ${escapeHtml(item.attendance_date||"")}
-        </td>
+        <tr>
 
-        <td>
-          ${escapeHtml(item.status||"")}
-        </td>
+          <td>${index+1}</td>
 
-        <td>
+          <td>
+            ${escapeHtml(
+              student?.full_name || ""
+            )}
+          </td>
 
-          <button
-            class="delete-btn"
-            onclick="deleteAttendance(${item.id})"
-          >
-            Delete
-          </button>
+          <td>
+            ${escapeHtml(
+              item.attendance_date
+            )}
+          </td>
 
-        </td>
+          <td>
+            ${escapeHtml(
+              item.status
+            )}
+          </td>
 
-      </tr>
+          <td>
 
-    `;
+            <button
+              class="small-btn"
+              onclick="deleteAttendance(${item.id})"
+            >
+              Delete
+            </button>
 
-  });
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
 
 }
 
@@ -3433,19 +3215,19 @@ function renderAttendance(){
 async function addAttendance(){
 
   const student_id =
-    document
-      .getElementById("attendanceStudent")
-      .value;
+    document.getElementById(
+      "attendanceStudent"
+    ).value;
 
   const attendance_date =
-    document
-      .getElementById("attendanceDate")
-      .value;
+    document.getElementById(
+      "attendanceDate"
+    ).value;
 
   const status =
-    document
-      .getElementById("attendanceStatus")
-      .value;
+    document.getElementById(
+      "attendanceStatus"
+    ).value;
 
 
   if(
@@ -3466,9 +3248,12 @@ async function addAttendance(){
       .from("attendance")
       .insert([{
 
-        student_id:Number(student_id),
-        attendance_date:attendance_date,
-        status:status
+        student_id:
+          Number(student_id),
+
+        attendance_date,
+
+        status
 
       }]);
 
@@ -3486,13 +3271,9 @@ async function addAttendance(){
   );
 
 
-  document
-    .getElementById("attendanceStudent")
-    .value="";
-
-  document
-    .getElementById("attendanceDate")
-    .value=today();
+  document.getElementById(
+    "attendanceStudent"
+  ).value = "";
 
 
   await loadAttendance();
@@ -3507,6 +3288,7 @@ async function deleteAttendance(id){
       "Delete this attendance record?"
     )
   ){
+
     return;
   }
 
@@ -3541,22 +3323,35 @@ async function loadGrades(){
     await supabaseClient
       .from("grades")
       .select("*")
-      .order("id",{ascending:false});
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
 
 
   if(error){
 
     console.error(error);
 
-    grades=[];
+    grades = [];
 
     return;
   }
 
 
-  grades=data||[];
+  grades =
+    data || [];
+
 
   renderGrades();
+
+
+  document.getElementById(
+    "gradeCount"
+  ).textContent =
+    grades.length;
 
 }
 
@@ -3569,68 +3364,89 @@ function renderGrades(){
     );
 
   if(!table){
+
     return;
   }
 
-  table.innerHTML="";
+
+  table.innerHTML = "";
 
 
-  grades.forEach((item,index)=>{
+  if(grades.length === 0){
 
-    const student =
-      students.find(
-        s =>
-          String(s.id) ===
-          String(item.student_id)
-      );
+    table.innerHTML =
+      '<tr><td colspan="6">No grades found.</td></tr>';
 
-
-    const subject =
-      subjects.find(
-        s =>
-          String(s.id) ===
-          String(item.subject_id)
-      );
+    return;
+  }
 
 
-    table.innerHTML += `
+  grades.forEach(
+    (item,index) => {
 
-      <tr>
+      const student =
+        students.find(
+          s =>
+            String(s.id) ===
+            String(item.student_id)
+        );
 
-        <td>${index+1}</td>
 
-        <td>
-          ${escapeHtml(student?.full_name||"")}
-        </td>
+      const subject =
+        subjects.find(
+          s =>
+            String(s.id) ===
+            String(item.subject_id)
+        );
 
-        <td>
-          ${escapeHtml(subject?.subject_name||"")}
-        </td>
 
-        <td>
-          ${escapeHtml(item.score||"")}
-        </td>
+      table.innerHTML += `
 
-        <td>
-          ${escapeHtml(item.term||"")}
-        </td>
+        <tr>
 
-        <td>
+          <td>${index+1}</td>
 
-          <button
-            class="delete-btn"
-            onclick="deleteGrade(${item.id})"
-          >
-            Delete
-          </button>
+          <td>
+            ${escapeHtml(
+              student?.full_name || ""
+            )}
+          </td>
 
-        </td>
+          <td>
+            ${escapeHtml(
+              subject?.subject_name || ""
+            )}
+          </td>
 
-      </tr>
+          <td>
+            ${escapeHtml(
+              item.score
+            )}
+          </td>
 
-    `;
+          <td>
+            ${escapeHtml(
+              item.term
+            )}
+          </td>
 
-  });
+          <td>
+
+            <button
+              class="small-btn"
+              onclick="deleteGrade(${item.id})"
+            >
+              Delete
+            </button>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
 
 }
 
@@ -3638,30 +3454,30 @@ function renderGrades(){
 async function addGrade(){
 
   const student_id =
-    document
-      .getElementById("gradeStudent")
-      .value;
+    document.getElementById(
+      "gradeStudent"
+    ).value;
 
   const subject_id =
-    document
-      .getElementById("gradeSubject")
-      .value;
+    document.getElementById(
+      "gradeSubject"
+    ).value;
 
   const score =
-    document
-      .getElementById("gradeScore")
-      .value;
+    document.getElementById(
+      "gradeScore"
+    ).value;
 
   const term =
-    document
-      .getElementById("gradeTerm")
-      .value;
+    document.getElementById(
+      "gradeTerm"
+    ).value;
 
 
   if(
     !student_id ||
     !subject_id ||
-    score===""
+    score === ""
   ){
 
     alert(
@@ -3677,10 +3493,16 @@ async function addGrade(){
       .from("grades")
       .insert([{
 
-        student_id:Number(student_id),
-        subject_id:Number(subject_id),
-        score:Number(score),
-        term:term
+        student_id:
+          Number(student_id),
+
+        subject_id:
+          Number(subject_id),
+
+        score:
+          Number(score),
+
+        term
 
       }]);
 
@@ -3698,17 +3520,17 @@ async function addGrade(){
   );
 
 
-  document
-    .getElementById("gradeStudent")
-    .value="";
+  document.getElementById(
+    "gradeStudent"
+  ).value = "";
 
-  document
-    .getElementById("gradeSubject")
-    .value="";
+  document.getElementById(
+    "gradeSubject"
+  ).value = "";
 
-  document
-    .getElementById("gradeScore")
-    .value="";
+  document.getElementById(
+    "gradeScore"
+  ).value = "";
 
 
   await loadGrades();
@@ -3723,6 +3545,7 @@ async function deleteGrade(id){
       "Delete this grade?"
     )
   ){
+
     return;
   }
 
@@ -3757,30 +3580,35 @@ async function loadFees(){
     await supabaseClient
       .from("fees")
       .select("*")
-      .order("id",{ascending:false});
+      .order(
+        "id",
+        {
+          ascending:false
+        }
+      );
 
 
   if(error){
 
     console.error(error);
 
-    fees=[];
+    fees = [];
 
     return;
   }
 
 
-  fees=data||[];
+  fees =
+    data || [];
+
 
   renderFees();
 
-  renderFeeMonthlyStatus();
 
-
-  document
-    .getElementById("feeCount")
-    .textContent =
-      fees.length;
+  document.getElementById(
+    "feeCount"
+  ).textContent =
+    fees.length;
 
 }
 
@@ -3793,60 +3621,81 @@ function renderFees(){
     );
 
   if(!table){
+
     return;
   }
 
-  table.innerHTML="";
+
+  table.innerHTML = "";
 
 
-  fees.forEach((item,index)=>{
+  if(fees.length === 0){
 
-    const student =
-      students.find(
-        s =>
-          String(s.id) ===
-          String(item.student_id)
-      );
+    table.innerHTML =
+      '<tr><td colspan="6">No payment records found.</td></tr>';
+
+    return;
+  }
 
 
-    table.innerHTML += `
+  fees.forEach(
+    (item,index) => {
 
-      <tr>
+      const student =
+        students.find(
+          s =>
+            String(s.id) ===
+            String(item.student_id)
+        );
 
-        <td>${index+1}</td>
 
-        <td>
-          ${escapeHtml(student?.full_name||"")}
-        </td>
+      table.innerHTML += `
 
-        <td>
-          ${escapeHtml(item.amount||"")}
-        </td>
+        <tr>
 
-        <td>
-          ${escapeHtml(item.payment_date||"")}
-        </td>
+          <td>${index+1}</td>
 
-        <td>
-          ${escapeHtml(item.status||"")}
-        </td>
+          <td>
+            ${escapeHtml(
+              student?.full_name || ""
+            )}
+          </td>
 
-        <td>
+          <td>
+            ${escapeHtml(
+              item.amount
+            )}
+          </td>
 
-          <button
-            class="delete-btn"
-            onclick="deleteFee(${item.id})"
-          >
-            Delete
-          </button>
+          <td>
+            ${escapeHtml(
+              item.payment_date
+            )}
+          </td>
 
-        </td>
+          <td>
+            ${escapeHtml(
+              item.status
+            )}
+          </td>
 
-      </tr>
+          <td>
 
-    `;
+            <button
+              class="small-btn"
+              onclick="deleteFee(${item.id})"
+            >
+              Delete
+            </button>
 
-  });
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+  );
 
 }
 
@@ -3854,24 +3703,24 @@ function renderFees(){
 async function addFee(){
 
   const student_id =
-    document
-      .getElementById("feeStudent")
-      .value;
+    document.getElementById(
+      "feeStudent"
+    ).value;
 
   const amount =
-    document
-      .getElementById("feeAmount")
-      .value;
+    document.getElementById(
+      "feeAmount"
+    ).value;
 
   const payment_date =
-    document
-      .getElementById("feeDate")
-      .value;
+    document.getElementById(
+      "feeDate"
+    ).value;
 
   const status =
-    document
-      .getElementById("feeStatus")
-      .value;
+    document.getElementById(
+      "feeStatus"
+    ).value;
 
 
   if(
@@ -3881,7 +3730,7 @@ async function addFee(){
   ){
 
     alert(
-      "Please fill all fields."
+      "Please fill all fee fields."
     );
 
     return;
@@ -3893,10 +3742,15 @@ async function addFee(){
       .from("fees")
       .insert([{
 
-        student_id:Number(student_id),
-        amount:Number(amount),
-        payment_date:payment_date,
-        status:status
+        student_id:
+          Number(student_id),
+
+        amount:
+          Number(amount),
+
+        payment_date,
+
+        status
 
       }]);
 
@@ -3914,17 +3768,17 @@ async function addFee(){
   );
 
 
-  document
-    .getElementById("feeStudent")
-    .value="";
+  document.getElementById(
+    "feeStudent"
+  ).value = "";
 
-  document
-    .getElementById("feeAmount")
-    .value="";
+  document.getElementById(
+    "feeAmount"
+  ).value = "";
 
-  document
-    .getElementById("feeDate")
-    .value=today();
+  document.getElementById(
+    "feeDate"
+  ).value = today();
 
 
   await loadFees();
@@ -3939,6 +3793,7 @@ async function deleteFee(id){
       "Delete this payment?"
     )
   ){
+
     return;
   }
 
@@ -3964,380 +3819,25 @@ async function deleteFee(id){
 
 
 /* =====================================================
-   MONTHLY FEE STATUS
-===================================================== */
-
-function renderFeeMonthlyStatus(){
-
-  const monthInput =
-    document.getElementById(
-      "feeMonthFilter"
-    );
-
-  if(!monthInput){
-    return;
-  }
-
-
-  let selectedMonth =
-    monthInput.value;
-
-
-  if(!selectedMonth){
-
-    selectedMonth =
-      currentMonth();
-
-    monthInput.value =
-      selectedMonth;
-
-  }
-
-
-  const monthlyFees =
-    fees.filter(item=>{
-
-      if(!item.payment_date){
-        return false;
-      }
-
-      return item.payment_date
-        .toString()
-        .slice(0,7) ===
-        selectedMonth;
-
-    });
-
-
-  const totalStudents =
-    students.length;
-
-
-  const paidStudents=[];
-
-  const unpaidStudents=[];
-
-  let paidAmount=0;
-
-
-  students.forEach(student=>{
-
-    const records =
-      monthlyFees.filter(
-        fee =>
-          String(fee.student_id) ===
-          String(student.id)
-      );
-
-
-    const hasPaid =
-      records.some(
-        fee =>
-          String(fee.status)
-            .toLowerCase() ===
-          "paid"
-      );
-
-
-    if(hasPaid){
-
-      paidStudents.push({
-        student:student,
-        records:records
-      });
-
-
-      records.forEach(fee=>{
-
-        if(
-          String(fee.status)
-            .toLowerCase() ===
-          "paid"
-        ){
-
-          paidAmount +=
-            Number(fee.amount)||0;
-
-        }
-
-      });
-
-    }else{
-
-      let status="No payment";
-
-
-      if(
-        records.some(
-          fee =>
-            String(fee.status)
-              .toLowerCase() ===
-            "partial"
-        )
-      ){
-
-        status="Partial";
-
-      }else if(
-        records.some(
-          fee =>
-            String(fee.status)
-              .toLowerCase() ===
-            "pending"
-        )
-      ){
-
-        status="Pending";
-
-      }
-
-
-      unpaidStudents.push({
-        student:student,
-        records:records,
-        status:status
-      });
-
-    }
-
-  });
-
-
-  document
-    .getElementById("feeTotalStudents")
-    .textContent =
-      totalStudents;
-
-
-  document
-    .getElementById("feePaidStudents")
-    .textContent =
-      paidStudents.length;
-
-
-  document
-    .getElementById("feeUnpaidStudents")
-    .textContent =
-      unpaidStudents.length;
-
-
-  document
-    .getElementById("feePaidAmount")
-    .textContent =
-      paidAmount.toLocaleString();
-
-
-  /* PAID */
-
-  const paidTable =
-    document.getElementById(
-      "paidStudentsTable"
-    );
-
-  paidTable.innerHTML="";
-
-
-  paidStudents.forEach(
-    (item,index)=>{
-
-      const student =
-        item.student;
-
-      const classItem =
-        classes.find(
-          c =>
-            String(c.id) ===
-            String(student.class_id)
-        );
-
-
-      const totalAmount =
-        item.records.reduce(
-          (sum,fee)=>
-            sum +
-            (
-              String(fee.status)
-                .toLowerCase()==="paid"
-              ?
-              Number(fee.amount)||0
-              :
-              0
-            ),
-          0
-        );
-
-
-      const dates =
-        item.records
-          .map(r=>r.payment_date)
-          .filter(Boolean)
-          .sort();
-
-
-      const latestDate =
-        dates.length ?
-        dates[dates.length-1] :
-        "";
-
-
-      paidTable.innerHTML += `
-
-        <tr>
-
-          <td>${index+1}</td>
-
-          <td>
-            ${escapeHtml(student.full_name||"")}
-          </td>
-
-          <td>
-            ${escapeHtml(student.student_id||"")}
-          </td>
-
-          <td>
-            ${escapeHtml(classItem?.name||"")}
-          </td>
-
-          <td>
-            ${totalAmount.toLocaleString()}
-          </td>
-
-          <td>
-            ${escapeHtml(latestDate)}
-          </td>
-
-          <td>
-            ${escapeHtml(selectedMonth)}
-          </td>
-
-          <td class="status-paid">
-            Paid
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
-
-
-  if(
-    paidStudents.length===0
-  ){
-
-    paidTable.innerHTML =
-      '<tr><td colspan="8">No paid students for this month.</td></tr>';
-
-  }
-
-
-  /* UNPAID */
-
-  const unpaidTable =
-    document.getElementById(
-      "unpaidStudentsTable"
-    );
-
-  unpaidTable.innerHTML="";
-
-
-  unpaidStudents.forEach(
-    (item,index)=>{
-
-      const student =
-        item.student;
-
-
-      const classItem =
-        classes.find(
-          c =>
-            String(c.id) ===
-            String(student.class_id)
-        );
-
-
-      let statusClass =
-        "status-unpaid";
-
-
-      if(item.status==="Partial"){
-
-        statusClass =
-          "status-partial";
-
-      }
-
-
-      unpaidTable.innerHTML += `
-
-        <tr>
-
-          <td>${index+1}</td>
-
-          <td>
-            ${escapeHtml(student.full_name||"")}
-          </td>
-
-          <td>
-            ${escapeHtml(student.student_id||"")}
-          </td>
-
-          <td>
-            ${escapeHtml(classItem?.name||"")}
-          </td>
-
-          <td>
-            ${escapeHtml(student.parent_name||"")}
-          </td>
-
-          <td>
-            ${escapeHtml(student.parent_phone||"")}
-          </td>
-
-          <td class="${statusClass}">
-            ${escapeHtml(item.status)}
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
-
-
-  if(
-    unpaidStudents.length===0
-  ){
-
-    unpaidTable.innerHTML =
-      '<tr><td colspan="7">All students have paid for this month.</td></tr>';
-
-  }
-
-}
-
-
-/* =====================================================
    DROPDOWNS
 ===================================================== */
 
 function fillStudentDropdowns(){
 
-  const ids=[
+  const ids = [
     "attendanceStudent",
     "gradeStudent",
     "feeStudent"
   ];
 
 
-  ids.forEach(id=>{
+  ids.forEach(id => {
 
     const select =
       document.getElementById(id);
 
     if(!select){
+
       return;
     }
 
@@ -4350,15 +3850,19 @@ function fillStudentDropdowns(){
       '<option value="">Select Student</option>';
 
 
-    students.forEach(student=>{
+    students.forEach(student => {
 
       select.innerHTML += `
 
         <option value="${student.id}">
 
-          ${escapeHtml(student.full_name||"")}
+          ${escapeHtml(
+            student.full_name
+          )}
           -
-          ${escapeHtml(student.student_id||"")}
+          ${escapeHtml(
+            student.student_id
+          )}
 
         </option>
 
@@ -4367,11 +3871,69 @@ function fillStudentDropdowns(){
     });
 
 
-    if(oldValue){
-      select.value=oldValue;
+    if(
+      [...select.options]
+        .some(
+          option =>
+            option.value === oldValue
+        )
+    ){
+
+      select.value =
+        oldValue;
+
     }
 
   });
+
+
+  const studentClass =
+    document.getElementById(
+      "studentClass"
+    );
+
+  if(studentClass){
+
+    const oldValue =
+      studentClass.value;
+
+    studentClass.innerHTML =
+      '<option value="">Select Class</option>';
+
+
+    classes.forEach(c => {
+
+      studentClass.innerHTML += `
+
+        <option value="${c.id}">
+
+          ${escapeHtml(c.name)}
+          ${c.section
+            ? " - " +
+              escapeHtml(c.section)
+            : ""}
+
+        </option>
+
+      `;
+
+    });
+
+
+    if(
+      [...studentClass.options]
+        .some(
+          option =>
+            option.value === oldValue
+        )
+    ){
+
+      studentClass.value =
+        oldValue;
+
+    }
+
+  }
 
 }
 
@@ -4384,6 +3946,7 @@ function fillClassDropdown(){
     );
 
   if(!select){
+
     return;
   }
 
@@ -4396,13 +3959,13 @@ function fillClassDropdown(){
     '<option value="">Select Class</option>';
 
 
-  classes.forEach(item=>{
+  classes.forEach(c => {
 
     select.innerHTML += `
 
-      <option value="${item.id}">
+      <option value="${c.id}">
 
-        ${escapeHtml(item.name||"")}
+        ${escapeHtml(c.name)}
 
       </option>
 
@@ -4411,8 +3974,17 @@ function fillClassDropdown(){
   });
 
 
-  if(oldValue){
-    select.value=oldValue;
+  if(
+    [...select.options]
+      .some(
+        option =>
+          option.value === oldValue
+      )
+  ){
+
+    select.value =
+      oldValue;
+
   }
 
 }
@@ -4426,6 +3998,7 @@ function fillTeacherDropdown(){
     );
 
   if(!select){
+
     return;
   }
 
@@ -4438,13 +4011,15 @@ function fillTeacherDropdown(){
     '<option value="">Select Teacher</option>';
 
 
-  teachers.forEach(item=>{
+  teachers.forEach(teacher => {
 
     select.innerHTML += `
 
-      <option value="${escapeHtml(item.full_name||"")}">
+      <option value="${teacher.id}">
 
-        ${escapeHtml(item.full_name||"")}
+        ${escapeHtml(
+          teacher.full_name
+        )}
 
       </option>
 
@@ -4453,8 +4028,17 @@ function fillTeacherDropdown(){
   });
 
 
-  if(oldValue){
-    select.value=oldValue;
+  if(
+    [...select.options]
+      .some(
+        option =>
+          option.value === oldValue
+      )
+  ){
+
+    select.value =
+      oldValue;
+
   }
 
 }
@@ -4468,6 +4052,7 @@ function fillSubjectDropdowns(){
     );
 
   if(!select){
+
     return;
   }
 
@@ -4480,13 +4065,15 @@ function fillSubjectDropdowns(){
     '<option value="">Select Subject</option>';
 
 
-  subjects.forEach(item=>{
+  subjects.forEach(subject => {
 
     select.innerHTML += `
 
-      <option value="${item.id}">
+      <option value="${subject.id}">
 
-        ${escapeHtml(item.subject_name||"")}
+        ${escapeHtml(
+          subject.subject_name
+        )}
 
       </option>
 
@@ -4495,8 +4082,17 @@ function fillSubjectDropdowns(){
   });
 
 
-  if(oldValue){
-    select.value=oldValue;
+  if(
+    [...select.options]
+      .some(
+        option =>
+          option.value === oldValue
+      )
+  ){
+
+    select.value =
+      oldValue;
+
   }
 
 }
@@ -4508,15 +4104,23 @@ function fillSubjectDropdowns(){
 
 async function loadTeacherDashboard(){
 
-  const button =
+  const content =
     document.getElementById(
-      "teacherDashboardBtn"
+      "teacherDashboardContent"
     );
 
+  if(!content){
 
-  if(!currentUser){
+    return;
+  }
 
-    button.classList.add("hidden");
+
+  if(
+    currentUserRole !== "teacher"
+  ){
+
+    content.innerHTML =
+      "Teacher profile not active.";
 
     return;
   }
@@ -4524,22 +4128,20 @@ async function loadTeacherDashboard(){
 
   const email =
     (
-      currentUser.email ||
-      ""
+      currentUser?.email || ""
     )
-    .trim()
-    .toLowerCase();
+      .trim()
+      .toLowerCase();
 
 
   const phone =
     (
-      currentUser.phone ||
-      ""
+      currentUser?.phone || ""
     )
-    .trim();
+      .trim();
 
 
-  let teacher=null;
+  let teacher = null;
 
 
   if(email){
@@ -4548,12 +4150,11 @@ async function loadTeacherDashboard(){
       teachers.find(
         t =>
           (
-            t.email ||
-            ""
+            t.email || ""
           )
-          .trim()
-          .toLowerCase() ===
-          email
+            .trim()
+            .toLowerCase()
+          === email
       );
 
   }
@@ -4565,135 +4166,112 @@ async function loadTeacherDashboard(){
       teachers.find(
         t =>
           (
-            t.phone ||
-            ""
-          )
-          .trim() ===
-          phone
+            t.phone || ""
+          ).trim()
+          === phone
       );
 
   }
 
 
+  currentTeacher =
+    teacher || null;
+
+
   if(!teacher){
 
-    currentTeacher=null;
+    content.innerHTML = `
 
-    button.classList.add("hidden");
+      <strong>
+        Teacher profile not found.
+      </strong>
+
+      <br><br>
+
+      Please make sure your teacher
+      email or phone matches your
+      teacher profile.
+
+    `;
 
     return;
   }
 
 
-  currentTeacher=teacher;
-
-  button.classList.remove("hidden");
-
-
-  document
-    .getElementById(
-      "teacherWelcome"
-    )
-    .textContent =
-      "Welcome " +
-      (
-        teacher.full_name ||
-        "Teacher"
-      );
-
-
-  const myClasses =
+  const assignedClasses =
     classes.filter(
       c =>
         (
-          c.teacher_name ||
-          ""
-        )
-        .trim()
-        .toLowerCase() ===
+          c.teacher_name || ""
+        ).trim().toLowerCase()
+        ===
         (
-          teacher.full_name ||
-          ""
-        )
-        .trim()
-        .toLowerCase()
+          teacher.full_name || ""
+        ).trim().toLowerCase()
     );
 
 
-  const myStudents =
-    students.filter(student=>{
+  content.innerHTML = `
 
-      return myClasses.some(
-        c =>
-          String(c.id) ===
-          String(student.class_id)
-      );
+    <h3>
+      Welcome,
+      ${escapeHtml(
+        teacher.full_name
+      )}
+    </h3>
 
-    });
+    <p>
+      Subject:
+      <strong>
+        ${escapeHtml(
+          teacher.subject
+        )}
+      </strong>
+    </p>
 
+    <p>
+      Phone:
+      ${escapeHtml(
+        teacher.phone
+      )}
+    </p>
 
-  document
-    .getElementById(
-      "teacherClassCount"
-    )
-    .textContent =
-      myClasses.length;
+    <br>
 
+    <h4>
+      Assigned Classes
+    </h4>
 
-  document
-    .getElementById(
-      "teacherStudentCount"
-    )
-    .textContent =
-      myStudents.length;
-
-
-  const table =
-    document.getElementById(
-      "teacherClassesTable"
-    );
-
-
-  table.innerHTML="";
-
-
-  myClasses.forEach(
-    (item,index)=>{
-
-      table.innerHTML += `
-
-        <tr>
-
-          <td>${index+1}</td>
-
-          <td>
-            ${escapeHtml(item.name||"")}
-          </td>
-
-          <td>
-            ${escapeHtml(item.grade||"")}
-          </td>
-
-          <td>
-            ${escapeHtml(item.section||"")}
-          </td>
-
-        </tr>
-
-      `;
-
+    ${
+      assignedClasses.length
+        ? assignedClasses
+            .map(
+              c =>
+                `
+                <div
+                  style="
+                    padding:8px;
+                    background:white;
+                    margin-top:7px;
+                    border-radius:6px;
+                  "
+                >
+                  ${escapeHtml(c.name)}
+                  ${
+                    c.section
+                      ? " - " +
+                        escapeHtml(c.section)
+                      : ""
+                  }
+                </div>
+                `
+            )
+            .join("")
+        :
+          "<p>No assigned classes found.</p>"
     }
-  );
 
-
-  if(
-    myClasses.length===0
-  ){
-
-    table.innerHTML =
-      '<tr><td colspan="4">No assigned classes.</td></tr>';
-
-  }
+  `;
 
 }
 
@@ -4723,8 +4301,8 @@ async function refreshAll(){
 
 
   if(
-    currentUserRole==="admin" ||
-    currentUserRole==="administrator"
+    currentUserRole === "admin" ||
+    currentUserRole === "administrator"
   ){
 
     await loadAdminUsers();
@@ -4741,7 +4319,8 @@ async function refreshAll(){
 async function checkSession(){
 
   const {data,error} =
-    await supabaseClient.auth.getSession();
+    await supabaseClient.auth
+      .getSession();
 
 
   if(error){
@@ -4765,83 +4344,97 @@ async function checkSession(){
 
 
 /* =====================================================
-   AUTH STATE
+   AUTH STATE CHANGE
 ===================================================== */
 
-supabaseClient.auth.onAuthStateChange(
-  async(event,session)=>{
+supabaseClient.auth
+  .onAuthStateChange(
+    async(event,session) => {
 
-    if(
-      event==="PASSWORD_RECOVERY"
-    ){
+      if(
+        event === "PASSWORD_RECOVERY"
+      ){
 
-      document
-        .getElementById("loginPage")
-        .classList.remove("hidden");
+        document
+          .getElementById(
+            "loginPage"
+          )
+          .classList.remove("hidden");
 
-      document
-        .getElementById("app")
-        .classList.add("hidden");
+        document
+          .getElementById(
+            "app"
+          )
+          .classList.add("hidden");
 
-      document
-        .getElementById("loginForm")
-        .classList.add("hidden");
+        document
+          .getElementById(
+            "loginForm"
+          )
+          .classList.add("hidden");
 
-      document
-        .getElementById("forgotForm")
-        .classList.add("hidden");
+        document
+          .getElementById(
+            "forgotForm"
+          )
+          .classList.add("hidden");
 
-      document
-        .getElementById("newPasswordForm")
-        .classList.remove("hidden");
+        document
+          .getElementById(
+            "newPasswordForm"
+          )
+          .classList.remove("hidden");
 
-      return;
+        return;
+      }
+
+
+      if(session){
+
+        currentUser =
+          session.user;
+
+        await showApp();
+
+      }
+
     }
-
-
-    if(session){
-
-      currentUser =
-        session.user;
-
-      await showApp();
-
-    }
-
-  }
-);
+  );
 
 
 /* =====================================================
-   STARTUP
+   DEFAULT VALUES
 ===================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
-  ()=>{
+  () => {
 
-    document
-      .getElementById(
+    const attendanceDate =
+      document.getElementById(
         "attendanceDate"
-      )
-      .value =
-      today();
+      );
 
-
-    document
-      .getElementById(
+    const feeDate =
+      document.getElementById(
         "feeDate"
-      )
-      .value =
-      today();
+      );
 
 
-    document
-      .getElementById(
-        "feeMonthFilter"
-      )
-      .value =
-      currentMonth();
+    if(attendanceDate){
+
+      attendanceDate.value =
+        today();
+
+    }
+
+
+    if(feeDate){
+
+      feeDate.value =
+        today();
+
+    }
 
 
     checkSession();
@@ -4852,4 +4445,4 @@ document.addEventListener(
 </script>
 
 </body>
-       </html>
+  </html>
