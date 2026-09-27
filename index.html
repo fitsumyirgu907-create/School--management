@@ -9,1542 +9,1247 @@
 
 <style>
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
 }
 
 body{
-  background:#f4f6f9;
-  color:#222;
+background:#f4f6f9;
+color:#222;
 }
 
-button{
-  cursor:pointer;
-}
+button{cursor:pointer}
 
-.hidden{
-  display:none !important;
-}
+.hidden{display:none!important}
 
-/* =========================
-   PROFESSIONAL LOGIN
-========================= */
-
+/* LOGIN */
 .login-page{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  position:relative;
-  overflow:auto;
-
-  background:
-    linear-gradient(
-      rgba(4,34,82,.22),
-      rgba(4,34,82,.35)
-    ),
-    url("new-fortune-login-bg.webp");
-
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+position:relative;
+overflow:auto;
+background:
+linear-gradient(rgba(4,34,82,.22),rgba(4,34,82,.35)),
+url("new-fortune-login-bg.webp");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
 }
 
 .login-overlay{
-  width:100%;
-  max-width:470px;
-  margin:20px auto;
+width:100%;
+max-width:470px;
+margin:20px auto;
 }
 
 .login-box{
-  width:100%;
-  background:rgba(255,255,255,.96);
-  padding:32px;
-  border-radius:24px;
-  box-shadow:
-    0 20px 60px rgba(0,0,0,.30),
-    0 0 0 1px rgba(255,255,255,.5);
-
-  backdrop-filter:blur(8px);
+width:100%;
+background:rgba(255,255,255,.96);
+padding:32px;
+border-radius:24px;
+box-shadow:0 20px 60px rgba(0,0,0,.30),0 0 0 1px rgba(255,255,255,.5);
+backdrop-filter:blur(8px);
 }
 
-/* =========================
-   LOGIN LOGO
-========================= */
-
 .login-logo{
-  width:125px;
-  height:125px;
-  object-fit:contain;
-  display:block;
-  margin:0 auto 18px;
-  border-radius:20px;
-  filter:drop-shadow(0 8px 12px rgba(0,0,0,.18));
+width:125px;
+height:125px;
+object-fit:contain;
+display:block;
+margin:0 auto 18px;
+border-radius:20px;
+filter:drop-shadow(0 8px 12px rgba(0,0,0,.18));
 }
 
 .login-title{
-  text-align:center;
-  color:#063b91;
-  font-size:28px;
-  font-weight:800;
-  margin-bottom:7px;
+text-align:center;
+color:#063b91;
+font-size:28px;
+font-weight:800;
+margin-bottom:7px;
 }
 
 .login-subtitle{
-  text-align:center;
-  color:#666;
-  font-size:15px;
-  margin-bottom:25px;
+text-align:center;
+color:#666;
+font-size:15px;
+margin-bottom:25px;
 }
 
 .login-welcome{
-  text-align:center;
-  color:#173f86;
-  font-size:16px;
-  font-weight:bold;
-  margin-bottom:18px;
+text-align:center;
+color:#173f86;
+font-size:16px;
+font-weight:bold;
+margin-bottom:18px;
 }
 
 .login-label{
-  display:block;
-  color:#173f86;
-  font-size:14px;
-  font-weight:bold;
-  margin-top:10px;
-  margin-bottom:5px;
+display:block;
+color:#173f86;
+font-size:14px;
+font-weight:bold;
+margin-top:10px;
+margin-bottom:5px;
 }
 
 .login-box input{
-  width:100%;
-  padding:14px 15px;
-  margin:0 0 13px;
-  border:1px solid #d6dce8;
-  border-radius:10px;
-  outline:none;
-  font-size:15px;
-  background:#fff;
-  transition:.2s;
+width:100%;
+padding:14px 15px;
+margin:0 0 13px;
+border:1px solid #d6dce8;
+border-radius:10px;
+outline:none;
+font-size:15px;
+background:#fff;
+transition:.2s;
 }
 
 .login-box input:focus{
-  border-color:#1264d6;
-  box-shadow:0 0 0 3px rgba(18,100,214,.12);
+border-color:#1264d6;
+box-shadow:0 0 0 3px rgba(18,100,214,.12);
 }
 
 .primary-btn{
-  width:100%;
-  padding:14px;
-  border:0;
-  border-radius:10px;
-  background:linear-gradient(135deg,#0759c9,#0b82e6);
-  color:white;
-  font-size:16px;
-  font-weight:bold;
-  box-shadow:0 7px 18px rgba(7,89,201,.25);
-  transition:.2s;
+width:100%;
+padding:14px;
+border:0;
+border-radius:10px;
+background:linear-gradient(135deg,#0759c9,#0b82e6);
+color:white;
+font-size:16px;
+font-weight:bold;
+box-shadow:0 7px 18px rgba(7,89,201,.25);
+transition:.2s;
 }
 
 .primary-btn:hover{
-  transform:translateY(-1px);
-  box-shadow:0 10px 22px rgba(7,89,201,.32);
+transform:translateY(-1px);
+box-shadow:0 10px 22px rgba(7,89,201,.32);
 }
 
 .link-btn{
-  border:0;
-  background:none;
-  color:#0759c9;
-  margin-top:15px;
-  font-weight:bold;
-  font-size:14px;
+border:0;
+background:none;
+color:#0759c9;
+margin-top:15px;
+font-weight:bold;
+font-size:14px;
 }
 
 .login-footer{
-  text-align:center;
-  margin-top:20px;
-  color:#6d7480;
-  font-size:12px;
+text-align:center;
+margin-top:20px;
+color:#6d7480;
+font-size:12px;
 }
 
-.login-footer strong{
-  color:#17478f;
-}
+.login-footer strong{color:#17478f}
 
 .reset-title{
-  text-align:center;
-  color:#173f86;
-  margin-bottom:18px;
+text-align:center;
+color:#173f86;
+margin-bottom:18px;
 }
 
-
-/* =========================
-   APP
-========================= */
-
-.app{
-  min-height:100vh;
-}
+/* APP */
+.app{min-height:100vh}
 
 .topbar{
-  background:linear-gradient(135deg,#063b91,#0d6efd);
-  color:white;
-  padding:15px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  box-shadow:0 3px 12px rgba(0,0,0,.15);
+background:linear-gradient(135deg,#063b91,#0d6efd);
+color:white;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+flex-wrap:wrap;
+box-shadow:0 3px 12px rgba(0,0,0,.15);
 }
 
-.topbar h2{
-  font-size:20px;
-}
+.topbar h2{font-size:20px}
 
 .user-area{
-  display:flex;
-  align-items:center;
-  gap:10px;
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 .logout-btn{
-  background:#dc3545;
-  color:white;
-  border:0;
-  padding:8px 14px;
-  border-radius:6px;
+background:#dc3545;
+color:white;
+border:0;
+padding:8px 14px;
+border-radius:6px;
 }
 
 .layout{
-  display:flex;
-  min-height:calc(100vh - 64px);
+display:flex;
+min-height:calc(100vh - 64px);
 }
 
 .sidebar{
-  width:230px;
-  background:#fff;
-  border-right:1px solid #ddd;
-  padding:15px;
-  box-shadow:2px 0 8px rgba(0,0,0,.04);
+width:230px;
+background:#fff;
+border-right:1px solid #ddd;
+padding:15px;
+box-shadow:2px 0 8px rgba(0,0,0,.04);
 }
 
 .sidebar button{
-  width:100%;
-  padding:11px;
-  margin-bottom:7px;
-  text-align:left;
-  border:0;
-  background:white;
-  border-radius:7px;
+width:100%;
+padding:11px;
+margin-bottom:7px;
+text-align:left;
+border:0;
+background:white;
+border-radius:7px;
 }
 
 .sidebar button:hover,
 .sidebar button.active{
-  background:#e7f1ff;
-  color:#0d6efd;
+background:#e7f1ff;
+color:#0d6efd;
 }
 
 .content{
-  flex:1;
-  padding:20px;
-  overflow:auto;
+flex:1;
+padding:20px;
+overflow:auto;
 }
 
-.section{
-  display:none;
-}
+.section{display:none}
 
-.section.active{
-  display:block;
-}
+.section.active{display:block}
 
-.page-title{
-  margin-bottom:20px;
-}
+.page-title{margin-bottom:20px}
 
-
-/* =========================
-   CARDS
-========================= */
-
+/* CARDS */
 .cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:15px;
-  margin-bottom:25px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:25px;
 }
 
 .card{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
 }
 
 .card h3{
-  color:#666;
-  font-size:14px;
-  margin-bottom:10px;
+color:#666;
+font-size:14px;
+margin-bottom:10px;
 }
 
 .card .number{
-  font-size:30px;
-  font-weight:bold;
-  color:#0d6efd;
+font-size:30px;
+font-weight:bold;
+color:#0d6efd;
 }
 
-
-/* =========================
-   FORM
-========================= */
-
+/* FORM */
 .form-box{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  margin-bottom:20px;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
 
 .form-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:10px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:10px;
 }
 
 .form-group label{
-  display:block;
-  font-size:14px;
-  font-weight:bold;
-  margin-top:5px;
+display:block;
+font-size:14px;
+font-weight:bold;
+margin-top:5px;
 }
 
 input,select{
-  width:100%;
-  padding:11px;
-  margin:7px 0 14px;
-  border:1px solid #ccc;
-  border-radius:7px;
-  outline:none;
+width:100%;
+padding:11px;
+margin:7px 0 14px;
+border:1px solid #ccc;
+border-radius:7px;
+outline:none;
 }
 
-input:focus,select:focus{
-  border-color:#0d6efd;
-}
+input:focus,select:focus{border-color:#0d6efd}
 
 .save-btn{
-  margin-top:10px;
-  padding:11px 20px;
-  background:#198754;
-  color:white;
-  border:0;
-  border-radius:7px;
+margin-top:10px;
+padding:11px 20px;
+background:#198754;
+color:white;
+border:0;
+border-radius:7px;
 }
 
-
-/* =========================
-   TABLE
-========================= */
-
+/* TABLE */
 .table-box{
-  background:white;
-  padding:15px;
-  border-radius:12px;
-  overflow-x:auto;
-  box-shadow:0 2px 8px rgba(0,0,0,.06);
+background:white;
+padding:15px;
+border-radius:12px;
+overflow-x:auto;
+box-shadow:0 2px 8px rgba(0,0,0,.06);
 }
 
 table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:700px;
+width:100%;
+border-collapse:collapse;
+min-width:700px;
 }
 
 th,td{
-  padding:10px;
-  border-bottom:1px solid #eee;
-  text-align:left;
+padding:10px;
+border-bottom:1px solid #eee;
+text-align:left;
 }
 
-th{
-  background:#f1f4f8;
-}
+th{background:#f1f4f8}
 
 .delete-btn{
-  background:#dc3545;
-  color:white;
-  border:0;
-  padding:6px 10px;
-  border-radius:5px;
+background:#dc3545;
+color:white;
+border:0;
+padding:6px 10px;
+border-radius:5px;
 }
 
-
-/* =========================
-   TEACHER DASHBOARD
-========================= */
-
+/* TEACHER DASHBOARD */
 .teacher-header{
-  background:linear-gradient(135deg,#198754,#20c997);
-  color:white;
-  padding:22px;
-  border-radius:14px;
-  margin-bottom:20px;
+background:linear-gradient(135deg,#198754,#20c997);
+color:white;
+padding:22px;
+border-radius:14px;
+margin-bottom:20px;
 }
 
-.teacher-header h2{
-  margin-bottom:7px;
-}
+.teacher-header h2{margin-bottom:7px}
 
 .teacher-class-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:15px;
-  margin-bottom:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:15px;
+margin-bottom:20px;
 }
 
 .teacher-class-card{
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-  border-left:5px solid #198754;
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+border-left:5px solid #198754;
 }
 
-.teacher-class-card h3{
-  margin-bottom:10px;
-}
+.teacher-class-card h3{margin-bottom:10px}
 
 .stat-row{
-  display:flex;
-  justify-content:space-between;
-  padding:7px 0;
-  border-bottom:1px solid #eee;
+display:flex;
+justify-content:space-between;
+padding:7px 0;
+border-bottom:1px solid #eee;
 }
 
 .info-box{
-  padding:15px;
-  background:#fff3cd;
-  border:1px solid #ffe69c;
-  border-radius:8px;
-  margin-bottom:20px;
+padding:15px;
+background:#fff3cd;
+border:1px solid #ffe69c;
+border-radius:8px;
+margin-bottom:20px;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
+/* MOBILE */
 @media(max-width:768px){
 
-  .login-page{
-    padding:12px;
-    align-items:center;
-    background-position:center;
-  }
+.login-page{
+padding:12px;
+align-items:center;
+background-position:center;
+}
 
-  .login-box{
-    padding:24px 20px;
-    border-radius:20px;
-  }
+.login-box{
+padding:24px 20px;
+border-radius:20px;
+}
 
-  .login-logo{
-    width:105px;
-    height:105px;
-    margin-bottom:15px;
-  }
+.login-logo{
+width:105px;
+height:105px;
+margin-bottom:15px;
+}
 
-  .login-title{
-    font-size:24px;
-  }
+.login-title{font-size:24px}
 
-  .layout{
-    flex-direction:column;
-  }
+.layout{flex-direction:column}
 
-  .sidebar{
-    width:100%;
-    display:flex;
-    overflow-x:auto;
-    gap:5px;
-    border-right:0;
-    border-bottom:1px solid #ddd;
-  }
+.sidebar{
+width:100%;
+display:flex;
+overflow-x:auto;
+gap:5px;
+border-right:0;
+border-bottom:1px solid #ddd;
+}
 
-  .sidebar button{
-    min-width:150px;
-    margin-bottom:0;
-  }
+.sidebar button{
+min-width:150px;
+margin-bottom:0;
+}
 
-  .content{
-    padding:12px;
-  }
+.content{padding:12px}
 
-  .topbar{
-    padding:12px;
-  }
+.topbar{padding:12px}
 
-  .topbar h2{
-    font-size:16px;
-  }
+.topbar h2{font-size:16px}
 }
 </style>
 </head>
 
 <body>
 
-
-<!-- =========================
-     LOGIN
-========================= -->
+<!-- LOGIN -->
 
 <div id="loginPage" class="login-page">
 
-  <div class="login-overlay">
+<div class="login-overlay">
 
-    <div class="login-box">
+<div class="login-box">
 
-      <!-- NEW FORTUNE SCHOOL LOGO -->
-      <img
-        src="file_000000008cf0820ea9f8ecdca094bdda.png"
-        alt="New Fortune School Logo"
-        class="login-logo"
-      >
+<img
+src="file_000000008cf0820ea9f8ecdca094bdda.png"
+alt="New Fortune School Logo"
+class="login-logo"
+>
 
-      <div id="loginForm">
+<div id="loginForm">
 
-        <div class="login-title">
-          Welcome to New Fortune School
-        </div>
+<div class="login-title">
+Welcome to New Fortune School
+</div>
 
-        <div class="login-subtitle">
-          School Management System
-        </div>
+<div class="login-subtitle">
+School Management System
+</div>
 
-        <div class="login-welcome">
-          Bright Minds, Better Tomorrow!
-        </div>
+<div class="login-welcome">
+Bright Minds, Better Tomorrow!
+</div>
 
-        <label class="login-label">Email Address</label>
+<label class="login-label">
+Email or Phone
+</label>
 
-        <input
-          id="loginEmail"
-          type="email"
-          placeholder="Enter your email"
-          autocomplete="email"
-        >
+<input
+id="loginEmail"
+type="text"
+placeholder="Enter your email or phone"
+autocomplete="username"
+>
 
-        <label class="login-label">Password</label>
+<label class="login-label">
+Password
+</label>
 
-        <input
-          id="loginPassword"
-          type="password"
-          placeholder="Enter your password"
-          autocomplete="current-password"
-        >
+<input
+id="loginPassword"
+type="password"
+placeholder="Enter your password"
+autocomplete="current-password"
+>
 
-        <button
-          class="primary-btn"
-          onclick="login()"
-        >
-          Login →
-        </button>
+<button
+class="primary-btn"
+onclick="login()"
+>
+Login →
+</button>
 
-        <div style="text-align:center">
+<div style="text-align:center">
 
-          <button
-            class="link-btn"
-            onclick="showForgot()"
-          >
-            Forgot Password?
-          </button>
-
-        </div>
-
-        <div class="login-footer">
-          <strong>NEW FORTUNE SCHOOL</strong><br>
-          Quality Education • Trusted Community • Brighter Future
-        </div>
-
-      </div>
-
-
-      <!-- FORGOT PASSWORD -->
-
-      <div id="forgotForm" class="hidden">
-
-        <h2 class="reset-title">
-          Reset Password
-        </h2>
-
-        <label class="login-label">
-          Email Address
-        </label>
-
-        <input
-          id="forgotEmail"
-          type="email"
-          placeholder="Enter your email"
-        >
-
-        <button
-          class="primary-btn"
-          onclick="sendReset()"
-        >
-          Send Reset Link
-        </button>
-
-        <div style="text-align:center">
-
-          <button
-            class="link-btn"
-            onclick="showLogin()"
-          >
-            ← Back to Login
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <!-- NEW PASSWORD -->
-
-      <div id="newPasswordForm" class="hidden">
-
-        <h2 class="reset-title">
-          Create New Password
-        </h2>
-
-        <label class="login-label">
-          New Password
-        </label>
-
-        <input
-          id="newPassword"
-          type="password"
-          placeholder="Enter new password"
-        >
-
-        <button
-          class="primary-btn"
-          onclick="updatePassword()"
-        >
-          Update Password
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
+<button
+class="link-btn"
+onclick="showForgot()"
+>
+Forgot Password?
+</button>
 
 </div>
 
+<div class="login-footer">
+<strong>NEW FORTUNE SCHOOL</strong><br>
+Quality Education • Trusted Community • Brighter Future
+</div>
+
+</div>
+
+<!-- FORGOT PASSWORD -->
+
+<div id="forgotForm" class="hidden">
+
+<h2 class="reset-title">
+Reset Password
+</h2>
+
+<label class="login-label">
+Email Address
+</label>
+
+<input
+id="forgotEmail"
+type="email"
+placeholder="Enter your email"
+>
+
+<button
+class="primary-btn"
+onclick="sendReset()"
+>
+Send Reset Link
+</button>
+
+<div style="text-align:center">
+
+<button
+class="link-btn"
+onclick="showLogin()"
+>
+← Back to Login
+</button>
+
+</div>
+
+</div>
+
+<!-- NEW PASSWORD -->
+
+<div id="newPasswordForm" class="hidden">
+
+<h2 class="reset-title">
+Create New Password
+</h2>
+
+<label class="login-label">
+New Password
+</label>
+
+<input
+id="newPassword"
+type="password"
+placeholder="Enter new password"
+>
+
+<button
+class="primary-btn"
+onclick="updatePassword()"
+>
+Update Password
+</button>
+
+</div>
+
+</div>
+</div>
+</div>
 
 
-<!-- =========================
-     APP
-========================= -->
+<!-- APP -->
 
 <div id="app" class="app hidden">
 
-  <div class="topbar">
+<div class="topbar">
 
-    <h2>
-      New Fortune School Management System
-    </h2>
+<h2>
+New Fortune School Management System
+</h2>
 
-    <div class="user-area">
+<div class="user-area">
 
-      <span id="loggedUser"></span>
+<span id="loggedUser"></span>
 
-      <button
-        class="logout-btn"
-        onclick="logout()"
-      >
-        Logout
-      </button>
+<button
+class="logout-btn"
+onclick="logout()"
+>
+Logout
+</button>
 
-    </div>
+</div>
+</div>
 
-  </div>
 
+<div class="layout">
 
-  <div class="layout">
+<!-- SIDEBAR -->
 
+<div class="sidebar">
 
-    <!-- SIDEBAR -->
+<button
+onclick="showSection('dashboard',this)"
+class="active"
+>
+🏠 Dashboard
+</button>
 
-    <div class="sidebar">
+<button
+id="teacherDashboardBtn"
+class="hidden"
+onclick="showSection('teacherDashboard',this)"
+>
+👨‍🏫 Teacher Dashboard
+</button>
 
-      <button
-        onclick="showSection('dashboard',this)"
-        class="active"
-      >
-        🏠 Dashboard
-      </button>
+<button onclick="showSection('students',this)">
+👨‍🎓 Students
+</button>
 
-      <button
-        id="teacherDashboardBtn"
-        class="hidden"
-        onclick="showSection('teacherDashboard',this)"
-      >
-        👨‍🏫 Teacher Dashboard
-      </button>
+<button onclick="showSection('teachers',this)">
+👨‍🏫 Teachers
+</button>
 
-      <button
-        onclick="showSection('students',this)"
-      >
-        👨‍🎓 Students
-      </button>
+<button onclick="showSection('classes',this)">
+🏫 Classes
+</button>
 
-      <button
-        onclick="showSection('teachers',this)"
-      >
-        👨‍🏫 Teachers
-      </button>
+<button onclick="showSection('subjects',this)">
+📚 Subjects
+</button>
 
-      <button
-        onclick="showSection('classes',this)"
-      >
-        🏫 Classes
-      </button>
+<button onclick="showSection('attendance',this)">
+📋 Attendance
+</button>
 
-      <button
-        onclick="showSection('subjects',this)"
-      >
-        📚 Subjects
-      </button>
+<button onclick="showSection('grades',this)">
+📝 Grades
+</button>
 
-      <button
-        onclick="showSection('attendance',this)"
-      >
-        📋 Attendance
-      </button>
-
-      <button
-        onclick="showSection('grades',this)"
-      >
-        📝 Grades
-      </button>
-
-      <button
-        onclick="showSection('fees',this)"
-      >
-        💰 Fees
-      </button>
-
-    </div>
-
-
-
-    <!-- CONTENT -->
-
-    <div class="content">
-
-
-      <!-- DASHBOARD -->
-
-      <div id="dashboard" class="section active">
-
-        <h2 class="page-title">
-          Dashboard
-        </h2>
-
-        <div class="cards">
-
-          <div class="card">
-            <h3>Students</h3>
-            <div id="studentCount" class="number">0</div>
-          </div>
-
-          <div class="card">
-            <h3>Teachers</h3>
-            <div id="teacherCount" class="number">0</div>
-          </div>
-
-          <div class="card">
-            <h3>Classes</h3>
-            <div id="classCount" class="number">0</div>
-          </div>
-
-          <div class="card">
-            <h3>Subjects</h3>
-            <div id="subjectCount" class="number">0</div>
-          </div>
-
-          <div class="card">
-            <h3>Attendance</h3>
-            <div id="attendanceCount" class="number">0</div>
-          </div>
-
-          <div class="card">
-            <h3>Grades</h3>
-            <div id="gradeCount" class="number">0</div>
-          </div>
-
-          <div class="card">
-            <h3>Fees</h3>
-            <div id="feeCount" class="number">0</div>
-          </div>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- TEACHER DASHBOARD -->
-
-      <div id="teacherDashboard" class="section">
-
-        <h2 class="page-title">
-          Teacher Dashboard
-        </h2>
-
-        <div
-          id="teacherHeader"
-          class="teacher-header"
-        >
-
-          <h2 id="teacherDashboardName">
-            Teacher
-          </h2>
-
-          <p id="teacherDashboardEmail"></p>
-
-        </div>
-
-        <div
-          id="teacherNoProfile"
-          class="info-box hidden"
-        >
-          No teacher profile was found for this login email.
-        </div>
-
-        <h3 style="margin-bottom:15px">
-          My Classes
-        </h3>
-
-        <div
-          id="teacherClasses"
-          class="teacher-class-grid"
-        ></div>
-
-        <div class="table-box">
-
-          <h3 style="margin-bottom:15px">
-            My Students
-          </h3>
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Student Name</th>
-                <th>Student ID</th>
-                <th>Gender</th>
-                <th>Class</th>
-                <th>Parent</th>
-                <th>Parent Phone</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="teacherStudentsTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- STUDENTS -->
-
-      <div id="students" class="section">
-
-        <h2 class="page-title">
-          Students Management
-        </h2>
-
-        <div class="form-box">
-
-          <h3>Add Student</h3>
-
-          <div class="form-grid">
-
-            <div class="form-group">
-              <label>Full Name</label>
-              <input id="studentFullName" type="text">
-            </div>
-
-            <div class="form-group">
-              <label>Student ID</label>
-              <input id="studentId" type="number">
-            </div>
-
-            <div class="form-group">
-              <label>Gender</label>
-
-              <select id="studentGender">
-
-                <option value="">
-                  Select Gender
-                </option>
-
-                <option value="Male">
-                  Male
-                </option>
-
-                <option value="Female">
-                  Female
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-              <label>Date of Birth</label>
-              <input id="studentDob" type="date">
-            </div>
-
-            <div class="form-group">
-              <label>Class</label>
-
-              <select id="studentClass">
-
-                <option value="">
-                  Select Class
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-              <label>Parent Name</label>
-              <input id="parentName" type="text">
-            </div>
-
-            <div class="form-group">
-              <label>Parent Phone</label>
-              <input id="parentPhone" type="text">
-            </div>
-
-          </div>
-
-          <button
-            class="save-btn"
-            onclick="addStudent()"
-          >
-            Save Student
-          </button>
-
-        </div>
-
-
-        <div class="table-box">
-
-          <h3>Students List</h3>
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Student ID</th>
-                <th>Gender</th>
-                <th>DOB</th>
-                <th>Class</th>
-                <th>Parent</th>
-                <th>Phone</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="studentsTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- TEACHERS -->
-
-      <div id="teachers" class="section">
-
-        <h2 class="page-title">
-          Teachers Management
-        </h2>
-
-        <div class="form-box">
-
-          <h3>Add Teacher</h3>
-
-          <div class="form-grid">
-
-            <div class="form-group">
-              <label>Full Name</label>
-              <input id="teacherFullName" type="text">
-            </div>
-
-            <div class="form-group">
-              <label>Teacher ID</label>
-              <input id="teacherId" type="text">
-            </div>
-
-            <div class="form-group">
-              <label>Subject</label>
-              <input id="teacherSubject" type="text">
-            </div>
-
-            <div class="form-group">
-              <label>Phone</label>
-              <input id="teacherPhone" type="text">
-            </div>
-
-            <div class="form-group">
-              <label>Email</label>
-              <input id="teacherEmail" type="email">
-            </div>
-
-          </div>
-
-          <button
-            class="save-btn"
-            onclick="addTeacher()"
-          >
-            Save Teacher
-          </button>
-
-        </div>
-
-
-        <div class="table-box">
-
-          <h3>Teachers List</h3>
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Teacher ID</th>
-                <th>Subject</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="teachersTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- CLASSES -->
-
-      <div id="classes" class="section">
-
-        <h2 class="page-title">
-          Classes Management
-        </h2>
-
-        <div class="form-box">
-
-          <h3>Add Class</h3>
-
-          <div class="form-grid">
-
-            <div class="form-group">
-              <label>Class Name</label>
-              <input id="className" type="text">
-            </div>
-
-            <div class="form-group">
-              <label>Grade</label>
-              <input id="classGrade" type="text">
-            </div>
-
-            <div class="form-group">
-              <label>Section</label>
-              <input id="classSection" type="text">
-            </div>
-
-            <div class="form-group">
-
-              <label>Class Teacher</label>
-
-              <select id="classTeacher">
-
-                <option value="">
-                  Select Teacher
-                </option>
-
-              </select>
-
-            </div>
-
-          </div>
-
-          <button
-            class="save-btn"
-            onclick="addClass()"
-          >
-            Save Class
-          </button>
-
-        </div>
-
-
-        <div class="table-box">
-
-          <h3>Classes List</h3>
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Class</th>
-                <th>Grade</th>
-                <th>Section</th>
-                <th>Teacher</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="classesTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- SUBJECTS -->
-
-      <div id="subjects" class="section">
-
-        <h2 class="page-title">
-          Subjects Management
-        </h2>
-
-        <div class="form-box">
-
-          <h3>Add Subject</h3>
-
-          <input
-            id="subjectName"
-            type="text"
-            placeholder="Subject Name"
-          >
-
-          <button
-            class="save-btn"
-            onclick="addSubject()"
-          >
-            Save Subject
-          </button>
-
-        </div>
-
-
-        <div class="table-box">
-
-          <h3>Subjects List</h3>
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Subject</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="subjectsTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- ATTENDANCE -->
-
-      <div id="attendance" class="section">
-
-        <h2 class="page-title">
-          Attendance
-        </h2>
-
-        <div class="form-box">
-
-          <h3>Record Attendance</h3>
-
-          <div class="form-grid">
-
-            <div class="form-group">
-
-              <label>Student</label>
-
-              <select id="attendanceStudent">
-
-                <option value="">
-                  Select Student
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>Date</label>
-
-              <input
-                id="attendanceDate"
-                type="date"
-              >
-
-            </div>
-
-            <div class="form-group">
-
-              <label>Status</label>
-
-              <select id="attendanceStatus">
-
-                <option value="Present">
-                  Present
-                </option>
-
-                <option value="Absent">
-                  Absent
-                </option>
-
-                <option value="Late">
-                  Late
-                </option>
-
-              </select>
-
-            </div>
-
-          </div>
-
-          <button
-            class="save-btn"
-            onclick="addAttendance()"
-          >
-            Save Attendance
-          </button>
-
-        </div>
-
-
-        <div class="table-box">
-
-          <h3>Attendance List</h3>
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Student</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="attendanceTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- GRADES -->
-
-      <div id="grades" class="section">
-
-        <h2 class="page-title">
-          Grades
-        </h2>
-
-        <div class="form-box">
-
-          <h3>Add Grade</h3>
-
-          <div class="form-grid">
-
-            <div class="form-group">
-
-              <label>Student</label>
-
-              <select id="gradeStudent">
-
-                <option value="">
-                  Select Student
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>Subject</label>
-
-              <select id="gradeSubject">
-
-                <option value="">
-                  Select Subject
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>Score</label>
-
-              <input
-                id="gradeScore"
-                type="number"
-                step="0.01"
-              >
-
-            </div>
-
-            <div class="form-group">
-
-              <label>Term</label>
-
-              <select id="gradeTerm">
-
-                <option value="Term 1">
-                  Term 1
-                </option>
-
-                <option value="Term 2">
-                  Term 2
-                </option>
-
-                <option value="Term 3">
-                  Term 3
-                </option>
-
-              </select>
-
-            </div>
-
-          </div>
-
-          <button
-            class="save-btn"
-            onclick="addGrade()"
-          >
-            Save Grade
-          </button>
-
-        </div>
-
-
-        <div class="table-box">
-
-          <h3>Grades List</h3>
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Student</th>
-                <th>Subject</th>
-                <th>Score</th>
-                <th>Term</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="gradesTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-
-      <!-- FEES -->
-
-      <div id="fees" class="section">
-
-        <h2 class="page-title">
-          Fees & Payments
-        </h2>
-
-        <div class="form-box">
-
-          <h3>Add Payment</h3>
-
-          <div class="form-grid">
-
-            <div class="form-group">
-
-              <label>Student</label>
-
-              <select id="feeStudent">
-
-                <option value="">
-                  Select Student
-                </option>
-
-              </select>
-
-            </div>
-
-            <div class="form-group">
-
-              <label>Amount</label>
-
-              <input
-                id="feeAmount"
-                type="number"
-                step="0.01"
-              >
-
-            </div>
-
-            <div class="form-group">
-
-              <label>Payment Date</label>
-
-              <input
-                id="feeDate"
-                type="date"
-              >
-
-            </div>
-
-            <div class="form-group">
-
-              <label>Status</label>
-
-              <select id="feeStatus">
-
-                <option value="Paid">
-                  Paid
-                </option>
-
-                <option value="Pending">
-                  Pending
-                </option>
-
-                <option value="Partial">
-                  Partial
-                </option>
-
-              </select>
-
-            </div>
-
-          </div>
-
-          <button
-            class="save-btn"
-            onclick="addFee()"
-          >
-            Save Payment
-          </button>
-
-        </div>
-
-
-        <div class="table-box">
-
-          <h3>Payments List</h3>
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Student</th>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="feesTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </div>
+<button onclick="showSection('fees',this)">
+💰 Fees
+</button>
 
 </div>
 
+
+<div class="content">
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" class="section active">
+
+<h2 class="page-title">Dashboard</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Students</h3>
+<div id="studentCount" class="number">0</div>
+</div>
+
+<div class="card">
+<h3>Teachers</h3>
+<div id="teacherCount" class="number">0</div>
+</div>
+
+<div class="card">
+<h3>Classes</h3>
+<div id="classCount" class="number">0</div>
+</div>
+
+<div class="card">
+<h3>Subjects</h3>
+<div id="subjectCount" class="number">0</div>
+</div>
+
+<div class="card">
+<h3>Attendance</h3>
+<div id="attendanceCount" class="number">0</div>
+</div>
+
+<div class="card">
+<h3>Grades</h3>
+<div id="gradeCount" class="number">0</div>
+</div>
+
+<div class="card">
+<h3>Fees</h3>
+<div id="feeCount" class="number">0</div>
+</div>
+
+</div>
+</div>
+
+
+<!-- TEACHER DASHBOARD -->
+
+<div id="teacherDashboard" class="section">
+
+<h2 class="page-title">
+Teacher Dashboard
+</h2>
+
+<div id="teacherHeader" class="teacher-header">
+
+<h2 id="teacherDashboardName">
+Teacher
+</h2>
+
+<p id="teacherDashboardEmail"></p>
+
+</div>
+
+<div
+id="teacherNoProfile"
+class="info-box hidden"
+>
+No teacher profile was found for this login email or phone.
+</div>
+
+<h3 style="margin-bottom:15px">
+My Classes
+</h3>
+
+<div
+id="teacherClasses"
+class="teacher-class-grid"
+></div>
+
+<div class="table-box">
+
+<h3 style="margin-bottom:15px">
+My Students
+</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Student Name</th>
+<th>Student ID</th>
+<th>Gender</th>
+<th>Class</th>
+<th>Parent</th>
+<th>Parent Phone</th>
+</tr>
+</thead>
+
+<tbody id="teacherStudentsTable"></tbody>
+
+</table>
+</div>
+</div>
+
+
+<!-- STUDENTS -->
+
+<div id="students" class="section">
+
+<h2 class="page-title">
+Students Management
+</h2>
+
+<div class="form-box">
+
+<h3>Add Student</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Full Name</label>
+<input id="studentFullName" type="text">
+</div>
+
+<div class="form-group">
+<label>Student ID</label>
+<input id="studentId" type="number">
+</div>
+
+<div class="form-group">
+<label>Gender</label>
+<select id="studentGender">
+<option value="">Select Gender</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Date of Birth</label>
+<input id="studentDob" type="date">
+</div>
+
+<div class="form-group">
+<label>Class</label>
+<select id="studentClass">
+<option value="">Select Class</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Parent Name</label>
+<input id="parentName" type="text">
+</div>
+
+<div class="form-group">
+<label>Parent Phone</label>
+<input id="parentPhone" type="text">
+</div>
+
+</div>
+
+<button class="save-btn" onclick="addStudent()">
+Save Student
+</button>
+
+</div>
+
+<div class="table-box">
+
+<h3>Students List</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Student ID</th>
+<th>Gender</th>
+<th>DOB</th>
+<th>Class</th>
+<th>Parent</th>
+<th>Phone</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="studentsTable"></tbody>
+
+</table>
+</div>
+</div>
+
+
+<!-- TEACHERS -->
+
+<div id="teachers" class="section">
+
+<h2 class="page-title">
+Teachers Management
+</h2>
+
+<div class="form-box">
+
+<h3>Add Teacher</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Full Name</label>
+<input id="teacherFullName" type="text">
+</div>
+
+<div class="form-group">
+<label>Teacher ID</label>
+<input id="teacherId" type="text">
+</div>
+
+<div class="form-group">
+<label>Subject</label>
+<input id="teacherSubject" type="text">
+</div>
+
+<div class="form-group">
+<label>Phone</label>
+<input id="teacherPhone" type="text">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input id="teacherEmail" type="email">
+</div>
+
+</div>
+
+<button class="save-btn" onclick="addTeacher()">
+Save Teacher
+</button>
+
+</div>
+
+<div class="table-box">
+
+<h3>Teachers List</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Teacher ID</th>
+<th>Subject</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="teachersTable"></tbody>
+
+</table>
+</div>
+</div>
+
+
+<!-- CLASSES -->
+
+<div id="classes" class="section">
+
+<h2 class="page-title">
+Classes Management
+</h2>
+
+<div class="form-box">
+
+<h3>Add Class</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Class Name</label>
+<input id="className" type="text">
+</div>
+
+<div class="form-group">
+<label>Grade</label>
+<input id="classGrade" type="text">
+</div>
+
+<div class="form-group">
+<label>Section</label>
+<input id="classSection" type="text">
+</div>
+
+<div class="form-group">
+
+<label>Class Teacher</label>
+
+<select id="classTeacher">
+<option value="">Select Teacher</option>
+</select>
+
+</div>
+
+</div>
+
+<button class="save-btn" onclick="addClass()">
+Save Class
+</button>
+
+</div>
+
+<div class="table-box">
+
+<h3>Classes List</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Class</th>
+<th>Grade</th>
+<th>Section</th>
+<th>Teacher</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="classesTable"></tbody>
+
+</table>
+</div>
+</div>
+
+
+<!-- SUBJECTS -->
+
+<div id="subjects" class="section">
+
+<h2 class="page-title">
+Subjects Management
+</h2>
+
+<div class="form-box">
+
+<h3>Add Subject</h3>
+
+<input
+id="subjectName"
+type="text"
+placeholder="Subject Name"
+>
+
+<button class="save-btn" onclick="addSubject()">
+Save Subject
+</button>
+
+</div>
+
+<div class="table-box">
+
+<h3>Subjects List</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Subject</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="subjectsTable"></tbody>
+
+</table>
+</div>
+</div>
+
+
+<!-- ATTENDANCE -->
+
+<div id="attendance" class="section">
+
+<h2 class="page-title">
+Attendance
+</h2>
+
+<div class="form-box">
+
+<h3>Record Attendance</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Student</label>
+<select id="attendanceStudent">
+<option value="">Select Student</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Date</label>
+<input id="attendanceDate" type="date">
+</div>
+
+<div class="form-group">
+<label>Status</label>
+<select id="attendanceStatus">
+<option value="Present">Present</option>
+<option value="Absent">Absent</option>
+<option value="Late">Late</option>
+</select>
+</div>
+
+</div>
+
+<button class="save-btn" onclick="addAttendance()">
+Save Attendance
+</button>
+
+</div>
+
+<div class="table-box">
+
+<h3>Attendance List</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Student</th>
+<th>Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="attendanceTable"></tbody>
+
+</table>
+</div>
+</div>
+
+
+<!-- GRADES -->
+
+<div id="grades" class="section">
+
+<h2 class="page-title">
+Grades
+</h2>
+
+<div class="form-box">
+
+<h3>Add Grade</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Student</label>
+<select id="gradeStudent">
+<option value="">Select Student</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Subject</label>
+<select id="gradeSubject">
+<option value="">Select Subject</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Score</label>
+<input id="gradeScore" type="number" step="0.01">
+</div>
+
+<div class="form-group">
+<label>Term</label>
+<select id="gradeTerm">
+<option value="Term 1">Term 1</option>
+<option value="Term 2">Term 2</option>
+<option value="Term 3">Term 3</option>
+</select>
+</div>
+
+</div>
+
+<button class="save-btn" onclick="addGrade()">
+Save Grade
+</button>
+
+</div>
+
+<div class="table-box">
+
+<h3>Grades List</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Student</th>
+<th>Subject</th>
+<th>Score</th>
+<th>Term</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="gradesTable"></tbody>
+
+</table>
+</div>
+</div>
+
+
+<!-- FEES -->
+
+<div id="fees" class="section">
+
+<h2 class="page-title">
+Fees & Payments
+</h2>
+
+<div class="form-box">
+
+<h3>Add Payment</h3>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Student</label>
+<select id="feeStudent">
+<option value="">Select Student</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Amount</label>
+<input id="feeAmount" type="number" step="0.01">
+</div>
+
+<div class="form-group">
+<label>Payment Date</label>
+<input id="feeDate" type="date">
+</div>
+
+<div class="form-group">
+<label>Status</label>
+<select id="feeStatus">
+<option value="Paid">Paid</option>
+<option value="Pending">Pending</option>
+<option value="Partial">Partial</option>
+</select>
+</div>
+
+</div>
+
+<button class="save-btn" onclick="addFee()">
+Save Payment
+</button>
+
+</div>
+
+<div class="table-box">
+
+<h3>Payments List</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Student</th>
+<th>Amount</th>
+<th>Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="feesTable"></tbody>
+
+</table>
+</div>
+</div>
+
+</div>
+</div>
+</div>
 
 
 <script>
 
-/* =========================
-   SUPABASE
-========================= */
+/* SUPABASE */
 
 const SUPABASE_URL =
 "https://ykvkxxxssmfgydqzijby.supabase.co";
@@ -1554,2134 +1259,1704 @@ const SUPABASE_KEY =
 
 const supabaseClient =
 supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
-/* =========================
-   GLOBAL DATA
-========================= */
+/* GLOBAL DATA */
 
-let students = [];
-let teachers = [];
-let classes = [];
-let subjects = [];
-let attendance = [];
-let grades = [];
-let fees = [];
+let students=[];
+let teachers=[];
+let classes=[];
+let subjects=[];
+let attendance=[];
+let grades=[];
+let fees=[];
 
-let currentUser = null;
-let currentTeacher = null;
+let currentUser=null;
+let currentTeacher=null;
 
 
-/* =========================
-   HELPERS
-========================= */
+/* HELPERS */
 
 function escapeHtml(value){
 
-  if(value === null || value === undefined)
-    return "";
+if(value===null || value===undefined)
+return "";
 
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
-
 
 function today(){
 
-  return new Date()
-    .toISOString()
-    .split("T")[0];
+return new Date()
+.toISOString()
+.split("T")[0];
 
 }
 
 
-/* =========================
-   LOGIN UI
-========================= */
+/* LOGIN */
 
 function showForgot(){
 
-  document
-    .getElementById("loginForm")
-    .classList.add("hidden");
+document.getElementById("loginForm")
+.classList.add("hidden");
 
-  document
-    .getElementById("forgotForm")
-    .classList.remove("hidden");
+document.getElementById("forgotForm")
+.classList.remove("hidden");
 
 }
-
 
 function showLogin(){
 
-  document
-    .getElementById("forgotForm")
-    .classList.add("hidden");
+document.getElementById("forgotForm")
+.classList.add("hidden");
 
-  document
-    .getElementById("newPasswordForm")
-    .classList.add("hidden");
+document.getElementById("newPasswordForm")
+.classList.add("hidden");
 
-  document
-    .getElementById("loginForm")
-    .classList.remove("hidden");
+document.getElementById("loginForm")
+.classList.remove("hidden");
 
 }
 
 
+/* EMAIL OR PHONE LOGIN */
+
 async function login(){
 
-  const email =
-    document
-      .getElementById("loginEmail")
-      .value
-      .trim();
+const identifier =
+document.getElementById("loginEmail")
+.value
+.trim();
 
-  const password =
-    document
-      .getElementById("loginPassword")
-      .value;
+const password =
+document.getElementById("loginPassword")
+.value;
 
-  if(!email || !password){
+if(!identifier || !password){
 
-    alert("Please enter email and password.");
-    return;
+alert("Please enter your email or phone and password.");
+return;
 
-  }
+}
 
-  const {error} =
-    await supabaseClient.auth.signInWithPassword({
+let result;
 
-      email,
-      password
+if(identifier.includes("@")){
 
-    });
+result =
+await supabaseClient.auth.signInWithPassword({
+email:identifier,
+password:password
+});
 
-  if(error){
+}else{
 
-    alert(error.message);
-    return;
+result =
+await supabaseClient.auth.signInWithPassword({
+phone:identifier,
+password:password
+});
 
-  }
+}
+
+if(result.error){
+
+alert(result.error.message);
+return;
+
+}
+
+currentUser=result.data.user;
+
+await showApp();
 
 }
 
 
 async function logout(){
 
-  await supabaseClient.auth.signOut();
+await supabaseClient.auth.signOut();
 
-  location.reload();
+location.reload();
 
 }
 
 
+/* PASSWORD RESET */
+
 async function sendReset(){
 
-  const email =
-    document
-      .getElementById("forgotEmail")
-      .value
-      .trim();
+const email =
+document.getElementById("forgotEmail")
+.value
+.trim();
 
-  if(!email){
+if(!email){
 
-    alert("Enter your email.");
-    return;
+alert("Enter your email.");
+return;
 
-  }
+}
 
-  const redirectTo =
-    window.location.origin +
-    window.location.pathname;
+const redirectTo =
+window.location.origin +
+window.location.pathname;
 
-  const {error} =
-    await supabaseClient.auth.resetPasswordForEmail(
+const {error} =
+await supabaseClient.auth.resetPasswordForEmail(
+email,
+{redirectTo}
+);
 
-      email,
+if(error){
 
-      {
-        redirectTo
-      }
+alert(error.message);
 
-    );
+}else{
 
-  if(error){
+alert(
+"Password reset link has been sent to your email."
+);
 
-    alert(error.message);
-
-  }else{
-
-    alert(
-      "Password reset link has been sent to your email."
-    );
-
-  }
+}
 
 }
 
 
 async function updatePassword(){
 
-  const password =
-    document
-      .getElementById("newPassword")
-      .value;
+const password =
+document.getElementById("newPassword")
+.value;
 
-  if(!password){
+if(!password){
 
-    alert("Enter new password.");
-    return;
+alert("Enter new password.");
+return;
 
-  }
+}
 
-  const {error} =
-    await supabaseClient.auth.updateUser({
+const {error} =
+await supabaseClient.auth.updateUser({
+password
+});
 
-      password
+if(error){
 
-    });
+alert(error.message);
 
-  if(error){
+}else{
 
-    alert(error.message);
+alert("Password updated successfully.");
 
-  }else{
+showLogin();
 
-    alert("Password updated successfully.");
-
-    showLogin();
-
-  }
+}
 
 }
 
 
-/* =========================
-   SESSION
-========================= */
+/* SESSION */
 
 async function checkSession(){
 
-  const {data} =
-    await supabaseClient.auth.getSession();
+const {data} =
+await supabaseClient.auth.getSession();
 
-  if(data.session){
+if(data.session){
 
-    currentUser =
-      data.session.user;
+currentUser=data.session.user;
 
-    await showApp();
+await showApp();
 
-  }
+}
 
 }
 
 
 supabaseClient.auth.onAuthStateChange(
+async(event,session)=>{
 
-  async (event,session)=>{
+if(event==="PASSWORD_RECOVERY"){
 
-    if(event === "PASSWORD_RECOVERY"){
+document.getElementById("loginPage")
+.classList.remove("hidden");
 
-      document
-        .getElementById("loginPage")
-        .classList.remove("hidden");
+document.getElementById("loginForm")
+.classList.add("hidden");
 
-      document
-        .getElementById("loginForm")
-        .classList.add("hidden");
+document.getElementById("forgotForm")
+.classList.add("hidden");
 
-      document
-        .getElementById("forgotForm")
-        .classList.add("hidden");
+document.getElementById("newPasswordForm")
+.classList.remove("hidden");
 
-      document
-        .getElementById("newPasswordForm")
-        .classList.remove("hidden");
+}
 
-    }
+if(session){
 
-    if(session){
+currentUser=session.user;
 
-      currentUser =
-        session.user;
+await showApp();
 
-      await showApp();
+}
 
-    }
-
-  }
-
+}
 );
 
 
-/* =========================
-   SHOW APP
-========================= */
+/* SHOW APP */
 
 async function showApp(){
 
-  document
-    .getElementById("loginPage")
-    .classList.add("hidden");
+document.getElementById("loginPage")
+.classList.add("hidden");
 
-  document
-    .getElementById("app")
-    .classList.remove("hidden");
+document.getElementById("app")
+.classList.remove("hidden");
 
-  document
-    .getElementById("loggedUser")
-    .textContent =
-    currentUser?.email || "";
+document.getElementById("loggedUser")
+.textContent =
+currentUser?.email ||
+currentUser?.phone ||
+"";
 
-  await refreshAll();
+await refreshAll();
 
-  await loadTeacherDashboard();
+await loadTeacherDashboard();
 
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
+/* NAVIGATION */
 
 function showSection(id,button){
 
-  document
-    .querySelectorAll(".section")
-    .forEach(section=>{
+document
+.querySelectorAll(".section")
+.forEach(section=>{
+section.classList.remove("active");
+});
 
-      section.classList.remove("active");
+const selected =
+document.getElementById(id);
 
-    });
+if(selected)
+selected.classList.add("active");
 
-  const selected =
-    document.getElementById(id);
+document
+.querySelectorAll(".sidebar button")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
 
-  if(selected){
-
-    selected.classList.add("active");
-
-  }
-
-  document
-    .querySelectorAll(".sidebar button")
-    .forEach(btn=>{
-
-      btn.classList.remove("active");
-
-    });
-
-  if(button){
-
-    button.classList.add("active");
-
-  }
+if(button)
+button.classList.add("active");
 
 }
 
 
-/* =========================
-   STUDENTS
-========================= */
+/* STUDENTS */
 
 async function loadStudents(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("students")
-      .select("*")
-      .order("id",{ascending:false});
+const {data,error} =
+await supabaseClient
+.from("students")
+.select("*")
+.order("id",{ascending:false});
 
-  if(error){
+if(error){
 
-    console.error(error);
-    students=[];
-    return;
+console.error(error);
+students=[];
+return;
 
-  }
+}
 
-  students=data || [];
+students=data||[];
 
-  renderStudents();
+renderStudents();
+fillStudentDropdowns();
 
-  fillStudentDropdowns();
-
-  document
-    .getElementById("studentCount")
-    .textContent =
-    students.length;
+document.getElementById("studentCount")
+.textContent=students.length;
 
 }
 
 
 function renderStudents(){
 
-  const table =
-    document.getElementById("studentsTable");
+const table =
+document.getElementById("studentsTable");
 
-  table.innerHTML="";
+table.innerHTML="";
 
-  students.forEach((student,index)=>{
+students.forEach((student,index)=>{
 
-    const className =
-      classes.find(c =>
-        String(c.id) ===
-        String(student.class_id)
-      );
+const className =
+classes.find(c=>
+String(c.id)===String(student.class_id)
+);
 
-    table.innerHTML += `
+table.innerHTML+=`
 
-      <tr>
+<tr>
+<td>${index+1}</td>
+<td>${escapeHtml(student.full_name)}</td>
+<td>${escapeHtml(student.student_id)}</td>
+<td>${escapeHtml(student.gender)}</td>
+<td>${escapeHtml(student.date_of_birth)}</td>
+<td>${escapeHtml(className?.name||"")}</td>
+<td>${escapeHtml(student.parent_name)}</td>
+<td>${escapeHtml(student.parent_phone)}</td>
+<td>
+<button class="delete-btn"
+onclick="deleteStudent(${student.id})">
+Delete
+</button>
+</td>
+</tr>
 
-        <td>${index+1}</td>
+`;
 
-        <td>
-          ${escapeHtml(student.full_name)}
-        </td>
-
-        <td>
-          ${escapeHtml(student.student_id)}
-        </td>
-
-        <td>
-          ${escapeHtml(student.gender)}
-        </td>
-
-        <td>
-          ${escapeHtml(student.date_of_birth)}
-        </td>
-
-        <td>
-          ${escapeHtml(className?.name || "")}
-        </td>
-
-        <td>
-          ${escapeHtml(student.parent_name)}
-        </td>
-
-        <td>
-          ${escapeHtml(student.parent_phone)}
-        </td>
-
-        <td>
-
-          <button
-            class="delete-btn"
-            onclick="deleteStudent(${student.id})"
-          >
-            Delete
-          </button>
-
-        </td>
-
-      </tr>
-
-    `;
-
-  });
+});
 
 }
 
 
 async function addStudent(){
 
-  const full_name =
-    document
-      .getElementById("studentFullName")
-      .value
-      .trim();
+const full_name =
+document.getElementById("studentFullName")
+.value.trim();
 
-  const student_id =
-    document
-      .getElementById("studentId")
-      .value;
+const student_id =
+document.getElementById("studentId")
+.value;
 
-  const gender =
-    document
-      .getElementById("studentGender")
-      .value;
+const gender =
+document.getElementById("studentGender")
+.value;
 
-  const date_of_birth =
-    document
-      .getElementById("studentDob")
-      .value;
+const date_of_birth =
+document.getElementById("studentDob")
+.value;
 
-  const class_id =
-    document
-      .getElementById("studentClass")
-      .value;
+const class_id =
+document.getElementById("studentClass")
+.value;
 
-  const parent_name =
-    document
-      .getElementById("parentName")
-      .value
-      .trim();
+const parent_name =
+document.getElementById("parentName")
+.value.trim();
 
-  const parent_phone =
-    document
-      .getElementById("parentPhone")
-      .value
-      .trim();
+const parent_phone =
+document.getElementById("parentPhone")
+.value.trim();
 
-  if(
-    !full_name ||
-    !student_id ||
-    !gender ||
-    !date_of_birth ||
-    !class_id ||
-    !parent_name ||
-    !parent_phone
-  ){
+if(
+!full_name||
+!student_id||
+!gender||
+!date_of_birth||
+!class_id||
+!parent_name||
+!parent_phone
+){
 
-    alert("Please fill all fields.");
-    return;
+alert("Please fill all fields.");
+return;
 
-  }
+}
 
-  const {error} =
-    await supabaseClient
-      .from("students")
-      .insert([{
+const {error} =
+await supabaseClient
+.from("students")
+.insert([{
+full_name,
+student_id:Number(student_id),
+gender,
+date_of_birth,
+class_id:Number(class_id),
+parent_name,
+parent_phone
+}]);
 
-        full_name,
-        student_id:Number(student_id),
-        gender,
-        date_of_birth,
-        class_id:Number(class_id),
-        parent_name,
-        parent_phone
+if(error){
 
-      }]);
+alert(error.message);
+return;
 
-  if(error){
+}
 
-    alert(error.message);
-    return;
+alert("Student saved successfully.");
 
-  }
+[
+"studentFullName",
+"studentId",
+"studentGender",
+"studentDob",
+"studentClass",
+"parentName",
+"parentPhone"
+].forEach(id=>{
+document.getElementById(id).value="";
+});
 
-  alert("Student saved successfully.");
-
-  document
-    .getElementById("studentFullName")
-    .value="";
-
-  document
-    .getElementById("studentId")
-    .value="";
-
-  document
-    .getElementById("studentGender")
-    .value="";
-
-  document
-    .getElementById("studentDob")
-    .value="";
-
-  document
-    .getElementById("studentClass")
-    .value="";
-
-  document
-    .getElementById("parentName")
-    .value="";
-
-  document
-    .getElementById("parentPhone")
-    .value="";
-
-  await loadStudents();
+await loadStudents();
 
 }
 
 
 async function deleteStudent(id){
 
-  if(!confirm("Delete this student?"))
-    return;
+if(!confirm("Delete this student?"))
+return;
 
-  const {error} =
-    await supabaseClient
-      .from("students")
-      .delete()
-      .eq("id",id);
+const {error} =
+await supabaseClient
+.from("students")
+.delete()
+.eq("id",id);
 
-  if(error){
+if(error){
 
-    alert(error.message);
-    return;
+alert(error.message);
+return;
 
-  }
+}
 
-  await refreshAll();
+await refreshAll();
 
 }
 
 
-/* =========================
-   TEACHERS
-========================= */
+/* TEACHERS */
 
 async function loadTeachers(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("teachers")
-      .select("*")
-      .order("id",{ascending:false});
+const {data,error} =
+await supabaseClient
+.from("teachers")
+.select("*")
+.order("id",{ascending:false});
 
-  if(error){
+if(error){
 
-    console.error(error);
-    teachers=[];
-    return;
+console.error(error);
+teachers=[];
+return;
 
-  }
+}
 
-  teachers=data || [];
+teachers=data||[];
 
-  renderTeachers();
+renderTeachers();
+fillTeacherDropdown();
 
-  fillTeacherDropdown();
-
-  document
-    .getElementById("teacherCount")
-    .textContent =
-    teachers.length;
+document.getElementById("teacherCount")
+.textContent=teachers.length;
 
 }
 
 
 function renderTeachers(){
 
-  const table =
-    document.getElementById("teachersTable");
+const table =
+document.getElementById("teachersTable");
 
-  table.innerHTML="";
+table.innerHTML="";
 
-  teachers.forEach((teacher,index)=>{
+teachers.forEach((teacher,index)=>{
 
-    table.innerHTML += `
+table.innerHTML+=`
 
-      <tr>
+<tr>
+<td>${index+1}</td>
+<td>${escapeHtml(teacher.full_name)}</td>
+<td>${escapeHtml(teacher.teacher_id)}</td>
+<td>${escapeHtml(teacher.subject)}</td>
+<td>${escapeHtml(teacher.phone)}</td>
+<td>${escapeHtml(teacher.email)}</td>
+<td>
+<button class="delete-btn"
+onclick="deleteTeacher(${teacher.id})">
+Delete
+</button>
+</td>
+</tr>
 
-        <td>${index+1}</td>
+`;
 
-        <td>
-          ${escapeHtml(teacher.full_name)}
-        </td>
-
-        <td>
-          ${escapeHtml(teacher.teacher_id)}
-        </td>
-
-        <td>
-          ${escapeHtml(teacher.subject)}
-        </td>
-
-        <td>
-          ${escapeHtml(teacher.phone)}
-        </td>
-
-        <td>
-          ${escapeHtml(teacher.email)}
-        </td>
-
-        <td>
-
-          <button
-            class="delete-btn"
-            onclick="deleteTeacher(${teacher.id})"
-          >
-            Delete
-          </button>
-
-        </td>
-
-      </tr>
-
-    `;
-
-  });
+});
 
 }
 
 
 async function addTeacher(){
 
-  const full_name =
-    document
-      .getElementById("teacherFullName")
-      .value
-      .trim();
+const full_name =
+document.getElementById("teacherFullName")
+.value.trim();
 
-  const teacher_id =
-    document
-      .getElementById("teacherId")
-      .value
-      .trim();
+const teacher_id =
+document.getElementById("teacherId")
+.value.trim();
 
-  const subject =
-    document
-      .getElementById("teacherSubject")
-      .value
-      .trim();
+const subject =
+document.getElementById("teacherSubject")
+.value.trim();
 
-  const phone =
-    document
-      .getElementById("teacherPhone")
-      .value
-      .trim();
+const phone =
+document.getElementById("teacherPhone")
+.value.trim();
 
-  const email =
-    document
-      .getElementById("teacherEmail")
-      .value
-      .trim();
+const email =
+document.getElementById("teacherEmail")
+.value.trim();
 
-  if(!full_name){
+if(!full_name){
 
-    alert("Teacher name is required.");
-    return;
+alert("Teacher name is required.");
+return;
 
-  }
+}
 
-  const {error} =
-    await supabaseClient
-      .from("teachers")
-      .insert([{
+const {error} =
+await supabaseClient
+.from("teachers")
+.insert([{
+full_name,
+teacher_id,
+subject,
+phone,
+email:email||null
+}]);
 
-        full_name,
-        teacher_id,
-        subject,
-        phone,
-        email:email || null
+if(error){
 
-      }]);
+alert(error.message);
+return;
 
-  if(error){
+}
 
-    alert(error.message);
-    return;
+alert("Teacher saved successfully.");
 
-  }
+[
+"teacherFullName",
+"teacherId",
+"teacherSubject",
+"teacherPhone",
+"teacherEmail"
+].forEach(id=>{
+document.getElementById(id).value="";
+});
 
-  alert("Teacher saved successfully.");
-
-  document
-    .getElementById("teacherFullName")
-    .value="";
-
-  document
-    .getElementById("teacherId")
-    .value="";
-
-  document
-    .getElementById("teacherSubject")
-    .value="";
-
-  document
-    .getElementById("teacherPhone")
-    .value="";
-
-  document
-    .getElementById("teacherEmail")
-    .value="";
-
-  await loadTeachers();
-
-  await loadTeacherDashboard();
+await loadTeachers();
+await loadTeacherDashboard();
 
 }
 
 
 async function deleteTeacher(id){
 
-  if(!confirm("Delete this teacher?"))
-    return;
+if(!confirm("Delete this teacher?"))
+return;
 
-  const {error} =
-    await supabaseClient
-      .from("teachers")
-      .delete()
-      .eq("id",id);
+const {error} =
+await supabaseClient
+.from("teachers")
+.delete()
+.eq("id",id);
 
-  if(error){
+if(error){
 
-    alert(error.message);
-    return;
+alert(error.message);
+return;
 
-  }
+}
 
-  await refreshAll();
+await refreshAll();
 
 }
 
 
-/* =========================
-   CLASSES
-========================= */
+/* CLASSES */
 
 async function loadClasses(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("classes")
-      .select("*")
-      .order("id",{ascending:false});
+const {data,error} =
+await supabaseClient
+.from("classes")
+.select("*")
+.order("id",{ascending:false});
 
-  if(error){
+if(error){
 
-    console.error(error);
-    classes=[];
-    return;
+console.error(error);
+classes=[];
+return;
 
-  }
+}
 
-  classes=data || [];
+classes=data||[];
 
-  renderClasses();
+renderClasses();
+fillClassDropdown();
 
-  fillClassDropdown();
-
-  document
-    .getElementById("classCount")
-    .textContent =
-    classes.length;
+document.getElementById("classCount")
+.textContent=classes.length;
 
 }
 
 
 function renderClasses(){
 
-  const table =
-    document.getElementById("classesTable");
+const table =
+document.getElementById("classesTable");
 
-  table.innerHTML="";
+table.innerHTML="";
 
-  classes.forEach((item,index)=>{
+classes.forEach((item,index)=>{
 
-    table.innerHTML += `
+table.innerHTML+=`
 
-      <tr>
+<tr>
+<td>${index+1}</td>
+<td>${escapeHtml(item.name)}</td>
+<td>${escapeHtml(item.grade)}</td>
+<td>${escapeHtml(item.section)}</td>
+<td>${escapeHtml(item.teacher_name)}</td>
+<td>
+<button class="delete-btn"
+onclick="deleteClass(${item.id})">
+Delete
+</button>
+</td>
+</tr>
 
-        <td>${index+1}</td>
+`;
 
-        <td>
-          ${escapeHtml(item.name)}
-        </td>
-
-        <td>
-          ${escapeHtml(item.grade)}
-        </td>
-
-        <td>
-          ${escapeHtml(item.section)}
-        </td>
-
-        <td>
-          ${escapeHtml(item.teacher_name)}
-        </td>
-
-        <td>
-
-          <button
-            class="delete-btn"
-            onclick="deleteClass(${item.id})"
-          >
-            Delete
-          </button>
-
-        </td>
-
-      </tr>
-
-    `;
-
-  });
+});
 
 }
 
 
 async function addClass(){
 
-  const name =
-    document
-      .getElementById("className")
-      .value
-      .trim();
+const name =
+document.getElementById("className")
+.value.trim();
 
-  const grade =
-    document
-      .getElementById("classGrade")
-      .value
-      .trim();
+const grade =
+document.getElementById("classGrade")
+.value.trim();
 
-  const section =
-    document
-      .getElementById("classSection")
-      .value
-      .trim();
+const section =
+document.getElementById("classSection")
+.value.trim();
 
-  const teacherSelect =
-    document.getElementById("classTeacher");
+const teacherSelect =
+document.getElementById("classTeacher");
 
-  const teacher_name =
-    teacherSelect.options[
-      teacherSelect.selectedIndex
-    ]?.text || "";
+const teacher_name =
+teacherSelect.options[
+teacherSelect.selectedIndex
+]?.text||"";
 
-  if(!name){
+if(!name){
 
-    alert("Class name is required.");
-    return;
+alert("Class name is required.");
+return;
 
-  }
+}
 
-  const {error} =
-    await supabaseClient
-      .from("classes")
-      .insert([{
+const {error} =
+await supabaseClient
+.from("classes")
+.insert([{
+name,
+grade,
+section,
+teacher_name:
+teacherSelect.value?teacher_name:null
+}]);
 
-        name,
-        grade,
-        section,
+if(error){
 
-        teacher_name:
-          teacherSelect.value
-            ? teacher_name
-            : null
+alert(error.message);
+return;
 
-      }]);
+}
 
-  if(error){
+alert("Class saved successfully.");
 
-    alert(error.message);
-    return;
+[
+"className",
+"classGrade",
+"classSection",
+"classTeacher"
+].forEach(id=>{
+document.getElementById(id).value="";
+});
 
-  }
-
-  alert("Class saved successfully.");
-
-  document
-    .getElementById("className")
-    .value="";
-
-  document
-    .getElementById("classGrade")
-    .value="";
-
-  document
-    .getElementById("classSection")
-    .value="";
-
-  document
-    .getElementById("classTeacher")
-    .value="";
-
-  await loadClasses();
+await loadClasses();
 
 }
 
 
 async function deleteClass(id){
 
-  if(!confirm("Delete this class?"))
-    return;
+if(!confirm("Delete this class?"))
+return;
 
-  const {error} =
-    await supabaseClient
-      .from("classes")
-      .delete()
-      .eq("id",id);
+const {error} =
+await supabaseClient
+.from("classes")
+.delete()
+.eq("id",id);
 
-  if(error){
+if(error){
 
-    alert(error.message);
-    return;
+alert(error.message);
+return;
 
-  }
+}
 
-  await refreshAll();
+await refreshAll();
 
 }
 
 
-/* =========================
-   SUBJECTS
-========================= */
+/* SUBJECTS */
 
 async function loadSubjects(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("subjects")
-      .select("*")
-      .order("id",{ascending:false});
+const {data,error} =
+await supabaseClient
+.from("subjects")
+.select("*")
+.order("id",{ascending:false});
 
-  if(error){
+if(error){
 
-    console.error(error);
-    subjects=[];
-    return;
+console.error(error);
+subjects=[];
+return;
 
-  }
+}
 
-  subjects=data || [];
+subjects=data||[];
 
-  renderSubjects();
+renderSubjects();
+fillSubjectDropdowns();
 
-  fillSubjectDropdowns();
-
-  document
-    .getElementById("subjectCount")
-    .textContent =
-    subjects.length;
+document.getElementById("subjectCount")
+.textContent=subjects.length;
 
 }
 
 
 function renderSubjects(){
 
-  const table =
-    document.getElementById("subjectsTable");
+const table =
+document.getElementById("subjectsTable");
 
-  table.innerHTML="";
+table.innerHTML="";
 
-  subjects.forEach((subject,index)=>{
+subjects.forEach((subject,index)=>{
 
-    table.innerHTML += `
+table.innerHTML+=`
 
-      <tr>
+<tr>
+<td>${index+1}</td>
+<td>${escapeHtml(subject.subject_name)}</td>
+<td>
+<button class="delete-btn"
+onclick="deleteSubject(${subject.id})">
+Delete
+</button>
+</td>
+</tr>
 
-        <td>${index+1}</td>
+`;
 
-        <td>
-          ${escapeHtml(subject.subject_name)}
-        </td>
-
-        <td>
-
-          <button
-            class="delete-btn"
-            onclick="deleteSubject(${subject.id})"
-          >
-            Delete
-          </button>
-
-        </td>
-
-      </tr>
-
-    `;
-
-  });
+});
 
 }
 
 
 async function addSubject(){
 
-  const subject_name =
-    document
-      .getElementById("subjectName")
-      .value
-      .trim();
+const subject_name =
+document.getElementById("subjectName")
+.value.trim();
 
-  if(!subject_name){
+if(!subject_name){
 
-    alert("Enter subject name.");
-    return;
+alert("Enter subject name.");
+return;
 
-  }
+}
 
-  const {error} =
-    await supabaseClient
-      .from("subjects")
-      .insert([{
-        subject_name
-      }]);
+const {error} =
+await supabaseClient
+.from("subjects")
+.insert([{subject_name}]);
 
-  if(error){
+if(error){
 
-    alert(error.message);
-    return;
+alert(error.message);
+return;
 
-  }
+}
 
-  alert("Subject saved successfully.");
+alert("Subject saved successfully.");
 
-  document
-    .getElementById("subjectName")
-    .value="";
+document.getElementById("subjectName").value="";
 
-  await loadSubjects();
+await loadSubjects();
 
 }
 
 
 async function deleteSubject(id){
 
-  if(!confirm("Delete this subject?"))
-    return;
+if(!confirm("Delete this subject?"))
+return;
 
-  const {error} =
-    await supabaseClient
-      .from("subjects")
-      .delete()
-      .eq("id",id);
+const {error} =
+await supabaseClient
+.from("subjects")
+.delete()
+.eq("id",id);
 
-  if(error){
+if(error){
 
-    alert(error.message);
-    return;
+alert(error.message);
+return;
 
-  }
+}
 
-  await refreshAll();
+await refreshAll();
 
 }
 
 
-/* =========================
-   ATTENDANCE
-========================= */
+/* ATTENDANCE */
 
 async function loadAttendance(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("attendance")
-      .select("*")
-      .order("id",{ascending:false});
+const {data,error} =
+await supabaseClient
+.from("attendance")
+.select("*")
+.order("id",{ascending:false});
 
-  if(error){
+if(error){
 
-    console.error(error);
-    attendance=[];
-    return;
+console.error(error);
+attendance=[];
+return;
 
-  }
+}
 
-  attendance=data || [];
+attendance=data||[];
 
-  renderAttendance();
+renderAttendance();
 
-  document
-    .getElementById("attendanceCount")
-    .textContent =
-    attendance.length;
+document.getElementById("attendanceCount")
+.textContent=attendance.length;
 
 }
 
 
 function renderAttendance(){
 
-  const table =
-    document.getElementById("attendanceTable");
+const table =
+document.getElementById("attendanceTable");
 
-  table.innerHTML="";
+table.innerHTML="";
 
-  attendance.forEach((item,index)=>{
+attendance.forEach((item,index)=>{
 
-    const student =
-      students.find(s =>
-        String(s.id) ===
-        String(item.student_id)
-      );
+const student =
+students.find(s=>
+String(s.id)===String(item.student_id)
+);
 
-    table.innerHTML += `
+table.innerHTML+=`
 
-      <tr>
+<tr>
+<td>${index+1}</td>
+<td>${escapeHtml(student?.full_name||"")}</td>
+<td>${escapeHtml(item.attendance_date)}</td>
+<td>${escapeHtml(item.status)}</td>
+<td>
+<button class="delete-btn"
+onclick="deleteAttendance(${item.id})">
+Delete
+</button>
+</td>
+</tr>
 
-        <td>${index+1}</td>
+`;
 
-        <td>
-          ${escapeHtml(student?.full_name || "")}
-        </td>
-
-        <td>
-          ${escapeHtml(item.attendance_date)}
-        </td>
-
-        <td>
-          ${escapeHtml(item.status)}
-        </td>
-
-        <td>
-
-          <button
-            class="delete-btn"
-            onclick="deleteAttendance(${item.id})"
-          >
-            Delete
-          </button>
-
-        </td>
-
-      </tr>
-
-    `;
-
-  });
+});
 
 }
 
 
 async function addAttendance(){
 
-  const student_id =
-    document
-      .getElementById("attendanceStudent")
-      .value;
+const student_id =
+document.getElementById("attendanceStudent").value;
 
-  const attendance_date =
-    document
-      .getElementById("attendanceDate")
-      .value;
+const attendance_date =
+document.getElementById("attendanceDate").value;
 
-  const status =
-    document
-      .getElementById("attendanceStatus")
-      .value;
+const status =
+document.getElementById("attendanceStatus").value;
 
-  if(
-    !student_id ||
-    !attendance_date ||
-    !status
-  ){
+if(!student_id||!attendance_date||!status){
 
-    alert("Please fill all fields.");
-    return;
+alert("Please fill all fields.");
+return;
 
-  }
+}
 
-  const {error} =
-    await supabaseClient
-      .from("attendance")
-      .insert([{
+const {error} =
+await supabaseClient
+.from("attendance")
+.insert([{
+student_id:Number(student_id),
+attendance_date,
+status
+}]);
 
-        student_id:Number(student_id),
-        attendance_date,
-        status
+if(error){
 
-      }]);
+alert(error.message);
+return;
 
-  if(error){
+}
 
-    alert(error.message);
-    return;
+alert("Attendance saved successfully.");
 
-  }
+document.getElementById("attendanceStudent").value="";
+document.getElementById("attendanceDate").value=today();
 
-  alert("Attendance saved successfully.");
-
-  document
-    .getElementById("attendanceStudent")
-    .value="";
-
-  document
-    .getElementById("attendanceDate")
-    .value=today();
-
-  await loadAttendance();
+await loadAttendance();
 
 }
 
 
 async function deleteAttendance(id){
 
-  if(!confirm("Delete attendance?"))
-    return;
+if(!confirm("Delete attendance?"))
+return;
 
-  const {error} =
-    await supabaseClient
-      .from("attendance")
-      .delete()
-      .eq("id",id);
+const {error} =
+await supabaseClient
+.from("attendance")
+.delete()
+.eq("id",id);
 
-  if(error){
+if(error){
 
-    alert(error.message);
-    return;
+alert(error.message);
+return;
 
-  }
+}
 
-  await loadAttendance();
+await loadAttendance();
 
 }
 
 
-/* =========================
-   GRADES
-========================= */
+/* GRADES */
 
 async function loadGrades(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("grades")
-      .select("*")
-      .order("id",{ascending:false});
+const {data,error} =
+await supabaseClient
+.from("grades")
+.select("*")
+.order("id",{ascending:false});
 
-  if(error){
+if(error){
 
-    console.error(error);
-    grades=[];
-    return;
+console.error(error);
+grades=[];
+return;
 
-  }
+}
 
-  grades=data || [];
+grades=data||[];
 
-  renderGrades();
+renderGrades();
 
-  document
-    .getElementById("gradeCount")
-    .textContent =
-    grades.length;
+document.getElementById("gradeCount")
+.textContent=grades.length;
 
 }
 
 
 function renderGrades(){
 
-  const table =
-    document.getElementById("gradesTable");
+const table =
+document.getElementById("gradesTable");
 
-  table.innerHTML="";
+table.innerHTML="";
 
-  grades.forEach((item,index)=>{
+grades.forEach((item,index)=>{
 
-    const student =
-      students.find(s =>
-        String(s.id) ===
-        String(item.student_id)
-      );
+const student =
+students.find(s=>
+String(s.id)===String(item.student_id)
+);
 
-    const subject =
-      subjects.find(s =>
-        String(s.id) ===
-        String(item.subject_id)
-      );
+const subject =
+subjects.find(s=>
+String(s.id)===String(item.subject_id)
+);
 
-    table.innerHTML += `
+table.innerHTML+=`
 
-      <tr>
+<tr>
+<td>${index+1}</td>
+<td>${escapeHtml(student?.full_name||"")}</td>
+<td>${escapeHtml(subject?.subject_name||"")}</td>
+<td>${escapeHtml(item.score)}</td>
+<td>${escapeHtml(item.term)}</td>
+<td>
+<button class="delete-btn"
+onclick="deleteGrade(${item.id})">
+Delete
+</button>
+</td>
+</tr>
 
-        <td>${index+1}</td>
+`;
 
-        <td>
-          ${escapeHtml(student?.full_name || "")}
-        </td>
-
-        <td>
-          ${escapeHtml(subject?.subject_name || "")}
-        </td>
-
-        <td>
-          ${escapeHtml(item.score)}
-        </td>
-
-        <td>
-          ${escapeHtml(item.term)}
-        </td>
-
-        <td>
-
-          <button
-            class="delete-btn"
-            onclick="deleteGrade(${item.id})"
-          >
-            Delete
-          </button>
-
-        </td>
-
-      </tr>
-
-    `;
-
-  });
+});
 
 }
 
 
 async function addGrade(){
 
-  const student_id =
-    document
-      .getElementById("gradeStudent")
-      .value;
+const student_id =
+document.getElementById("gradeStudent").value;
 
-  const subject_id =
-    document
-      .getElementById("gradeSubject")
-      .value;
+const subject_id =
+document.getElementById("gradeSubject").value;
 
-  const score =
-    document
-      .getElementById("gradeScore")
-      .value;
+const score =
+document.getElementById("gradeScore").value;
 
-  const term =
-    document
-      .getElementById("gradeTerm")
-      .value;
+const term =
+document.getElementById("gradeTerm").value;
 
-  if(
-    !student_id ||
-    !subject_id ||
-    score === ""
-  ){
+if(!student_id||!subject_id||score===""){
 
-    alert("Please fill all fields.");
-    return;
+alert("Please fill all fields.");
+return;
 
-  }
+}
 
-  const {error} =
-    await supabaseClient
-      .from("grades")
-      .insert([{
+const {error} =
+await supabaseClient
+.from("grades")
+.insert([{
+student_id:Number(student_id),
+subject_id:Number(subject_id),
+score:Number(score),
+term
+}]);
 
-        student_id:Number(student_id),
-        subject_id:Number(subject_id),
-        score:Number(score),
-        term
+if(error){
 
-      }]);
+alert(error.message);
+return;
 
-  if(error){
+}
 
-    alert(error.message);
-    return;
+alert("Grade saved successfully.");
 
-  }
+document.getElementById("gradeStudent").value="";
+document.getElementById("gradeSubject").value="";
+document.getElementById("gradeScore").value="";
 
-  alert("Grade saved successfully.");
-
-  document
-    .getElementById("gradeStudent")
-    .value="";
-
-  document
-    .getElementById("gradeSubject")
-    .value="";
-
-  document
-    .getElementById("gradeScore")
-    .value="";
-
-  await loadGrades();
+await loadGrades();
 
 }
 
 
 async function deleteGrade(id){
 
-  if(!confirm("Delete this grade?"))
-    return;
+if(!confirm("Delete this grade?"))
+return;
 
-  const {error} =
-    await supabaseClient
-      .from("grades")
-      .delete()
-      .eq("id",id);
+const {error} =
+await supabaseClient
+.from("grades")
+.delete()
+.eq("id",id);
 
-  if(error){
+if(error){
 
-    alert(error.message);
-    return;
+alert(error.message);
+return;
 
-  }
+}
 
-  await loadGrades();
+await loadGrades();
 
 }
 
 
-/* =========================
-   FEES
-========================= */
+/* FEES */
 
 async function loadFees(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("fees")
-      .select("*")
-      .order("id",{ascending:false});
+const {data,error} =
+await supabaseClient
+.from("fees")
+.select("*")
+.order("id",{ascending:false});
 
-  if(error){
+if(error){
 
-    console.error(error);
-    fees=[];
-    return;
+console.error(error);
+fees=[];
+return;
 
-  }
+}
 
-  fees=data || [];
+fees=data||[];
 
-  renderFees();
+renderFees();
 
-  document
-    .getElementById("feeCount")
-    .textContent =
-    fees.length;
+document.getElementById("feeCount")
+.textContent=fees.length;
 
 }
 
 
 function renderFees(){
 
-  const table =
-    document.getElementById("feesTable");
+const table =
+document.getElementById("feesTable");
 
-  table.innerHTML="";
+table.innerHTML="";
 
-  fees.forEach((item,index)=>{
+fees.forEach((item,index)=>{
 
-    const student =
-      students.find(s =>
-        String(s.id) ===
-        String(item.student_id)
-      );
+const student =
+students.find(s=>
+String(s.id)===String(item.student_id)
+);
 
-    table.innerHTML += `
+table.innerHTML+=`
 
-      <tr>
+<tr>
+<td>${index+1}</td>
+<td>${escapeHtml(student?.full_name||"")}</td>
+<td>${escapeHtml(item.amount)}</td>
+<td>${escapeHtml(item.payment_date)}</td>
+<td>${escapeHtml(item.status)}</td>
+<td>
+<button class="delete-btn"
+onclick="deleteFee(${item.id})">
+Delete
+</button>
+</td>
+</tr>
 
-        <td>${index+1}</td>
+`;
 
-        <td>
-          ${escapeHtml(student?.full_name || "")}
-        </td>
-
-        <td>
-          ${escapeHtml(item.amount)}
-        </td>
-
-        <td>
-          ${escapeHtml(item.payment_date)}
-        </td>
-
-        <td>
-          ${escapeHtml(item.status)}
-        </td>
-
-        <td>
-
-          <button
-            class="delete-btn"
-            onclick="deleteFee(${item.id})"
-          >
-            Delete
-          </button>
-
-        </td>
-
-      </tr>
-
-    `;
-
-  });
+});
 
 }
 
 
 async function addFee(){
 
-  const student_id =
-    document
-      .getElementById("feeStudent")
-      .value;
+const student_id =
+document.getElementById("feeStudent").value;
 
-  const amount =
-    document
-      .getElementById("feeAmount")
-      .value;
+const amount =
+document.getElementById("feeAmount").value;
 
-  const payment_date =
-    document
-      .getElementById("feeDate")
-      .value;
+const payment_date =
+document.getElementById("feeDate").value;
 
-  const status =
-    document
-      .getElementById("feeStatus")
-      .value;
+const status =
+document.getElementById("feeStatus").value;
 
-  if(
-    !student_id ||
-    !amount ||
-    !payment_date
-  ){
+if(!student_id||!amount||!payment_date){
 
-    alert("Please fill all fields.");
-    return;
+alert("Please fill all fields.");
+return;
 
-  }
+}
 
-  const {error} =
-    await supabaseClient
-      .from("fees")
-      .insert([{
+const {error} =
+await supabaseClient
+.from("fees")
+.insert([{
+student_id:Number(student_id),
+amount:Number(amount),
+payment_date,
+status
+}]);
 
-        student_id:Number(student_id),
-        amount:Number(amount),
-        payment_date,
-        status
+if(error){
 
-      }]);
+alert(error.message);
+return;
 
-  if(error){
+}
 
-    alert(error.message);
-    return;
+alert("Payment saved successfully.");
 
-  }
+document.getElementById("feeStudent").value="";
+document.getElementById("feeAmount").value="";
+document.getElementById("feeDate").value=today();
 
-  alert("Payment saved successfully.");
-
-  document
-    .getElementById("feeStudent")
-    .value="";
-
-  document
-    .getElementById("feeAmount")
-    .value="";
-
-  document
-    .getElementById("feeDate")
-    .value=today();
-
-  await loadFees();
+await loadFees();
 
 }
 
 
 async function deleteFee(id){
 
-  if(!confirm("Delete this payment?"))
-    return;
+if(!confirm("Delete this payment?"))
+return;
 
-  const {error} =
-    await supabaseClient
-      .from("fees")
-      .delete()
-      .eq("id",id);
+const {error} =
+await supabaseClient
+.from("fees")
+.delete()
+.eq("id",id);
 
-  if(error){
+if(error){
 
-    alert(error.message);
-    return;
+alert(error.message);
+return;
 
-  }
+}
 
-  await loadFees();
+await loadFees();
 
 }
 
 
-/* =========================
-   DROPDOWNS
-========================= */
+/* DROPDOWNS */
 
 function fillStudentDropdowns(){
 
-  const ids=[
-    "attendanceStudent",
-    "gradeStudent",
-    "feeStudent"
-  ];
+const ids=[
+"attendanceStudent",
+"gradeStudent",
+"feeStudent"
+];
 
-  ids.forEach(id=>{
+ids.forEach(id=>{
 
-    const select =
-      document.getElementById(id);
+const select =
+document.getElementById(id);
 
-    if(!select)
-      return;
+if(!select)return;
 
-    const old =
-      select.value;
+const old=select.value;
 
-    select.innerHTML =
-      `<option value="">Select Student</option>`;
+select.innerHTML=
+`<option value="">Select Student</option>`;
 
-    students.forEach(student=>{
+students.forEach(student=>{
 
-      select.innerHTML += `
+select.innerHTML+=`
+<option value="${student.id}">
+${escapeHtml(student.full_name)}
+</option>
+`;
 
-        <option value="${student.id}">
-          ${escapeHtml(student.full_name)}
-        </option>
+});
 
-      `;
+select.value=old;
 
-    });
-
-    select.value=old;
-
-  });
+});
 
 }
 
 
 function fillClassDropdown(){
 
-  const select =
-    document.getElementById("studentClass");
+const select =
+document.getElementById("studentClass");
 
-  if(!select)
-    return;
+if(!select)return;
 
-  const old =
-    select.value;
+const old=select.value;
 
-  select.innerHTML =
-    `<option value="">Select Class</option>`;
+select.innerHTML=
+`<option value="">Select Class</option>`;
 
-  classes.forEach(item=>{
+classes.forEach(item=>{
 
-    select.innerHTML += `
+select.innerHTML+=`
+<option value="${item.id}">
+${escapeHtml(item.name)}
+</option>
+`;
 
-      <option value="${item.id}">
-        ${escapeHtml(item.name)}
-      </option>
+});
 
-    `;
-
-  });
-
-  select.value=old;
+select.value=old;
 
 }
 
 
 function fillTeacherDropdown(){
 
-  const select =
-    document.getElementById("classTeacher");
+const select =
+document.getElementById("classTeacher");
 
-  if(!select)
-    return;
+if(!select)return;
 
-  const old =
-    select.value;
+const old=select.value;
 
-  select.innerHTML =
-    `<option value="">Select Teacher</option>`;
+select.innerHTML=
+`<option value="">Select Teacher</option>`;
 
-  teachers.forEach(teacher=>{
+teachers.forEach(teacher=>{
 
-    select.innerHTML += `
+select.innerHTML+=`
+<option value="${teacher.id}">
+${escapeHtml(teacher.full_name)}
+</option>
+`;
 
-      <option value="${teacher.id}">
-        ${escapeHtml(teacher.full_name)}
-      </option>
+});
 
-    `;
-
-  });
-
-  select.value=old;
+select.value=old;
 
 }
 
 
 function fillSubjectDropdowns(){
 
-  const ids=[
-    "gradeSubject"
-  ];
+const select =
+document.getElementById("gradeSubject");
 
-  ids.forEach(id=>{
+if(!select)return;
 
-    const select =
-      document.getElementById(id);
+const old=select.value;
 
-    if(!select)
-      return;
+select.innerHTML=
+`<option value="">Select Subject</option>`;
 
-    const old =
-      select.value;
+subjects.forEach(subject=>{
 
-    select.innerHTML =
-      `<option value="">Select Subject</option>`;
+select.innerHTML+=`
+<option value="${subject.id}">
+${escapeHtml(subject.subject_name)}
+</option>
+`;
 
-    subjects.forEach(subject=>{
+});
 
-      select.innerHTML += `
-
-        <option value="${subject.id}">
-          ${escapeHtml(subject.subject_name)}
-        </option>
-
-      `;
-
-    });
-
-    select.value=old;
-
-  });
+select.value=old;
 
 }
 
 
-/* =========================
-   TEACHER DASHBOARD
-========================= */
+/* TEACHER DASHBOARD */
 
 async function loadTeacherDashboard(){
 
-  if(!currentUser)
-    return;
+if(!currentUser)return;
 
-  const email =
-    currentUser.email?.toLowerCase();
+const email =
+(currentUser.email||"").toLowerCase();
 
-  currentTeacher =
-    teachers.find(t =>
-      (t.email || "").toLowerCase() ===
-      email
-    );
+const phone =
+(currentUser.phone||"").trim();
 
-  const button =
-    document.getElementById(
-      "teacherDashboardBtn"
-    );
+currentTeacher =
+teachers.find(t=>
 
-  if(!currentTeacher){
+(
+(t.email||"").toLowerCase()===email &&
+email
+)
+||
+(
+(t.phone||"").trim()===phone &&
+phone
+)
 
-    button.classList.add("hidden");
+);
 
-    document
-      .getElementById("teacherNoProfile")
-      .classList.remove("hidden");
+const button =
+document.getElementById(
+"teacherDashboardBtn"
+);
 
-    document
-      .getElementById("teacherDashboardName")
-      .textContent =
-      "Teacher Dashboard";
+if(!currentTeacher){
 
-    document
-      .getElementById("teacherDashboardEmail")
-      .textContent =
-      email || "";
+button.classList.add("hidden");
 
-    document
-      .getElementById("teacherClasses")
-      .innerHTML="";
+document.getElementById("teacherNoProfile")
+.classList.remove("hidden");
 
-    document
-      .getElementById("teacherStudentsTable")
-      .innerHTML="";
+document.getElementById("teacherDashboardName")
+.textContent="Teacher Dashboard";
 
-    return;
+document.getElementById("teacherDashboardEmail")
+.textContent=email||phone||"";
 
-  }
+document.getElementById("teacherClasses")
+.innerHTML="";
 
-  button.classList.remove("hidden");
+document.getElementById("teacherStudentsTable")
+.innerHTML="";
 
-  document
-    .getElementById("teacherNoProfile")
-    .classList.add("hidden");
+return;
 
-  document
-    .getElementById("teacherDashboardName")
-    .textContent =
-    currentTeacher.full_name;
+}
 
-  document
-    .getElementById("teacherDashboardEmail")
-    .textContent =
-    currentTeacher.email || email;
+button.classList.remove("hidden");
 
-  const myClasses =
-    classes.filter(c =>
-      (c.teacher_name || "")
-        .trim()
-        .toLowerCase() ===
-      currentTeacher.full_name
-        .trim()
-        .toLowerCase()
-    );
+document.getElementById("teacherNoProfile")
+.classList.add("hidden");
 
-  renderTeacherClasses(myClasses);
+document.getElementById("teacherDashboardName")
+.textContent=currentTeacher.full_name;
 
-  renderTeacherStudents(myClasses);
+document.getElementById("teacherDashboardEmail")
+.textContent=
+currentTeacher.email||
+currentTeacher.phone||
+email||
+phone;
+
+const myClasses =
+classes.filter(c=>
+(c.teacher_name||"")
+.trim()
+.toLowerCase()===
+currentTeacher.full_name
+.trim()
+.toLowerCase()
+);
+
+renderTeacherClasses(myClasses);
+
+renderTeacherStudents(myClasses);
 
 }
 
 
 function renderTeacherClasses(myClasses){
 
-  const box =
-    document.getElementById(
-      "teacherClasses"
-    );
+const box =
+document.getElementById("teacherClasses");
 
-  box.innerHTML="";
+box.innerHTML="";
 
-  if(myClasses.length===0){
+if(myClasses.length===0){
 
-    box.innerHTML=`
+box.innerHTML=`
+<div class="info-box">
+No class has been assigned to this teacher yet.
+</div>
+`;
 
-      <div class="info-box">
-        No class has been assigned to this teacher yet.
-      </div>
+return;
 
-    `;
+}
 
-    return;
+myClasses.forEach(classItem=>{
 
-  }
+const classStudents =
+students.filter(s=>
+String(s.class_id)===String(classItem.id)
+);
 
-  myClasses.forEach(classItem=>{
+const studentIds =
+classStudents.map(s=>s.id);
 
-    const classStudents =
-      students.filter(s =>
-        String(s.class_id) ===
-        String(classItem.id)
-      );
+const classAttendance =
+attendance.filter(a=>
+studentIds.includes(a.student_id)
+);
 
-    const studentIds =
-      classStudents.map(s=>s.id);
+const classGrades =
+grades.filter(g=>
+studentIds.includes(g.student_id)
+);
 
-    const classAttendance =
-      attendance.filter(a =>
-        studentIds.includes(a.student_id)
-      );
+box.innerHTML+=`
 
-    const classGrades =
-      grades.filter(g =>
-        studentIds.includes(g.student_id)
-      );
+<div class="teacher-class-card">
 
-    box.innerHTML += `
+<h3>${escapeHtml(classItem.name)}</h3>
 
-      <div class="teacher-class-card">
+<div class="stat-row">
+<span>Grade</span>
+<strong>${escapeHtml(classItem.grade||"-")}</strong>
+</div>
 
-        <h3>
-          ${escapeHtml(classItem.name)}
-        </h3>
+<div class="stat-row">
+<span>Section</span>
+<strong>${escapeHtml(classItem.section||"-")}</strong>
+</div>
 
-        <div class="stat-row">
-          <span>Grade</span>
+<div class="stat-row">
+<span>Students</span>
+<strong>${classStudents.length}</strong>
+</div>
 
-          <strong>
-            ${escapeHtml(
-              classItem.grade || "-"
-            )}
-          </strong>
+<div class="stat-row">
+<span>Attendance Records</span>
+<strong>${classAttendance.length}</strong>
+</div>
 
-        </div>
+<div class="stat-row">
+<span>Grade Records</span>
+<strong>${classGrades.length}</strong>
+</div>
 
-        <div class="stat-row">
-          <span>Section</span>
+</div>
 
-          <strong>
-            ${escapeHtml(
-              classItem.section || "-"
-            )}
-          </strong>
+`;
 
-        </div>
-
-        <div class="stat-row">
-          <span>Students</span>
-
-          <strong>
-            ${classStudents.length}
-          </strong>
-
-        </div>
-
-        <div class="stat-row">
-          <span>Attendance Records</span>
-
-          <strong>
-            ${classAttendance.length}
-          </strong>
-
-        </div>
-
-        <div class="stat-row">
-          <span>Grade Records</span>
-
-          <strong>
-            ${classGrades.length}
-          </strong>
-
-        </div>
-
-      </div>
-
-    `;
-
-  });
+});
 
 }
 
 
 function renderTeacherStudents(myClasses){
 
-  const table =
-    document.getElementById(
-      "teacherStudentsTable"
-    );
+const table =
+document.getElementById(
+"teacherStudentsTable"
+);
 
-  table.innerHTML="";
+table.innerHTML="";
 
-  const classIds =
-    myClasses.map(c =>
-      String(c.id)
-    );
+const classIds =
+myClasses.map(c=>String(c.id));
 
-  const myStudents =
-    students.filter(s =>
-      classIds.includes(
-        String(s.class_id)
-      )
-    );
+const myStudents =
+students.filter(s=>
+classIds.includes(String(s.class_id))
+);
 
-  if(myStudents.length===0){
+if(myStudents.length===0){
 
-    table.innerHTML=`
+table.innerHTML=`
+<tr>
+<td colspan="7">
+No students found in your assigned classes.
+</td>
+</tr>
+`;
 
-      <tr>
+return;
 
-        <td colspan="7">
-          No students found in your assigned classes.
-        </td>
+}
 
-      </tr>
+myStudents.forEach((student,index)=>{
 
-    `;
+const classItem =
+classes.find(c=>
+String(c.id)===String(student.class_id)
+);
 
-    return;
+table.innerHTML+=`
 
-  }
+<tr>
 
-  myStudents.forEach((student,index)=>{
+<td>${index+1}</td>
 
-    const classItem =
-      classes.find(c =>
-        String(c.id) ===
-        String(student.class_id)
-      );
+<td>
+${escapeHtml(student.full_name)}
+</td>
 
-    table.innerHTML += `
+<td>
+${escapeHtml(student.student_id)}
+</td>
 
-      <tr>
+<td>
+${escapeHtml(student.gender)}
+</td>
 
-        <td>
-          ${index+1}
-        </td>
+<td>
+${escapeHtml(classItem?.name||"")}
+</td>
 
-        <td>
-          ${escapeHtml(
-            student.full_name
-          )}
-        </td>
+<td>
+${escapeHtml(student.parent_name)}
+</td>
 
-        <td>
-          ${escapeHtml(
-            student.student_id
-          )}
-        </td>
+<td>
+${escapeHtml(student.parent_phone)}
+</td>
 
-        <td>
-          ${escapeHtml(
-            student.gender
-          )}
-        </td>
+</tr>
 
-        <td>
-          ${escapeHtml(
-            classItem?.name || ""
-          )}
-        </td>
+`;
 
-        <td>
-          ${escapeHtml(
-            student.parent_name
-          )}
-        </td>
-
-        <td>
-          ${escapeHtml(
-            student.parent_phone
-          )}
-        </td>
-
-      </tr>
-
-    `;
-
-  });
+});
 
 }
 
 
-/* =========================
-   REFRESH ALL
-========================= */
+/* REFRESH */
 
 async function refreshAll(){
 
-  await Promise.all([
+await Promise.all([
+loadClasses(),
+loadTeachers(),
+loadSubjects()
+]);
 
-    loadClasses(),
-    loadTeachers(),
-    loadSubjects()
+await Promise.all([
+loadStudents(),
+loadAttendance(),
+loadGrades(),
+loadFees()
+]);
 
-  ]);
-
-  await Promise.all([
-
-    loadStudents(),
-    loadAttendance(),
-    loadGrades(),
-    loadFees()
-
-  ]);
-
-  await loadTeacherDashboard();
+await loadTeacherDashboard();
 
 }
 
 
-/* =========================
-   DEFAULT DATES
-========================= */
+/* DEFAULT DATES */
 
-document
-  .getElementById("attendanceDate")
-  .value =
-  today();
+document.getElementById("attendanceDate").value=today();
 
-document
-  .getElementById("feeDate")
-  .value =
-  today();
+document.getElementById("feeDate").value=today();
 
 
-/* =========================
-   START
-========================= */
+/* START */
 
 checkSession();
 
