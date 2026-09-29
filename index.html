@@ -2,1371 +2,785 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>New Fortune School Management System</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
-
-body{
-  background:#f4f6fb;
-  color:#222;
-}
-
-.hidden{
-  display:none !important;
-}
-
-button{
-  cursor:pointer;
-  border:none;
-}
-
-input,
-select{
-  width:100%;
-  padding:11px;
-  border:1px solid #d5d9e2;
-  border-radius:7px;
-  margin-top:5px;
-  margin-bottom:10px;
-  background:white;
-}
-
-label{
-  font-size:13px;
-  font-weight:bold;
-  color:#444;
-}
-
-.login-page{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:
-    linear-gradient(
-      rgba(0,40,100,.72),
-      rgba(0,70,160,.72)
-    ),
-    url("new-fortune-login-bg.webp");
-  background-size:cover;
-  background-position:center;
-  padding:20px;
-}
-
-.login-box{
-  width:100%;
-  max-width:420px;
-  background:white;
-  padding:30px;
-  border-radius:15px;
-  box-shadow:0 15px 40px rgba(0,0,0,.25);
-}
-
-.login-logo{
-  width:100px;
-  height:100px;
-  object-fit:contain;
-  display:block;
-  margin:0 auto 15px;
-}
-
-.login-title{
-  text-align:center;
-  color:#075bc9;
-  margin-bottom:6px;
-}
-
-.login-subtitle{
-  text-align:center;
-  color:#777;
-  margin-bottom:25px;
-  font-size:14px;
-}
-
-.primary-btn{
-  width:100%;
-  padding:12px;
-  background:#0866d5;
-  color:white;
-  border-radius:7px;
-  font-weight:bold;
-  margin-top:5px;
-}
-
-.primary-btn:hover{
-  background:#064fa8;
-}
-
-.secondary-btn{
-  width:100%;
-  padding:11px;
-  background:#eef2f7;
-  color:#333;
-  border-radius:7px;
-  margin-top:8px;
-}
-
-.danger-btn{
-  background:#dc3545;
-  color:white;
-  padding:7px 12px;
-  border-radius:5px;
-}
-
-.success-btn{
-  background:#198754;
-  color:white;
-  padding:8px 13px;
-  border-radius:6px;
-}
-
-.topbar{
-  height:58px;
-  background:linear-gradient(90deg,#0755bd,#0879e8);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 18px;
-  position:sticky;
-  top:0;
-  z-index:100;
-}
-
-.school-title{
-  font-size:16px;
-  font-weight:bold;
-}
-
-.user-area{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-size:13px;
-}
-
-.logout-btn{
-  background:#dc3545;
-  color:white;
-  padding:8px 12px;
-  border-radius:6px;
-}
-
-.layout{
-  display:flex;
-  min-height:calc(100vh - 58px);
-}
-
-.sidebar{
-  width:190px;
-  background:white;
-  border-right:1px solid #e0e4eb;
-  padding:10px 0;
-  flex-shrink:0;
-}
-
-.menu-btn{
-  width:100%;
-  text-align:left;
-  background:white;
-  padding:11px 15px;
-  color:#333;
-  font-size:13px;
-}
-
-.menu-btn:hover{
-  background:#eef5ff;
-}
-
-.menu-btn.active{
-  background:#e5efff;
-  color:#075bc9;
-  font-weight:bold;
-}
-
-.content{
-  flex:1;
-  padding:20px;
-  min-width:0;
-}
-
-.section-title{
-  font-size:21px;
-  margin-bottom:18px;
-  color:#222;
-}
-
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-bottom:20px;
-}
-
-.card{
-  background:white;
-  border-radius:10px;
-  padding:17px;
-  box-shadow:0 2px 10px rgba(0,0,0,.07);
-}
-
-.card-title{
-  font-size:12px;
-  color:#666;
-  margin-bottom:8px;
-}
-
-.card-number{
-  font-size:27px;
-  font-weight:bold;
-  color:#0866d5;
-}
-
-.form-card{
-  background:white;
-  padding:18px;
-  border-radius:10px;
-  margin-bottom:20px;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px 15px;
-}
-
-.form-group{
-  width:100%;
-}
-
-.full-width{
-  grid-column:1/-1;
-}
-
-.table-card{
-  background:white;
-  padding:15px;
-  border-radius:10px;
-  overflow-x:auto;
-  box-shadow:0 2px 8px rgba(0,0,0,.05);
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:650px;
-}
-
-th,
-td{
-  padding:10px;
-  border-bottom:1px solid #e7e9ed;
-  text-align:left;
-  font-size:13px;
-}
-
-th{
-  background:#f3f6fa;
-  color:#333;
-}
-
-.small-btn{
-  padding:6px 10px;
-  border-radius:5px;
-  background:#dc3545;
-  color:white;
-}
-
-.admin-info{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px 15px;
-}
-
-.admin-box{
-  background:#f8fafc;
-  padding:15px;
-  border-radius:8px;
-}
-
-.admin-box label{
-  display:block;
-}
-
-.admin-box input{
-  background:white;
-}
-
-.search-box{
-  margin-bottom:15px;
-}
-
-.search-box input{
-  max-width:400px;
-}
-
-.teacher-dashboard-box{
-  background:#eef6ff;
-  border-left:4px solid #0866d5;
-  padding:15px;
-  border-radius:8px;
-  margin-bottom:20px;
-}
-
-.empty-message{
-  padding:20px;
-  text-align:center;
-  color:#777;
-}
-
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#f4f6fb;color:#222}
+.hidden{display:none!important}
+button{cursor:pointer;border:none}
+input,select{width:100%;padding:11px;border:1px solid #d5d9e2;border-radius:7px;margin-top:5px;margin-bottom:10px;background:#fff}
+label{font-size:13px;font-weight:bold;color:#444}
+.login-page{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(rgba(0,40,100,.72),rgba(0,70,160,.72)),url("new-fortune-login-bg.webp");background-size:cover;background-position:center;padding:20px}
+.login-box{width:100%;max-width:420px;background:#fff;padding:30px;border-radius:15px;box-shadow:0 15px 40px rgba(0,0,0,.25)}
+.login-logo{width:100px;height:100px;object-fit:contain;display:block;margin:0 auto 15px}
+.login-title{text-align:center;color:#075bc9;margin-bottom:6px}
+.login-subtitle{text-align:center;color:#777;margin-bottom:25px;font-size:14px}
+.primary-btn{width:100%;padding:12px;background:#0866d5;color:#fff;border-radius:7px;font-weight:bold;margin-top:5px}
+.primary-btn:hover{background:#064fa8}
+.secondary-btn{width:100%;padding:11px;background:#eef2f7;color:#333;border-radius:7px;margin-top:8px}
+.danger-btn{background:#dc3545;color:#fff;padding:7px 12px;border-radius:5px}
+.success-btn{background:#198754;color:#fff;padding:8px 13px;border-radius:6px}
+.topbar{height:58px;background:linear-gradient(90deg,#0755bd,#0879e8);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:100}
+.school-title{font-size:16px;font-weight:bold}
+.user-area{display:flex;align-items:center;gap:12px;font-size:13px}
+.logout-btn{background:#dc3545;color:#fff;padding:8px 12px;border-radius:6px}
+.layout{display:flex;min-height:calc(100vh - 58px)}
+.sidebar{width:190px;background:#fff;border-right:1px solid #e0e4eb;padding:10px 0;flex-shrink:0}
+.menu-btn{width:100%;text-align:left;background:#fff;padding:11px 15px;color:#333;font-size:13px}
+.menu-btn:hover{background:#eef5ff}
+.menu-btn.active{background:#e5efff;color:#075bc9;font-weight:bold}
+.content{flex:1;padding:20px;min-width:0}
+.section-title{font-size:21px;margin-bottom:18px;color:#222}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:20px}
+.card{background:#fff;border-radius:10px;padding:17px;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+.card-title{font-size:12px;color:#666;margin-bottom:8px}
+.card-number{font-size:27px;font-weight:bold;color:#0866d5}
+.form-card{background:#fff;padding:18px;border-radius:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 15px}
+.form-group{width:100%}
+.full-width{grid-column:1/-1}
+.table-card{background:#fff;padding:15px;border-radius:10px;overflow-x:auto;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+table{width:100%;border-collapse:collapse;min-width:650px}
+th,td{padding:10px;border-bottom:1px solid #e7e9ed;text-align:left;font-size:13px}
+th{background:#f3f6fa;color:#333}
+.small-btn{padding:6px 10px;border-radius:5px;background:#dc3545;color:#fff}
+.admin-info{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 15px}
+.admin-box{background:#f8fafc;padding:15px;border-radius:8px}
+.admin-box label{display:block}
+.admin-box input{background:#fff}
+.search-box{margin-bottom:15px}
+.search-box input{max-width:400px}
+.teacher-dashboard-box{background:#eef6ff;border-left:4px solid #0866d5;padding:15px;border-radius:8px;margin-bottom:20px}
+.empty-message{padding:20px;text-align:center;color:#777}
+.account-note{background:#fff8e1;border-left:4px solid #ffc107;padding:12px;border-radius:6px;margin-bottom:15px;font-size:13px;color:#664d03}
 @media(max-width:800px){
-
-  .sidebar{
-    width:160px;
-  }
-
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .admin-info{
-    grid-template-columns:1fr;
-  }
-
+.sidebar{width:160px}
+.cards{grid-template-columns:repeat(2,1fr)}
+.form-grid{grid-template-columns:1fr}
+.admin-info{grid-template-columns:1fr}
 }
-
 @media(max-width:600px){
-
-  .topbar{
-    padding:0 10px;
-  }
-
-  .school-title{
-    font-size:13px;
-  }
-
-  .user-area{
-    font-size:10px;
-    gap:5px;
-  }
-
-  .logout-btn{
-    padding:6px 8px;
-  }
-
-  .layout{
-    display:block;
-  }
-
-  .sidebar{
-    width:100%;
-    display:flex;
-    overflow-x:auto;
-    border-right:none;
-    border-bottom:1px solid #ddd;
-  }
-
-  .menu-btn{
-    width:auto;
-    white-space:nowrap;
-    padding:10px 12px;
-  }
-
-  .content{
-    padding:12px;
-  }
-
-  .cards{
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
-
-  .card{
-    padding:13px;
-  }
-
+.topbar{padding:0 10px}
+.school-title{font-size:13px}
+.user-area{font-size:10px;gap:5px}
+.logout-btn{padding:6px 8px}
+.layout{display:block}
+.sidebar{width:100%;display:flex;overflow-x:auto;border-right:none;border-bottom:1px solid #ddd}
+.menu-btn{width:auto;white-space:nowrap;padding:10px 12px}
+.content{padding:12px}
+.cards{grid-template-columns:1fr 1fr;gap:10px}
+.card{padding:13px}
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- ================= LOGIN ================= -->
-
+<!-- LOGIN -->
 <div id="loginPage" class="login-page">
+<div class="login-box">
 
-  <div class="login-box">
+<img src="file_000000008cf0820ea9f8ecdca094bdda.png"
+     class="login-logo"
+     onerror="this.style.display='none'">
 
-    <img
-      src="file_000000008cf0820ea9f8ecdca094bdda.png"
-      class="login-logo"
-      onerror="this.style.display='none'"
-    >
+<h2 class="login-title">New Fortune School</h2>
+<div class="login-subtitle">Management System</div>
 
-    <h2 class="login-title">
-      New Fortune School
-    </h2>
+<div id="loginForm">
 
-    <div class="login-subtitle">
-      Management System
-    </div>
+<label>Email or Phone</label>
+<input id="loginEmail" type="text" placeholder="Enter email or phone">
 
-    <!-- LOGIN FORM -->
+<label>Password</label>
+<input id="loginPassword" type="password" placeholder="Enter password">
 
-    <div id="loginForm">
+<button class="primary-btn" onclick="login()">🔐 Login</button>
+<button class="secondary-btn" onclick="showForgot()">Forgot Password?</button>
 
-      <label>Email or Phone</label>
+</div>
 
-      <input
-        id="loginEmail"
-        type="text"
-        placeholder="Enter email or phone"
-      >
+<div id="forgotForm" class="hidden">
+<h3 style="margin-bottom:15px">Reset Password</h3>
 
-      <label>Password</label>
+<label>Email</label>
+<input id="forgotEmail" type="email" placeholder="Enter your email">
 
-      <input
-        id="loginPassword"
-        type="password"
-        placeholder="Enter password"
-      >
+<button class="primary-btn" onclick="sendReset()">Send Reset Link</button>
+<button class="secondary-btn" onclick="showLogin()">Back to Login</button>
+</div>
 
-      <button
-        class="primary-btn"
-        onclick="login()"
-      >
-        🔐 Login
-      </button>
+<div id="newPasswordForm" class="hidden">
+<h3 style="margin-bottom:15px">Create New Password</h3>
 
-      <button
-        id="forgotPasswordBtn"
-        class="secondary-btn"
-        onclick="showForgot()"
-      >
-        Forgot Password?
-      </button>
+<label>New Password</label>
+<input id="newPassword" type="password" placeholder="Enter new password">
 
-    </div>
+<button class="primary-btn" onclick="updatePassword()">Update Password</button>
+</div>
 
-    <!-- FORGOT FORM -->
+</div>
+</div>
 
-    <div id="forgotForm" class="hidden">
 
-      <h3 style="margin-bottom:15px;">
-        Reset Password
-      </h3>
+<!-- APPLICATION -->
+<div id="app" class="hidden">
 
-      <label>Email</label>
+<div class="topbar">
+<div class="school-title">New Fortune School Management System</div>
 
-      <input
-        id="forgotEmail"
-        type="email"
-        placeholder="Enter your email"
-      >
+<div class="user-area">
+<span id="loggedUser"></span>
+<button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+</div>
 
-      <button
-        id="sendResetBtn"
-        class="primary-btn"
-        onclick="sendReset()"
-      >
-        Send Reset Link
-      </button>
+<div class="layout">
 
-      <button
-        id="backLoginBtn"
-        class="secondary-btn"
-        onclick="showLogin()"
-      >
-        Back to Login
-      </button>
+<!-- SIDEBAR -->
+<div class="sidebar">
 
-    </div>
+<button class="menu-btn active" onclick="showSection('dashboard',this)">
+🏠 Dashboard
+</button>
 
-    <!-- NEW PASSWORD -->
+<button id="teacherDashboardBtn"
+        class="menu-btn hidden"
+        onclick="showSection('teacherDashboard',this)">
+👨‍🏫 Teacher Dashboard
+</button>
 
-    <div id="newPasswordForm" class="hidden">
+<button id="adminAccountManagerBtn"
+        class="menu-btn hidden"
+        onclick="showSection('adminAccountManager',this)">
+👑 Admin Account Manager
+</button>
 
-      <h3 style="margin-bottom:15px;">
-        Create New Password
-      </h3>
+<button class="menu-btn" onclick="showSection('students',this)">
+👨‍🎓 Students
+</button>
 
-      <label>New Password</label>
+<button class="menu-btn" onclick="showSection('teachers',this)">
+👨‍🏫 Teachers
+</button>
 
-      <input
-        id="newPassword"
-        type="password"
-        placeholder="Enter new password"
-      >
+<button class="menu-btn" onclick="showSection('classes',this)">
+🏫 Classes
+</button>
 
-      <button
-        id="savePasswordBtn"
-        class="primary-btn"
-        onclick="updatePassword()"
-      >
-        Update Password
-      </button>
+<button class="menu-btn" onclick="showSection('subjects',this)">
+📚 Subjects
+</button>
 
-    </div>
+<button class="menu-btn" onclick="showSection('attendance',this)">
+📋 Attendance
+</button>
 
-  </div>
+<button class="menu-btn" onclick="showSection('grades',this)">
+📝 Grades
+</button>
+
+<button class="menu-btn" onclick="showSection('fees',this)">
+💰 Fees
+</button>
 
 </div>
 
 
-<!-- ================= APPLICATION ================= -->
-
-<div id="app" class="hidden">
-
-  <div class="topbar">
-
-    <div class="school-title">
-      New Fortune School Management System
-    </div>
-
-    <div class="user-area">
-
-      <span id="loggedUser"></span>
-
-      <button
-        class="logout-btn"
-        onclick="logout()"
-      >
-        Logout
-      </button>
+<div class="content">
 
-    </div>
+<!-- DASHBOARD -->
+<section id="dashboard">
 
-  </div>
+<h2 class="section-title">Dashboard</h2>
 
+<div class="cards">
 
-  <div class="layout">
+<div class="card">
+<div class="card-title">Students</div>
+<div id="studentCount" class="card-number">0</div>
+</div>
 
-    <!-- SIDEBAR -->
+<div class="card">
+<div class="card-title">Teachers</div>
+<div id="teacherCount" class="card-number">0</div>
+</div>
 
-    <div class="sidebar">
+<div class="card">
+<div class="card-title">Classes</div>
+<div id="classCount" class="card-number">0</div>
+</div>
 
-      <button
-        class="menu-btn active"
-        onclick="showSection('dashboard',this)"
-      >
-        🏠 Dashboard
-      </button>
+<div class="card">
+<div class="card-title">Subjects</div>
+<div id="subjectCount" class="card-number">0</div>
+</div>
 
-      <button
-        id="teacherDashboardBtn"
-        class="menu-btn hidden"
-        onclick="showSection('teacherDashboard',this)"
-      >
-        👨‍🏫 Teacher Dashboard
-      </button>
-
-      <button
-        id="adminAccountManagerBtn"
-        class="menu-btn hidden"
-        onclick="showSection('adminAccountManager',this)"
-      >
-        👑 Admin Account Manager
-      </button>
-
-      <button
-        class="menu-btn"
-        onclick="showSection('students',this)"
-      >
-        👨‍🎓 Students
-      </button>
+<div class="card">
+<div class="card-title">Attendance</div>
+<div id="attendanceCount" class="card-number">0</div>
+</div>
 
-      <button
-        class="menu-btn"
-        onclick="showSection('teachers',this)"
-      >
-        👨‍🏫 Teachers
-      </button>
+<div class="card">
+<div class="card-title">Grades</div>
+<div id="gradeCount" class="card-number">0</div>
+</div>
 
-      <button
-        class="menu-btn"
-        onclick="showSection('classes',this)"
-      >
-        🏫 Classes
-      </button>
+<div class="card">
+<div class="card-title">Fees</div>
+<div id="feeCount" class="card-number">0</div>
+</div>
 
-      <button
-        class="menu-btn"
-        onclick="showSection('subjects',this)"
-      >
-        📚 Subjects
-      </button>
+</div>
+</section>
 
-      <button
-        class="menu-btn"
-        onclick="showSection('attendance',this)"
-      >
-        📋 Attendance
-      </button>
 
-      <button
-        class="menu-btn"
-        onclick="showSection('grades',this)"
-      >
-        📝 Grades
-      </button>
+<!-- TEACHER DASHBOARD -->
+<section id="teacherDashboard" class="hidden">
 
-      <button
-        class="menu-btn"
-        onclick="showSection('fees',this)"
-      >
-        💰 Fees
-      </button>
+<h2 class="section-title">Teacher Dashboard</h2>
 
-    </div>
+<div id="teacherDashboardContent"
+     class="teacher-dashboard-box">
+Loading...
+</div>
 
+</section>
 
-    <!-- CONTENT -->
 
-    <div class="content">
+<!-- ADMIN ACCOUNT MANAGER -->
+<section id="adminAccountManager" class="hidden">
 
+<h2 class="section-title">👑 Admin Account Manager</h2>
 
-      <!-- ================= DASHBOARD ================= -->
+<div class="form-card">
 
-      <section id="dashboard">
+<h3 style="margin-bottom:15px">Current Admin</h3>
 
-        <h2 class="section-title">
-          Dashboard
-        </h2>
+<div class="admin-info">
 
-        <div class="cards">
+<div class="admin-box">
+<label>Full Name</label>
+<input id="adminCurrentName" readonly>
+</div>
 
-          <div class="card">
-            <div class="card-title">Students</div>
-            <div id="studentCount" class="card-number">0</div>
-          </div>
+<div class="admin-box">
+<label>Email</label>
+<input id="adminCurrentEmail" readonly>
+</div>
 
-          <div class="card">
-            <div class="card-title">Teachers</div>
-            <div id="teacherCount" class="card-number">0</div>
-          </div>
+<div class="admin-box">
+<label>Phone</label>
+<input id="adminCurrentPhone" readonly>
+</div>
 
-          <div class="card">
-            <div class="card-title">Classes</div>
-            <div id="classCount" class="card-number">0</div>
-          </div>
+<div class="admin-box">
+<label>Role</label>
+<input id="adminCurrentRole" readonly>
+</div>
 
-          <div class="card">
-            <div class="card-title">Subjects</div>
-            <div id="subjectCount" class="card-number">0</div>
-          </div>
+</div>
+</div>
 
-          <div class="card">
-            <div class="card-title">Attendance</div>
-            <div id="attendanceCount" class="card-number">0</div>
-          </div>
 
-          <div class="card">
-            <div class="card-title">Grades</div>
-            <div id="gradeCount" class="card-number">0</div>
-          </div>
+<!-- NEW ACCOUNT FORM -->
+<div class="form-card">
 
-          <div class="card">
-            <div class="card-title">Fees</div>
-            <div id="feeCount" class="card-number">0</div>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= TEACHER DASHBOARD ================= -->
-
-      <section
-        id="teacherDashboard"
-        class="hidden"
-      >
-
-        <h2 class="section-title">
-          Teacher Dashboard
-        </h2>
-
-        <div
-          id="teacherDashboardContent"
-          class="teacher-dashboard-box"
-        >
-          Loading...
-        </div>
-
-      </section>
-
-
-      <!-- ================= ADMIN ================= -->
-
-      <section
-        id="adminAccountManager"
-        class="hidden"
-      >
-
-        <h2 class="section-title">
-          👑 Admin Account Manager
-        </h2>
-
-        <div class="form-card">
-
-          <h3 style="margin-bottom:15px;">
-            Current Admin
-          </h3>
-
-          <div class="admin-info">
-
-            <div class="admin-box">
-
-              <label>Full Name</label>
-
-              <input
-                id="adminCurrentName"
-                readonly
-              >
-
-            </div>
-
-            <div class="admin-box">
-
-              <label>Email</label>
-
-              <input
-                id="adminCurrentEmail"
-                readonly
-              >
-
-            </div>
-
-            <div class="admin-box">
-
-              <label>Phone</label>
-
-              <input
-                id="adminCurrentPhone"
-                readonly
-              >
-
-            </div>
-
-            <div class="admin-box">
-
-              <label>Role</label>
-
-              <input
-                id="adminCurrentRole"
-                readonly
-              >
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="table-card">
-
-          <h3 style="margin-bottom:15px;">
-            System Users
-          </h3>
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Role</th>
-                <th>Created</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="adminUsersTable">
-
-              <tr>
-                <td colspan="6">
-                  Loading users...
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= STUDENTS ================= -->
-
-      <section
-        id="students"
-        class="hidden"
-      >
-
-        <h2 class="section-title">
-          Students Management
-        </h2>
-
-        <div class="form-card">
-
-          <div class="form-grid">
-
-            <div class="form-group">
-              <label>Full Name</label>
-              <input id="studentName">
-            </div>
-
-            <div class="form-group">
-              <label>Student ID</label>
-              <input id="studentId" type="number">
-            </div>
-
-            <div class="form-group">
-              <label>Gender</label>
-
-              <select id="studentGender">
-                <option value="">Select Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-
-            </div>
-
-            <div class="form-group">
-              <label>Date of Birth</label>
-              <input id="studentDOB" type="date">
-            </div>
-
-            <div class="form-group">
-              <label>Class</label>
-              <select id="studentClass"></select>
-            </div>
-
-            <div class="form-group">
-              <label>Parent Name</label>
-              <input id="parentName">
-            </div>
-
-            <div class="form-group">
-              <label>Parent Phone</label>
-              <input id="parentPhone">
-            </div>
-
-          </div>
-
-          <button
-            class="success-btn"
-            onclick="addStudent()"
-          >
-            + Add Student
-          </button>
-
-        </div>
-
-
-        <div class="table-card">
-
-          <div class="search-box">
-            <input
-              id="studentSearch"
-              placeholder="Search students..."
-              oninput="renderStudents()"
-            >
-          </div>
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Student ID</th>
-                <th>Gender</th>
-                <th>Class</th>
-                <th>Parent</th>
-                <th>Phone</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="studentsTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= TEACHERS ================= -->
-
-      <section
-        id="teachers"
-        class="hidden"
-      >
-
-        <h2 class="section-title">
-          Teachers Management
-        </h2>
-
-        <div class="form-card">
-
-          <div class="form-grid">
-
-            <div>
-              <label>Full Name</label>
-              <input id="teacherName">
-            </div>
-
-            <div>
-              <label>Teacher ID</label>
-              <input id="teacherId">
-            </div>
-
-            <div>
-              <label>Subject</label>
-              <input id="teacherSubject">
-            </div>
-
-            <div>
-              <label>Phone</label>
-              <input id="teacherPhone">
-            </div>
-
-            <div>
-              <label>Email</label>
-              <input id="teacherEmail" type="email">
-            </div>
-
-          </div>
-
-          <button
-            class="success-btn"
-            onclick="addTeacher()"
-          >
-            + Add Teacher
-          </button>
-
-        </div>
-
-
-        <div class="table-card">
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Teacher ID</th>
-                <th>Subject</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="teachersTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= CLASSES ================= -->
-
-      <section
-        id="classes"
-        class="hidden"
-      >
-
-        <h2 class="section-title">
-          Classes Management
-        </h2>
-
-        <div class="form-card">
-
-          <div class="form-grid">
-
-            <div>
-              <label>Class Name</label>
-              <input id="className">
-            </div>
-
-            <div>
-              <label>Grade</label>
-              <input id="classGrade">
-            </div>
-
-            <div>
-              <label>Section</label>
-              <input id="classSection">
-            </div>
-
-            <div>
-              <label>Class Teacher</label>
-              <select id="classTeacher"></select>
-            </div>
-
-          </div>
-
-          <button
-            class="success-btn"
-            onclick="addClass()"
-          >
-            + Add Class
-          </button>
-
-        </div>
-
-
-        <div class="table-card">
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Grade</th>
-                <th>Section</th>
-                <th>Teacher</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="classesTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= SUBJECTS ================= -->
-
-      <section
-        id="subjects"
-        class="hidden"
-      >
-
-        <h2 class="section-title">
-          Subjects Management
-        </h2>
-
-        <div class="form-card">
-
-          <label>Subject Name</label>
-
-          <input
-            id="subjectName"
-            placeholder="Enter subject name"
-          >
-
-          <button
-            class="success-btn"
-            onclick="addSubject()"
-          >
-            + Add Subject
-          </button>
-
-        </div>
-
-
-        <div class="table-card">
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Subject</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="subjectsTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= ATTENDANCE ================= -->
-
-      <section
-        id="attendance"
-        class="hidden"
-      >
-
-        <h2 class="section-title">
-          Attendance
-        </h2>
-
-        <div class="form-card">
-
-          <div class="form-grid">
-
-            <div>
-              <label>Student</label>
-              <select id="attendanceStudent"></select>
-            </div>
-
-            <div>
-              <label>Date</label>
-              <input id="attendanceDate" type="date">
-            </div>
-
-            <div>
-              <label>Status</label>
-
-              <select id="attendanceStatus">
-                <option value="Present">Present</option>
-                <option value="Absent">Absent</option>
-                <option value="Late">Late</option>
-              </select>
-
-            </div>
-
-          </div>
-
-          <button
-            class="success-btn"
-            onclick="addAttendance()"
-          >
-            + Save Attendance
-          </button>
-
-        </div>
-
-
-        <div class="table-card">
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Student</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="attendanceTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= GRADES ================= -->
-
-      <section
-        id="grades"
-        class="hidden"
-      >
-
-        <h2 class="section-title">
-          Grades
-        </h2>
-
-        <div class="form-card">
-
-          <div class="form-grid">
-
-            <div>
-              <label>Student</label>
-              <select id="gradeStudent"></select>
-            </div>
-
-            <div>
-              <label>Subject</label>
-              <select id="gradeSubject"></select>
-            </div>
-
-            <div>
-              <label>Score</label>
-              <input
-                id="gradeScore"
-                type="number"
-                min="0"
-                max="100"
-              >
-            </div>
-
-            <div>
-              <label>Term</label>
-
-              <select id="gradeTerm">
-                <option value="Term 1">Term 1</option>
-                <option value="Term 2">Term 2</option>
-                <option value="Term 3">Term 3</option>
-              </select>
-
-            </div>
-
-          </div>
-
-          <button
-            class="success-btn"
-            onclick="addGrade()"
-          >
-            + Save Grade
-          </button>
-
-        </div>
-
-
-        <div class="table-card">
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Student</th>
-                <th>Subject</th>
-                <th>Score</th>
-                <th>Term</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="gradesTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-      <!-- ================= FEES ================= -->
-
-      <section
-        id="fees"
-        class="hidden"
-      >
-
-        <h2 class="section-title">
-          Fees / Payments
-        </h2>
-
-        <div class="form-card">
-
-          <div class="form-grid">
-
-            <div>
-              <label>Student</label>
-              <select id="feeStudent"></select>
-            </div>
-
-            <div>
-              <label>Amount</label>
-              <input id="feeAmount" type="number">
-            </div>
-
-            <div>
-              <label>Payment Date</label>
-              <input id="feeDate" type="date">
-            </div>
-
-            <div>
-              <label>Status</label>
-
-              <select id="feeStatus">
-                <option value="Paid">Paid</option>
-                <option value="Pending">Pending</option>
-                <option value="Partial">Partial</option>
-              </select>
-
-            </div>
-
-          </div>
-
-          <button
-            class="success-btn"
-            onclick="addFee()"
-          >
-            + Save Payment
-          </button>
-
-        </div>
-
-
-        <div class="table-card">
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>#</th>
-                <th>Student</th>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-
-            </thead>
-
-            <tbody id="feesTable"></tbody>
-
-          </table>
-
-        </div>
-
-      </section>
-
-
-    </div>
-  </div>
-
+<h3 style="margin-bottom:15px">
+➕ Create New Account
+</h3>
+
+<div class="account-note">
+Admin can create Admin, Teacher or Staff accounts.
+The new user can login with the email and password created here.
+</div>
+
+<div class="form-grid">
+
+<div>
+<label>Full Name</label>
+<input id="newUserFullName"
+       type="text"
+       placeholder="Enter full name">
+</div>
+
+<div>
+<label>Email</label>
+<input id="newUserEmail"
+       type="email"
+       placeholder="Enter email">
+</div>
+
+<div>
+<label>Phone</label>
+<input id="newUserPhone"
+       type="text"
+       placeholder="Enter phone">
+</div>
+
+<div>
+<label>Role</label>
+<select id="newUserRole">
+<option value="teacher">Teacher</option>
+<option value="admin">Admin</option>
+<option value="staff">Staff</option>
+</select>
+</div>
+
+<div>
+<label>Password</label>
+<input id="newUserPassword"
+       type="password"
+       placeholder="Minimum 6 characters">
+</div>
+
+<div>
+<label>Confirm Password</label>
+<input id="newUserConfirmPassword"
+       type="password"
+       placeholder="Confirm password">
+</div>
+
+</div>
+
+<button id="createAccountBtn"
+        class="success-btn"
+        onclick="createUserAccount()">
+➕ Create Account
+</button>
+
+</div>
+
+
+<!-- USERS -->
+<div class="table-card">
+
+<h3 style="margin-bottom:15px">System Users</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>#</th>
+<th>Full Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Role</th>
+<th>Created</th>
+</tr>
+</thead>
+
+<tbody id="adminUsersTable">
+<tr>
+<td colspan="6">Loading users...</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+
+</section>
+
+
+<!-- STUDENTS -->
+<section id="students" class="hidden">
+
+<h2 class="section-title">Students Management</h2>
+
+<div class="form-card">
+
+<div class="form-grid">
+
+<div>
+<label>Full Name</label>
+<input id="studentName">
+</div>
+
+<div>
+<label>Student ID</label>
+<input id="studentId" type="number">
+</div>
+
+<div>
+<label>Gender</label>
+<select id="studentGender">
+<option value="">Select Gender</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+</select>
+</div>
+
+<div>
+<label>Date of Birth</label>
+<input id="studentDOB" type="date">
+</div>
+
+<div>
+<label>Class</label>
+<select id="studentClass"></select>
+</div>
+
+<div>
+<label>Parent Name</label>
+<input id="parentName">
+</div>
+
+<div>
+<label>Parent Phone</label>
+<input id="parentPhone">
+</div>
+
+</div>
+
+<button class="success-btn" onclick="addStudent()">+ Add Student</button>
+</div>
+
+<div class="table-card">
+
+<div class="search-box">
+<input id="studentSearch"
+       placeholder="Search students..."
+       oninput="renderStudents()">
+</div>
+
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Student ID</th>
+<th>Gender</th>
+<th>Class</th>
+<th>Parent</th>
+<th>Phone</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="studentsTable"></tbody>
+</table>
+
+</div>
+</section>
+
+
+<!-- TEACHERS -->
+<section id="teachers" class="hidden">
+
+<h2 class="section-title">Teachers Management</h2>
+
+<div class="form-card">
+
+<div class="form-grid">
+
+<div>
+<label>Full Name</label>
+<input id="teacherName">
+</div>
+
+<div>
+<label>Teacher ID</label>
+<input id="teacherId">
+</div>
+
+<div>
+<label>Subject</label>
+<input id="teacherSubject">
+</div>
+
+<div>
+<label>Phone</label>
+<input id="teacherPhone">
+</div>
+
+<div>
+<label>Email</label>
+<input id="teacherEmail" type="email">
+</div>
+
+</div>
+
+<button class="success-btn" onclick="addTeacher()">+ Add Teacher</button>
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Teacher ID</th>
+<th>Subject</th>
+<th>Phone</th>
+<th>Email</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="teachersTable"></tbody>
+</table>
+
+</div>
+</section>
+
+
+<!-- CLASSES -->
+<section id="classes" class="hidden">
+
+<h2 class="section-title">Classes Management</h2>
+
+<div class="form-card">
+
+<div class="form-grid">
+
+<div>
+<label>Class Name</label>
+<input id="className">
+</div>
+
+<div>
+<label>Grade</label>
+<input id="classGrade">
+</div>
+
+<div>
+<label>Section</label>
+<input id="classSection">
+</div>
+
+<div>
+<label>Class Teacher</label>
+<select id="classTeacher"></select>
+</div>
+
+</div>
+
+<button class="success-btn" onclick="addClass()">+ Add Class</button>
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Grade</th>
+<th>Section</th>
+<th>Teacher</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="classesTable"></tbody>
+</table>
+
+</div>
+</section>
+
+
+<!-- SUBJECTS -->
+<section id="subjects" class="hidden">
+
+<h2 class="section-title">Subjects Management</h2>
+
+<div class="form-card">
+
+<label>Subject Name</label>
+<input id="subjectName" placeholder="Enter subject name">
+
+<button class="success-btn" onclick="addSubject()">+ Add Subject</button>
+
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Subject</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="subjectsTable"></tbody>
+</table>
+
+</div>
+</section>
+
+
+<!-- ATTENDANCE -->
+<section id="attendance" class="hidden">
+
+<h2 class="section-title">Attendance</h2>
+
+<div class="form-card">
+
+<div class="form-grid">
+
+<div>
+<label>Student</label>
+<select id="attendanceStudent"></select>
+</div>
+
+<div>
+<label>Date</label>
+<input id="attendanceDate" type="date">
+</div>
+
+<div>
+<label>Status</label>
+<select id="attendanceStatus">
+<option value="Present">Present</option>
+<option value="Absent">Absent</option>
+<option value="Late">Late</option>
+</select>
+</div>
+
+</div>
+
+<button class="success-btn" onclick="addAttendance()">+ Save Attendance</button>
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Student</th>
+<th>Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="attendanceTable"></tbody>
+</table>
+
+</div>
+</section>
+
+
+<!-- GRADES -->
+<section id="grades" class="hidden">
+
+<h2 class="section-title">Grades</h2>
+
+<div class="form-card">
+
+<div class="form-grid">
+
+<div>
+<label>Student</label>
+<select id="gradeStudent"></select>
+</div>
+
+<div>
+<label>Subject</label>
+<select id="gradeSubject"></select>
+</div>
+
+<div>
+<label>Score</label>
+<input id="gradeScore" type="number" min="0" max="100">
+</div>
+
+<div>
+<label>Term</label>
+<select id="gradeTerm">
+<option value="Term 1">Term 1</option>
+<option value="Term 2">Term 2</option>
+<option value="Term 3">Term 3</option>
+</select>
+</div>
+
+</div>
+
+<button class="success-btn" onclick="addGrade()">+ Save Grade</button>
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Student</th>
+<th>Subject</th>
+<th>Score</th>
+<th>Term</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="gradesTable"></tbody>
+</table>
+
+</div>
+</section>
+
+
+<!-- FEES -->
+<section id="fees" class="hidden">
+
+<h2 class="section-title">Fees / Payments</h2>
+
+<div class="form-card">
+
+<div class="form-grid">
+
+<div>
+<label>Student</label>
+<select id="feeStudent"></select>
+</div>
+
+<div>
+<label>Amount</label>
+<input id="feeAmount" type="number">
+</div>
+
+<div>
+<label>Payment Date</label>
+<input id="feeDate" type="date">
+</div>
+
+<div>
+<label>Status</label>
+<select id="feeStatus">
+<option value="Paid">Paid</option>
+<option value="Pending">Pending</option>
+<option value="Partial">Partial</option>
+</select>
+</div>
+
+</div>
+
+<button class="success-btn" onclick="addFee()">+ Save Payment</button>
+</div>
+
+<div class="table-card">
+
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Student</th>
+<th>Amount</th>
+<th>Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="feesTable"></tbody>
+</table>
+
+</div>
+</section>
+
+</div>
+</div>
 </div>
 
 
@@ -1382,10 +796,13 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_7ii_IQ4dR_JiFOFP86RA8g_T9tx98jr";
 
+const SMOOTH_HANDLER_URL =
+"https://ykvkxxxssmfgydqzijby.supabase.co/functions/v1/smooth-handler";
+
 const supabaseClient =
 supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
@@ -1393,20 +810,20 @@ supabase.createClient(
    GLOBAL VARIABLES
 ===================================================== */
 
-let students = [];
-let teachers = [];
-let classes = [];
-let subjects = [];
-let attendance = [];
-let grades = [];
-let fees = [];
-let adminUsers = [];
+let students=[];
+let teachers=[];
+let classes=[];
+let subjects=[];
+let attendance=[];
+let grades=[];
+let fees=[];
+let adminUsers=[];
 
-let currentUser = null;
-let currentTeacher = null;
-let currentUserRole = "";
+let currentUser=null;
+let currentTeacher=null;
+let currentUserRole="";
 
-let appLoading = false;
+let appLoading=false;
 
 
 /* =====================================================
@@ -1415,97 +832,97 @@ let appLoading = false;
 
 function escapeHtml(value){
 
-  if(value === null || value === undefined){
-    return "";
-  }
+if(value===null||value===undefined)return "";
 
-  return String(value)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 
 }
 
 
 function today(){
 
-  return new Date()
-    .toISOString()
-    .split("T")[0];
+return new Date()
+.toISOString()
+.split("T")[0];
+
+}
+
+
+function isAdmin(){
+
+return currentUserRole==="admin" ||
+currentUserRole==="administrator";
 
 }
 
 
 /* =====================================================
-   LOGIN / LOGOUT
+   LOGIN
 ===================================================== */
 
 async function login(){
 
-  const identifier =
-    document.getElementById("loginEmail")
-      .value
-      .trim();
+const identifier=
+document.getElementById("loginEmail").value.trim();
 
-  const password =
-    document.getElementById("loginPassword")
-      .value;
+const password=
+document.getElementById("loginPassword").value;
 
-  if(!identifier || !password){
+if(!identifier||!password){
 
-    alert(
-      "Please enter your email or phone and password."
-    );
+alert("Please enter your email or phone and password.");
+return;
 
-    return;
-  }
+}
 
-  let result;
+let result;
 
-  if(identifier.includes("@")){
+if(identifier.includes("@")){
 
-    result =
-      await supabaseClient.auth.signInWithPassword({
-        email:identifier,
-        password:password
-      });
+result=
+await supabaseClient.auth.signInWithPassword({
+email:identifier,
+password:password
+});
 
-  }else{
+}else{
 
-    result =
-      await supabaseClient.auth.signInWithPassword({
-        phone:identifier,
-        password:password
-      });
+result=
+await supabaseClient.auth.signInWithPassword({
+phone:identifier,
+password:password
+});
 
-  }
+}
 
-  if(result.error){
+if(result.error){
 
-    alert(result.error.message);
+alert(result.error.message);
+return;
 
-    return;
-  }
+}
 
-  currentUser =
-    result.data.user;
+currentUser=result.data.user;
 
-  await showApp();
+await showApp();
 
 }
 
 
 async function logout(){
 
-  await supabaseClient.auth.signOut();
+await supabaseClient.auth.signOut();
 
-  currentUser = null;
-  currentUserRole = "";
-  currentTeacher = null;
+currentUser=null;
+currentUserRole="";
+currentTeacher=null;
 
-  location.reload();
+location.reload();
 
 }
 
@@ -1516,289 +933,207 @@ async function logout(){
 
 function showForgot(){
 
-  document
-    .getElementById("loginForm")
-    .classList.add("hidden");
-
-  document
-    .getElementById("forgotForm")
-    .classList.remove("hidden");
+document.getElementById("loginForm").classList.add("hidden");
+document.getElementById("forgotForm").classList.remove("hidden");
 
 }
 
 
 function showLogin(){
 
-  document
-    .getElementById("forgotForm")
-    .classList.add("hidden");
-
-  document
-    .getElementById("newPasswordForm")
-    .classList.add("hidden");
-
-  document
-    .getElementById("loginForm")
-    .classList.remove("hidden");
+document.getElementById("forgotForm").classList.add("hidden");
+document.getElementById("newPasswordForm").classList.add("hidden");
+document.getElementById("loginForm").classList.remove("hidden");
 
 }
 
 
 async function sendReset(){
 
-  const email =
-    document.getElementById("forgotEmail")
-      .value
-      .trim();
+const email=
+document.getElementById("forgotEmail").value.trim();
 
-  if(!email){
+if(!email){
 
-    alert("Enter your email.");
+alert("Enter your email.");
+return;
 
-    return;
-  }
+}
 
-  const redirectTo =
-    window.location.origin +
-    window.location.pathname;
+const redirectTo=
+window.location.origin+
+window.location.pathname;
 
-  const {error} =
-    await supabaseClient.auth
-      .resetPasswordForEmail(
-        email,
-        {
-          redirectTo:redirectTo
-        }
-      );
+const {error}=
+await supabaseClient.auth.resetPasswordForEmail(
+email,
+{redirectTo}
+);
 
-  if(error){
+if(error){
 
-    alert(error.message);
+alert(error.message);
 
-  }else{
+}else{
 
-    alert(
-      "Password reset link has been sent to your email."
-    );
+alert("Password reset link has been sent to your email.");
 
-  }
+}
 
 }
 
 
 async function updatePassword(){
 
-  const password =
-    document.getElementById("newPassword")
-      .value;
+const password=
+document.getElementById("newPassword").value;
 
-  if(!password){
+if(!password){
 
-    alert("Enter new password.");
+alert("Enter new password.");
+return;
 
-    return;
-  }
+}
 
-  if(password.length < 6){
+if(password.length<6){
 
-    alert(
-      "Password must be at least 6 characters."
-    );
+alert("Password must be at least 6 characters.");
+return;
 
-    return;
-  }
+}
 
-  const {error} =
-    await supabaseClient.auth
-      .updateUser({
-        password:password
-      });
+const {error}=
+await supabaseClient.auth.updateUser({
+password
+});
 
-  if(error){
+if(error){
 
-    alert(error.message);
+alert(error.message);
+return;
 
-    return;
-  }
+}
 
-  alert(
-    "Password updated successfully."
-  );
+alert("Password updated successfully.");
 
-  showLogin();
+showLogin();
 
 }
 
 
 /* =====================================================
    CURRENT USER ROLE
-   IMPORTANT:
-   users table uses full_name + auth_id
 ===================================================== */
 
 async function loadCurrentUserRole(){
 
-  const button =
-    document.getElementById(
-      "adminAccountManagerBtn"
-    );
+const adminButton=
+document.getElementById("adminAccountManagerBtn");
 
-  const teacherButton =
-    document.getElementById(
-      "teacherDashboardBtn"
-    );
+const teacherButton=
+document.getElementById("teacherDashboardBtn");
 
+if(adminButton)
+adminButton.classList.add("hidden");
 
-  if(button){
+if(teacherButton)
+teacherButton.classList.add("hidden");
 
-    button.classList.add("hidden");
+if(!currentUser){
 
-  }
+currentUserRole="";
+return;
 
-  if(teacherButton){
+}
 
-    teacherButton.classList.add("hidden");
+const email=
+(currentUser.email||"")
+.trim()
+.toLowerCase();
 
-  }
+const authId=currentUser.id;
 
-
-  if(!currentUser){
-
-    currentUserRole = "";
-
-    return;
-  }
+let data=null;
+let error=null;
 
 
-  const email =
-    (currentUser.email || "")
-      .trim()
-      .toLowerCase();
+/* SEARCH BY AUTH ID */
+
+if(authId){
+
+const result=
+await supabaseClient
+.from("users")
+.select("id,full_name,email,phone,role,auth_id,created_at")
+.eq("auth_id",authId)
+.maybeSingle();
+
+data=result.data;
+error=result.error;
+
+}
 
 
-  const authId =
-    currentUser.id;
+/* SEARCH BY EMAIL */
+
+if(!data&&email){
+
+const result=
+await supabaseClient
+.from("users")
+.select("id,full_name,email,phone,role,auth_id,created_at")
+.ilike("email",email)
+.maybeSingle();
+
+data=result.data;
+error=result.error;
+
+}
 
 
-  let data = null;
-  let error = null;
+if(error){
+
+console.error(error);
+currentUserRole="";
+return;
+
+}
 
 
-  /* ---------------------------------------------
-     FIRST: SEARCH BY AUTH ID
-  --------------------------------------------- */
+if(!data){
 
-  if(authId){
+console.warn("Current user profile was not found.");
+currentUserRole="";
+return;
 
-    const result =
-      await supabaseClient
-        .from("users")
-        .select(
-          "id,full_name,email,phone,role,auth_id,created_at"
-        )
-        .eq("auth_id",authId)
-        .maybeSingle();
+}
 
-    data = result.data;
-    error = result.error;
-
-  }
+currentUserRole=
+(data.role||"")
+.toString()
+.trim()
+.toLowerCase();
 
 
-  /* ---------------------------------------------
-     SECOND: SEARCH BY EMAIL
-  --------------------------------------------- */
+if(
+currentUserRole==="admin"||
+currentUserRole==="administrator"
+){
 
-  if(!data && email){
+if(adminButton)
+adminButton.classList.remove("hidden");
 
-    const result =
-      await supabaseClient
-        .from("users")
-        .select(
-          "id,full_name,email,phone,role,auth_id,created_at"
-        )
-        .ilike("email",email)
-        .maybeSingle();
+loadCurrentAdminInfo(data);
 
-    data = result.data;
-    error = result.error;
-
-  }
+}
 
 
-  if(error){
+if(currentUserRole==="teacher"){
 
-    console.error(
-      "Could not load current user role:",
-      error
-    );
+if(teacherButton)
+teacherButton.classList.remove("hidden");
 
-    currentUserRole = "";
-
-    return;
-  }
-
-
-  if(!data){
-
-    console.warn(
-      "Current user profile was not found."
-    );
-
-    currentUserRole = "";
-
-    return;
-  }
-
-
-  currentUserRole =
-    (data.role || "")
-      .toString()
-      .trim()
-      .toLowerCase();
-
-
-  console.log(
-    "Current User Role:",
-    currentUserRole
-  );
-
-
-  /* ---------------------------------------------
-     ADMIN
-  --------------------------------------------- */
-
-  if(
-    currentUserRole === "admin" ||
-    currentUserRole === "administrator"
-  ){
-
-    if(button){
-
-      button.classList.remove("hidden");
-
-    }
-
-    loadCurrentAdminInfo(data);
-
-  }
-
-
-  /* ---------------------------------------------
-     TEACHER
-  --------------------------------------------- */
-
-  if(
-    currentUserRole === "teacher"
-  ){
-
-    if(teacherButton){
-
-      teacherButton.classList.remove("hidden");
-
-    }
-
-  }
+}
 
 }
 
@@ -1809,30 +1144,19 @@ async function loadCurrentUserRole(){
 
 function loadCurrentAdminInfo(data){
 
-  if(!data){
+if(!data)return;
 
-    return;
-  }
+document.getElementById("adminCurrentName").value=
+data.full_name||"";
 
-  document.getElementById(
-    "adminCurrentName"
-  ).value =
-    data.full_name || "";
+document.getElementById("adminCurrentEmail").value=
+data.email||"";
 
-  document.getElementById(
-    "adminCurrentEmail"
-  ).value =
-    data.email || "";
+document.getElementById("adminCurrentPhone").value=
+data.phone||"";
 
-  document.getElementById(
-    "adminCurrentPhone"
-  ).value =
-    data.phone || "";
-
-  document.getElementById(
-    "adminCurrentRole"
-  ).value =
-    data.role || "";
+document.getElementById("adminCurrentRole").value=
+data.role||"";
 
 }
 
@@ -1843,119 +1167,257 @@ function loadCurrentAdminInfo(data){
 
 async function showApp(){
 
-  if(!currentUser){
+if(!currentUser)return;
 
-    return;
-  }
+if(appLoading)return;
 
-  if(appLoading){
+appLoading=true;
 
-    return;
-  }
+try{
 
-  appLoading = true;
+document.getElementById("loginPage").classList.add("hidden");
+document.getElementById("app").classList.remove("hidden");
 
+document.getElementById("loggedUser").textContent=
+currentUser.email||
+currentUser.phone||
+"";
 
-  try{
+await loadCurrentUserRole();
 
-    document
-      .getElementById("loginPage")
-      .classList.add("hidden");
+await refreshAll();
 
-    document
-      .getElementById("app")
-      .classList.remove("hidden");
+}catch(error){
 
+console.error("Application loading error:",error);
 
-    document.getElementById(
-      "loggedUser"
-    ).textContent =
-      currentUser.email ||
-      currentUser.phone ||
-      "";
+}finally{
 
+appLoading=false;
 
-    await loadCurrentUserRole();
-
-    await refreshAll();
-
-
-  }catch(error){
-
-    console.error(
-      "Application loading error:",
-      error
-    );
-
-  }finally{
-
-    appLoading = false;
-
-  }
+}
 
 }
 
 
 /* =====================================================
-   SECTION NAVIGATION
+   NAVIGATION
 ===================================================== */
 
 function showSection(id,button){
 
-  if(
-    id === "adminAccountManager" &&
-    currentUserRole !== "admin" &&
-    currentUserRole !== "administrator"
-  ){
+if(
+id==="adminAccountManager" &&
+!isAdmin()
+){
 
-    alert(
-      "Admin access required."
-    );
+alert("Admin access required.");
+return;
 
-    return;
-  }
+}
 
+document
+.querySelectorAll(".content>section")
+.forEach(section=>{
+section.classList.add("hidden");
+});
 
-  document
-    .querySelectorAll(".content > section")
-    .forEach(section => {
+const target=document.getElementById(id);
 
-      section.classList.add("hidden");
+if(target)
+target.classList.remove("hidden");
 
-    });
+document
+.querySelectorAll(".menu-btn")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
 
+if(button)
+button.classList.add("active");
 
-  const target =
-    document.getElementById(id);
+if(id==="adminAccountManager")
+loadAdminUsers();
 
-  if(target){
-
-    target.classList.remove("hidden");
-
-  }
-
-
-  document
-    .querySelectorAll(".menu-btn")
-    .forEach(btn => {
-
-      btn.classList.remove("active");
-
-    });
+}
 
 
-  if(button){
+/* =====================================================
+   CREATE USER ACCOUNT
+===================================================== */
 
-    button.classList.add("active");
+async function createUserAccount(){
 
-  }
+if(!isAdmin()){
+
+alert("Admin access required.");
+return;
+
+}
+
+const fullName=
+document.getElementById("newUserFullName")
+.value.trim();
+
+const email=
+document.getElementById("newUserEmail")
+.value.trim();
+
+const phone=
+document.getElementById("newUserPhone")
+.value.trim();
+
+const role=
+document.getElementById("newUserRole")
+.value;
+
+const password=
+document.getElementById("newUserPassword")
+.value;
+
+const confirmPassword=
+document.getElementById("newUserConfirmPassword")
+.value;
+
+if(!fullName||!email||!password){
+
+alert("Full Name, Email and Password are required.");
+return;
+
+}
+
+if(password.length<6){
+
+alert("Password must be at least 6 characters.");
+return;
+
+}
+
+if(password!==confirmPassword){
+
+alert("Passwords do not match.");
+return;
+
+}
+
+const {
+data:sessionData,
+error:sessionError
+}=
+await supabaseClient.auth.getSession();
+
+if(sessionError){
+
+alert(sessionError.message);
+return;
+
+}
+
+const session=sessionData?.session;
+
+if(!session){
+
+alert("Your session has expired. Please login again.");
+return;
+
+}
 
 
-  if(id === "adminAccountManager"){
+const button=
+document.getElementById("createAccountBtn");
 
-    loadAdminUsers();
+if(button){
 
-  }
+button.disabled=true;
+button.textContent="Creating...";
+
+}
+
+
+try{
+
+const response=
+await fetch(
+SMOOTH_HANDLER_URL,
+{
+method:"POST",
+
+headers:{
+"Content-Type":"application/json",
+"apikey":SUPABASE_KEY,
+"Authorization":
+"Bearer "+
+session.access_token
+},
+
+body:JSON.stringify({
+fullName,
+email,
+phone,
+password,
+role
+})
+
+}
+);
+
+
+let result={};
+
+try{
+
+result=await response.json();
+
+}catch(e){
+
+result={};
+
+}
+
+
+if(!response.ok||!result.success){
+
+throw new Error(
+result.error||
+"Account creation failed."
+);
+
+}
+
+
+alert("Account created successfully.");
+
+
+document.getElementById("newUserFullName").value="";
+document.getElementById("newUserEmail").value="";
+document.getElementById("newUserPhone").value="";
+document.getElementById("newUserPassword").value="";
+document.getElementById("newUserConfirmPassword").value="";
+document.getElementById("newUserRole").value="teacher";
+
+
+await loadAdminUsers();
+
+
+}catch(error){
+
+console.error("Create account error:",error);
+
+alert(
+error.message||
+"Could not create account."
+);
+
+}finally{
+
+if(button){
+
+button.disabled=false;
+button.textContent="➕ Create Account";
+
+}
+
+}
 
 }
 
@@ -1966,131 +1428,89 @@ function showSection(id,button){
 
 async function loadAdminUsers(){
 
-  if(
-    currentUserRole !== "admin" &&
-    currentUserRole !== "administrator"
-  ){
+if(!isAdmin())return;
 
-    return;
-  }
+const table=
+document.getElementById("adminUsersTable");
 
+if(!table)return;
 
-  const table =
-    document.getElementById(
-      "adminUsersTable"
-    );
-
-  if(!table){
-
-    return;
-  }
+table.innerHTML=
+'<tr><td colspan="6">Loading users...</td></tr>';
 
 
-  table.innerHTML =
-    '<tr><td colspan="6">Loading users...</td></tr>';
+const {data,error}=
+await supabaseClient
+.from("users")
+.select("id,full_name,email,phone,role,auth_id,created_at")
+.order("id",{ascending:false});
 
 
-  const {data,error} =
-    await supabaseClient
-      .from("users")
-      .select(
-        "id,full_name,email,phone,role,auth_id,created_at"
-      )
-      .order(
-        "id",
-        {
-          ascending:false
-        }
-      );
+if(error){
 
+console.error(error);
 
-  if(error){
+table.innerHTML=
+'<tr><td colspan="6">Could not load users.</td></tr>';
 
-    console.error(error);
+return;
 
-    table.innerHTML =
-      '<tr><td colspan="6">Could not load users.</td></tr>';
+}
 
-    return;
-  }
+adminUsers=data||[];
 
-
-  adminUsers =
-    data || [];
-
-
-  renderAdminUsers();
+renderAdminUsers();
 
 }
 
 
 function renderAdminUsers(){
 
-  const table =
-    document.getElementById(
-      "adminUsersTable"
-    );
+const table=
+document.getElementById("adminUsersTable");
 
-  if(!table){
+if(!table)return;
 
-    return;
-  }
+table.innerHTML="";
 
+if(adminUsers.length===0){
 
-  table.innerHTML = "";
+table.innerHTML=
+'<tr><td colspan="6">No users found.</td></tr>';
 
+return;
 
-  if(adminUsers.length === 0){
+}
 
-    table.innerHTML =
-      '<tr><td colspan="6">No users found.</td></tr>';
+adminUsers.forEach((item,index)=>{
 
-    return;
-  }
+table.innerHTML+=`
 
+<tr>
 
-  adminUsers.forEach(
-    (item,index) => {
+<td>${index+1}</td>
 
-      table.innerHTML += `
+<td>${escapeHtml(item.full_name)}</td>
 
-        <tr>
+<td>${escapeHtml(item.email)}</td>
 
-          <td>
-            ${index + 1}
-          </td>
+<td>${escapeHtml(item.phone)}</td>
 
-          <td>
-            ${escapeHtml(item.full_name)}
-          </td>
+<td>${escapeHtml(item.role)}</td>
 
-          <td>
-            ${escapeHtml(item.email)}
-          </td>
+<td>
+${escapeHtml(
+item.created_at?
+item.created_at.split("T")[0]:
+""
+)}
+</td>
 
-          <td>
-            ${escapeHtml(item.phone)}
-          </td>
+</tr>
 
-          <td>
-            ${escapeHtml(item.role)}
-          </td>
+`;
 
-          <td>
-            ${escapeHtml(
-              item.created_at
-                ? item.created_at
-                    .split("T")[0]
-                : ""
-            )}
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
+});
 
 }
 
@@ -2101,314 +1521,202 @@ function renderAdminUsers(){
 
 async function loadStudents(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("students")
-      .select("*")
-      .order(
-        "id",
-        {
-          ascending:false
-        }
-      );
+const {data,error}=
+await supabaseClient
+.from("students")
+.select("*")
+.order("id",{ascending:false});
 
+if(error){
 
-  if(error){
+console.error(error);
+students=[];
+return;
 
-    console.error(error);
+}
 
-    students = [];
+students=data||[];
 
-    return;
-  }
+renderStudents();
+fillStudentDropdowns();
 
-
-  students =
-    data || [];
-
-
-  renderStudents();
-
-  fillStudentDropdowns();
-
-
-  document.getElementById(
-    "studentCount"
-  ).textContent =
-    students.length;
+document.getElementById("studentCount").textContent=
+students.length;
 
 }
 
 
 function renderStudents(){
 
-  const table =
-    document.getElementById(
-      "studentsTable"
-    );
+const table=
+document.getElementById("studentsTable");
 
-  if(!table){
+if(!table)return;
 
-    return;
-  }
+const search=
+(
+document.getElementById("studentSearch")?.value||""
+)
+.toLowerCase()
+.trim();
 
+table.innerHTML="";
 
-  const search =
-    (
-      document.getElementById(
-        "studentSearch"
-      )?.value || ""
-    )
-      .toLowerCase()
-      .trim();
+const filtered=
+students.filter(student=>{
 
+const text=
+(
+(student.full_name||"")+" "+
+(student.student_id||"")+" "+
+(student.parent_name||"")+" "+
+(student.parent_phone||"")
+).toLowerCase();
 
-  table.innerHTML = "";
+return text.includes(search);
 
-
-  const filtered =
-    students.filter(
-      student => {
-
-        const text =
-          (
-            (student.full_name || "") +
-            " " +
-            (student.student_id || "") +
-            " " +
-            (student.parent_name || "") +
-            " " +
-            (student.parent_phone || "")
-          )
-            .toLowerCase();
-
-        return text.includes(search);
-
-      }
-    );
+});
 
 
-  if(filtered.length === 0){
+if(filtered.length===0){
 
-    table.innerHTML =
-      '<tr><td colspan="8">No students found.</td></tr>';
+table.innerHTML=
+'<tr><td colspan="8">No students found.</td></tr>';
 
-    return;
-  }
+return;
 
-
-  filtered.forEach(
-    (item,index) => {
-
-      const classItem =
-        classes.find(
-          c =>
-            String(c.id) ===
-            String(item.class_id)
-        );
+}
 
 
-      table.innerHTML += `
+filtered.forEach((item,index)=>{
 
-        <tr>
+const classItem=
+classes.find(c=>
+String(c.id)===String(item.class_id)
+);
 
-          <td>${index+1}</td>
+table.innerHTML+=`
 
-          <td>
-            ${escapeHtml(item.full_name)}
-          </td>
+<tr>
 
-          <td>
-            ${escapeHtml(item.student_id)}
-          </td>
+<td>${index+1}</td>
 
-          <td>
-            ${escapeHtml(item.gender)}
-          </td>
+<td>${escapeHtml(item.full_name)}</td>
 
-          <td>
-            ${escapeHtml(
-              classItem?.name || ""
-            )}
-          </td>
+<td>${escapeHtml(item.student_id)}</td>
 
-          <td>
-            ${escapeHtml(item.parent_name)}
-          </td>
+<td>${escapeHtml(item.gender)}</td>
 
-          <td>
-            ${escapeHtml(item.parent_phone)}
-          </td>
+<td>${escapeHtml(classItem?.name||"")}</td>
 
-          <td>
+<td>${escapeHtml(item.parent_name)}</td>
 
-            <button
-              class="small-btn"
-              onclick="deleteStudent(${item.id})"
-            >
-              Delete
-            </button>
+<td>${escapeHtml(item.parent_phone)}</td>
 
-          </td>
+<td>
+<button class="small-btn"
+onclick="deleteStudent(${item.id})">
+Delete
+</button>
+</td>
 
-        </tr>
+</tr>
 
-      `;
+`;
 
-    }
-  );
+});
 
 }
 
 
 async function addStudent(){
 
-  const full_name =
-    document.getElementById(
-      "studentName"
-    ).value.trim();
+const full_name=
+document.getElementById("studentName").value.trim();
 
-  const student_id =
-    document.getElementById(
-      "studentId"
-    ).value.trim();
+const student_id=
+document.getElementById("studentId").value.trim();
 
-  const gender =
-    document.getElementById(
-      "studentGender"
-    ).value;
+const gender=
+document.getElementById("studentGender").value;
 
-  const date_of_birth =
-    document.getElementById(
-      "studentDOB"
-    ).value;
+const date_of_birth=
+document.getElementById("studentDOB").value;
 
-  const class_id =
-    document.getElementById(
-      "studentClass"
-    ).value;
+const class_id=
+document.getElementById("studentClass").value;
 
-  const parent_name =
-    document.getElementById(
-      "parentName"
-    ).value.trim();
+const parent_name=
+document.getElementById("parentName").value.trim();
 
-  const parent_phone =
-    document.getElementById(
-      "parentPhone"
-    ).value.trim();
+const parent_phone=
+document.getElementById("parentPhone").value.trim();
 
+if(!full_name||!student_id){
 
-  if(
-    !full_name ||
-    !student_id
-  ){
+alert("Please enter student name and student ID.");
+return;
 
-    alert(
-      "Please enter student name and student ID."
-    );
+}
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("students")
+.insert([{
+full_name,
+student_id,
+gender:gender||null,
+date_of_birth:date_of_birth||null,
+class_id:class_id?Number(class_id):null,
+parent_name:parent_name||null,
+parent_phone:parent_phone||null
+}]);
 
 
-  const {error} =
-    await supabaseClient
-      .from("students")
-      .insert([{
+if(error){
 
-        full_name,
-        student_id,
-        gender:gender || null,
-        date_of_birth:
-          date_of_birth || null,
-        class_id:
-          class_id
-            ? Number(class_id)
-            : null,
-        parent_name:
-          parent_name || null,
-        parent_phone:
-          parent_phone || null
+alert(error.message);
+return;
 
-      }]);
+}
 
+alert("Student added successfully.");
 
-  if(error){
+[
+"studentName",
+"studentId",
+"studentGender",
+"studentDOB",
+"studentClass",
+"parentName",
+"parentPhone"
+].forEach(id=>{
+document.getElementById(id).value="";
+});
 
-    alert(error.message);
-
-    return;
-  }
-
-
-  alert(
-    "Student added successfully."
-  );
-
-
-  document.getElementById(
-    "studentName"
-  ).value = "";
-
-  document.getElementById(
-    "studentId"
-  ).value = "";
-
-  document.getElementById(
-    "studentGender"
-  ).value = "";
-
-  document.getElementById(
-    "studentDOB"
-  ).value = "";
-
-  document.getElementById(
-    "studentClass"
-  ).value = "";
-
-  document.getElementById(
-    "parentName"
-  ).value = "";
-
-  document.getElementById(
-    "parentPhone"
-  ).value = "";
-
-
-  await loadStudents();
+await loadStudents();
 
 }
 
 
 async function deleteStudent(id){
 
-  if(
-    !confirm(
-      "Delete this student?"
-    )
-  ){
+if(!confirm("Delete this student?"))return;
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("students")
+.delete()
+.eq("id",id);
 
+if(error){
 
-  const {error} =
-    await supabaseClient
-      .from("students")
-      .delete()
-      .eq("id",id);
+alert(error.message);
+return;
 
+}
 
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  await loadStudents();
+await loadStudents();
 
 }
 
@@ -2419,245 +1727,162 @@ async function deleteStudent(id){
 
 async function loadTeachers(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("teachers")
-      .select("*")
-      .order(
-        "id",
-        {
-          ascending:false
-        }
-      );
+const {data,error}=
+await supabaseClient
+.from("teachers")
+.select("*")
+.order("id",{ascending:false});
 
+if(error){
 
-  if(error){
+console.error(error);
+teachers=[];
+return;
 
-    console.error(error);
+}
 
-    teachers = [];
+teachers=data||[];
 
-    return;
-  }
+renderTeachers();
+fillTeacherDropdown();
+await loadTeacherDashboard();
 
-
-  teachers =
-    data || [];
-
-
-  renderTeachers();
-
-  fillTeacherDropdown();
-
-  await loadTeacherDashboard();
-
-
-  document.getElementById(
-    "teacherCount"
-  ).textContent =
-    teachers.length;
+document.getElementById("teacherCount").textContent=
+teachers.length;
 
 }
 
 
 function renderTeachers(){
 
-  const table =
-    document.getElementById(
-      "teachersTable"
-    );
+const table=
+document.getElementById("teachersTable");
 
-  if(!table){
+if(!table)return;
 
-    return;
-  }
+table.innerHTML="";
 
+if(teachers.length===0){
 
-  table.innerHTML = "";
+table.innerHTML=
+'<tr><td colspan="7">No teachers found.</td></tr>';
 
+return;
 
-  if(teachers.length === 0){
+}
 
-    table.innerHTML =
-      '<tr><td colspan="7">No teachers found.</td></tr>';
+teachers.forEach((item,index)=>{
 
-    return;
-  }
+table.innerHTML+=`
 
+<tr>
 
-  teachers.forEach(
-    (item,index) => {
+<td>${index+1}</td>
 
-      table.innerHTML += `
+<td>${escapeHtml(item.full_name)}</td>
 
-        <tr>
+<td>${escapeHtml(item.teacher_id)}</td>
 
-          <td>${index+1}</td>
+<td>${escapeHtml(item.subject)}</td>
 
-          <td>
-            ${escapeHtml(item.full_name)}
-          </td>
+<td>${escapeHtml(item.phone)}</td>
 
-          <td>
-            ${escapeHtml(item.teacher_id)}
-          </td>
+<td>${escapeHtml(item.email)}</td>
 
-          <td>
-            ${escapeHtml(item.subject)}
-          </td>
+<td>
+<button class="small-btn"
+onclick="deleteTeacher(${item.id})">
+Delete
+</button>
+</td>
 
-          <td>
-            ${escapeHtml(item.phone)}
-          </td>
+</tr>
 
-          <td>
-            ${escapeHtml(item.email)}
-          </td>
+`;
 
-          <td>
-
-            <button
-              class="small-btn"
-              onclick="deleteTeacher(${item.id})"
-            >
-              Delete
-            </button>
-
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
+});
 
 }
 
 
 async function addTeacher(){
 
-  const full_name =
-    document.getElementById(
-      "teacherName"
-    ).value.trim();
+const full_name=
+document.getElementById("teacherName").value.trim();
 
-  const teacher_id =
-    document.getElementById(
-      "teacherId"
-    ).value.trim();
+const teacher_id=
+document.getElementById("teacherId").value.trim();
 
-  const subject =
-    document.getElementById(
-      "teacherSubject"
-    ).value.trim();
+const subject=
+document.getElementById("teacherSubject").value.trim();
 
-  const phone =
-    document.getElementById(
-      "teacherPhone"
-    ).value.trim();
+const phone=
+document.getElementById("teacherPhone").value.trim();
 
-  const email =
-    document.getElementById(
-      "teacherEmail"
-    ).value.trim();
+const email=
+document.getElementById("teacherEmail").value.trim();
 
+if(!full_name){
 
-  if(!full_name){
+alert("Please enter teacher name.");
+return;
 
-    alert(
-      "Please enter teacher name."
-    );
+}
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("teachers")
+.insert([{
+full_name,
+teacher_id:teacher_id||null,
+subject:subject||null,
+phone:phone||null,
+email:email||null
+}]);
 
 
-  const {error} =
-    await supabaseClient
-      .from("teachers")
-      .insert([{
+if(error){
 
-        full_name,
-        teacher_id:
-          teacher_id || null,
-        subject:
-          subject || null,
-        phone:
-          phone || null,
-        email:
-          email || null
+alert(error.message);
+return;
 
-      }]);
+}
 
+alert("Teacher added successfully.");
 
-  if(error){
+[
+"teacherName",
+"teacherId",
+"teacherSubject",
+"teacherPhone",
+"teacherEmail"
+].forEach(id=>{
+document.getElementById(id).value="";
+});
 
-    alert(error.message);
-
-    return;
-  }
-
-
-  alert(
-    "Teacher added successfully."
-  );
-
-
-  document.getElementById(
-    "teacherName"
-  ).value = "";
-
-  document.getElementById(
-    "teacherId"
-  ).value = "";
-
-  document.getElementById(
-    "teacherSubject"
-  ).value = "";
-
-  document.getElementById(
-    "teacherPhone"
-  ).value = "";
-
-  document.getElementById(
-    "teacherEmail"
-  ).value = "";
-
-
-  await loadTeachers();
+await loadTeachers();
 
 }
 
 
 async function deleteTeacher(id){
 
-  if(
-    !confirm(
-      "Delete this teacher?"
-    )
-  ){
+if(!confirm("Delete this teacher?"))return;
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("teachers")
+.delete()
+.eq("id",id);
 
+if(error){
 
-  const {error} =
-    await supabaseClient
-      .from("teachers")
-      .delete()
-      .eq("id",id);
+alert(error.message);
+return;
 
+}
 
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  await loadTeachers();
+await loadTeachers();
 
 }
 
@@ -2668,235 +1893,160 @@ async function deleteTeacher(id){
 
 async function loadClasses(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("classes")
-      .select("*")
-      .order(
-        "id",
-        {
-          ascending:false
-        }
-      );
+const {data,error}=
+await supabaseClient
+.from("classes")
+.select("*")
+.order("id",{ascending:false});
 
+if(error){
 
-  if(error){
+console.error(error);
+classes=[];
+return;
 
-    console.error(error);
+}
 
-    classes = [];
+classes=data||[];
 
-    return;
-  }
+renderClasses();
+fillClassDropdown();
+fillStudentDropdowns();
 
-
-  classes =
-    data || [];
-
-
-  renderClasses();
-
-  fillClassDropdown();
-
-  fillStudentDropdowns();
-
-
-  document.getElementById(
-    "classCount"
-  ).textContent =
-    classes.length;
+document.getElementById("classCount").textContent=
+classes.length;
 
 }
 
 
 function renderClasses(){
 
-  const table =
-    document.getElementById(
-      "classesTable"
-    );
+const table=
+document.getElementById("classesTable");
 
-  if(!table){
+if(!table)return;
 
-    return;
-  }
+table.innerHTML="";
 
+if(classes.length===0){
 
-  table.innerHTML = "";
+table.innerHTML=
+'<tr><td colspan="6">No classes found.</td></tr>';
 
+return;
 
-  if(classes.length === 0){
+}
 
-    table.innerHTML =
-      '<tr><td colspan="6">No classes found.</td></tr>';
+classes.forEach((item,index)=>{
 
-    return;
-  }
+table.innerHTML+=`
 
+<tr>
 
-  classes.forEach(
-    (item,index) => {
+<td>${index+1}</td>
 
-      table.innerHTML += `
+<td>${escapeHtml(item.name)}</td>
 
-        <tr>
+<td>${escapeHtml(item.grade)}</td>
 
-          <td>${index+1}</td>
+<td>${escapeHtml(item.section)}</td>
 
-          <td>
-            ${escapeHtml(item.name)}
-          </td>
+<td>${escapeHtml(item.teacher_name)}</td>
 
-          <td>
-            ${escapeHtml(item.grade)}
-          </td>
+<td>
+<button class="small-btn"
+onclick="deleteClass(${item.id})">
+Delete
+</button>
+</td>
 
-          <td>
-            ${escapeHtml(item.section)}
-          </td>
+</tr>
 
-          <td>
-            ${escapeHtml(item.teacher_name)}
-          </td>
+`;
 
-          <td>
-
-            <button
-              class="small-btn"
-              onclick="deleteClass(${item.id})"
-            >
-              Delete
-            </button>
-
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
+});
 
 }
 
 
 async function addClass(){
 
-  const name =
-    document.getElementById(
-      "className"
-    ).value.trim();
+const name=
+document.getElementById("className").value.trim();
 
-  const grade =
-    document.getElementById(
-      "classGrade"
-    ).value.trim();
+const grade=
+document.getElementById("classGrade").value.trim();
 
-  const section =
-    document.getElementById(
-      "classSection"
-    ).value.trim();
+const section=
+document.getElementById("classSection").value.trim();
 
-  const teacherSelect =
-    document.getElementById(
-      "classTeacher"
-    );
+const teacherSelect=
+document.getElementById("classTeacher");
 
-  const teacher_name =
-    teacherSelect.options[
-      teacherSelect.selectedIndex
-    ]?.text || "";
+const teacher_name=
+teacherSelect.options[
+teacherSelect.selectedIndex
+]?.text||"";
 
+if(!name){
 
-  if(!name){
+alert("Please enter class name.");
+return;
 
-    alert(
-      "Please enter class name."
-    );
+}
 
-    return;
-  }
-
-
-  const {error} =
-    await supabaseClient
-      .from("classes")
-      .insert([{
-
-        name,
-        grade:
-          grade || null,
-        section:
-          section || null,
-        teacher_name:
-          teacher_name || null
-
-      }]);
+const {error}=
+await supabaseClient
+.from("classes")
+.insert([{
+name,
+grade:grade||null,
+section:section||null,
+teacher_name:teacher_name||null
+}]);
 
 
-  if(error){
+if(error){
 
-    alert(error.message);
+alert(error.message);
+return;
 
-    return;
-  }
+}
 
+alert("Class added successfully.");
 
-  alert(
-    "Class added successfully."
-  );
+[
+"className",
+"classGrade",
+"classSection",
+"classTeacher"
+].forEach(id=>{
+document.getElementById(id).value="";
+});
 
-
-  document.getElementById(
-    "className"
-  ).value = "";
-
-  document.getElementById(
-    "classGrade"
-  ).value = "";
-
-  document.getElementById(
-    "classSection"
-  ).value = "";
-
-  document.getElementById(
-    "classTeacher"
-  ).value = "";
-
-
-  await loadClasses();
+await loadClasses();
 
 }
 
 
 async function deleteClass(id){
 
-  if(
-    !confirm(
-      "Delete this class?"
-    )
-  ){
+if(!confirm("Delete this class?"))return;
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("classes")
+.delete()
+.eq("id",id);
 
+if(error){
 
-  const {error} =
-    await supabaseClient
-      .from("classes")
-      .delete()
-      .eq("id",id);
+alert(error.message);
+return;
 
+}
 
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  await loadClasses();
+await loadClasses();
 
 }
 
@@ -2907,183 +2057,127 @@ async function deleteClass(id){
 
 async function loadSubjects(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("subjects")
-      .select("*")
-      .order(
-        "id",
-        {
-          ascending:false
-        }
-      );
+const {data,error}=
+await supabaseClient
+.from("subjects")
+.select("*")
+.order("id",{ascending:false});
 
+if(error){
 
-  if(error){
+console.error(error);
+subjects=[];
+return;
 
-    console.error(error);
+}
 
-    subjects = [];
+subjects=data||[];
 
-    return;
-  }
+renderSubjects();
+fillSubjectDropdowns();
 
-
-  subjects =
-    data || [];
-
-
-  renderSubjects();
-
-  fillSubjectDropdowns();
-
-
-  document.getElementById(
-    "subjectCount"
-  ).textContent =
-    subjects.length;
+document.getElementById("subjectCount").textContent=
+subjects.length;
 
 }
 
 
 function renderSubjects(){
 
-  const table =
-    document.getElementById(
-      "subjectsTable"
-    );
+const table=
+document.getElementById("subjectsTable");
 
-  if(!table){
+if(!table)return;
 
-    return;
-  }
+table.innerHTML="";
 
+if(subjects.length===0){
 
-  table.innerHTML = "";
+table.innerHTML=
+'<tr><td colspan="3">No subjects found.</td></tr>';
 
+return;
 
-  if(subjects.length === 0){
+}
 
-    table.innerHTML =
-      '<tr><td colspan="3">No subjects found.</td></tr>';
+subjects.forEach((item,index)=>{
 
-    return;
-  }
+table.innerHTML+=`
 
+<tr>
 
-  subjects.forEach(
-    (item,index) => {
+<td>${index+1}</td>
 
-      table.innerHTML += `
+<td>${escapeHtml(item.subject_name)}</td>
 
-        <tr>
+<td>
+<button class="small-btn"
+onclick="deleteSubject(${item.id})">
+Delete
+</button>
+</td>
 
-          <td>${index+1}</td>
+</tr>
 
-          <td>
-            ${escapeHtml(
-              item.subject_name
-            )}
-          </td>
+`;
 
-          <td>
-
-            <button
-              class="small-btn"
-              onclick="deleteSubject(${item.id})"
-            >
-              Delete
-            </button>
-
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
+});
 
 }
 
 
 async function addSubject(){
 
-  const subject_name =
-    document.getElementById(
-      "subjectName"
-    ).value.trim();
+const subject_name=
+document.getElementById("subjectName").value.trim();
+
+if(!subject_name){
+
+alert("Enter subject name.");
+return;
+
+}
+
+const {error}=
+await supabaseClient
+.from("subjects")
+.insert([{subject_name}]);
 
 
-  if(!subject_name){
+if(error){
 
-    alert(
-      "Enter subject name."
-    );
+alert(error.message);
+return;
 
-    return;
-  }
+}
 
+alert("Subject added successfully.");
 
-  const {error} =
-    await supabaseClient
-      .from("subjects")
-      .insert([{
-        subject_name
-      }]);
+document.getElementById("subjectName").value="";
 
-
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  alert(
-    "Subject added successfully."
-  );
-
-
-  document.getElementById(
-    "subjectName"
-  ).value = "";
-
-
-  await loadSubjects();
+await loadSubjects();
 
 }
 
 
 async function deleteSubject(id){
 
-  if(
-    !confirm(
-      "Delete this subject?"
-    )
-  ){
+if(!confirm("Delete this subject?"))return;
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("subjects")
+.delete()
+.eq("id",id);
 
+if(error){
 
-  const {error} =
-    await supabaseClient
-      .from("subjects")
-      .delete()
-      .eq("id",id);
+alert(error.message);
+return;
 
+}
 
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  await loadSubjects();
+await loadSubjects();
 
 }
 
@@ -3094,221 +2188,145 @@ async function deleteSubject(id){
 
 async function loadAttendance(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("attendance")
-      .select("*")
-      .order(
-        "id",
-        {
-          ascending:false
-        }
-      );
+const {data,error}=
+await supabaseClient
+.from("attendance")
+.select("*")
+.order("id",{ascending:false});
 
+if(error){
 
-  if(error){
+console.error(error);
+attendance=[];
+return;
 
-    console.error(error);
+}
 
-    attendance = [];
+attendance=data||[];
 
-    return;
-  }
+renderAttendance();
 
-
-  attendance =
-    data || [];
-
-
-  renderAttendance();
-
-
-  document.getElementById(
-    "attendanceCount"
-  ).textContent =
-    attendance.length;
+document.getElementById("attendanceCount").textContent=
+attendance.length;
 
 }
 
 
 function renderAttendance(){
 
-  const table =
-    document.getElementById(
-      "attendanceTable"
-    );
+const table=
+document.getElementById("attendanceTable");
 
-  if(!table){
+if(!table)return;
 
-    return;
-  }
+table.innerHTML="";
 
+if(attendance.length===0){
 
-  table.innerHTML = "";
+table.innerHTML=
+'<tr><td colspan="5">No attendance records found.</td></tr>';
 
+return;
 
-  if(attendance.length === 0){
+}
 
-    table.innerHTML =
-      '<tr><td colspan="5">No attendance records found.</td></tr>';
+attendance.forEach((item,index)=>{
 
-    return;
-  }
+const student=
+students.find(s=>
+String(s.id)===String(item.student_id)
+);
 
+table.innerHTML+=`
 
-  attendance.forEach(
-    (item,index) => {
+<tr>
 
-      const student =
-        students.find(
-          s =>
-            String(s.id) ===
-            String(item.student_id)
-        );
+<td>${index+1}</td>
 
+<td>${escapeHtml(student?.full_name||"")}</td>
 
-      table.innerHTML += `
+<td>${escapeHtml(item.attendance_date)}</td>
 
-        <tr>
+<td>${escapeHtml(item.status)}</td>
 
-          <td>${index+1}</td>
+<td>
+<button class="small-btn"
+onclick="deleteAttendance(${item.id})">
+Delete
+</button>
+</td>
 
-          <td>
-            ${escapeHtml(
-              student?.full_name || ""
-            )}
-          </td>
+</tr>
 
-          <td>
-            ${escapeHtml(
-              item.attendance_date
-            )}
-          </td>
+`;
 
-          <td>
-            ${escapeHtml(
-              item.status
-            )}
-          </td>
-
-          <td>
-
-            <button
-              class="small-btn"
-              onclick="deleteAttendance(${item.id})"
-            >
-              Delete
-            </button>
-
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
+});
 
 }
 
 
 async function addAttendance(){
 
-  const student_id =
-    document.getElementById(
-      "attendanceStudent"
-    ).value;
+const student_id=
+document.getElementById("attendanceStudent").value;
 
-  const attendance_date =
-    document.getElementById(
-      "attendanceDate"
-    ).value;
+const attendance_date=
+document.getElementById("attendanceDate").value;
 
-  const status =
-    document.getElementById(
-      "attendanceStatus"
-    ).value;
+const status=
+document.getElementById("attendanceStatus").value;
 
+if(!student_id||!attendance_date){
 
-  if(
-    !student_id ||
-    !attendance_date
-  ){
+alert("Please fill all attendance fields.");
+return;
 
-    alert(
-      "Please fill all attendance fields."
-    );
+}
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("attendance")
+.insert([{
+student_id:Number(student_id),
+attendance_date,
+status
+}]);
 
 
-  const {error} =
-    await supabaseClient
-      .from("attendance")
-      .insert([{
+if(error){
 
-        student_id:
-          Number(student_id),
+alert(error.message);
+return;
 
-        attendance_date,
+}
 
-        status
+alert("Attendance saved successfully.");
 
-      }]);
+document.getElementById("attendanceStudent").value="";
 
-
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  alert(
-    "Attendance saved successfully."
-  );
-
-
-  document.getElementById(
-    "attendanceStudent"
-  ).value = "";
-
-
-  await loadAttendance();
+await loadAttendance();
 
 }
 
 
 async function deleteAttendance(id){
 
-  if(
-    !confirm(
-      "Delete this attendance record?"
-    )
-  ){
+if(!confirm("Delete this attendance record?"))return;
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("attendance")
+.delete()
+.eq("id",id);
 
+if(error){
 
-  const {error} =
-    await supabaseClient
-      .from("attendance")
-      .delete()
-      .eq("id",id);
+alert(error.message);
+return;
 
+}
 
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  await loadAttendance();
+await loadAttendance();
 
 }
 
@@ -3319,253 +2337,158 @@ async function deleteAttendance(id){
 
 async function loadGrades(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("grades")
-      .select("*")
-      .order(
-        "id",
-        {
-          ascending:false
-        }
-      );
+const {data,error}=
+await supabaseClient
+.from("grades")
+.select("*")
+.order("id",{ascending:false});
 
+if(error){
 
-  if(error){
+console.error(error);
+grades=[];
+return;
 
-    console.error(error);
+}
 
-    grades = [];
+grades=data||[];
 
-    return;
-  }
+renderGrades();
 
-
-  grades =
-    data || [];
-
-
-  renderGrades();
-
-
-  document.getElementById(
-    "gradeCount"
-  ).textContent =
-    grades.length;
+document.getElementById("gradeCount").textContent=
+grades.length;
 
 }
 
 
 function renderGrades(){
 
-  const table =
-    document.getElementById(
-      "gradesTable"
-    );
+const table=
+document.getElementById("gradesTable");
 
-  if(!table){
+if(!table)return;
 
-    return;
-  }
+table.innerHTML="";
 
+if(grades.length===0){
 
-  table.innerHTML = "";
+table.innerHTML=
+'<tr><td colspan="6">No grades found.</td></tr>';
 
+return;
 
-  if(grades.length === 0){
+}
 
-    table.innerHTML =
-      '<tr><td colspan="6">No grades found.</td></tr>';
+grades.forEach((item,index)=>{
 
-    return;
-  }
+const student=
+students.find(s=>
+String(s.id)===String(item.student_id)
+);
 
+const subject=
+subjects.find(s=>
+String(s.id)===String(item.subject_id)
+);
 
-  grades.forEach(
-    (item,index) => {
+table.innerHTML+=`
 
-      const student =
-        students.find(
-          s =>
-            String(s.id) ===
-            String(item.student_id)
-        );
+<tr>
 
+<td>${index+1}</td>
 
-      const subject =
-        subjects.find(
-          s =>
-            String(s.id) ===
-            String(item.subject_id)
-        );
+<td>${escapeHtml(student?.full_name||"")}</td>
 
+<td>${escapeHtml(subject?.subject_name||"")}</td>
 
-      table.innerHTML += `
+<td>${escapeHtml(item.score)}</td>
 
-        <tr>
+<td>${escapeHtml(item.term)}</td>
 
-          <td>${index+1}</td>
+<td>
+<button class="small-btn"
+onclick="deleteGrade(${item.id})">
+Delete
+</button>
+</td>
 
-          <td>
-            ${escapeHtml(
-              student?.full_name || ""
-            )}
-          </td>
+</tr>
 
-          <td>
-            ${escapeHtml(
-              subject?.subject_name || ""
-            )}
-          </td>
+`;
 
-          <td>
-            ${escapeHtml(
-              item.score
-            )}
-          </td>
-
-          <td>
-            ${escapeHtml(
-              item.term
-            )}
-          </td>
-
-          <td>
-
-            <button
-              class="small-btn"
-              onclick="deleteGrade(${item.id})"
-            >
-              Delete
-            </button>
-
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
+});
 
 }
 
 
 async function addGrade(){
 
-  const student_id =
-    document.getElementById(
-      "gradeStudent"
-    ).value;
+const student_id=
+document.getElementById("gradeStudent").value;
 
-  const subject_id =
-    document.getElementById(
-      "gradeSubject"
-    ).value;
+const subject_id=
+document.getElementById("gradeSubject").value;
 
-  const score =
-    document.getElementById(
-      "gradeScore"
-    ).value;
+const score=
+document.getElementById("gradeScore").value;
 
-  const term =
-    document.getElementById(
-      "gradeTerm"
-    ).value;
+const term=
+document.getElementById("gradeTerm").value;
 
+if(!student_id||!subject_id||score===""){
 
-  if(
-    !student_id ||
-    !subject_id ||
-    score === ""
-  ){
+alert("Please fill all grade fields.");
+return;
 
-    alert(
-      "Please fill all grade fields."
-    );
+}
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("grades")
+.insert([{
+student_id:Number(student_id),
+subject_id:Number(subject_id),
+score:Number(score),
+term
+}]);
 
 
-  const {error} =
-    await supabaseClient
-      .from("grades")
-      .insert([{
+if(error){
 
-        student_id:
-          Number(student_id),
+alert(error.message);
+return;
 
-        subject_id:
-          Number(subject_id),
+}
 
-        score:
-          Number(score),
+alert("Grade saved successfully.");
 
-        term
+document.getElementById("gradeStudent").value="";
+document.getElementById("gradeSubject").value="";
+document.getElementById("gradeScore").value="";
 
-      }]);
-
-
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  alert(
-    "Grade saved successfully."
-  );
-
-
-  document.getElementById(
-    "gradeStudent"
-  ).value = "";
-
-  document.getElementById(
-    "gradeSubject"
-  ).value = "";
-
-  document.getElementById(
-    "gradeScore"
-  ).value = "";
-
-
-  await loadGrades();
+await loadGrades();
 
 }
 
 
 async function deleteGrade(id){
 
-  if(
-    !confirm(
-      "Delete this grade?"
-    )
-  ){
+if(!confirm("Delete this grade?"))return;
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("grades")
+.delete()
+.eq("id",id);
 
+if(error){
 
-  const {error} =
-    await supabaseClient
-      .from("grades")
-      .delete()
-      .eq("id",id);
+alert(error.message);
+return;
 
+}
 
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  await loadGrades();
+await loadGrades();
 
 }
 
@@ -3576,244 +2499,153 @@ async function deleteGrade(id){
 
 async function loadFees(){
 
-  const {data,error} =
-    await supabaseClient
-      .from("fees")
-      .select("*")
-      .order(
-        "id",
-        {
-          ascending:false
-        }
-      );
+const {data,error}=
+await supabaseClient
+.from("fees")
+.select("*")
+.order("id",{ascending:false});
 
+if(error){
 
-  if(error){
+console.error(error);
+fees=[];
+return;
 
-    console.error(error);
+}
 
-    fees = [];
+fees=data||[];
 
-    return;
-  }
+renderFees();
 
-
-  fees =
-    data || [];
-
-
-  renderFees();
-
-
-  document.getElementById(
-    "feeCount"
-  ).textContent =
-    fees.length;
+document.getElementById("feeCount").textContent=
+fees.length;
 
 }
 
 
 function renderFees(){
 
-  const table =
-    document.getElementById(
-      "feesTable"
-    );
+const table=
+document.getElementById("feesTable");
 
-  if(!table){
+if(!table)return;
 
-    return;
-  }
+table.innerHTML="";
 
+if(fees.length===0){
 
-  table.innerHTML = "";
+table.innerHTML=
+'<tr><td colspan="6">No payment records found.</td></tr>';
 
+return;
 
-  if(fees.length === 0){
+}
 
-    table.innerHTML =
-      '<tr><td colspan="6">No payment records found.</td></tr>';
+fees.forEach((item,index)=>{
 
-    return;
-  }
+const student=
+students.find(s=>
+String(s.id)===String(item.student_id)
+);
 
+table.innerHTML+=`
 
-  fees.forEach(
-    (item,index) => {
+<tr>
 
-      const student =
-        students.find(
-          s =>
-            String(s.id) ===
-            String(item.student_id)
-        );
+<td>${index+1}</td>
 
+<td>${escapeHtml(student?.full_name||"")}</td>
 
-      table.innerHTML += `
+<td>${escapeHtml(item.amount)}</td>
 
-        <tr>
+<td>${escapeHtml(item.payment_date)}</td>
 
-          <td>${index+1}</td>
+<td>${escapeHtml(item.status)}</td>
 
-          <td>
-            ${escapeHtml(
-              student?.full_name || ""
-            )}
-          </td>
+<td>
+<button class="small-btn"
+onclick="deleteFee(${item.id})">
+Delete
+</button>
+</td>
 
-          <td>
-            ${escapeHtml(
-              item.amount
-            )}
-          </td>
+</tr>
 
-          <td>
-            ${escapeHtml(
-              item.payment_date
-            )}
-          </td>
+`;
 
-          <td>
-            ${escapeHtml(
-              item.status
-            )}
-          </td>
-
-          <td>
-
-            <button
-              class="small-btn"
-              onclick="deleteFee(${item.id})"
-            >
-              Delete
-            </button>
-
-          </td>
-
-        </tr>
-
-      `;
-
-    }
-  );
+});
 
 }
 
 
 async function addFee(){
 
-  const student_id =
-    document.getElementById(
-      "feeStudent"
-    ).value;
+const student_id=
+document.getElementById("feeStudent").value;
 
-  const amount =
-    document.getElementById(
-      "feeAmount"
-    ).value;
+const amount=
+document.getElementById("feeAmount").value;
 
-  const payment_date =
-    document.getElementById(
-      "feeDate"
-    ).value;
+const payment_date=
+document.getElementById("feeDate").value;
 
-  const status =
-    document.getElementById(
-      "feeStatus"
-    ).value;
+const status=
+document.getElementById("feeStatus").value;
 
+if(!student_id||!amount||!payment_date){
 
-  if(
-    !student_id ||
-    !amount ||
-    !payment_date
-  ){
+alert("Please fill all fee fields.");
+return;
 
-    alert(
-      "Please fill all fee fields."
-    );
+}
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("fees")
+.insert([{
+student_id:Number(student_id),
+amount:Number(amount),
+payment_date,
+status
+}]);
 
 
-  const {error} =
-    await supabaseClient
-      .from("fees")
-      .insert([{
+if(error){
 
-        student_id:
-          Number(student_id),
+alert(error.message);
+return;
 
-        amount:
-          Number(amount),
+}
 
-        payment_date,
+alert("Payment saved successfully.");
 
-        status
+document.getElementById("feeStudent").value="";
+document.getElementById("feeAmount").value="";
+document.getElementById("feeDate").value=today();
 
-      }]);
-
-
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  alert(
-    "Payment saved successfully."
-  );
-
-
-  document.getElementById(
-    "feeStudent"
-  ).value = "";
-
-  document.getElementById(
-    "feeAmount"
-  ).value = "";
-
-  document.getElementById(
-    "feeDate"
-  ).value = today();
-
-
-  await loadFees();
+await loadFees();
 
 }
 
 
 async function deleteFee(id){
 
-  if(
-    !confirm(
-      "Delete this payment?"
-    )
-  ){
+if(!confirm("Delete this payment?"))return;
 
-    return;
-  }
+const {error}=
+await supabaseClient
+.from("fees")
+.delete()
+.eq("id",id);
 
+if(error){
 
-  const {error} =
-    await supabaseClient
-      .from("fees")
-      .delete()
-      .eq("id",id);
+alert(error.message);
+return;
 
+}
 
-  if(error){
-
-    alert(error.message);
-
-    return;
-  }
-
-
-  await loadFees();
+await loadFees();
 
 }
 
@@ -3824,276 +2656,190 @@ async function deleteFee(id){
 
 function fillStudentDropdowns(){
 
-  const ids = [
-    "attendanceStudent",
-    "gradeStudent",
-    "feeStudent"
-  ];
+const ids=[
+"attendanceStudent",
+"gradeStudent",
+"feeStudent"
+];
+
+ids.forEach(id=>{
+
+const select=
+document.getElementById(id);
+
+if(!select)return;
+
+const oldValue=select.value;
+
+select.innerHTML=
+'<option value="">Select Student</option>';
+
+students.forEach(student=>{
+
+select.innerHTML+=`
+
+<option value="${student.id}">
+${escapeHtml(student.full_name)}
+- ${escapeHtml(student.student_id)}
+</option>
+
+`;
+
+});
+
+if(
+[...select.options]
+.some(option=>option.value===oldValue)
+){
+
+select.value=oldValue;
+
+}
+
+});
 
 
-  ids.forEach(id => {
+const studentClass=
+document.getElementById("studentClass");
 
-    const select =
-      document.getElementById(id);
+if(studentClass){
 
-    if(!select){
+const oldValue=studentClass.value;
 
-      return;
-    }
+studentClass.innerHTML=
+'<option value="">Select Class</option>';
 
+classes.forEach(c=>{
 
-    const oldValue =
-      select.value;
+studentClass.innerHTML+=`
 
+<option value="${c.id}">
+${escapeHtml(c.name)}
+${c.section?" - "+escapeHtml(c.section):""}
+</option>
 
-    select.innerHTML =
-      '<option value="">Select Student</option>';
+`;
 
+});
 
-    students.forEach(student => {
+if(
+[...studentClass.options]
+.some(option=>option.value===oldValue)
+){
 
-      select.innerHTML += `
+studentClass.value=oldValue;
 
-        <option value="${student.id}">
+}
 
-          ${escapeHtml(
-            student.full_name
-          )}
-          -
-          ${escapeHtml(
-            student.student_id
-          )}
-
-        </option>
-
-      `;
-
-    });
-
-
-    if(
-      [...select.options]
-        .some(
-          option =>
-            option.value === oldValue
-        )
-    ){
-
-      select.value =
-        oldValue;
-
-    }
-
-  });
-
-
-  const studentClass =
-    document.getElementById(
-      "studentClass"
-    );
-
-  if(studentClass){
-
-    const oldValue =
-      studentClass.value;
-
-    studentClass.innerHTML =
-      '<option value="">Select Class</option>';
-
-
-    classes.forEach(c => {
-
-      studentClass.innerHTML += `
-
-        <option value="${c.id}">
-
-          ${escapeHtml(c.name)}
-          ${c.section
-            ? " - " +
-              escapeHtml(c.section)
-            : ""}
-
-        </option>
-
-      `;
-
-    });
-
-
-    if(
-      [...studentClass.options]
-        .some(
-          option =>
-            option.value === oldValue
-        )
-    ){
-
-      studentClass.value =
-        oldValue;
-
-    }
-
-  }
+}
 
 }
 
 
 function fillClassDropdown(){
 
-  const select =
-    document.getElementById(
-      "studentClass"
-    );
+const select=
+document.getElementById("studentClass");
 
-  if(!select){
+if(!select)return;
 
-    return;
-  }
+const oldValue=select.value;
 
+select.innerHTML=
+'<option value="">Select Class</option>';
 
-  const oldValue =
-    select.value;
+classes.forEach(c=>{
 
+select.innerHTML+=`
 
-  select.innerHTML =
-    '<option value="">Select Class</option>';
+<option value="${c.id}">
+${escapeHtml(c.name)}
+</option>
 
+`;
 
-  classes.forEach(c => {
+});
 
-    select.innerHTML += `
+if(
+[...select.options]
+.some(option=>option.value===oldValue)
+){
 
-      <option value="${c.id}">
+select.value=oldValue;
 
-        ${escapeHtml(c.name)}
-
-      </option>
-
-    `;
-
-  });
-
-
-  if(
-    [...select.options]
-      .some(
-        option =>
-          option.value === oldValue
-      )
-  ){
-
-    select.value =
-      oldValue;
-
-  }
+}
 
 }
 
 
 function fillTeacherDropdown(){
 
-  const select =
-    document.getElementById(
-      "classTeacher"
-    );
+const select=
+document.getElementById("classTeacher");
 
-  if(!select){
+if(!select)return;
 
-    return;
-  }
+const oldValue=select.value;
 
+select.innerHTML=
+'<option value="">Select Teacher</option>';
 
-  const oldValue =
-    select.value;
+teachers.forEach(teacher=>{
 
+select.innerHTML+=`
 
-  select.innerHTML =
-    '<option value="">Select Teacher</option>';
+<option value="${teacher.id}">
+${escapeHtml(teacher.full_name)}
+</option>
 
+`;
 
-  teachers.forEach(teacher => {
+});
 
-    select.innerHTML += `
+if(
+[...select.options]
+.some(option=>option.value===oldValue)
+){
 
-      <option value="${teacher.id}">
+select.value=oldValue;
 
-        ${escapeHtml(
-          teacher.full_name
-        )}
-
-      </option>
-
-    `;
-
-  });
-
-
-  if(
-    [...select.options]
-      .some(
-        option =>
-          option.value === oldValue
-      )
-  ){
-
-    select.value =
-      oldValue;
-
-  }
+}
 
 }
 
 
 function fillSubjectDropdowns(){
 
-  const select =
-    document.getElementById(
-      "gradeSubject"
-    );
+const select=
+document.getElementById("gradeSubject");
 
-  if(!select){
+if(!select)return;
 
-    return;
-  }
+const oldValue=select.value;
 
+select.innerHTML=
+'<option value="">Select Subject</option>';
 
-  const oldValue =
-    select.value;
+subjects.forEach(subject=>{
 
+select.innerHTML+=`
 
-  select.innerHTML =
-    '<option value="">Select Subject</option>';
+<option value="${subject.id}">
+${escapeHtml(subject.subject_name)}
+</option>
 
+`;
 
-  subjects.forEach(subject => {
+});
 
-    select.innerHTML += `
+if(
+[...select.options]
+.some(option=>option.value===oldValue)
+){
 
-      <option value="${subject.id}">
+select.value=oldValue;
 
-        ${escapeHtml(
-          subject.subject_name
-        )}
-
-      </option>
-
-    `;
-
-  });
-
-
-  if(
-    [...select.options]
-      .some(
-        option =>
-          option.value === oldValue
-      )
-  ){
-
-    select.value =
-      oldValue;
-
-  }
+}
 
 }
 
@@ -4104,174 +2850,126 @@ function fillSubjectDropdowns(){
 
 async function loadTeacherDashboard(){
 
-  const content =
-    document.getElementById(
-      "teacherDashboardContent"
-    );
+const content=
+document.getElementById("teacherDashboardContent");
 
-  if(!content){
+if(!content)return;
 
-    return;
-  }
+if(currentUserRole!=="teacher"){
 
+content.innerHTML="Teacher profile not active.";
+return;
 
-  if(
-    currentUserRole !== "teacher"
-  ){
+}
 
-    content.innerHTML =
-      "Teacher profile not active.";
+const email=
+(currentUser?.email||"")
+.trim()
+.toLowerCase();
 
-    return;
-  }
+const phone=
+(currentUser?.phone||"")
+.trim();
 
+let teacher=null;
 
-  const email =
-    (
-      currentUser?.email || ""
-    )
-      .trim()
-      .toLowerCase();
+if(email){
 
+teacher=
+teachers.find(t=>
+(t.email||"")
+.trim()
+.toLowerCase()===email
+);
 
-  const phone =
-    (
-      currentUser?.phone || ""
-    )
-      .trim();
+}
 
+if(!teacher&&phone){
 
-  let teacher = null;
+teacher=
+teachers.find(t=>
+(t.phone||"").trim()===phone
+);
 
+}
 
-  if(email){
+currentTeacher=teacher||null;
 
-    teacher =
-      teachers.find(
-        t =>
-          (
-            t.email || ""
-          )
-            .trim()
-            .toLowerCase()
-          === email
-      );
+if(!teacher){
 
-  }
+content.innerHTML=`
 
+<strong>Teacher profile not found.</strong>
 
-  if(!teacher && phone){
+<br><br>
 
-    teacher =
-      teachers.find(
-        t =>
-          (
-            t.phone || ""
-          ).trim()
-          === phone
-      );
+Please make sure your teacher
+email or phone matches your teacher profile.
 
-  }
+`;
 
+return;
 
-  currentTeacher =
-    teacher || null;
+}
 
-
-  if(!teacher){
-
-    content.innerHTML = `
-
-      <strong>
-        Teacher profile not found.
-      </strong>
-
-      <br><br>
-
-      Please make sure your teacher
-      email or phone matches your
-      teacher profile.
-
-    `;
-
-    return;
-  }
+const assignedClasses=
+classes.filter(c=>
+(c.teacher_name||"")
+.trim()
+.toLowerCase()
+===
+(teacher.full_name||"")
+.trim()
+.toLowerCase()
+);
 
 
-  const assignedClasses =
-    classes.filter(
-      c =>
-        (
-          c.teacher_name || ""
-        ).trim().toLowerCase()
-        ===
-        (
-          teacher.full_name || ""
-        ).trim().toLowerCase()
-    );
+content.innerHTML=`
 
+<h3>
+Welcome,
+${escapeHtml(teacher.full_name)}
+</h3>
 
-  content.innerHTML = `
+<p>
+Subject:
+<strong>
+${escapeHtml(teacher.subject)}
+</strong>
+</p>
 
-    <h3>
-      Welcome,
-      ${escapeHtml(
-        teacher.full_name
-      )}
-    </h3>
+<p>
+Phone:
+${escapeHtml(teacher.phone)}
+</p>
 
-    <p>
-      Subject:
-      <strong>
-        ${escapeHtml(
-          teacher.subject
-        )}
-      </strong>
-    </p>
+<br>
 
-    <p>
-      Phone:
-      ${escapeHtml(
-        teacher.phone
-      )}
-    </p>
+<h4>Assigned Classes</h4>
 
-    <br>
+${
+assignedClasses.length
+?
+assignedClasses.map(c=>`
 
-    <h4>
-      Assigned Classes
-    </h4>
+<div style="
+padding:8px;
+background:white;
+margin-top:7px;
+border-radius:6px;
+">
 
-    ${
-      assignedClasses.length
-        ? assignedClasses
-            .map(
-              c =>
-                `
-                <div
-                  style="
-                    padding:8px;
-                    background:white;
-                    margin-top:7px;
-                    border-radius:6px;
-                  "
-                >
-                  ${escapeHtml(c.name)}
-                  ${
-                    c.section
-                      ? " - " +
-                        escapeHtml(c.section)
-                      : ""
-                  }
-                </div>
-                `
-            )
-            .join("")
-        :
-          "<p>No assigned classes found.</p>"
-    }
+${escapeHtml(c.name)}
+${c.section?" - "+escapeHtml(c.section):""}
 
-  `;
+</div>
+
+`).join("")
+:
+"<p>No assigned classes found.</p>"
+}
+
+`;
 
 }
 
@@ -4282,124 +2980,95 @@ async function loadTeacherDashboard(){
 
 async function refreshAll(){
 
-  await Promise.all([
-    loadClasses(),
-    loadTeachers(),
-    loadSubjects()
-  ]);
+await Promise.all([
+loadClasses(),
+loadTeachers(),
+loadSubjects()
+]);
 
+await Promise.all([
+loadStudents(),
+loadAttendance(),
+loadGrades(),
+loadFees()
+]);
 
-  await Promise.all([
-    loadStudents(),
-    loadAttendance(),
-    loadGrades(),
-    loadFees()
-  ]);
+await loadTeacherDashboard();
 
+if(isAdmin()){
 
-  await loadTeacherDashboard();
+await loadAdminUsers();
 
-
-  if(
-    currentUserRole === "admin" ||
-    currentUserRole === "administrator"
-  ){
-
-    await loadAdminUsers();
-
-  }
+}
 
 }
 
 
 /* =====================================================
-   AUTH SESSION
+   SESSION
 ===================================================== */
 
 async function checkSession(){
 
-  const {data,error} =
-    await supabaseClient.auth
-      .getSession();
+const {data,error}=
+await supabaseClient.auth.getSession();
 
+if(error){
 
-  if(error){
+console.error(error);
+return;
 
-    console.error(error);
+}
 
-    return;
-  }
+if(data.session){
 
+currentUser=data.session.user;
 
-  if(data.session){
+await showApp();
 
-    currentUser =
-      data.session.user;
-
-    await showApp();
-
-  }
+}
 
 }
 
 
 /* =====================================================
-   AUTH STATE CHANGE
+   AUTH STATE
 ===================================================== */
 
-supabaseClient.auth
-  .onAuthStateChange(
-    async(event,session) => {
+supabaseClient.auth.onAuthStateChange(
+async(event,session)=>{
 
-      if(
-        event === "PASSWORD_RECOVERY"
-      ){
+if(event==="PASSWORD_RECOVERY"){
 
-        document
-          .getElementById(
-            "loginPage"
-          )
-          .classList.remove("hidden");
+document.getElementById("loginPage")
+.classList.remove("hidden");
 
-        document
-          .getElementById(
-            "app"
-          )
-          .classList.add("hidden");
+document.getElementById("app")
+.classList.add("hidden");
 
-        document
-          .getElementById(
-            "loginForm"
-          )
-          .classList.add("hidden");
+document.getElementById("loginForm")
+.classList.add("hidden");
 
-        document
-          .getElementById(
-            "forgotForm"
-          )
-          .classList.add("hidden");
+document.getElementById("forgotForm")
+.classList.add("hidden");
 
-        document
-          .getElementById(
-            "newPasswordForm"
-          )
-          .classList.remove("hidden");
+document.getElementById("newPasswordForm")
+.classList.remove("hidden");
 
-        return;
-      }
+return;
 
+}
 
-      if(session){
+if(session){
 
-        currentUser =
-          session.user;
+currentUser=session.user;
 
-        await showApp();
+await showApp();
 
-      }
+}
 
-    }
-  );
+}
+);
 
 
 /* =====================================================
@@ -4407,39 +3076,24 @@ supabaseClient.auth
 ===================================================== */
 
 document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+"DOMContentLoaded",
+()=>{
 
-    const attendanceDate =
-      document.getElementById(
-        "attendanceDate"
-      );
+const attendanceDate=
+document.getElementById("attendanceDate");
 
-    const feeDate =
-      document.getElementById(
-        "feeDate"
-      );
+const feeDate=
+document.getElementById("feeDate");
 
+if(attendanceDate)
+attendanceDate.value=today();
 
-    if(attendanceDate){
+if(feeDate)
+feeDate.value=today();
 
-      attendanceDate.value =
-        today();
+checkSession();
 
-    }
-
-
-    if(feeDate){
-
-      feeDate.value =
-        today();
-
-    }
-
-
-    checkSession();
-
-  }
+}
 );
 
 </script>
