@@ -1545,13 +1545,9 @@ return permissions.includes(section);
 
 }
 
-/*
-=====================================================
-IMPORTANT:
-ONLY ADMIN CAN ADD STUDENTS
-STAFF IS VIEW-ONLY
-=====================================================
-*/
+/* =====================================================
+STUDENT PERMISSIONS
+===================================================== */
 
 function canAddStudents(){
 
@@ -1562,40 +1558,85 @@ return isAdmin();
 function canDeleteStudents(){
 
 return isAdmin();
+
 }
+
+/* =====================================================
+OTHER ADMIN PERMISSIONS
+===================================================== */
 
 function canManageTeachers(){
 
 return isAdmin();
+
 }
 
 function canManageClasses(){
 
 return isAdmin();
+
 }
 
 function canManageSubjects(){
 
 return isAdmin();
+
 }
+
+/* =====================================================
+ATTENDANCE PERMISSIONS
+===================================================== */
+
+/*
+Admin    = Add + Delete
+Teacher  = Add only
+Staff    = View only
+*/
 
 function canManageAttendance(){
 
 return isAdmin() ||
-currentUserRole==="teacher" ||
-currentUserRole==="staff";
+currentUserRole==="teacher";
+
 }
+
+function canDeleteAttendance(){
+
+return isAdmin();
+
+}
+
+/* =====================================================
+GRADE PERMISSIONS
+===================================================== */
+
+/*
+Admin    = Add + Delete
+Teacher  = Add only
+*/
 
 function canManageGrades(){
 
 return isAdmin() ||
 currentUserRole==="teacher";
+
 }
+
+function canDeleteGrades(){
+
+return isAdmin();
+
+}
+
+/* =====================================================
+FEES PERMISSIONS
+===================================================== */
 
 function canManageFees(){
 
 return isAdmin() ||
 currentUserRole==="finance";
+
 }
 
 function requirePermission(section){
@@ -3357,8 +3398,15 @@ String(s.id)===
 String(item.student_id)
 );
 
+/*
+IMPORTANT:
+Only Admin can see Delete.
+Teacher can Add/View only.
+Staff can View only.
+*/
+
 const deleteButton=
-canManageAttendance()
+canDeleteAttendance()
 ?
 `
 <button
@@ -3473,7 +3521,12 @@ await loadAttendance();
 
 async function deleteAttendance(id){
 
-if(!canManageAttendance()){
+/*
+IMPORTANT:
+Only Admin can delete attendance.
+*/
+
+if(!canDeleteAttendance()){
 
 alert(
 "You do not have permission to delete attendance."
@@ -3566,8 +3619,14 @@ String(s.id)===
 String(item.subject_id)
 );
 
+/*
+IMPORTANT:
+Only Admin can see Delete.
+Teacher can Add/View only.
+*/
+
 const deleteButton=
-canManageGrades()
+canDeleteGrades()
 ?
 `
 <button
@@ -3696,7 +3755,12 @@ await loadGrades();
 
 async function deleteGrade(id){
 
-if(!canManageGrades()){
+/*
+IMPORTANT:
+Only Admin can delete grades.
+*/
+
+if(!canDeleteGrades()){
 
 alert(
 "You do not have permission to delete grades."
@@ -4453,4 +4517,4 @@ checkSession();
 </script>
 
 </body>
-               </html>
+  </html>
