@@ -1161,11 +1161,6 @@ class="hidden">
 Attendance
 </h2>
 
-<!--
-ADMIN + TEACHER = CAN ADD
-STAFF = VIEW ONLY
--->
-
 <div
 id="attendanceForm"
 class="form-card">
@@ -1247,11 +1242,6 @@ class="hidden">
 <h2 class="section-title">
 Grades
 </h2>
-
-<!--
-ADMIN + TEACHER = CAN ADD
-ONLY ADMIN = CAN DELETE
--->
 
 <div
 id="gradeForm"
@@ -1561,9 +1551,7 @@ return permissions.includes(section);
 
 }
 
-/* =====================================================
-STUDENT PERMISSIONS
-===================================================== */
+/* STUDENT PERMISSIONS */
 
 function canAddStudents(){
 
@@ -1577,9 +1565,7 @@ return isAdmin();
 
 }
 
-/* =====================================================
-OTHER ADMIN PERMISSIONS
-===================================================== */
+/* OTHER ADMIN PERMISSIONS */
 
 function canManageTeachers(){
 
@@ -1599,15 +1585,7 @@ return isAdmin();
 
 }
 
-/* =====================================================
-ATTENDANCE PERMISSIONS
-===================================================== */
-
-/*
-ADMIN   = ADD + DELETE
-TEACHER = ADD + VIEW
-STAFF   = VIEW ONLY
-*/
+/* ATTENDANCE PERMISSIONS */
 
 function canManageAttendance(){
 
@@ -1622,14 +1600,7 @@ return isAdmin();
 
 }
 
-/* =====================================================
-GRADE PERMISSIONS
-===================================================== */
-
-/*
-ADMIN   = ADD + DELETE
-TEACHER = ADD + VIEW
-*/
+/* GRADE PERMISSIONS */
 
 function canManageGrades(){
 
@@ -1644,9 +1615,7 @@ return isAdmin();
 
 }
 
-/* =====================================================
-FEES PERMISSIONS
-===================================================== */
+/* FEES PERMISSIONS */
 
 function canManageFees(){
 
@@ -1981,10 +1950,7 @@ button.classList.add("hidden");
 
 });
 
-/* ==========================================
-STUDENT FORM
-ONLY ADMIN
-========================================== */
+/* STUDENT FORM */
 
 const studentForm=
 document.getElementById("studentForm");
@@ -2003,11 +1969,7 @@ studentForm.classList.add("hidden");
 
 }
 
-/* ==========================================
-ATTENDANCE FORM
-ADMIN + TEACHER
-STAFF = HIDDEN
-========================================== */
+/* ATTENDANCE FORM */
 
 const attendanceForm=
 document.getElementById("attendanceForm");
@@ -2026,10 +1988,7 @@ attendanceForm.classList.add("hidden");
 
 }
 
-/* ==========================================
-GRADE FORM
-ADMIN + TEACHER
-========================================== */
+/* GRADE FORM */
 
 const gradeForm=
 document.getElementById("gradeForm");
@@ -2048,10 +2007,7 @@ gradeForm.classList.add("hidden");
 
 }
 
-/* ==========================================
-FEE FORM
-ADMIN + FINANCE
-========================================== */
+/* FEE FORM */
 
 const feeForm=
 document.getElementById("feeForm");
@@ -2069,32 +2025,6 @@ feeForm.classList.add("hidden");
 }
 
 }
-
-}
-
-function loadCurrentAdminInfo(data){
-
-if(!data)return;
-
-document.getElementById(
-"adminCurrentName"
-).value=
-data.full_name||"";
-
-document.getElementById(
-"adminCurrentEmail"
-).value=
-data.email||"";
-
-document.getElementById(
-"adminCurrentPhone"
-).value=
-data.phone||"";
-
-document.getElementById(
-"adminCurrentRole"
-).value=
-data.role||"";
 
 }
 
@@ -3475,12 +3405,6 @@ String(s.id)===
 String(item.student_id)
 );
 
-/*
-ADMIN   = DELETE
-TEACHER = NO DELETE
-STAFF   = NO DELETE
-*/
-
 const deleteButton=
 canDeleteAttendance()
 ?
@@ -3529,10 +3453,6 @@ ${deleteButton}
 }
 
 async function addAttendance(){
-
-/*
-ADMIN + TEACHER ONLY
-*/
 
 if(!canManageAttendance()){
 
@@ -3600,10 +3520,6 @@ await loadAttendance();
 }
 
 async function deleteAttendance(id){
-
-/*
-ONLY ADMIN
-*/
 
 if(!canDeleteAttendance()){
 
@@ -3700,11 +3616,6 @@ String(s.id)===
 String(item.subject_id)
 );
 
-/*
-ADMIN   = DELETE
-TEACHER = NO DELETE
-*/
-
 const deleteButton=
 canDeleteGrades()
 ?
@@ -3751,10 +3662,6 @@ subject?.subject_name||""
 }
 
 async function addGrade(){
-
-/*
-ADMIN + TEACHER ONLY
-*/
 
 if(!canManageGrades()){
 
@@ -3838,10 +3745,6 @@ await loadGrades();
 }
 
 async function deleteGrade(id){
-
-/*
-ONLY ADMIN
-*/
 
 if(!canDeleteGrades()){
 
@@ -4455,50 +4358,80 @@ escapeHtml(c.section)
 
 }
 
-async function refreshAll(){
+/* =====================================================
+FIXED DATA LOADING ORDER
+Students must load BEFORE Attendance, Grades and Fees.
+This prevents blank student names.
+===================================================== */
 
-const tasks=[];
+async function refreshAll(){
 
 if(isAdmin()){
 
-tasks.push(loadClasses());
-tasks.push(loadTeachers());
-tasks.push(loadSubjects());
-tasks.push(loadStudents());
-tasks.push(loadAttendance());
-tasks.push(loadGrades());
-tasks.push(loadFees());
-tasks.push(loadAdminUsers());
+/* First load the data used by other tables */
+
+await loadClasses();
+
+await loadTeachers();
+
+await loadSubjects();
+
+await loadStudents();
+
+/* Students now exist before these are rendered */
+
+await loadAttendance();
+
+await loadGrades();
+
+await loadFees();
+
+await loadAdminUsers();
 
 }
 
 else if(currentUserRole==="teacher"){
 
-tasks.push(loadClasses());
-tasks.push(loadTeachers());
-tasks.push(loadSubjects());
-tasks.push(loadStudents());
-tasks.push(loadAttendance());
-tasks.push(loadGrades());
+await loadClasses();
+
+await loadTeachers();
+
+await loadSubjects();
+
+await loadStudents();
+
+await loadAttendance();
+
+await loadGrades();
 
 }
 
 else if(currentUserRole==="staff"){
 
-tasks.push(loadClasses());
-tasks.push(loadStudents());
-tasks.push(loadAttendance());
+/* IMPORTANT:
+Students MUST finish loading first.
+Then Attendance can find student names.
+*/
+
+await loadClasses();
+
+await loadStudents();
+
+await loadAttendance();
 
 }
 
 else if(currentUserRole==="finance"){
 
-tasks.push(loadStudents());
-tasks.push(loadFees());
+/* Students first because Fees display student names */
+
+await loadStudents();
+
+await loadFees();
 
 }
 
-await Promise.all(tasks);
+/* Teacher dashboard runs after teachers/classes are ready */
 
 if(currentUserRole==="teacher"){
 
