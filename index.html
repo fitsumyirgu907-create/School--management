@@ -1335,6 +1335,7 @@ class="hidden">
 
 <div class="permission-note">
 Only Admin and Finance accounts can manage school payments.
+Parent accounts can view payments for their linked student only.
 </div>
 
 <div
@@ -1507,8 +1508,14 @@ student:[
 "dashboard"
 ],
 
+/* PARENT CAN NOW VIEW CHILD DATA */
+
 parent:[
-"dashboard"
+"dashboard",
+"students",
+"attendance",
+"grades",
+"fees"
 ]
 
 };
@@ -4359,16 +4366,12 @@ escapeHtml(c.section)
 }
 
 /* =====================================================
-FIXED DATA LOADING ORDER
-Students must load BEFORE Attendance, Grades and Fees.
-This prevents blank student names.
+DATA LOADING
 ===================================================== */
 
 async function refreshAll(){
 
 if(isAdmin()){
-
-/* First load the data used by other tables */
 
 await loadClasses();
 
@@ -4377,8 +4380,6 @@ await loadTeachers();
 await loadSubjects();
 
 await loadStudents();
-
-/* Students now exist before these are rendered */
 
 await loadAttendance();
 
@@ -4408,11 +4409,6 @@ await loadGrades();
 
 else if(currentUserRole==="staff"){
 
-/* IMPORTANT:
-Students MUST finish loading first.
-Then Attendance can find student names.
-*/
-
 await loadClasses();
 
 await loadStudents();
@@ -4423,15 +4419,41 @@ await loadAttendance();
 
 else if(currentUserRole==="finance"){
 
-/* Students first because Fees display student names */
-
 await loadStudents();
 
 await loadFees();
 
 }
 
-/* Teacher dashboard runs after teachers/classes are ready */
+/* =====================================================
+PARENT DATA
+
+Parent gets data from Supabase RLS.
+
+The database automatically limits:
+Students      -> linked student
+Attendance    -> linked student
+Grades        -> linked student
+Fees          -> linked student
+
+Subjects are loaded so grade subject names can be shown.
+===================================================== */
+
+else if(currentUserRole==="parent"){
+
+await loadSubjects();
+
+await loadStudents();
+
+await loadAttendance();
+
+await loadGrades();
+
+await loadFees();
+
+}
+
+/* Teacher dashboard */
 
 if(currentUserRole==="teacher"){
 
