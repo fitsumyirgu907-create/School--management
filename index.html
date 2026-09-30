@@ -422,6 +422,7 @@ Management System
 <div id="loginForm">
 
 <label>Email or Phone</label>
+
 <input
 id="loginEmail"
 type="text"
@@ -429,6 +430,7 @@ placeholder="Enter email or phone"
 >
 
 <label>Password</label>
+
 <input
 id="loginPassword"
 type="password"
@@ -1159,7 +1161,14 @@ class="hidden">
 Attendance
 </h2>
 
-<div class="form-card">
+<!--
+ADMIN + TEACHER = CAN ADD
+STAFF = VIEW ONLY
+-->
+
+<div
+id="attendanceForm"
+class="form-card">
 
 <div class="form-grid">
 
@@ -1239,7 +1248,14 @@ class="hidden">
 Grades
 </h2>
 
-<div class="form-card">
+<!--
+ADMIN + TEACHER = CAN ADD
+ONLY ADMIN = CAN DELETE
+-->
+
+<div
+id="gradeForm"
+class="form-card">
 
 <div class="form-grid">
 
@@ -1588,9 +1604,9 @@ ATTENDANCE PERMISSIONS
 ===================================================== */
 
 /*
-Admin    = Add + Delete
-Teacher  = Add only
-Staff    = View only
+ADMIN   = ADD + DELETE
+TEACHER = ADD + VIEW
+STAFF   = VIEW ONLY
 */
 
 function canManageAttendance(){
@@ -1611,8 +1627,8 @@ GRADE PERMISSIONS
 ===================================================== */
 
 /*
-Admin    = Add + Delete
-Teacher  = Add only
+ADMIN   = ADD + DELETE
+TEACHER = ADD + VIEW
 */
 
 function canManageGrades(){
@@ -1922,12 +1938,6 @@ currentUserRole.toUpperCase()+
 :
 "";
 
-if(isAdmin()){
-
-loadCurrentAdminInfo(data);
-
-}
-
 applyRolePermissions();
 
 }
@@ -1971,6 +1981,11 @@ button.classList.add("hidden");
 
 });
 
+/* ==========================================
+STUDENT FORM
+ONLY ADMIN
+========================================== */
+
 const studentForm=
 document.getElementById("studentForm");
 
@@ -1987,6 +2002,56 @@ studentForm.classList.add("hidden");
 }
 
 }
+
+/* ==========================================
+ATTENDANCE FORM
+ADMIN + TEACHER
+STAFF = HIDDEN
+========================================== */
+
+const attendanceForm=
+document.getElementById("attendanceForm");
+
+if(attendanceForm){
+
+if(canManageAttendance()){
+
+attendanceForm.classList.remove("hidden");
+
+}else{
+
+attendanceForm.classList.add("hidden");
+
+}
+
+}
+
+/* ==========================================
+GRADE FORM
+ADMIN + TEACHER
+========================================== */
+
+const gradeForm=
+document.getElementById("gradeForm");
+
+if(gradeForm){
+
+if(canManageGrades()){
+
+gradeForm.classList.remove("hidden");
+
+}else{
+
+gradeForm.classList.add("hidden");
+
+}
+
+}
+
+/* ==========================================
+FEE FORM
+ADMIN + FINANCE
+========================================== */
 
 const feeForm=
 document.getElementById("feeForm");
@@ -2074,7 +2139,8 @@ return;
 
 await refreshAll();
 
-showSection("dashboard",
+showSection(
+"dashboard",
 document.getElementById("menuDashboard")
 );
 
@@ -2374,6 +2440,7 @@ error.message||
 if(button){
 
 button.disabled=false;
+
 button.textContent=
 "➕ Create Account";
 
@@ -2495,7 +2562,9 @@ await supabaseClient
 if(error){
 
 console.error(error);
+
 students=[];
+
 return;
 
 }
@@ -2763,7 +2832,9 @@ await supabaseClient
 if(error){
 
 console.error(error);
+
 teachers=[];
+
 return;
 
 }
@@ -2975,7 +3046,9 @@ await supabaseClient
 if(error){
 
 console.error(error);
+
 classes=[];
+
 return;
 
 }
@@ -3185,7 +3258,9 @@ await supabaseClient
 if(error){
 
 console.error(error);
+
 subjects=[];
+
 return;
 
 }
@@ -3354,7 +3429,9 @@ await supabaseClient
 if(error){
 
 console.error(error);
+
 attendance=[];
+
 return;
 
 }
@@ -3399,10 +3476,9 @@ String(item.student_id)
 );
 
 /*
-IMPORTANT:
-Only Admin can see Delete.
-Teacher can Add/View only.
-Staff can View only.
+ADMIN   = DELETE
+TEACHER = NO DELETE
+STAFF   = NO DELETE
 */
 
 const deleteButton=
@@ -3454,10 +3530,14 @@ ${deleteButton}
 
 async function addAttendance(){
 
+/*
+ADMIN + TEACHER ONLY
+*/
+
 if(!canManageAttendance()){
 
 alert(
-"You do not have permission to manage attendance."
+"You do not have permission to add attendance."
 );
 
 return;
@@ -3522,8 +3602,7 @@ await loadAttendance();
 async function deleteAttendance(id){
 
 /*
-IMPORTANT:
-Only Admin can delete attendance.
+ONLY ADMIN
 */
 
 if(!canDeleteAttendance()){
@@ -3569,7 +3648,9 @@ await supabaseClient
 if(error){
 
 console.error(error);
+
 grades=[];
+
 return;
 
 }
@@ -3620,9 +3701,8 @@ String(item.subject_id)
 );
 
 /*
-IMPORTANT:
-Only Admin can see Delete.
-Teacher can Add/View only.
+ADMIN   = DELETE
+TEACHER = NO DELETE
 */
 
 const deleteButton=
@@ -3672,10 +3752,14 @@ subject?.subject_name||""
 
 async function addGrade(){
 
+/*
+ADMIN + TEACHER ONLY
+*/
+
 if(!canManageGrades()){
 
 alert(
-"You do not have permission to manage grades."
+"You do not have permission to add grades."
 );
 
 return;
@@ -3756,8 +3840,7 @@ await loadGrades();
 async function deleteGrade(id){
 
 /*
-IMPORTANT:
-Only Admin can delete grades.
+ONLY ADMIN
 */
 
 if(!canDeleteGrades()){
@@ -3803,7 +3886,9 @@ await supabaseClient
 if(error){
 
 console.error(error);
+
 fees=[];
+
 return;
 
 }
@@ -4517,4 +4602,4 @@ checkSession();
 </script>
 
 </body>
-  </html>
+</html>
