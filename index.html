@@ -401,10 +401,6 @@ padding:13px
 
 <body>
 
-<!-- =====================================================
-LOGIN
-===================================================== -->
-
 <div id="loginPage" class="login-page">
 
 <div class="login-box">
@@ -453,7 +449,6 @@ Forgot Password?
 
 </div>
 
-
 <div id="forgotForm" class="hidden">
 
 <h3 style="margin-bottom:15px">
@@ -482,7 +477,6 @@ Back to Login
 
 </div>
 
-
 <div id="newPasswordForm" class="hidden">
 
 <h3 style="margin-bottom:15px">
@@ -507,11 +501,6 @@ Update Password
 
 </div>
 </div>
-
-
-<!-- =====================================================
-APPLICATION
-===================================================== -->
 
 <div id="app" class="hidden">
 
@@ -538,16 +527,9 @@ Logout
 </div>
 </div>
 
-
 <div class="layout">
 
-
-<!-- =====================================================
-SIDEBAR
-===================================================== -->
-
 <div class="sidebar">
-
 
 <button
 id="menuDashboard"
@@ -556,14 +538,12 @@ onclick="showSection('dashboard',this)">
 🏠 Dashboard
 </button>
 
-
 <button
 id="menuTeacherDashboard"
 class="menu-btn hidden"
 onclick="showSection('teacherDashboard',this)">
 👨‍🏫 Teacher Dashboard
 </button>
-
 
 <button
 id="menuAdmin"
@@ -572,14 +552,12 @@ onclick="showSection('adminAccountManager',this)">
 👑 Admin Account Manager
 </button>
 
-
 <button
 id="menuStudents"
 class="menu-btn hidden"
 onclick="showSection('students',this)">
 👨‍🎓 Students
 </button>
-
 
 <button
 id="menuTeachers"
@@ -588,14 +566,12 @@ onclick="showSection('teachers',this)">
 👨‍🏫 Teachers
 </button>
 
-
 <button
 id="menuClasses"
 class="menu-btn hidden"
 onclick="showSection('classes',this)">
 🏫 Classes
 </button>
-
 
 <button
 id="menuSubjects"
@@ -604,7 +580,6 @@ onclick="showSection('subjects',this)">
 📚 Subjects
 </button>
 
-
 <button
 id="menuAttendance"
 class="menu-btn hidden"
@@ -612,14 +587,12 @@ onclick="showSection('attendance',this)">
 📋 Attendance
 </button>
 
-
 <button
 id="menuGrades"
 class="menu-btn hidden"
 onclick="showSection('grades',this)">
 📝 Grades
 </button>
-
 
 <button
 id="menuFees"
@@ -630,13 +603,7 @@ onclick="showSection('fees',this)">
 
 </div>
 
-
 <div class="content">
-
-
-<!-- =====================================================
-DASHBOARD
-===================================================== -->
 
 <section id="dashboard">
 
@@ -685,11 +652,6 @@ Dashboard
 
 </section>
 
-
-<!-- =====================================================
-TEACHER DASHBOARD
-===================================================== -->
-
 <section
 id="teacherDashboard"
 class="hidden">
@@ -706,11 +668,6 @@ Loading...
 
 </section>
 
-
-<!-- =====================================================
-ADMIN ACCOUNT MANAGER
-===================================================== -->
-
 <section
 id="adminAccountManager"
 class="hidden">
@@ -718,7 +675,6 @@ class="hidden">
 <h2 class="section-title">
 👑 Admin Account Manager
 </h2>
-
 
 <div class="form-card">
 
@@ -752,7 +708,6 @@ Current Admin
 
 </div>
 
-
 <div class="form-card">
 
 <h3 style="margin-bottom:15px">
@@ -773,7 +728,6 @@ type="text"
 placeholder="Enter full name">
 </div>
 
-
 <div>
 <label>Email</label>
 <input
@@ -782,7 +736,6 @@ type="email"
 placeholder="Enter email">
 </div>
 
-
 <div>
 <label>Phone</label>
 <input
@@ -790,7 +743,6 @@ id="newUserPhone"
 type="text"
 placeholder="Enter phone">
 </div>
-
 
 <div>
 <label>Role</label>
@@ -825,7 +777,6 @@ Parent
 
 </div>
 
-
 <div>
 <label>Password</label>
 
@@ -834,7 +785,6 @@ id="newUserPassword"
 type="password"
 placeholder="Minimum 6 characters">
 </div>
-
 
 <div>
 <label>Confirm Password</label>
@@ -847,7 +797,6 @@ placeholder="Confirm password">
 
 </div>
 
-
 <button
 id="createAccountBtn"
 class="success-btn"
@@ -856,7 +805,6 @@ onclick="createUserAccount()">
 </button>
 
 </div>
-
 
 <div class="table-card">
 
@@ -895,11 +843,6 @@ Loading users...
 
 </section>
 
-
-<!-- =====================================================
-STUDENTS
-===================================================== -->
-
 <section
 id="students"
 class="hidden">
@@ -912,7 +855,6 @@ Students Management
 id="studentPermissionNote"
 class="permission-note hidden">
 </div>
-
 
 <div
 id="studentForm"
@@ -981,7 +923,6 @@ onclick="addStudent()">
 
 </div>
 
-
 <div class="table-card">
 
 <div class="search-box">
@@ -1018,11 +959,6 @@ oninput="renderStudents()">
 </div>
 
 </section>
-
-
-<!-- =====================================================
-TEACHERS
-===================================================== -->
 
 <section
 id="teachers"
@@ -1071,7 +1007,6 @@ onclick="addTeacher()">
 
 </div>
 
-
 <div class="table-card">
 
 <table>
@@ -1098,11 +1033,6 @@ onclick="addTeacher()">
 </div>
 
 </section>
-
-
-<!-- =====================================================
-CLASSES
-===================================================== -->
 
 <section
 id="classes"
@@ -1146,7 +1076,6 @@ onclick="addClass()">
 
 </div>
 
-
 <div class="table-card">
 
 <table>
@@ -1172,11 +1101,6 @@ onclick="addClass()">
 </div>
 
 </section>
-
-
-<!-- =====================================================
-SUBJECTS
-===================================================== -->
 
 <section
 id="subjects"
@@ -1204,7 +1128,6 @@ onclick="addSubject()">
 
 </div>
 
-
 <div class="table-card">
 
 <table>
@@ -1227,11 +1150,6 @@ onclick="addSubject()">
 </div>
 
 </section>
-
-
-<!-- =====================================================
-ATTENDANCE
-===================================================== -->
 
 <section
 id="attendance"
@@ -1288,7 +1206,6 @@ onclick="addAttendance()">
 
 </div>
 
-
 <div class="table-card">
 
 <table>
@@ -1313,11 +1230,6 @@ onclick="addAttendance()">
 </div>
 
 </section>
-
-
-<!-- =====================================================
-GRADES
-===================================================== -->
 
 <section
 id="grades"
@@ -1381,7 +1293,6 @@ onclick="addGrade()">
 
 </div>
 
-
 <div class="table-card">
 
 <table>
@@ -1408,11 +1319,6 @@ onclick="addGrade()">
 
 </section>
 
-
-<!-- =====================================================
-FEES
-===================================================== -->
-
 <section
 id="fees"
 class="hidden">
@@ -1424,7 +1330,6 @@ class="hidden">
 <div class="permission-note">
 Only Admin and Finance accounts can manage school payments.
 </div>
-
 
 <div
 id="feeForm"
@@ -1482,7 +1387,6 @@ onclick="addFee()">
 
 </div>
 
-
 <div class="table-card">
 
 <table>
@@ -1513,12 +1417,7 @@ onclick="addFee()">
 </div>
 </div>
 
-
 <script>
-
-/* =====================================================
-SUPABASE
-===================================================== */
 
 const SUPABASE_URL =
 "https://ykvkxxxssmfgydqzijby.supabase.co";
@@ -1535,11 +1434,6 @@ SUPABASE_URL,
 SUPABASE_KEY
 );
 
-
-/* =====================================================
-GLOBAL VARIABLES
-===================================================== */
-
 let students=[];
 let teachers=[];
 let classes=[];
@@ -1554,11 +1448,6 @@ let currentTeacher=null;
 let currentUserRole="";
 
 let appLoading=false;
-
-
-/* =====================================================
-ROLE PERMISSIONS
-===================================================== */
 
 const ROLE_PERMISSIONS={
 
@@ -1618,11 +1507,6 @@ parent:[
 
 };
 
-
-/* =====================================================
-HELPERS
-===================================================== */
-
 function escapeHtml(value){
 
 if(value===null||value===undefined)
@@ -1637,7 +1521,6 @@ return String(value)
 
 }
 
-
 function today(){
 
 return new Date()
@@ -1646,14 +1529,12 @@ return new Date()
 
 }
 
-
 function isAdmin(){
 
 return currentUserRole==="admin" ||
 currentUserRole==="administrator";
 
 }
-
 
 function hasPermission(section){
 
@@ -1664,38 +1545,39 @@ return permissions.includes(section);
 
 }
 
+/*
+=====================================================
+IMPORTANT:
+ONLY ADMIN CAN ADD STUDENTS
+STAFF IS VIEW-ONLY
+=====================================================
+*/
 
 function canAddStudents(){
 
-return isAdmin() ||
-currentUserRole==="staff";
+return isAdmin();
 
 }
-
 
 function canDeleteStudents(){
 
 return isAdmin();
 }
 
-
 function canManageTeachers(){
 
 return isAdmin();
 }
-
 
 function canManageClasses(){
 
 return isAdmin();
 }
 
-
 function canManageSubjects(){
 
 return isAdmin();
 }
-
 
 function canManageAttendance(){
 
@@ -1704,20 +1586,17 @@ currentUserRole==="teacher" ||
 currentUserRole==="staff";
 }
 
-
 function canManageGrades(){
 
 return isAdmin() ||
 currentUserRole==="teacher";
 }
 
-
 function canManageFees(){
 
 return isAdmin() ||
 currentUserRole==="finance";
 }
-
 
 function requirePermission(section){
 
@@ -1734,11 +1613,6 @@ return false;
 return true;
 
 }
-
-
-/* =====================================================
-LOGIN
-===================================================== */
 
 async function login(){
 
@@ -1796,7 +1670,6 @@ await showApp();
 
 }
 
-
 async function logout(){
 
 await supabaseClient.auth.signOut();
@@ -1809,11 +1682,6 @@ location.reload();
 
 }
 
-
-/* =====================================================
-LOGIN SCREENS
-===================================================== */
-
 function showForgot(){
 
 document
@@ -1825,7 +1693,6 @@ document
 .classList.remove("hidden");
 
 }
-
 
 function showLogin(){
 
@@ -1842,7 +1709,6 @@ document
 .classList.remove("hidden");
 
 }
-
 
 async function sendReset(){
 
@@ -1882,7 +1748,6 @@ alert(
 }
 
 }
-
 
 async function updatePassword(){
 
@@ -1926,11 +1791,6 @@ showLogin();
 
 }
 
-
-/* =====================================================
-LOAD CURRENT USER ROLE
-===================================================== */
-
 async function loadCurrentUserRole(){
 
 if(!currentUser){
@@ -1951,9 +1811,6 @@ currentUser.id;
 let data=null;
 let error=null;
 
-
-/* SEARCH BY AUTH ID */
-
 if(authId){
 
 const result=
@@ -1969,9 +1826,6 @@ data=result.data;
 error=result.error;
 
 }
-
-
-/* SEARCH BY EMAIL */
 
 if(!data&&email){
 
@@ -1989,7 +1843,6 @@ error=result.error;
 
 }
 
-
 if(error){
 
 console.error(error);
@@ -1999,7 +1852,6 @@ currentUserRole="";
 return;
 
 }
-
 
 if(!data){
 
@@ -2013,13 +1865,11 @@ return;
 
 }
 
-
 currentUserRole=
 (data.role||"")
 .toString()
 .trim()
 .toLowerCase();
-
 
 document.getElementById("loggedRole")
 .textContent=
@@ -2031,7 +1881,6 @@ currentUserRole.toUpperCase()+
 :
 "";
 
-
 if(isAdmin()){
 
 loadCurrentAdminInfo(data);
@@ -2041,11 +1890,6 @@ loadCurrentAdminInfo(data);
 applyRolePermissions();
 
 }
-
-
-/* =====================================================
-APPLY ROLE PERMISSIONS
-===================================================== */
 
 function applyRolePermissions(){
 
@@ -2062,7 +1906,6 @@ grades:"menuGrades",
 fees:"menuFees"
 
 };
-
 
 Object
 .keys(menuMap)
@@ -2087,9 +1930,6 @@ button.classList.add("hidden");
 
 });
 
-
-/* STUDENT ADD FORM */
-
 const studentForm=
 document.getElementById("studentForm");
 
@@ -2106,9 +1946,6 @@ studentForm.classList.add("hidden");
 }
 
 }
-
-
-/* FEES FORM */
 
 const feeForm=
 document.getElementById("feeForm");
@@ -2128,11 +1965,6 @@ feeForm.classList.add("hidden");
 }
 
 }
-
-
-/* =====================================================
-ADMIN INFO
-===================================================== */
 
 function loadCurrentAdminInfo(data){
 
@@ -2159,11 +1991,6 @@ document.getElementById(
 data.role||"";
 
 }
-
-
-/* =====================================================
-SHOW APP
-===================================================== */
 
 async function showApp(){
 
@@ -2225,11 +2052,6 @@ appLoading=false;
 
 }
 
-
-/* =====================================================
-NAVIGATION
-===================================================== */
-
 function showSection(id,button){
 
 if(!hasPermission(id)){
@@ -2242,17 +2064,11 @@ return;
 
 }
 
-
-/* HIDE ALL SECTIONS */
-
 document
 .querySelectorAll(".content>section")
 .forEach(section=>{
 section.classList.add("hidden");
 });
-
-
-/* SHOW SELECTED */
 
 const target=
 document.getElementById(id);
@@ -2260,30 +2076,20 @@ document.getElementById(id);
 if(target)
 target.classList.remove("hidden");
 
-
-/* ACTIVE MENU */
-
 document
 .querySelectorAll(".menu-btn")
 .forEach(btn=>{
 btn.classList.remove("active");
 });
 
-
 if(button)
 button.classList.add("active");
-
-
-/* ADMIN USERS */
 
 if(id==="adminAccountManager"){
 
 loadAdminUsers();
 
 }
-
-
-/* TEACHER DASHBOARD */
 
 if(id==="teacherDashboard"){
 
@@ -2292,11 +2098,6 @@ loadTeacherDashboard();
 }
 
 }
-
-
-/* =====================================================
-CREATE USER ACCOUNT
-===================================================== */
 
 async function createUserAccount(){
 
@@ -2342,7 +2143,6 @@ document
 .getElementById("newUserConfirmPassword")
 .value;
 
-
 if(!fullName||!email||!password){
 
 alert(
@@ -2352,7 +2152,6 @@ alert(
 return;
 
 }
-
 
 if(password.length<6){
 
@@ -2364,7 +2163,6 @@ return;
 
 }
 
-
 if(password!==confirmPassword){
 
 alert(
@@ -2374,7 +2172,6 @@ alert(
 return;
 
 }
-
 
 const allowedRoles=[
 "admin",
@@ -2386,7 +2183,6 @@ const allowedRoles=[
 "parent"
 ];
 
-
 if(!allowedRoles.includes(role)){
 
 alert("Invalid role.");
@@ -2394,13 +2190,11 @@ return;
 
 }
 
-
 const {
 data:sessionData,
 error:sessionError
 }=
 await supabaseClient.auth.getSession();
-
 
 if(sessionError){
 
@@ -2409,10 +2203,8 @@ return;
 
 }
 
-
 const session=
 sessionData?.session;
-
 
 if(!session){
 
@@ -2424,12 +2216,10 @@ return;
 
 }
 
-
 const button=
 document.getElementById(
 "createAccountBtn"
 );
-
 
 if(button){
 
@@ -2437,7 +2227,6 @@ button.disabled=true;
 button.textContent="Creating...";
 
 }
-
 
 try{
 
@@ -2472,7 +2261,6 @@ role
 }
 );
 
-
 let result={};
 
 try{
@@ -2486,7 +2274,6 @@ result={};
 
 }
 
-
 if(
 !response.ok||
 !result.success
@@ -2499,11 +2286,9 @@ result.error||
 
 }
 
-
 alert(
 "Account created successfully."
 );
-
 
 document.getElementById(
 "newUserFullName"
@@ -2529,9 +2314,7 @@ document.getElementById(
 "newUserRole"
 ).value="teacher";
 
-
 await loadAdminUsers();
-
 
 }catch(error){
 
@@ -2559,11 +2342,6 @@ button.textContent=
 
 }
 
-
-/* =====================================================
-ADMIN USERS
-===================================================== */
-
 async function loadAdminUsers(){
 
 if(!isAdmin())return;
@@ -2578,7 +2356,6 @@ if(!table)return;
 table.innerHTML=
 '<tr><td colspan="6">Loading users...</td></tr>';
 
-
 const {data,error}=
 await supabaseClient
 .from("users")
@@ -2586,7 +2363,6 @@ await supabaseClient
 "id,full_name,email,phone,role,auth_id,created_at"
 )
 .order("id",{ascending:false});
-
 
 if(error){
 
@@ -2599,13 +2375,11 @@ return;
 
 }
 
-
 adminUsers=data||[];
 
 renderAdminUsers();
 
 }
-
 
 function renderAdminUsers(){
 
@@ -2618,7 +2392,6 @@ if(!table)return;
 
 table.innerHTML="";
 
-
 if(adminUsers.length===0){
 
 table.innerHTML=
@@ -2627,7 +2400,6 @@ table.innerHTML=
 return;
 
 }
-
 
 adminUsers.forEach((item,index)=>{
 
@@ -2671,11 +2443,6 @@ item.created_at.split("T")[0]
 
 }
 
-
-/* =====================================================
-STUDENTS
-===================================================== */
-
 async function loadStudents(){
 
 const {data,error}=
@@ -2684,7 +2451,6 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
-
 if(error){
 
 console.error(error);
@@ -2692,7 +2458,6 @@ students=[];
 return;
 
 }
-
 
 students=data||[];
 
@@ -2706,7 +2471,6 @@ document.getElementById(
 students.length;
 
 }
-
 
 function renderStudents(){
 
@@ -2726,9 +2490,7 @@ document.getElementById(
 .toLowerCase()
 .trim();
 
-
 table.innerHTML="";
-
 
 const filtered=
 students.filter(student=>{
@@ -2746,7 +2508,6 @@ return text.includes(search);
 
 });
 
-
 if(filtered.length===0){
 
 table.innerHTML=
@@ -2756,7 +2517,6 @@ return;
 
 }
 
-
 filtered.forEach((item,index)=>{
 
 const classItem=
@@ -2764,7 +2524,6 @@ classes.find(c=>
 String(c.id)===
 String(item.class_id)
 );
-
 
 const deleteButton=
 canDeleteStudents()
@@ -2778,7 +2537,6 @@ Delete
 `
 :
 "";
-
 
 table.innerHTML+=`
 
@@ -2806,9 +2564,7 @@ table.innerHTML+=`
 
 });
 
-
 }
-
 
 async function addStudent(){
 
@@ -2821,7 +2577,6 @@ alert(
 return;
 
 }
-
 
 const full_name=
 document
@@ -2862,7 +2617,6 @@ document
 .value
 .trim();
 
-
 if(!full_name||!student_id){
 
 alert(
@@ -2872,7 +2626,6 @@ alert(
 return;
 
 }
-
 
 const {error}=
 await supabaseClient
@@ -2896,7 +2649,6 @@ parent_phone||null
 
 }]);
 
-
 if(error){
 
 alert(error.message);
@@ -2904,11 +2656,9 @@ return;
 
 }
 
-
 alert(
 "Student added successfully."
 );
-
 
 [
 "studentName",
@@ -2923,11 +2673,9 @@ alert(
 document.getElementById(id).value="";
 });
 
-
 await loadStudents();
 
 }
-
 
 async function deleteStudent(id){
 
@@ -2941,19 +2689,16 @@ return;
 
 }
 
-
 if(!confirm(
 "Delete this student?"
 ))
 return;
-
 
 const {error}=
 await supabaseClient
 .from("students")
 .delete()
 .eq("id",id);
-
 
 if(error){
 
@@ -2962,15 +2707,9 @@ return;
 
 }
 
-
 await loadStudents();
 
 }
-
-
-/* =====================================================
-TEACHERS
-===================================================== */
 
 async function loadTeachers(){
 
@@ -2980,7 +2719,6 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
-
 if(error){
 
 console.error(error);
@@ -2988,7 +2726,6 @@ teachers=[];
 return;
 
 }
-
 
 teachers=data||[];
 
@@ -3005,7 +2742,6 @@ teachers.length;
 
 }
 
-
 function renderTeachers(){
 
 const table=
@@ -3017,7 +2753,6 @@ if(!table)return;
 
 table.innerHTML="";
 
-
 if(teachers.length===0){
 
 table.innerHTML=
@@ -3026,7 +2761,6 @@ table.innerHTML=
 return;
 
 }
-
 
 teachers.forEach((item,index)=>{
 
@@ -3042,7 +2776,6 @@ Delete
 `
 :
 "";
-
 
 table.innerHTML+=`
 
@@ -3070,7 +2803,6 @@ table.innerHTML+=`
 
 }
 
-
 async function addTeacher(){
 
 if(!canManageTeachers()){
@@ -3082,7 +2814,6 @@ alert(
 return;
 
 }
-
 
 const full_name=
 document.getElementById(
@@ -3109,7 +2840,6 @@ document.getElementById(
 "teacherEmail"
 ).value.trim();
 
-
 if(!full_name){
 
 alert(
@@ -3119,7 +2849,6 @@ alert(
 return;
 
 }
-
 
 const {error}=
 await supabaseClient
@@ -3134,7 +2863,6 @@ email:email||null
 
 }]);
 
-
 if(error){
 
 alert(error.message);
@@ -3142,11 +2870,9 @@ return;
 
 }
 
-
 alert(
 "Teacher added successfully."
 );
-
 
 [
 "teacherName",
@@ -3159,11 +2885,9 @@ alert(
 document.getElementById(id).value="";
 });
 
-
 await loadTeachers();
 
 }
-
 
 async function deleteTeacher(id){
 
@@ -3177,19 +2901,16 @@ return;
 
 }
 
-
 if(!confirm(
 "Delete this teacher?"
 ))
 return;
-
 
 const {error}=
 await supabaseClient
 .from("teachers")
 .delete()
 .eq("id",id);
-
 
 if(error){
 
@@ -3198,15 +2919,9 @@ return;
 
 }
 
-
 await loadTeachers();
 
 }
-
-
-/* =====================================================
-CLASSES
-===================================================== */
 
 async function loadClasses(){
 
@@ -3216,7 +2931,6 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
-
 if(error){
 
 console.error(error);
@@ -3224,7 +2938,6 @@ classes=[];
 return;
 
 }
-
 
 classes=data||[];
 
@@ -3241,7 +2954,6 @@ classes.length;
 
 }
 
-
 function renderClasses(){
 
 const table=
@@ -3253,7 +2965,6 @@ if(!table)return;
 
 table.innerHTML="";
 
-
 if(classes.length===0){
 
 table.innerHTML=
@@ -3262,7 +2973,6 @@ table.innerHTML=
 return;
 
 }
-
 
 classes.forEach((item,index)=>{
 
@@ -3278,7 +2988,6 @@ Delete
 `
 :
 "";
-
 
 table.innerHTML+=`
 
@@ -3304,7 +3013,6 @@ table.innerHTML+=`
 
 }
 
-
 async function addClass(){
 
 if(!canManageClasses()){
@@ -3316,7 +3024,6 @@ alert(
 return;
 
 }
-
 
 const name=
 document.getElementById(
@@ -3344,7 +3051,6 @@ teacherSelect
 teacherSelect.selectedIndex
 ]?.text||"";
 
-
 if(!name){
 
 alert(
@@ -3354,7 +3060,6 @@ alert(
 return;
 
 }
-
 
 const {error}=
 await supabaseClient
@@ -3369,7 +3074,6 @@ teacher_name||null
 
 }]);
 
-
 if(error){
 
 alert(error.message);
@@ -3377,11 +3081,9 @@ return;
 
 }
 
-
 alert(
 "Class added successfully."
 );
-
 
 [
 "className",
@@ -3393,11 +3095,9 @@ alert(
 document.getElementById(id).value="";
 });
 
-
 await loadClasses();
 
 }
-
 
 async function deleteClass(id){
 
@@ -3411,19 +3111,16 @@ return;
 
 }
 
-
 if(!confirm(
 "Delete this class?"
 ))
 return;
-
 
 const {error}=
 await supabaseClient
 .from("classes")
 .delete()
 .eq("id",id);
-
 
 if(error){
 
@@ -3432,15 +3129,9 @@ return;
 
 }
 
-
 await loadClasses();
 
 }
-
-
-/* =====================================================
-SUBJECTS
-===================================================== */
 
 async function loadSubjects(){
 
@@ -3450,7 +3141,6 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
-
 if(error){
 
 console.error(error);
@@ -3458,7 +3148,6 @@ subjects=[];
 return;
 
 }
-
 
 subjects=data||[];
 
@@ -3473,7 +3162,6 @@ subjects.length;
 
 }
 
-
 function renderSubjects(){
 
 const table=
@@ -3485,7 +3173,6 @@ if(!table)return;
 
 table.innerHTML="";
 
-
 if(subjects.length===0){
 
 table.innerHTML=
@@ -3494,7 +3181,6 @@ table.innerHTML=
 return;
 
 }
-
 
 subjects.forEach((item,index)=>{
 
@@ -3510,7 +3196,6 @@ Delete
 `
 :
 "";
-
 
 table.innerHTML+=`
 
@@ -3530,7 +3215,6 @@ table.innerHTML+=`
 
 }
 
-
 async function addSubject(){
 
 if(!canManageSubjects()){
@@ -3543,12 +3227,10 @@ return;
 
 }
 
-
 const subject_name=
 document.getElementById(
 "subjectName"
 ).value.trim();
-
 
 if(!subject_name){
 
@@ -3560,14 +3242,12 @@ return;
 
 }
 
-
 const {error}=
 await supabaseClient
 .from("subjects")
 .insert([{
 subject_name
 }]);
-
 
 if(error){
 
@@ -3576,21 +3256,17 @@ return;
 
 }
 
-
 alert(
 "Subject added successfully."
 );
-
 
 document.getElementById(
 "subjectName"
 ).value="";
 
-
 await loadSubjects();
 
 }
-
 
 async function deleteSubject(id){
 
@@ -3604,19 +3280,16 @@ return;
 
 }
 
-
 if(!confirm(
 "Delete this subject?"
 ))
 return;
-
 
 const {error}=
 await supabaseClient
 .from("subjects")
 .delete()
 .eq("id",id);
-
 
 if(error){
 
@@ -3625,15 +3298,9 @@ return;
 
 }
 
-
 await loadSubjects();
 
 }
-
-
-/* =====================================================
-ATTENDANCE
-===================================================== */
 
 async function loadAttendance(){
 
@@ -3643,7 +3310,6 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
-
 if(error){
 
 console.error(error);
@@ -3651,7 +3317,6 @@ attendance=[];
 return;
 
 }
-
 
 attendance=data||[];
 
@@ -3664,7 +3329,6 @@ attendance.length;
 
 }
 
-
 function renderAttendance(){
 
 const table=
@@ -3676,7 +3340,6 @@ if(!table)return;
 
 table.innerHTML="";
 
-
 if(attendance.length===0){
 
 table.innerHTML=
@@ -3686,7 +3349,6 @@ return;
 
 }
 
-
 attendance.forEach((item,index)=>{
 
 const student=
@@ -3694,7 +3356,6 @@ students.find(s=>
 String(s.id)===
 String(item.student_id)
 );
-
 
 const deleteButton=
 canManageAttendance()
@@ -3708,7 +3369,6 @@ Delete
 `
 :
 "";
-
 
 table.innerHTML+=`
 
@@ -3744,7 +3404,6 @@ ${deleteButton}
 
 }
 
-
 async function addAttendance(){
 
 if(!canManageAttendance()){
@@ -3756,7 +3415,6 @@ alert(
 return;
 
 }
-
 
 const student_id=
 document.getElementById(
@@ -3773,7 +3431,6 @@ document.getElementById(
 "attendanceStatus"
 ).value;
 
-
 if(!student_id||!attendance_date){
 
 alert(
@@ -3783,7 +3440,6 @@ alert(
 return;
 
 }
-
 
 const {error}=
 await supabaseClient
@@ -3796,7 +3452,6 @@ status
 
 }]);
 
-
 if(error){
 
 alert(error.message);
@@ -3804,21 +3459,17 @@ return;
 
 }
 
-
 alert(
 "Attendance saved successfully."
 );
-
 
 document.getElementById(
 "attendanceStudent"
 ).value="";
 
-
 await loadAttendance();
 
 }
-
 
 async function deleteAttendance(id){
 
@@ -3832,19 +3483,16 @@ return;
 
 }
 
-
 if(!confirm(
 "Delete this attendance record?"
 ))
 return;
-
 
 const {error}=
 await supabaseClient
 .from("attendance")
 .delete()
 .eq("id",id);
-
 
 if(error){
 
@@ -3853,15 +3501,9 @@ return;
 
 }
 
-
 await loadAttendance();
 
 }
-
-
-/* =====================================================
-GRADES
-===================================================== */
 
 async function loadGrades(){
 
@@ -3871,7 +3513,6 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
-
 if(error){
 
 console.error(error);
@@ -3879,7 +3520,6 @@ grades=[];
 return;
 
 }
-
 
 grades=data||[];
 
@@ -3892,7 +3532,6 @@ grades.length;
 
 }
 
-
 function renderGrades(){
 
 const table=
@@ -3904,7 +3543,6 @@ if(!table)return;
 
 table.innerHTML="";
 
-
 if(grades.length===0){
 
 table.innerHTML=
@@ -3914,7 +3552,6 @@ return;
 
 }
 
-
 grades.forEach((item,index)=>{
 
 const student=
@@ -3923,13 +3560,11 @@ String(s.id)===
 String(item.student_id)
 );
 
-
 const subject=
 subjects.find(s=>
 String(s.id)===
 String(item.subject_id)
 );
-
 
 const deleteButton=
 canManageGrades()
@@ -3943,7 +3578,6 @@ Delete
 `
 :
 "";
-
 
 table.innerHTML+=`
 
@@ -3977,7 +3611,6 @@ subject?.subject_name||""
 
 }
 
-
 async function addGrade(){
 
 if(!canManageGrades()){
@@ -3989,7 +3622,6 @@ alert(
 return;
 
 }
-
 
 const student_id=
 document.getElementById(
@@ -4011,7 +3643,6 @@ document.getElementById(
 "gradeTerm"
 ).value;
 
-
 if(!student_id||
 !subject_id||
 score===""){
@@ -4023,7 +3654,6 @@ alert(
 return;
 
 }
-
 
 const {error}=
 await supabaseClient
@@ -4037,7 +3667,6 @@ term
 
 }]);
 
-
 if(error){
 
 alert(error.message);
@@ -4045,11 +3674,9 @@ return;
 
 }
 
-
 alert(
 "Grade saved successfully."
 );
-
 
 document.getElementById(
 "gradeStudent"
@@ -4063,11 +3690,9 @@ document.getElementById(
 "gradeScore"
 ).value="";
 
-
 await loadGrades();
 
 }
-
 
 async function deleteGrade(id){
 
@@ -4081,19 +3706,16 @@ return;
 
 }
 
-
 if(!confirm(
 "Delete this grade?"
 ))
 return;
-
 
 const {error}=
 await supabaseClient
 .from("grades")
 .delete()
 .eq("id",id);
-
 
 if(error){
 
@@ -4102,15 +3724,9 @@ return;
 
 }
 
-
 await loadGrades();
 
 }
-
-
-/* =====================================================
-FEES
-===================================================== */
 
 async function loadFees(){
 
@@ -4120,7 +3736,6 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
-
 if(error){
 
 console.error(error);
@@ -4128,7 +3743,6 @@ fees=[];
 return;
 
 }
-
 
 fees=data||[];
 
@@ -4141,7 +3755,6 @@ fees.length;
 
 }
 
-
 function renderFees(){
 
 const table=
@@ -4153,7 +3766,6 @@ if(!table)return;
 
 table.innerHTML="";
 
-
 if(fees.length===0){
 
 table.innerHTML=
@@ -4163,7 +3775,6 @@ return;
 
 }
 
-
 fees.forEach((item,index)=>{
 
 const student=
@@ -4171,7 +3782,6 @@ students.find(s=>
 String(s.id)===
 String(item.student_id)
 );
-
 
 const deleteButton=
 canManageFees()
@@ -4185,7 +3795,6 @@ Delete
 `
 :
 "";
-
 
 table.innerHTML+=`
 
@@ -4215,7 +3824,6 @@ student?.full_name||""
 
 }
 
-
 async function addFee(){
 
 if(!canManageFees()){
@@ -4227,7 +3835,6 @@ alert(
 return;
 
 }
-
 
 const student_id=
 document.getElementById(
@@ -4249,7 +3856,6 @@ document.getElementById(
 "feeStatus"
 ).value;
 
-
 if(!student_id||
 !amount||
 !payment_date){
@@ -4261,7 +3867,6 @@ alert(
 return;
 
 }
-
 
 const {error}=
 await supabaseClient
@@ -4275,7 +3880,6 @@ status
 
 }]);
 
-
 if(error){
 
 alert(error.message);
@@ -4283,11 +3887,9 @@ return;
 
 }
 
-
 alert(
 "Payment saved successfully."
 );
-
 
 document.getElementById(
 "feeStudent"
@@ -4301,11 +3903,9 @@ document.getElementById(
 "feeDate"
 ).value=today();
 
-
 await loadFees();
 
 }
-
 
 async function deleteFee(id){
 
@@ -4319,19 +3919,16 @@ return;
 
 }
 
-
 if(!confirm(
 "Delete this payment?"
 ))
 return;
-
 
 const {error}=
 await supabaseClient
 .from("fees")
 .delete()
 .eq("id",id);
-
 
 if(error){
 
@@ -4340,15 +3937,9 @@ return;
 
 }
 
-
 await loadFees();
 
 }
-
-
-/* =====================================================
-DROPDOWNS
-===================================================== */
 
 function fillStudentDropdowns(){
 
@@ -4357,7 +3948,6 @@ const ids=[
 "gradeStudent",
 "feeStudent"
 ];
-
 
 ids.forEach(id=>{
 
@@ -4369,10 +3959,8 @@ if(!select)return;
 const oldValue=
 select.value;
 
-
 select.innerHTML=
 '<option value="">Select Student</option>';
-
 
 students.forEach(student=>{
 
@@ -4386,7 +3974,6 @@ ${escapeHtml(student.full_name)}
 `;
 
 });
-
 
 if(
 [...select.options]
@@ -4402,22 +3989,18 @@ select.value=oldValue;
 
 });
 
-
 const studentClass=
 document.getElementById(
 "studentClass"
 );
-
 
 if(studentClass){
 
 const oldValue=
 studentClass.value;
 
-
 studentClass.innerHTML=
 '<option value="">Select Class</option>';
-
 
 classes.forEach(c=>{
 
@@ -4436,7 +4019,6 @@ ${c.section
 
 });
 
-
 if(
 [...studentClass.options]
 .some(
@@ -4453,7 +4035,6 @@ studentClass.value=oldValue;
 
 }
 
-
 function fillClassDropdown(){
 
 const select=
@@ -4466,10 +4047,8 @@ if(!select)return;
 const oldValue=
 select.value;
 
-
 select.innerHTML=
 '<option value="">Select Class</option>';
-
 
 classes.forEach(c=>{
 
@@ -4482,7 +4061,6 @@ ${escapeHtml(c.name)}
 `;
 
 });
-
 
 if(
 [...select.options]
@@ -4498,7 +4076,6 @@ select.value=oldValue;
 
 }
 
-
 function fillTeacherDropdown(){
 
 const select=
@@ -4511,10 +4088,8 @@ if(!select)return;
 const oldValue=
 select.value;
 
-
 select.innerHTML=
 '<option value="">Select Teacher</option>';
-
 
 teachers.forEach(teacher=>{
 
@@ -4530,7 +4105,6 @@ teacher.full_name
 
 });
 
-
 if(
 [...select.options]
 .some(
@@ -4545,7 +4119,6 @@ select.value=oldValue;
 
 }
 
-
 function fillSubjectDropdowns(){
 
 const select=
@@ -4558,10 +4131,8 @@ if(!select)return;
 const oldValue=
 select.value;
 
-
 select.innerHTML=
 '<option value="">Select Subject</option>';
-
 
 subjects.forEach(subject=>{
 
@@ -4577,7 +4148,6 @@ subject.subject_name
 
 });
 
-
 if(
 [...select.options]
 .some(
@@ -4592,11 +4162,6 @@ select.value=oldValue;
 
 }
 
-
-/* =====================================================
-TEACHER DASHBOARD
-===================================================== */
-
 async function loadTeacherDashboard(){
 
 const content=
@@ -4605,7 +4170,6 @@ document.getElementById(
 );
 
 if(!content)return;
-
 
 if(currentUserRole!=="teacher"){
 
@@ -4616,7 +4180,6 @@ return;
 
 }
 
-
 const email=
 (currentUser?.email||"")
 .trim()
@@ -4626,9 +4189,7 @@ const phone=
 (currentUser?.phone||"")
 .trim();
 
-
 let teacher=null;
-
 
 if(email){
 
@@ -4642,7 +4203,6 @@ email
 
 }
 
-
 if(!teacher&&phone){
 
 teacher=
@@ -4654,10 +4214,8 @@ phone
 
 }
 
-
 currentTeacher=
 teacher||null;
-
 
 if(!teacher){
 
@@ -4679,7 +4237,6 @@ return;
 
 }
 
-
 const assignedClasses=
 classes.filter(c=>
 (c.teacher_name||"")
@@ -4690,7 +4247,6 @@ classes.filter(c=>
 .trim()
 .toLowerCase()
 );
-
 
 content.innerHTML=`
 
@@ -4750,22 +4306,9 @@ escapeHtml(c.section)
 
 }
 
-
-/* =====================================================
-REFRESH ALL
-===================================================== */
-
 async function refreshAll(){
 
-/*
-Only load data that the current role is allowed
-to work with.
-*/
-
 const tasks=[];
-
-
-/* ADMIN */
 
 if(isAdmin()){
 
@@ -4780,9 +4323,6 @@ tasks.push(loadAdminUsers());
 
 }
 
-
-/* TEACHER */
-
 else if(currentUserRole==="teacher"){
 
 tasks.push(loadClasses());
@@ -4794,9 +4334,6 @@ tasks.push(loadGrades());
 
 }
 
-
-/* STAFF */
-
 else if(currentUserRole==="staff"){
 
 tasks.push(loadClasses());
@@ -4805,9 +4342,6 @@ tasks.push(loadAttendance());
 
 }
 
-
-/* FINANCE */
-
 else if(currentUserRole==="finance"){
 
 tasks.push(loadStudents());
@@ -4815,18 +4349,7 @@ tasks.push(loadFees());
 
 }
 
-
-/*
-Student / Parent currently do not load
-school-wide records.
-
-Their own-data dashboard will be added
-after we connect their user account to
-their student/parent record.
-*/
-
 await Promise.all(tasks);
-
 
 if(currentUserRole==="teacher"){
 
@@ -4836,16 +4359,10 @@ await loadTeacherDashboard();
 
 }
 
-
-/* =====================================================
-SESSION
-===================================================== */
-
 async function checkSession(){
 
 const {data,error}=
 await supabaseClient.auth.getSession();
-
 
 if(error){
 
@@ -4853,7 +4370,6 @@ console.error(error);
 return;
 
 }
-
 
 if(data.session){
 
@@ -4865,11 +4381,6 @@ await showApp();
 }
 
 }
-
-
-/* =====================================================
-AUTH STATE
-===================================================== */
 
 supabaseClient.auth.onAuthStateChange(
 async(event,session)=>{
@@ -4900,7 +4411,6 @@ return;
 
 }
 
-
 if(session){
 
 currentUser=
@@ -4912,11 +4422,6 @@ await showApp();
 
 }
 );
-
-
-/* =====================================================
-DEFAULT VALUES
-===================================================== */
 
 document.addEventListener(
 "DOMContentLoaded",
@@ -4932,16 +4437,13 @@ document.getElementById(
 "feeDate"
 );
 
-
 if(attendanceDate)
 attendanceDate.value=
 today();
 
-
 if(feeDate)
 feeDate.value=
 today();
-
 
 checkSession();
 
@@ -4951,4 +4453,4 @@ checkSession();
 </script>
 
 </body>
-     </html>
+               </html>
