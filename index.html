@@ -8,184 +8,624 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#f4f6fb;color:#222}
-.hidden{display:none!important}
-button{cursor:pointer;border:none}
-input,select{width:100%;padding:11px;border:1px solid #d5d9e2;border-radius:7px;margin-top:5px;margin-bottom:10px;background:#fff}
-label{font-size:13px;font-weight:bold;color:#444}
-.login-page{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(rgba(0,40,100,.72),rgba(0,70,160,.72)),url("new-fortune-login-bg.webp");background-size:cover;background-position:center;padding:20px}
-.login-box{width:100%;max-width:420px;background:#fff;padding:30px;border-radius:15px;box-shadow:0 15px 40px rgba(0,0,0,.25)}
-.login-logo{width:100px;height:100px;object-fit:contain;display:block;margin:0 auto 15px}
-.login-title{text-align:center;color:#075bc9;margin-bottom:6px}
-.login-subtitle{text-align:center;color:#777;margin-bottom:25px;font-size:14px}
-.primary-btn{width:100%;padding:12px;background:#0866d5;color:#fff;border-radius:7px;font-weight:bold;margin-top:5px}
-.primary-btn:hover{background:#064fa8}
-.secondary-btn{width:100%;padding:11px;background:#eef2f7;color:#333;border-radius:7px;margin-top:8px}
-.danger-btn{background:#dc3545;color:#fff;padding:7px 12px;border-radius:5px}
-.success-btn{background:#198754;color:#fff;padding:8px 13px;border-radius:6px}
-.topbar{height:58px;background:linear-gradient(90deg,#0755bd,#0879e8);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:100}
-.school-title{font-size:16px;font-weight:bold}
-.user-area{display:flex;align-items:center;gap:12px;font-size:13px}
-.logout-btn{background:#dc3545;color:#fff;padding:8px 12px;border-radius:6px}
-.layout{display:flex;min-height:calc(100vh - 58px)}
-.sidebar{width:190px;background:#fff;border-right:1px solid #e0e4eb;padding:10px 0;flex-shrink:0}
-.menu-btn{width:100%;text-align:left;background:#fff;padding:11px 15px;color:#333;font-size:13px}
-.menu-btn:hover{background:#eef5ff}
-.menu-btn.active{background:#e5efff;color:#075bc9;font-weight:bold}
-.content{flex:1;padding:20px;min-width:0}
-.section-title{font-size:21px;margin-bottom:18px;color:#222}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:20px}
-.card{background:#fff;border-radius:10px;padding:17px;box-shadow:0 2px 10px rgba(0,0,0,.07)}
-.card-title{font-size:12px;color:#666;margin-bottom:8px}
-.card-number{font-size:27px;font-weight:bold;color:#0866d5}
-.form-card{background:#fff;padding:18px;border-radius:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 15px}
-.form-group{width:100%}
-.full-width{grid-column:1/-1}
-.table-card{background:#fff;padding:15px;border-radius:10px;overflow-x:auto;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-table{width:100%;border-collapse:collapse;min-width:650px}
-th,td{padding:10px;border-bottom:1px solid #e7e9ed;text-align:left;font-size:13px}
-th{background:#f3f6fa;color:#333}
-.small-btn{padding:6px 10px;border-radius:5px;background:#dc3545;color:#fff}
-.admin-info{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 15px}
-.admin-box{background:#f8fafc;padding:15px;border-radius:8px}
-.admin-box label{display:block}
-.admin-box input{background:#fff}
-.search-box{margin-bottom:15px}
-.search-box input{max-width:400px}
-.teacher-dashboard-box{background:#eef6ff;border-left:4px solid #0866d5;padding:15px;border-radius:8px;margin-bottom:20px}
-.empty-message{padding:20px;text-align:center;color:#777}
-.account-note{background:#fff8e1;border-left:4px solid #ffc107;padding:12px;border-radius:6px;margin-bottom:15px;font-size:13px;color:#664d03}
-@media(max-width:800px){
-.sidebar{width:160px}
-.cards{grid-template-columns:repeat(2,1fr)}
-.form-grid{grid-template-columns:1fr}
-.admin-info{grid-template-columns:1fr}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif
 }
+
+body{
+background:#f4f6fb;
+color:#222
+}
+
+.hidden{
+display:none!important
+}
+
+button{
+cursor:pointer;
+border:none
+}
+
+input,select{
+width:100%;
+padding:11px;
+border:1px solid #d5d9e2;
+border-radius:7px;
+margin-top:5px;
+margin-bottom:10px;
+background:#fff
+}
+
+label{
+font-size:13px;
+font-weight:bold;
+color:#444
+}
+
+.login-page{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+linear-gradient(rgba(0,40,100,.72),rgba(0,70,160,.72)),
+url("new-fortune-login-bg.webp");
+background-size:cover;
+background-position:center;
+padding:20px
+}
+
+.login-box{
+width:100%;
+max-width:420px;
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 15px 40px rgba(0,0,0,.25)
+}
+
+.login-logo{
+width:100px;
+height:100px;
+object-fit:contain;
+display:block;
+margin:0 auto 15px
+}
+
+.login-title{
+text-align:center;
+color:#075bc9;
+margin-bottom:6px
+}
+
+.login-subtitle{
+text-align:center;
+color:#777;
+margin-bottom:25px;
+font-size:14px
+}
+
+.primary-btn{
+width:100%;
+padding:12px;
+background:#0866d5;
+color:#fff;
+border-radius:7px;
+font-weight:bold;
+margin-top:5px
+}
+
+.primary-btn:hover{
+background:#064fa8
+}
+
+.secondary-btn{
+width:100%;
+padding:11px;
+background:#eef2f7;
+color:#333;
+border-radius:7px;
+margin-top:8px
+}
+
+.danger-btn{
+background:#dc3545;
+color:#fff;
+padding:7px 12px;
+border-radius:5px
+}
+
+.success-btn{
+background:#198754;
+color:#fff;
+padding:8px 13px;
+border-radius:6px
+}
+
+.topbar{
+height:58px;
+background:linear-gradient(90deg,#0755bd,#0879e8);
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 18px;
+position:sticky;
+top:0;
+z-index:100
+}
+
+.school-title{
+font-size:16px;
+font-weight:bold
+}
+
+.user-area{
+display:flex;
+align-items:center;
+gap:12px;
+font-size:13px
+}
+
+.logout-btn{
+background:#dc3545;
+color:#fff;
+padding:8px 12px;
+border-radius:6px
+}
+
+.layout{
+display:flex;
+min-height:calc(100vh - 58px)
+}
+
+.sidebar{
+width:190px;
+background:#fff;
+border-right:1px solid #e0e4eb;
+padding:10px 0;
+flex-shrink:0
+}
+
+.menu-btn{
+width:100%;
+text-align:left;
+background:#fff;
+padding:11px 15px;
+color:#333;
+font-size:13px
+}
+
+.menu-btn:hover{
+background:#eef5ff
+}
+
+.menu-btn.active{
+background:#e5efff;
+color:#075bc9;
+font-weight:bold
+}
+
+.content{
+flex:1;
+padding:20px;
+min-width:0
+}
+
+.section-title{
+font-size:21px;
+margin-bottom:18px;
+color:#222
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-bottom:20px
+}
+
+.card{
+background:#fff;
+border-radius:10px;
+padding:17px;
+box-shadow:0 2px 10px rgba(0,0,0,.07)
+}
+
+.card-title{
+font-size:12px;
+color:#666;
+margin-bottom:8px
+}
+
+.card-number{
+font-size:27px;
+font-weight:bold;
+color:#0866d5
+}
+
+.form-card{
+background:#fff;
+padding:18px;
+border-radius:10px;
+margin-bottom:20px;
+box-shadow:0 2px 8px rgba(0,0,0,.05)
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px 15px
+}
+
+.table-card{
+background:#fff;
+padding:15px;
+border-radius:10px;
+overflow-x:auto;
+box-shadow:0 2px 8px rgba(0,0,0,.05)
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:650px
+}
+
+th,td{
+padding:10px;
+border-bottom:1px solid #e7e9ed;
+text-align:left;
+font-size:13px
+}
+
+th{
+background:#f3f6fa;
+color:#333
+}
+
+.small-btn{
+padding:6px 10px;
+border-radius:5px;
+background:#dc3545;
+color:#fff
+}
+
+.admin-info{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px 15px
+}
+
+.admin-box{
+background:#f8fafc;
+padding:15px;
+border-radius:8px
+}
+
+.admin-box label{
+display:block
+}
+
+.search-box{
+margin-bottom:15px
+}
+
+.search-box input{
+max-width:400px
+}
+
+.teacher-dashboard-box{
+background:#eef6ff;
+border-left:4px solid #0866d5;
+padding:15px;
+border-radius:8px;
+margin-bottom:20px
+}
+
+.account-note{
+background:#fff8e1;
+border-left:4px solid #ffc107;
+padding:12px;
+border-radius:6px;
+margin-bottom:15px;
+font-size:13px;
+color:#664d03
+}
+
+.permission-note{
+background:#eef6ff;
+border-left:4px solid #0866d5;
+padding:12px;
+border-radius:6px;
+margin-bottom:15px;
+font-size:13px
+}
+
+@media(max-width:800px){
+
+.sidebar{
+width:160px
+}
+
+.cards{
+grid-template-columns:repeat(2,1fr)
+}
+
+.form-grid{
+grid-template-columns:1fr
+}
+
+.admin-info{
+grid-template-columns:1fr
+}
+
+}
+
 @media(max-width:600px){
-.topbar{padding:0 10px}
-.school-title{font-size:13px}
-.user-area{font-size:10px;gap:5px}
-.logout-btn{padding:6px 8px}
-.layout{display:block}
-.sidebar{width:100%;display:flex;overflow-x:auto;border-right:none;border-bottom:1px solid #ddd}
-.menu-btn{width:auto;white-space:nowrap;padding:10px 12px}
-.content{padding:12px}
-.cards{grid-template-columns:1fr 1fr;gap:10px}
-.card{padding:13px}
+
+.topbar{
+padding:0 10px
+}
+
+.school-title{
+font-size:13px
+}
+
+.user-area{
+font-size:10px;
+gap:5px
+}
+
+.logout-btn{
+padding:6px 8px
+}
+
+.layout{
+display:block
+}
+
+.sidebar{
+width:100%;
+display:flex;
+overflow-x:auto;
+border-right:none;
+border-bottom:1px solid #ddd
+}
+
+.menu-btn{
+width:auto;
+white-space:nowrap;
+padding:10px 12px
+}
+
+.content{
+padding:12px
+}
+
+.cards{
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+.card{
+padding:13px
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- =====================================================
+LOGIN
+===================================================== -->
+
 <div id="loginPage" class="login-page">
+
 <div class="login-box">
 
-<img src="file_000000008cf0820ea9f8ecdca094bdda.png"
-     class="login-logo"
-     onerror="this.style.display='none'">
+<img
+src="file_000000008cf0820ea9f8ecdca094bdda.png"
+class="login-logo"
+onerror="this.style.display='none'"
+>
 
-<h2 class="login-title">New Fortune School</h2>
-<div class="login-subtitle">Management System</div>
+<h2 class="login-title">
+New Fortune School
+</h2>
+
+<div class="login-subtitle">
+Management System
+</div>
 
 <div id="loginForm">
 
 <label>Email or Phone</label>
-<input id="loginEmail" type="text" placeholder="Enter email or phone">
+<input
+id="loginEmail"
+type="text"
+placeholder="Enter email or phone"
+>
 
 <label>Password</label>
-<input id="loginPassword" type="password" placeholder="Enter password">
+<input
+id="loginPassword"
+type="password"
+placeholder="Enter password"
+>
 
-<button class="primary-btn" onclick="login()">🔐 Login</button>
-<button class="secondary-btn" onclick="showForgot()">Forgot Password?</button>
+<button
+class="primary-btn"
+onclick="login()">
+🔐 Login
+</button>
+
+<button
+class="secondary-btn"
+onclick="showForgot()">
+Forgot Password?
+</button>
 
 </div>
+
 
 <div id="forgotForm" class="hidden">
-<h3 style="margin-bottom:15px">Reset Password</h3>
+
+<h3 style="margin-bottom:15px">
+Reset Password
+</h3>
 
 <label>Email</label>
-<input id="forgotEmail" type="email" placeholder="Enter your email">
 
-<button class="primary-btn" onclick="sendReset()">Send Reset Link</button>
-<button class="secondary-btn" onclick="showLogin()">Back to Login</button>
+<input
+id="forgotEmail"
+type="email"
+placeholder="Enter your email"
+>
+
+<button
+class="primary-btn"
+onclick="sendReset()">
+Send Reset Link
+</button>
+
+<button
+class="secondary-btn"
+onclick="showLogin()">
+Back to Login
+</button>
+
 </div>
+
 
 <div id="newPasswordForm" class="hidden">
-<h3 style="margin-bottom:15px">Create New Password</h3>
+
+<h3 style="margin-bottom:15px">
+Create New Password
+</h3>
 
 <label>New Password</label>
-<input id="newPassword" type="password" placeholder="Enter new password">
 
-<button class="primary-btn" onclick="updatePassword()">Update Password</button>
+<input
+id="newPassword"
+type="password"
+placeholder="Enter new password"
+>
+
+<button
+class="primary-btn"
+onclick="updatePassword()">
+Update Password
+</button>
+
 </div>
 
 </div>
 </div>
 
 
-<!-- APPLICATION -->
+<!-- =====================================================
+APPLICATION
+===================================================== -->
+
 <div id="app" class="hidden">
 
 <div class="topbar">
-<div class="school-title">New Fortune School Management System</div>
+
+<div class="school-title">
+New Fortune School Management System
+</div>
 
 <div class="user-area">
+
 <span id="loggedUser"></span>
-<button class="logout-btn" onclick="logout()">Logout</button>
+
+<span id="loggedRole"
+style="font-weight:bold">
+</span>
+
+<button
+class="logout-btn"
+onclick="logout()">
+Logout
+</button>
+
 </div>
 </div>
+
 
 <div class="layout">
 
-<!-- SIDEBAR -->
+
+<!-- =====================================================
+SIDEBAR
+===================================================== -->
+
 <div class="sidebar">
 
-<button class="menu-btn active" onclick="showSection('dashboard',this)">
+
+<button
+id="menuDashboard"
+class="menu-btn active"
+onclick="showSection('dashboard',this)">
 🏠 Dashboard
 </button>
 
-<button id="teacherDashboardBtn"
-        class="menu-btn hidden"
-        onclick="showSection('teacherDashboard',this)">
+
+<button
+id="menuTeacherDashboard"
+class="menu-btn hidden"
+onclick="showSection('teacherDashboard',this)">
 👨‍🏫 Teacher Dashboard
 </button>
 
-<button id="adminAccountManagerBtn"
-        class="menu-btn hidden"
-        onclick="showSection('adminAccountManager',this)">
+
+<button
+id="menuAdmin"
+class="menu-btn hidden"
+onclick="showSection('adminAccountManager',this)">
 👑 Admin Account Manager
 </button>
 
-<button class="menu-btn" onclick="showSection('students',this)">
+
+<button
+id="menuStudents"
+class="menu-btn hidden"
+onclick="showSection('students',this)">
 👨‍🎓 Students
 </button>
 
-<button class="menu-btn" onclick="showSection('teachers',this)">
+
+<button
+id="menuTeachers"
+class="menu-btn hidden"
+onclick="showSection('teachers',this)">
 👨‍🏫 Teachers
 </button>
 
-<button class="menu-btn" onclick="showSection('classes',this)">
+
+<button
+id="menuClasses"
+class="menu-btn hidden"
+onclick="showSection('classes',this)">
 🏫 Classes
 </button>
 
-<button class="menu-btn" onclick="showSection('subjects',this)">
+
+<button
+id="menuSubjects"
+class="menu-btn hidden"
+onclick="showSection('subjects',this)">
 📚 Subjects
 </button>
 
-<button class="menu-btn" onclick="showSection('attendance',this)">
+
+<button
+id="menuAttendance"
+class="menu-btn hidden"
+onclick="showSection('attendance',this)">
 📋 Attendance
 </button>
 
-<button class="menu-btn" onclick="showSection('grades',this)">
+
+<button
+id="menuGrades"
+class="menu-btn hidden"
+onclick="showSection('grades',this)">
 📝 Grades
 </button>
 
-<button class="menu-btn" onclick="showSection('fees',this)">
-💰 Fees
+
+<button
+id="menuFees"
+class="menu-btn hidden"
+onclick="showSection('fees',this)">
+💰 Fees / Payments
 </button>
 
 </div>
@@ -193,10 +633,16 @@ th{background:#f3f6fa;color:#333}
 
 <div class="content">
 
-<!-- DASHBOARD -->
+
+<!-- =====================================================
+DASHBOARD
+===================================================== -->
+
 <section id="dashboard">
 
-<h2 class="section-title">Dashboard</h2>
+<h2 class="section-title">
+Dashboard
+</h2>
 
 <div class="cards">
 
@@ -236,30 +682,49 @@ th{background:#f3f6fa;color:#333}
 </div>
 
 </div>
+
 </section>
 
 
-<!-- TEACHER DASHBOARD -->
-<section id="teacherDashboard" class="hidden">
+<!-- =====================================================
+TEACHER DASHBOARD
+===================================================== -->
 
-<h2 class="section-title">Teacher Dashboard</h2>
+<section
+id="teacherDashboard"
+class="hidden">
 
-<div id="teacherDashboardContent"
-     class="teacher-dashboard-box">
+<h2 class="section-title">
+Teacher Dashboard
+</h2>
+
+<div
+id="teacherDashboardContent"
+class="teacher-dashboard-box">
 Loading...
 </div>
 
 </section>
 
 
-<!-- ADMIN ACCOUNT MANAGER -->
-<section id="adminAccountManager" class="hidden">
+<!-- =====================================================
+ADMIN ACCOUNT MANAGER
+===================================================== -->
 
-<h2 class="section-title">👑 Admin Account Manager</h2>
+<section
+id="adminAccountManager"
+class="hidden">
+
+<h2 class="section-title">
+👑 Admin Account Manager
+</h2>
+
 
 <div class="form-card">
 
-<h3 style="margin-bottom:15px">Current Admin</h3>
+<h3 style="margin-bottom:15px">
+Current Admin
+</h3>
 
 <div class="admin-info">
 
@@ -284,10 +749,10 @@ Loading...
 </div>
 
 </div>
+
 </div>
 
 
-<!-- NEW ACCOUNT FORM -->
 <div class="form-card">
 
 <h3 style="margin-bottom:15px">
@@ -295,75 +760,114 @@ Loading...
 </h3>
 
 <div class="account-note">
-Admin can create Admin, Teacher or Staff accounts.
-The new user can login with the email and password created here.
+Admin can create Admin, Teacher, Staff, Finance, Student or Parent accounts.
 </div>
 
 <div class="form-grid">
 
 <div>
 <label>Full Name</label>
-<input id="newUserFullName"
-       type="text"
-       placeholder="Enter full name">
+<input
+id="newUserFullName"
+type="text"
+placeholder="Enter full name">
 </div>
+
 
 <div>
 <label>Email</label>
-<input id="newUserEmail"
-       type="email"
-       placeholder="Enter email">
+<input
+id="newUserEmail"
+type="email"
+placeholder="Enter email">
 </div>
+
 
 <div>
 <label>Phone</label>
-<input id="newUserPhone"
-       type="text"
-       placeholder="Enter phone">
+<input
+id="newUserPhone"
+type="text"
+placeholder="Enter phone">
 </div>
+
 
 <div>
 <label>Role</label>
+
 <select id="newUserRole">
-<option value="teacher">Teacher</option>
-<option value="admin">Admin</option>
-<option value="staff">Staff</option>
+
+<option value="admin">
+Admin
+</option>
+
+<option value="teacher">
+Teacher
+</option>
+
+<option value="staff">
+Staff
+</option>
+
+<option value="finance">
+Finance
+</option>
+
+<option value="student">
+Student
+</option>
+
+<option value="parent">
+Parent
+</option>
+
 </select>
+
 </div>
+
 
 <div>
 <label>Password</label>
-<input id="newUserPassword"
-       type="password"
-       placeholder="Minimum 6 characters">
+
+<input
+id="newUserPassword"
+type="password"
+placeholder="Minimum 6 characters">
 </div>
+
 
 <div>
 <label>Confirm Password</label>
-<input id="newUserConfirmPassword"
-       type="password"
-       placeholder="Confirm password">
+
+<input
+id="newUserConfirmPassword"
+type="password"
+placeholder="Confirm password">
 </div>
 
 </div>
 
-<button id="createAccountBtn"
-        class="success-btn"
-        onclick="createUserAccount()">
+
+<button
+id="createAccountBtn"
+class="success-btn"
+onclick="createUserAccount()">
 ➕ Create Account
 </button>
 
 </div>
 
 
-<!-- USERS -->
 <div class="table-card">
 
-<h3 style="margin-bottom:15px">System Users</h3>
+<h3 style="margin-bottom:15px">
+System Users
+</h3>
 
 <table>
 
 <thead>
+
 <tr>
 <th>#</th>
 <th>Full Name</th>
@@ -372,26 +876,47 @@ The new user can login with the email and password created here.
 <th>Role</th>
 <th>Created</th>
 </tr>
+
 </thead>
 
 <tbody id="adminUsersTable">
+
 <tr>
-<td colspan="6">Loading users...</td>
+<td colspan="6">
+Loading users...
+</td>
 </tr>
+
 </tbody>
 
 </table>
+
 </div>
 
 </section>
 
 
-<!-- STUDENTS -->
-<section id="students" class="hidden">
+<!-- =====================================================
+STUDENTS
+===================================================== -->
 
-<h2 class="section-title">Students Management</h2>
+<section
+id="students"
+class="hidden">
 
-<div class="form-card">
+<h2 class="section-title">
+Students Management
+</h2>
+
+<div
+id="studentPermissionNote"
+class="permission-note hidden">
+</div>
+
+
+<div
+id="studentForm"
+class="form-card">
 
 <div class="form-grid">
 
@@ -407,11 +932,23 @@ The new user can login with the email and password created here.
 
 <div>
 <label>Gender</label>
+
 <select id="studentGender">
-<option value="">Select Gender</option>
-<option value="Male">Male</option>
-<option value="Female">Female</option>
+
+<option value="">
+Select Gender
+</option>
+
+<option value="Male">
+Male
+</option>
+
+<option value="Female">
+Female
+</option>
+
 </select>
+
 </div>
 
 <div>
@@ -436,19 +973,30 @@ The new user can login with the email and password created here.
 
 </div>
 
-<button class="success-btn" onclick="addStudent()">+ Add Student</button>
+<button
+class="success-btn"
+onclick="addStudent()">
++ Add Student
+</button>
+
 </div>
+
 
 <div class="table-card">
 
 <div class="search-box">
-<input id="studentSearch"
-       placeholder="Search students..."
-       oninput="renderStudents()">
+
+<input
+id="studentSearch"
+placeholder="Search students..."
+oninput="renderStudents()">
+
 </div>
 
 <table>
+
 <thead>
+
 <tr>
 <th>#</th>
 <th>Name</th>
@@ -459,18 +1007,30 @@ The new user can login with the email and password created here.
 <th>Phone</th>
 <th>Action</th>
 </tr>
+
 </thead>
-<tbody id="studentsTable"></tbody>
+
+<tbody id="studentsTable">
+</tbody>
+
 </table>
 
 </div>
+
 </section>
 
 
-<!-- TEACHERS -->
-<section id="teachers" class="hidden">
+<!-- =====================================================
+TEACHERS
+===================================================== -->
 
-<h2 class="section-title">Teachers Management</h2>
+<section
+id="teachers"
+class="hidden">
+
+<h2 class="section-title">
+Teachers Management
+</h2>
 
 <div class="form-card">
 
@@ -503,13 +1063,21 @@ The new user can login with the email and password created here.
 
 </div>
 
-<button class="success-btn" onclick="addTeacher()">+ Add Teacher</button>
+<button
+class="success-btn"
+onclick="addTeacher()">
++ Add Teacher
+</button>
+
 </div>
+
 
 <div class="table-card">
 
 <table>
+
 <thead>
+
 <tr>
 <th>#</th>
 <th>Name</th>
@@ -519,18 +1087,30 @@ The new user can login with the email and password created here.
 <th>Email</th>
 <th>Action</th>
 </tr>
+
 </thead>
-<tbody id="teachersTable"></tbody>
+
+<tbody id="teachersTable">
+</tbody>
+
 </table>
 
 </div>
+
 </section>
 
 
-<!-- CLASSES -->
-<section id="classes" class="hidden">
+<!-- =====================================================
+CLASSES
+===================================================== -->
 
-<h2 class="section-title">Classes Management</h2>
+<section
+id="classes"
+class="hidden">
+
+<h2 class="section-title">
+Classes Management
+</h2>
 
 <div class="form-card">
 
@@ -558,13 +1138,21 @@ The new user can login with the email and password created here.
 
 </div>
 
-<button class="success-btn" onclick="addClass()">+ Add Class</button>
+<button
+class="success-btn"
+onclick="addClass()">
++ Add Class
+</button>
+
 </div>
+
 
 <div class="table-card">
 
 <table>
+
 <thead>
+
 <tr>
 <th>#</th>
 <th>Name</th>
@@ -573,49 +1161,85 @@ The new user can login with the email and password created here.
 <th>Teacher</th>
 <th>Action</th>
 </tr>
+
 </thead>
-<tbody id="classesTable"></tbody>
+
+<tbody id="classesTable">
+</tbody>
+
 </table>
 
 </div>
+
 </section>
 
 
-<!-- SUBJECTS -->
-<section id="subjects" class="hidden">
+<!-- =====================================================
+SUBJECTS
+===================================================== -->
 
-<h2 class="section-title">Subjects Management</h2>
+<section
+id="subjects"
+class="hidden">
+
+<h2 class="section-title">
+Subjects Management
+</h2>
 
 <div class="form-card">
 
-<label>Subject Name</label>
-<input id="subjectName" placeholder="Enter subject name">
+<label>
+Subject Name
+</label>
 
-<button class="success-btn" onclick="addSubject()">+ Add Subject</button>
+<input
+id="subjectName"
+placeholder="Enter subject name">
+
+<button
+class="success-btn"
+onclick="addSubject()">
++ Add Subject
+</button>
 
 </div>
+
 
 <div class="table-card">
 
 <table>
+
 <thead>
+
 <tr>
 <th>#</th>
 <th>Subject</th>
 <th>Action</th>
 </tr>
+
 </thead>
-<tbody id="subjectsTable"></tbody>
+
+<tbody id="subjectsTable">
+</tbody>
+
 </table>
 
 </div>
+
 </section>
 
 
-<!-- ATTENDANCE -->
-<section id="attendance" class="hidden">
+<!-- =====================================================
+ATTENDANCE
+===================================================== -->
 
-<h2 class="section-title">Attendance</h2>
+<section
+id="attendance"
+class="hidden">
+
+<h2 class="section-title">
+Attendance
+</h2>
 
 <div class="form-card">
 
@@ -628,27 +1252,49 @@ The new user can login with the email and password created here.
 
 <div>
 <label>Date</label>
-<input id="attendanceDate" type="date">
+<input
+id="attendanceDate"
+type="date">
 </div>
 
 <div>
 <label>Status</label>
+
 <select id="attendanceStatus">
-<option value="Present">Present</option>
-<option value="Absent">Absent</option>
-<option value="Late">Late</option>
+
+<option value="Present">
+Present
+</option>
+
+<option value="Absent">
+Absent
+</option>
+
+<option value="Late">
+Late
+</option>
+
 </select>
-</div>
 
 </div>
 
-<button class="success-btn" onclick="addAttendance()">+ Save Attendance</button>
 </div>
+
+<button
+class="success-btn"
+onclick="addAttendance()">
++ Save Attendance
+</button>
+
+</div>
+
 
 <div class="table-card">
 
 <table>
+
 <thead>
+
 <tr>
 <th>#</th>
 <th>Student</th>
@@ -656,18 +1302,30 @@ The new user can login with the email and password created here.
 <th>Status</th>
 <th>Action</th>
 </tr>
+
 </thead>
-<tbody id="attendanceTable"></tbody>
+
+<tbody id="attendanceTable">
+</tbody>
+
 </table>
 
 </div>
+
 </section>
 
 
-<!-- GRADES -->
-<section id="grades" class="hidden">
+<!-- =====================================================
+GRADES
+===================================================== -->
 
-<h2 class="section-title">Grades</h2>
+<section
+id="grades"
+class="hidden">
+
+<h2 class="section-title">
+Grades
+</h2>
 
 <div class="form-card">
 
@@ -685,27 +1343,51 @@ The new user can login with the email and password created here.
 
 <div>
 <label>Score</label>
-<input id="gradeScore" type="number" min="0" max="100">
+<input
+id="gradeScore"
+type="number"
+min="0"
+max="100">
 </div>
 
 <div>
 <label>Term</label>
+
 <select id="gradeTerm">
-<option value="Term 1">Term 1</option>
-<option value="Term 2">Term 2</option>
-<option value="Term 3">Term 3</option>
+
+<option value="Term 1">
+Term 1
+</option>
+
+<option value="Term 2">
+Term 2
+</option>
+
+<option value="Term 3">
+Term 3
+</option>
+
 </select>
-</div>
 
 </div>
 
-<button class="success-btn" onclick="addGrade()">+ Save Grade</button>
 </div>
+
+<button
+class="success-btn"
+onclick="addGrade()">
++ Save Grade
+</button>
+
+</div>
+
 
 <div class="table-card">
 
 <table>
+
 <thead>
+
 <tr>
 <th>#</th>
 <th>Student</th>
@@ -714,20 +1396,39 @@ The new user can login with the email and password created here.
 <th>Term</th>
 <th>Action</th>
 </tr>
+
 </thead>
-<tbody id="gradesTable"></tbody>
+
+<tbody id="gradesTable">
+</tbody>
+
 </table>
 
 </div>
+
 </section>
 
 
-<!-- FEES -->
-<section id="fees" class="hidden">
+<!-- =====================================================
+FEES
+===================================================== -->
 
-<h2 class="section-title">Fees / Payments</h2>
+<section
+id="fees"
+class="hidden">
 
-<div class="form-card">
+<h2 class="section-title">
+💰 Fees / Payments
+</h2>
+
+<div class="permission-note">
+Only Admin and Finance accounts can manage school payments.
+</div>
+
+
+<div
+id="feeForm"
+class="form-card">
 
 <div class="form-grid">
 
@@ -738,32 +1439,56 @@ The new user can login with the email and password created here.
 
 <div>
 <label>Amount</label>
-<input id="feeAmount" type="number">
+<input
+id="feeAmount"
+type="number">
 </div>
 
 <div>
 <label>Payment Date</label>
-<input id="feeDate" type="date">
+<input
+id="feeDate"
+type="date">
 </div>
 
 <div>
 <label>Status</label>
+
 <select id="feeStatus">
-<option value="Paid">Paid</option>
-<option value="Pending">Pending</option>
-<option value="Partial">Partial</option>
+
+<option value="Paid">
+Paid
+</option>
+
+<option value="Pending">
+Pending
+</option>
+
+<option value="Partial">
+Partial
+</option>
+
 </select>
-</div>
 
 </div>
 
-<button class="success-btn" onclick="addFee()">+ Save Payment</button>
 </div>
+
+<button
+class="success-btn"
+onclick="addFee()">
++ Save Payment
+</button>
+
+</div>
+
 
 <div class="table-card">
 
 <table>
+
 <thead>
+
 <tr>
 <th>#</th>
 <th>Student</th>
@@ -772,11 +1497,16 @@ The new user can login with the email and password created here.
 <th>Status</th>
 <th>Action</th>
 </tr>
+
 </thead>
-<tbody id="feesTable"></tbody>
+
+<tbody id="feesTable">
+</tbody>
+
 </table>
 
 </div>
+
 </section>
 
 </div>
@@ -787,7 +1517,7 @@ The new user can login with the email and password created here.
 <script>
 
 /* =====================================================
-   SUPABASE
+SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -807,7 +1537,7 @@ SUPABASE_KEY
 
 
 /* =====================================================
-   GLOBAL VARIABLES
+GLOBAL VARIABLES
 ===================================================== */
 
 let students=[];
@@ -827,12 +1557,76 @@ let appLoading=false;
 
 
 /* =====================================================
-   HELPERS
+ROLE PERMISSIONS
+===================================================== */
+
+const ROLE_PERMISSIONS={
+
+admin:[
+"dashboard",
+"teacherDashboard",
+"adminAccountManager",
+"students",
+"teachers",
+"classes",
+"subjects",
+"attendance",
+"grades",
+"fees"
+],
+
+administrator:[
+"dashboard",
+"teacherDashboard",
+"adminAccountManager",
+"students",
+"teachers",
+"classes",
+"subjects",
+"attendance",
+"grades",
+"fees"
+],
+
+teacher:[
+"dashboard",
+"teacherDashboard",
+"students",
+"attendance",
+"grades"
+],
+
+staff:[
+"dashboard",
+"students",
+"attendance"
+],
+
+finance:[
+"dashboard",
+"students",
+"fees"
+],
+
+student:[
+"dashboard"
+],
+
+parent:[
+"dashboard"
+]
+
+};
+
+
+/* =====================================================
+HELPERS
 ===================================================== */
 
 function escapeHtml(value){
 
-if(value===null||value===undefined)return "";
+if(value===null||value===undefined)
+return "";
 
 return String(value)
 .replace(/&/g,"&amp;")
@@ -861,21 +1655,110 @@ currentUserRole==="administrator";
 }
 
 
+function hasPermission(section){
+
+const permissions=
+ROLE_PERMISSIONS[currentUserRole]||[];
+
+return permissions.includes(section);
+
+}
+
+
+function canAddStudents(){
+
+return isAdmin() ||
+currentUserRole==="staff";
+
+}
+
+
+function canDeleteStudents(){
+
+return isAdmin();
+}
+
+
+function canManageTeachers(){
+
+return isAdmin();
+}
+
+
+function canManageClasses(){
+
+return isAdmin();
+}
+
+
+function canManageSubjects(){
+
+return isAdmin();
+}
+
+
+function canManageAttendance(){
+
+return isAdmin() ||
+currentUserRole==="teacher" ||
+currentUserRole==="staff";
+}
+
+
+function canManageGrades(){
+
+return isAdmin() ||
+currentUserRole==="teacher";
+}
+
+
+function canManageFees(){
+
+return isAdmin() ||
+currentUserRole==="finance";
+}
+
+
+function requirePermission(section){
+
+if(!hasPermission(section)){
+
+alert(
+"You do not have permission to access this section."
+);
+
+return false;
+
+}
+
+return true;
+
+}
+
+
 /* =====================================================
-   LOGIN
+LOGIN
 ===================================================== */
 
 async function login(){
 
 const identifier=
-document.getElementById("loginEmail").value.trim();
+document
+.getElementById("loginEmail")
+.value
+.trim();
 
 const password=
-document.getElementById("loginPassword").value;
+document
+.getElementById("loginPassword")
+.value;
 
 if(!identifier||!password){
 
-alert("Please enter your email or phone and password.");
+alert(
+"Please enter your email or phone and password."
+);
+
 return;
 
 }
@@ -928,22 +1811,35 @@ location.reload();
 
 
 /* =====================================================
-   LOGIN SCREENS
+LOGIN SCREENS
 ===================================================== */
 
 function showForgot(){
 
-document.getElementById("loginForm").classList.add("hidden");
-document.getElementById("forgotForm").classList.remove("hidden");
+document
+.getElementById("loginForm")
+.classList.add("hidden");
+
+document
+.getElementById("forgotForm")
+.classList.remove("hidden");
 
 }
 
 
 function showLogin(){
 
-document.getElementById("forgotForm").classList.add("hidden");
-document.getElementById("newPasswordForm").classList.add("hidden");
-document.getElementById("loginForm").classList.remove("hidden");
+document
+.getElementById("forgotForm")
+.classList.add("hidden");
+
+document
+.getElementById("newPasswordForm")
+.classList.add("hidden");
+
+document
+.getElementById("loginForm")
+.classList.remove("hidden");
 
 }
 
@@ -951,7 +1847,10 @@ document.getElementById("loginForm").classList.remove("hidden");
 async function sendReset(){
 
 const email=
-document.getElementById("forgotEmail").value.trim();
+document
+.getElementById("forgotEmail")
+.value
+.trim();
 
 if(!email){
 
@@ -976,7 +1875,9 @@ alert(error.message);
 
 }else{
 
-alert("Password reset link has been sent to your email.");
+alert(
+"Password reset link has been sent to your email."
+);
 
 }
 
@@ -986,7 +1887,9 @@ alert("Password reset link has been sent to your email.");
 async function updatePassword(){
 
 const password=
-document.getElementById("newPassword").value;
+document
+.getElementById("newPassword")
+.value;
 
 if(!password){
 
@@ -997,7 +1900,10 @@ return;
 
 if(password.length<6){
 
-alert("Password must be at least 6 characters.");
+alert(
+"Password must be at least 6 characters."
+);
+
 return;
 
 }
@@ -1022,22 +1928,10 @@ showLogin();
 
 
 /* =====================================================
-   CURRENT USER ROLE
+LOAD CURRENT USER ROLE
 ===================================================== */
 
 async function loadCurrentUserRole(){
-
-const adminButton=
-document.getElementById("adminAccountManagerBtn");
-
-const teacherButton=
-document.getElementById("teacherDashboardBtn");
-
-if(adminButton)
-adminButton.classList.add("hidden");
-
-if(teacherButton)
-teacherButton.classList.add("hidden");
 
 if(!currentUser){
 
@@ -1051,7 +1945,8 @@ const email=
 .trim()
 .toLowerCase();
 
-const authId=currentUser.id;
+const authId=
+currentUser.id;
 
 let data=null;
 let error=null;
@@ -1064,7 +1959,9 @@ if(authId){
 const result=
 await supabaseClient
 .from("users")
-.select("id,full_name,email,phone,role,auth_id,created_at")
+.select(
+"id,full_name,email,phone,role,auth_id,created_at"
+)
 .eq("auth_id",authId)
 .maybeSingle();
 
@@ -1081,7 +1978,9 @@ if(!data&&email){
 const result=
 await supabaseClient
 .from("users")
-.select("id,full_name,email,phone,role,auth_id,created_at")
+.select(
+"id,full_name,email,phone,role,auth_id,created_at"
+)
 .ilike("email",email)
 .maybeSingle();
 
@@ -1094,7 +1993,9 @@ error=result.error;
 if(error){
 
 console.error(error);
+
 currentUserRole="";
+
 return;
 
 }
@@ -1102,11 +2003,16 @@ return;
 
 if(!data){
 
-console.warn("Current user profile was not found.");
+console.warn(
+"Current user profile was not found."
+);
+
 currentUserRole="";
+
 return;
 
 }
+
 
 currentUserRole=
 (data.role||"")
@@ -1115,23 +2021,109 @@ currentUserRole=
 .toLowerCase();
 
 
-if(
-currentUserRole==="admin"||
-currentUserRole==="administrator"
-){
+document.getElementById("loggedRole")
+.textContent=
+currentUserRole
+?
+"("+
+currentUserRole.toUpperCase()+
+")"
+:
+"";
 
-if(adminButton)
-adminButton.classList.remove("hidden");
+
+if(isAdmin()){
 
 loadCurrentAdminInfo(data);
 
 }
 
+applyRolePermissions();
 
-if(currentUserRole==="teacher"){
+}
 
-if(teacherButton)
-teacherButton.classList.remove("hidden");
+
+/* =====================================================
+APPLY ROLE PERMISSIONS
+===================================================== */
+
+function applyRolePermissions(){
+
+const menuMap={
+
+teacherDashboard:"menuTeacherDashboard",
+adminAccountManager:"menuAdmin",
+students:"menuStudents",
+teachers:"menuTeachers",
+classes:"menuClasses",
+subjects:"menuSubjects",
+attendance:"menuAttendance",
+grades:"menuGrades",
+fees:"menuFees"
+
+};
+
+
+Object
+.keys(menuMap)
+.forEach(section=>{
+
+const button=
+document.getElementById(
+menuMap[section]
+);
+
+if(!button)return;
+
+if(hasPermission(section)){
+
+button.classList.remove("hidden");
+
+}else{
+
+button.classList.add("hidden");
+
+}
+
+});
+
+
+/* STUDENT ADD FORM */
+
+const studentForm=
+document.getElementById("studentForm");
+
+if(studentForm){
+
+if(canAddStudents()){
+
+studentForm.classList.remove("hidden");
+
+}else{
+
+studentForm.classList.add("hidden");
+
+}
+
+}
+
+
+/* FEES FORM */
+
+const feeForm=
+document.getElementById("feeForm");
+
+if(feeForm){
+
+if(canManageFees()){
+
+feeForm.classList.remove("hidden");
+
+}else{
+
+feeForm.classList.add("hidden");
+
+}
 
 }
 
@@ -1139,30 +2131,38 @@ teacherButton.classList.remove("hidden");
 
 
 /* =====================================================
-   ADMIN INFO
+ADMIN INFO
 ===================================================== */
 
 function loadCurrentAdminInfo(data){
 
 if(!data)return;
 
-document.getElementById("adminCurrentName").value=
+document.getElementById(
+"adminCurrentName"
+).value=
 data.full_name||"";
 
-document.getElementById("adminCurrentEmail").value=
+document.getElementById(
+"adminCurrentEmail"
+).value=
 data.email||"";
 
-document.getElementById("adminCurrentPhone").value=
+document.getElementById(
+"adminCurrentPhone"
+).value=
 data.phone||"";
 
-document.getElementById("adminCurrentRole").value=
+document.getElementById(
+"adminCurrentRole"
+).value=
 data.role||"";
 
 }
 
 
 /* =====================================================
-   SHOW APP
+SHOW APP
 ===================================================== */
 
 async function showApp(){
@@ -1175,21 +2175,47 @@ appLoading=true;
 
 try{
 
-document.getElementById("loginPage").classList.add("hidden");
-document.getElementById("app").classList.remove("hidden");
+document
+.getElementById("loginPage")
+.classList.add("hidden");
 
-document.getElementById("loggedUser").textContent=
+document
+.getElementById("app")
+.classList.remove("hidden");
+
+document
+.getElementById("loggedUser")
+.textContent=
 currentUser.email||
 currentUser.phone||
 "";
 
 await loadCurrentUserRole();
 
+if(!currentUserRole){
+
+alert(
+"Your account role was not found."
+);
+
+await logout();
+
+return;
+
+}
+
 await refreshAll();
+
+showSection("dashboard",
+document.getElementById("menuDashboard")
+);
 
 }catch(error){
 
-console.error("Application loading error:",error);
+console.error(
+"Application loading error:",
+error
+);
 
 }finally{
 
@@ -1201,20 +2227,23 @@ appLoading=false;
 
 
 /* =====================================================
-   NAVIGATION
+NAVIGATION
 ===================================================== */
 
 function showSection(id,button){
 
-if(
-id==="adminAccountManager" &&
-!isAdmin()
-){
+if(!hasPermission(id)){
 
-alert("Admin access required.");
+alert(
+"You do not have permission to access this section."
+);
+
 return;
 
 }
+
+
+/* HIDE ALL SECTIONS */
 
 document
 .querySelectorAll(".content>section")
@@ -1222,10 +2251,17 @@ document
 section.classList.add("hidden");
 });
 
-const target=document.getElementById(id);
+
+/* SHOW SELECTED */
+
+const target=
+document.getElementById(id);
 
 if(target)
 target.classList.remove("hidden");
+
+
+/* ACTIVE MENU */
 
 document
 .querySelectorAll(".menu-btn")
@@ -1233,17 +2269,33 @@ document
 btn.classList.remove("active");
 });
 
+
 if(button)
 button.classList.add("active");
 
-if(id==="adminAccountManager")
+
+/* ADMIN USERS */
+
+if(id==="adminAccountManager"){
+
 loadAdminUsers();
 
 }
 
 
+/* TEACHER DASHBOARD */
+
+if(id==="teacherDashboard"){
+
+loadTeacherDashboard();
+
+}
+
+}
+
+
 /* =====================================================
-   CREATE USER ACCOUNT
+CREATE USER ACCOUNT
 ===================================================== */
 
 async function createUserAccount(){
@@ -1256,55 +2308,99 @@ return;
 }
 
 const fullName=
-document.getElementById("newUserFullName")
-.value.trim();
+document
+.getElementById("newUserFullName")
+.value
+.trim();
 
 const email=
-document.getElementById("newUserEmail")
-.value.trim();
+document
+.getElementById("newUserEmail")
+.value
+.trim();
 
 const phone=
-document.getElementById("newUserPhone")
-.value.trim();
+document
+.getElementById("newUserPhone")
+.value
+.trim();
 
 const role=
-document.getElementById("newUserRole")
-.value;
+document
+.getElementById("newUserRole")
+.value
+.trim()
+.toLowerCase();
 
 const password=
-document.getElementById("newUserPassword")
+document
+.getElementById("newUserPassword")
 .value;
 
 const confirmPassword=
-document.getElementById("newUserConfirmPassword")
+document
+.getElementById("newUserConfirmPassword")
 .value;
+
 
 if(!fullName||!email||!password){
 
-alert("Full Name, Email and Password are required.");
+alert(
+"Full Name, Email and Password are required."
+);
+
 return;
 
 }
+
 
 if(password.length<6){
 
-alert("Password must be at least 6 characters.");
+alert(
+"Password must be at least 6 characters."
+);
+
 return;
 
 }
+
 
 if(password!==confirmPassword){
 
-alert("Passwords do not match.");
+alert(
+"Passwords do not match."
+);
+
 return;
 
 }
+
+
+const allowedRoles=[
+"admin",
+"administrator",
+"teacher",
+"staff",
+"finance",
+"student",
+"parent"
+];
+
+
+if(!allowedRoles.includes(role)){
+
+alert("Invalid role.");
+return;
+
+}
+
 
 const {
 data:sessionData,
 error:sessionError
 }=
 await supabaseClient.auth.getSession();
+
 
 if(sessionError){
 
@@ -1313,18 +2409,27 @@ return;
 
 }
 
-const session=sessionData?.session;
+
+const session=
+sessionData?.session;
+
 
 if(!session){
 
-alert("Your session has expired. Please login again.");
+alert(
+"Your session has expired. Please login again."
+);
+
 return;
 
 }
 
 
 const button=
-document.getElementById("createAccountBtn");
+document.getElementById(
+"createAccountBtn"
+);
+
 
 if(button){
 
@@ -1343,19 +2448,25 @@ SMOOTH_HANDLER_URL,
 method:"POST",
 
 headers:{
-"Content-Type":"application/json",
-"apikey":SUPABASE_KEY,
+"Content-Type":
+"application/json",
+
+"apikey":
+SUPABASE_KEY,
+
 "Authorization":
 "Bearer "+
 session.access_token
 },
 
 body:JSON.stringify({
+
 fullName,
 email,
 phone,
 password,
 role
+
 })
 
 }
@@ -1366,7 +2477,8 @@ let result={};
 
 try{
 
-result=await response.json();
+result=
+await response.json();
 
 }catch(e){
 
@@ -1375,7 +2487,10 @@ result={};
 }
 
 
-if(!response.ok||!result.success){
+if(
+!response.ok||
+!result.success
+){
 
 throw new Error(
 result.error||
@@ -1385,15 +2500,34 @@ result.error||
 }
 
 
-alert("Account created successfully.");
+alert(
+"Account created successfully."
+);
 
 
-document.getElementById("newUserFullName").value="";
-document.getElementById("newUserEmail").value="";
-document.getElementById("newUserPhone").value="";
-document.getElementById("newUserPassword").value="";
-document.getElementById("newUserConfirmPassword").value="";
-document.getElementById("newUserRole").value="teacher";
+document.getElementById(
+"newUserFullName"
+).value="";
+
+document.getElementById(
+"newUserEmail"
+).value="";
+
+document.getElementById(
+"newUserPhone"
+).value="";
+
+document.getElementById(
+"newUserPassword"
+).value="";
+
+document.getElementById(
+"newUserConfirmPassword"
+).value="";
+
+document.getElementById(
+"newUserRole"
+).value="teacher";
 
 
 await loadAdminUsers();
@@ -1401,7 +2535,10 @@ await loadAdminUsers();
 
 }catch(error){
 
-console.error("Create account error:",error);
+console.error(
+"Create account error:",
+error
+);
 
 alert(
 error.message||
@@ -1413,7 +2550,8 @@ error.message||
 if(button){
 
 button.disabled=false;
-button.textContent="➕ Create Account";
+button.textContent=
+"➕ Create Account";
 
 }
 
@@ -1423,7 +2561,7 @@ button.textContent="➕ Create Account";
 
 
 /* =====================================================
-   ADMIN USERS
+ADMIN USERS
 ===================================================== */
 
 async function loadAdminUsers(){
@@ -1431,7 +2569,9 @@ async function loadAdminUsers(){
 if(!isAdmin())return;
 
 const table=
-document.getElementById("adminUsersTable");
+document.getElementById(
+"adminUsersTable"
+);
 
 if(!table)return;
 
@@ -1442,7 +2582,9 @@ table.innerHTML=
 const {data,error}=
 await supabaseClient
 .from("users")
-.select("id,full_name,email,phone,role,auth_id,created_at")
+.select(
+"id,full_name,email,phone,role,auth_id,created_at"
+)
 .order("id",{ascending:false});
 
 
@@ -1457,6 +2599,7 @@ return;
 
 }
 
+
 adminUsers=data||[];
 
 renderAdminUsers();
@@ -1467,11 +2610,14 @@ renderAdminUsers();
 function renderAdminUsers(){
 
 const table=
-document.getElementById("adminUsersTable");
+document.getElementById(
+"adminUsersTable"
+);
 
 if(!table)return;
 
 table.innerHTML="";
+
 
 if(adminUsers.length===0){
 
@@ -1482,6 +2628,7 @@ return;
 
 }
 
+
 adminUsers.forEach((item,index)=>{
 
 table.innerHTML+=`
@@ -1490,18 +2637,28 @@ table.innerHTML+=`
 
 <td>${index+1}</td>
 
-<td>${escapeHtml(item.full_name)}</td>
+<td>
+${escapeHtml(item.full_name)}
+</td>
 
-<td>${escapeHtml(item.email)}</td>
+<td>
+${escapeHtml(item.email)}
+</td>
 
-<td>${escapeHtml(item.phone)}</td>
+<td>
+${escapeHtml(item.phone)}
+</td>
 
-<td>${escapeHtml(item.role)}</td>
+<td>
+${escapeHtml(item.role)}
+</td>
 
 <td>
 ${escapeHtml(
-item.created_at?
-item.created_at.split("T")[0]:
+item.created_at
+?
+item.created_at.split("T")[0]
+:
 ""
 )}
 </td>
@@ -1516,7 +2673,7 @@ item.created_at.split("T")[0]:
 
 
 /* =====================================================
-   STUDENTS
+STUDENTS
 ===================================================== */
 
 async function loadStudents(){
@@ -1527,6 +2684,7 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
+
 if(error){
 
 console.error(error);
@@ -1535,12 +2693,16 @@ return;
 
 }
 
+
 students=data||[];
 
 renderStudents();
+
 fillStudentDropdowns();
 
-document.getElementById("studentCount").textContent=
+document.getElementById(
+"studentCount"
+).textContent=
 students.length;
 
 }
@@ -1549,18 +2711,24 @@ students.length;
 function renderStudents(){
 
 const table=
-document.getElementById("studentsTable");
+document.getElementById(
+"studentsTable"
+);
 
 if(!table)return;
 
 const search=
 (
-document.getElementById("studentSearch")?.value||""
+document.getElementById(
+"studentSearch"
+)?.value||""
 )
 .toLowerCase()
 .trim();
 
+
 table.innerHTML="";
+
 
 const filtered=
 students.filter(student=>{
@@ -1571,7 +2739,8 @@ const text=
 (student.student_id||"")+" "+
 (student.parent_name||"")+" "+
 (student.parent_phone||"")
-).toLowerCase();
+)
+.toLowerCase();
 
 return text.includes(search);
 
@@ -1592,8 +2761,24 @@ filtered.forEach((item,index)=>{
 
 const classItem=
 classes.find(c=>
-String(c.id)===String(item.class_id)
+String(c.id)===
+String(item.class_id)
 );
+
+
+const deleteButton=
+canDeleteStudents()
+?
+`
+<button
+class="small-btn"
+onclick="deleteStudent(${item.id})">
+Delete
+</button>
+`
+:
+"";
+
 
 table.innerHTML+=`
 
@@ -1613,12 +2798,7 @@ table.innerHTML+=`
 
 <td>${escapeHtml(item.parent_phone)}</td>
 
-<td>
-<button class="small-btn"
-onclick="deleteStudent(${item.id})">
-Delete
-</button>
-</td>
+<td>${deleteButton}</td>
 
 </tr>
 
@@ -1626,50 +2806,94 @@ Delete
 
 });
 
+
 }
 
 
 async function addStudent(){
 
-const full_name=
-document.getElementById("studentName").value.trim();
+if(!canAddStudents()){
 
-const student_id=
-document.getElementById("studentId").value.trim();
+alert(
+"You do not have permission to add students."
+);
 
-const gender=
-document.getElementById("studentGender").value;
-
-const date_of_birth=
-document.getElementById("studentDOB").value;
-
-const class_id=
-document.getElementById("studentClass").value;
-
-const parent_name=
-document.getElementById("parentName").value.trim();
-
-const parent_phone=
-document.getElementById("parentPhone").value.trim();
-
-if(!full_name||!student_id){
-
-alert("Please enter student name and student ID.");
 return;
 
 }
+
+
+const full_name=
+document
+.getElementById("studentName")
+.value
+.trim();
+
+const student_id=
+document
+.getElementById("studentId")
+.value
+.trim();
+
+const gender=
+document
+.getElementById("studentGender")
+.value;
+
+const date_of_birth=
+document
+.getElementById("studentDOB")
+.value;
+
+const class_id=
+document
+.getElementById("studentClass")
+.value;
+
+const parent_name=
+document
+.getElementById("parentName")
+.value
+.trim();
+
+const parent_phone=
+document
+.getElementById("parentPhone")
+.value
+.trim();
+
+
+if(!full_name||!student_id){
+
+alert(
+"Please enter student name and student ID."
+);
+
+return;
+
+}
+
 
 const {error}=
 await supabaseClient
 .from("students")
 .insert([{
+
 full_name,
 student_id,
 gender:gender||null,
 date_of_birth:date_of_birth||null,
-class_id:class_id?Number(class_id):null,
-parent_name:parent_name||null,
-parent_phone:parent_phone||null
+class_id:
+class_id
+?
+Number(class_id)
+:
+null,
+parent_name:
+parent_name||null,
+parent_phone:
+parent_phone||null
+
 }]);
 
 
@@ -1680,7 +2904,11 @@ return;
 
 }
 
-alert("Student added successfully.");
+
+alert(
+"Student added successfully."
+);
+
 
 [
 "studentName",
@@ -1690,9 +2918,11 @@ alert("Student added successfully.");
 "studentClass",
 "parentName",
 "parentPhone"
-].forEach(id=>{
+]
+.forEach(id=>{
 document.getElementById(id).value="";
 });
+
 
 await loadStudents();
 
@@ -1701,13 +2931,29 @@ await loadStudents();
 
 async function deleteStudent(id){
 
-if(!confirm("Delete this student?"))return;
+if(!canDeleteStudents()){
+
+alert(
+"You do not have permission to delete students."
+);
+
+return;
+
+}
+
+
+if(!confirm(
+"Delete this student?"
+))
+return;
+
 
 const {error}=
 await supabaseClient
 .from("students")
 .delete()
 .eq("id",id);
+
 
 if(error){
 
@@ -1716,13 +2962,14 @@ return;
 
 }
 
+
 await loadStudents();
 
 }
 
 
 /* =====================================================
-   TEACHERS
+TEACHERS
 ===================================================== */
 
 async function loadTeachers(){
@@ -1733,6 +2980,7 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
+
 if(error){
 
 console.error(error);
@@ -1741,13 +2989,18 @@ return;
 
 }
 
+
 teachers=data||[];
 
 renderTeachers();
+
 fillTeacherDropdown();
+
 await loadTeacherDashboard();
 
-document.getElementById("teacherCount").textContent=
+document.getElementById(
+"teacherCount"
+).textContent=
 teachers.length;
 
 }
@@ -1756,11 +3009,14 @@ teachers.length;
 function renderTeachers(){
 
 const table=
-document.getElementById("teachersTable");
+document.getElementById(
+"teachersTable"
+);
 
 if(!table)return;
 
 table.innerHTML="";
+
 
 if(teachers.length===0){
 
@@ -1771,7 +3027,22 @@ return;
 
 }
 
+
 teachers.forEach((item,index)=>{
+
+const deleteButton=
+canManageTeachers()
+?
+`
+<button
+class="small-btn"
+onclick="deleteTeacher(${item.id})">
+Delete
+</button>
+`
+:
+"";
+
 
 table.innerHTML+=`
 
@@ -1789,12 +3060,7 @@ table.innerHTML+=`
 
 <td>${escapeHtml(item.email)}</td>
 
-<td>
-<button class="small-btn"
-onclick="deleteTeacher(${item.id})">
-Delete
-</button>
-</td>
+<td>${deleteButton}</td>
 
 </tr>
 
@@ -1807,37 +3073,65 @@ Delete
 
 async function addTeacher(){
 
-const full_name=
-document.getElementById("teacherName").value.trim();
+if(!canManageTeachers()){
 
-const teacher_id=
-document.getElementById("teacherId").value.trim();
+alert(
+"You do not have permission to manage teachers."
+);
 
-const subject=
-document.getElementById("teacherSubject").value.trim();
-
-const phone=
-document.getElementById("teacherPhone").value.trim();
-
-const email=
-document.getElementById("teacherEmail").value.trim();
-
-if(!full_name){
-
-alert("Please enter teacher name.");
 return;
 
 }
+
+
+const full_name=
+document.getElementById(
+"teacherName"
+).value.trim();
+
+const teacher_id=
+document.getElementById(
+"teacherId"
+).value.trim();
+
+const subject=
+document.getElementById(
+"teacherSubject"
+).value.trim();
+
+const phone=
+document.getElementById(
+"teacherPhone"
+).value.trim();
+
+const email=
+document.getElementById(
+"teacherEmail"
+).value.trim();
+
+
+if(!full_name){
+
+alert(
+"Please enter teacher name."
+);
+
+return;
+
+}
+
 
 const {error}=
 await supabaseClient
 .from("teachers")
 .insert([{
+
 full_name,
 teacher_id:teacher_id||null,
 subject:subject||null,
 phone:phone||null,
 email:email||null
+
 }]);
 
 
@@ -1848,7 +3142,11 @@ return;
 
 }
 
-alert("Teacher added successfully.");
+
+alert(
+"Teacher added successfully."
+);
+
 
 [
 "teacherName",
@@ -1856,9 +3154,11 @@ alert("Teacher added successfully.");
 "teacherSubject",
 "teacherPhone",
 "teacherEmail"
-].forEach(id=>{
+]
+.forEach(id=>{
 document.getElementById(id).value="";
 });
+
 
 await loadTeachers();
 
@@ -1867,13 +3167,29 @@ await loadTeachers();
 
 async function deleteTeacher(id){
 
-if(!confirm("Delete this teacher?"))return;
+if(!canManageTeachers()){
+
+alert(
+"You do not have permission to delete teachers."
+);
+
+return;
+
+}
+
+
+if(!confirm(
+"Delete this teacher?"
+))
+return;
+
 
 const {error}=
 await supabaseClient
 .from("teachers")
 .delete()
 .eq("id",id);
+
 
 if(error){
 
@@ -1882,13 +3198,14 @@ return;
 
 }
 
+
 await loadTeachers();
 
 }
 
 
 /* =====================================================
-   CLASSES
+CLASSES
 ===================================================== */
 
 async function loadClasses(){
@@ -1899,6 +3216,7 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
+
 if(error){
 
 console.error(error);
@@ -1907,13 +3225,18 @@ return;
 
 }
 
+
 classes=data||[];
 
 renderClasses();
+
 fillClassDropdown();
+
 fillStudentDropdowns();
 
-document.getElementById("classCount").textContent=
+document.getElementById(
+"classCount"
+).textContent=
 classes.length;
 
 }
@@ -1922,11 +3245,14 @@ classes.length;
 function renderClasses(){
 
 const table=
-document.getElementById("classesTable");
+document.getElementById(
+"classesTable"
+);
 
 if(!table)return;
 
 table.innerHTML="";
+
 
 if(classes.length===0){
 
@@ -1937,7 +3263,22 @@ return;
 
 }
 
+
 classes.forEach((item,index)=>{
+
+const deleteButton=
+canManageClasses()
+?
+`
+<button
+class="small-btn"
+onclick="deleteClass(${item.id})">
+Delete
+</button>
+`
+:
+"";
+
 
 table.innerHTML+=`
 
@@ -1953,12 +3294,7 @@ table.innerHTML+=`
 
 <td>${escapeHtml(item.teacher_name)}</td>
 
-<td>
-<button class="small-btn"
-onclick="deleteClass(${item.id})">
-Delete
-</button>
-</td>
+<td>${deleteButton}</td>
 
 </tr>
 
@@ -1971,38 +3307,66 @@ Delete
 
 async function addClass(){
 
-const name=
-document.getElementById("className").value.trim();
+if(!canManageClasses()){
 
-const grade=
-document.getElementById("classGrade").value.trim();
+alert(
+"You do not have permission to manage classes."
+);
 
-const section=
-document.getElementById("classSection").value.trim();
-
-const teacherSelect=
-document.getElementById("classTeacher");
-
-const teacher_name=
-teacherSelect.options[
-teacherSelect.selectedIndex
-]?.text||"";
-
-if(!name){
-
-alert("Please enter class name.");
 return;
 
 }
+
+
+const name=
+document.getElementById(
+"className"
+).value.trim();
+
+const grade=
+document.getElementById(
+"classGrade"
+).value.trim();
+
+const section=
+document.getElementById(
+"classSection"
+).value.trim();
+
+const teacherSelect=
+document.getElementById(
+"classTeacher"
+);
+
+const teacher_name=
+teacherSelect
+.options[
+teacherSelect.selectedIndex
+]?.text||"";
+
+
+if(!name){
+
+alert(
+"Please enter class name."
+);
+
+return;
+
+}
+
 
 const {error}=
 await supabaseClient
 .from("classes")
 .insert([{
+
 name,
 grade:grade||null,
 section:section||null,
-teacher_name:teacher_name||null
+teacher_name:
+teacher_name||null
+
 }]);
 
 
@@ -2013,16 +3377,22 @@ return;
 
 }
 
-alert("Class added successfully.");
+
+alert(
+"Class added successfully."
+);
+
 
 [
 "className",
 "classGrade",
 "classSection",
 "classTeacher"
-].forEach(id=>{
+]
+.forEach(id=>{
 document.getElementById(id).value="";
 });
+
 
 await loadClasses();
 
@@ -2031,13 +3401,29 @@ await loadClasses();
 
 async function deleteClass(id){
 
-if(!confirm("Delete this class?"))return;
+if(!canManageClasses()){
+
+alert(
+"You do not have permission to delete classes."
+);
+
+return;
+
+}
+
+
+if(!confirm(
+"Delete this class?"
+))
+return;
+
 
 const {error}=
 await supabaseClient
 .from("classes")
 .delete()
 .eq("id",id);
+
 
 if(error){
 
@@ -2046,13 +3432,14 @@ return;
 
 }
 
+
 await loadClasses();
 
 }
 
 
 /* =====================================================
-   SUBJECTS
+SUBJECTS
 ===================================================== */
 
 async function loadSubjects(){
@@ -2063,6 +3450,7 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
+
 if(error){
 
 console.error(error);
@@ -2071,12 +3459,16 @@ return;
 
 }
 
+
 subjects=data||[];
 
 renderSubjects();
+
 fillSubjectDropdowns();
 
-document.getElementById("subjectCount").textContent=
+document.getElementById(
+"subjectCount"
+).textContent=
 subjects.length;
 
 }
@@ -2085,11 +3477,14 @@ subjects.length;
 function renderSubjects(){
 
 const table=
-document.getElementById("subjectsTable");
+document.getElementById(
+"subjectsTable"
+);
 
 if(!table)return;
 
 table.innerHTML="";
+
 
 if(subjects.length===0){
 
@@ -2100,7 +3495,22 @@ return;
 
 }
 
+
 subjects.forEach((item,index)=>{
+
+const deleteButton=
+canManageSubjects()
+?
+`
+<button
+class="small-btn"
+onclick="deleteSubject(${item.id})">
+Delete
+</button>
+`
+:
+"";
+
 
 table.innerHTML+=`
 
@@ -2110,12 +3520,7 @@ table.innerHTML+=`
 
 <td>${escapeHtml(item.subject_name)}</td>
 
-<td>
-<button class="small-btn"
-onclick="deleteSubject(${item.id})">
-Delete
-</button>
-</td>
+<td>${deleteButton}</td>
 
 </tr>
 
@@ -2128,20 +3533,40 @@ Delete
 
 async function addSubject(){
 
-const subject_name=
-document.getElementById("subjectName").value.trim();
+if(!canManageSubjects()){
 
-if(!subject_name){
+alert(
+"You do not have permission to manage subjects."
+);
 
-alert("Enter subject name.");
 return;
 
 }
 
+
+const subject_name=
+document.getElementById(
+"subjectName"
+).value.trim();
+
+
+if(!subject_name){
+
+alert(
+"Enter subject name."
+);
+
+return;
+
+}
+
+
 const {error}=
 await supabaseClient
 .from("subjects")
-.insert([{subject_name}]);
+.insert([{
+subject_name
+}]);
 
 
 if(error){
@@ -2151,9 +3576,16 @@ return;
 
 }
 
-alert("Subject added successfully.");
 
-document.getElementById("subjectName").value="";
+alert(
+"Subject added successfully."
+);
+
+
+document.getElementById(
+"subjectName"
+).value="";
+
 
 await loadSubjects();
 
@@ -2162,13 +3594,29 @@ await loadSubjects();
 
 async function deleteSubject(id){
 
-if(!confirm("Delete this subject?"))return;
+if(!canManageSubjects()){
+
+alert(
+"You do not have permission to delete subjects."
+);
+
+return;
+
+}
+
+
+if(!confirm(
+"Delete this subject?"
+))
+return;
+
 
 const {error}=
 await supabaseClient
 .from("subjects")
 .delete()
 .eq("id",id);
+
 
 if(error){
 
@@ -2177,13 +3625,14 @@ return;
 
 }
 
+
 await loadSubjects();
 
 }
 
 
 /* =====================================================
-   ATTENDANCE
+ATTENDANCE
 ===================================================== */
 
 async function loadAttendance(){
@@ -2194,6 +3643,7 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
+
 if(error){
 
 console.error(error);
@@ -2202,11 +3652,14 @@ return;
 
 }
 
+
 attendance=data||[];
 
 renderAttendance();
 
-document.getElementById("attendanceCount").textContent=
+document.getElementById(
+"attendanceCount"
+).textContent=
 attendance.length;
 
 }
@@ -2215,11 +3668,14 @@ attendance.length;
 function renderAttendance(){
 
 const table=
-document.getElementById("attendanceTable");
+document.getElementById(
+"attendanceTable"
+);
 
 if(!table)return;
 
 table.innerHTML="";
+
 
 if(attendance.length===0){
 
@@ -2230,12 +3686,29 @@ return;
 
 }
 
+
 attendance.forEach((item,index)=>{
 
 const student=
 students.find(s=>
-String(s.id)===String(item.student_id)
+String(s.id)===
+String(item.student_id)
 );
+
+
+const deleteButton=
+canManageAttendance()
+?
+`
+<button
+class="small-btn"
+onclick="deleteAttendance(${item.id})">
+Delete
+</button>
+`
+:
+"";
+
 
 table.innerHTML+=`
 
@@ -2243,17 +3716,24 @@ table.innerHTML+=`
 
 <td>${index+1}</td>
 
-<td>${escapeHtml(student?.full_name||"")}</td>
-
-<td>${escapeHtml(item.attendance_date)}</td>
-
-<td>${escapeHtml(item.status)}</td>
+<td>
+${escapeHtml(
+student?.full_name||""
+)}
+</td>
 
 <td>
-<button class="small-btn"
-onclick="deleteAttendance(${item.id})">
-Delete
-</button>
+${escapeHtml(
+item.attendance_date
+)}
+</td>
+
+<td>
+${escapeHtml(item.status)}
+</td>
+
+<td>
+${deleteButton}
 </td>
 
 </tr>
@@ -2267,29 +3747,53 @@ Delete
 
 async function addAttendance(){
 
-const student_id=
-document.getElementById("attendanceStudent").value;
+if(!canManageAttendance()){
 
-const attendance_date=
-document.getElementById("attendanceDate").value;
+alert(
+"You do not have permission to manage attendance."
+);
 
-const status=
-document.getElementById("attendanceStatus").value;
-
-if(!student_id||!attendance_date){
-
-alert("Please fill all attendance fields.");
 return;
 
 }
+
+
+const student_id=
+document.getElementById(
+"attendanceStudent"
+).value;
+
+const attendance_date=
+document.getElementById(
+"attendanceDate"
+).value;
+
+const status=
+document.getElementById(
+"attendanceStatus"
+).value;
+
+
+if(!student_id||!attendance_date){
+
+alert(
+"Please fill all attendance fields."
+);
+
+return;
+
+}
+
 
 const {error}=
 await supabaseClient
 .from("attendance")
 .insert([{
+
 student_id:Number(student_id),
 attendance_date,
 status
+
 }]);
 
 
@@ -2300,9 +3804,16 @@ return;
 
 }
 
-alert("Attendance saved successfully.");
 
-document.getElementById("attendanceStudent").value="";
+alert(
+"Attendance saved successfully."
+);
+
+
+document.getElementById(
+"attendanceStudent"
+).value="";
+
 
 await loadAttendance();
 
@@ -2311,13 +3822,29 @@ await loadAttendance();
 
 async function deleteAttendance(id){
 
-if(!confirm("Delete this attendance record?"))return;
+if(!canManageAttendance()){
+
+alert(
+"You do not have permission to delete attendance."
+);
+
+return;
+
+}
+
+
+if(!confirm(
+"Delete this attendance record?"
+))
+return;
+
 
 const {error}=
 await supabaseClient
 .from("attendance")
 .delete()
 .eq("id",id);
+
 
 if(error){
 
@@ -2326,13 +3853,14 @@ return;
 
 }
 
+
 await loadAttendance();
 
 }
 
 
 /* =====================================================
-   GRADES
+GRADES
 ===================================================== */
 
 async function loadGrades(){
@@ -2343,6 +3871,7 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
+
 if(error){
 
 console.error(error);
@@ -2351,11 +3880,14 @@ return;
 
 }
 
+
 grades=data||[];
 
 renderGrades();
 
-document.getElementById("gradeCount").textContent=
+document.getElementById(
+"gradeCount"
+).textContent=
 grades.length;
 
 }
@@ -2364,11 +3896,14 @@ grades.length;
 function renderGrades(){
 
 const table=
-document.getElementById("gradesTable");
+document.getElementById(
+"gradesTable"
+);
 
 if(!table)return;
 
 table.innerHTML="";
+
 
 if(grades.length===0){
 
@@ -2379,17 +3914,36 @@ return;
 
 }
 
+
 grades.forEach((item,index)=>{
 
 const student=
 students.find(s=>
-String(s.id)===String(item.student_id)
+String(s.id)===
+String(item.student_id)
 );
+
 
 const subject=
 subjects.find(s=>
-String(s.id)===String(item.subject_id)
+String(s.id)===
+String(item.subject_id)
 );
+
+
+const deleteButton=
+canManageGrades()
+?
+`
+<button
+class="small-btn"
+onclick="deleteGrade(${item.id})">
+Delete
+</button>
+`
+:
+"";
+
 
 table.innerHTML+=`
 
@@ -2397,20 +3951,23 @@ table.innerHTML+=`
 
 <td>${index+1}</td>
 
-<td>${escapeHtml(student?.full_name||"")}</td>
+<td>
+${escapeHtml(
+student?.full_name||""
+)}
+</td>
 
-<td>${escapeHtml(subject?.subject_name||"")}</td>
+<td>
+${escapeHtml(
+subject?.subject_name||""
+)}
+</td>
 
 <td>${escapeHtml(item.score)}</td>
 
 <td>${escapeHtml(item.term)}</td>
 
-<td>
-<button class="small-btn"
-onclick="deleteGrade(${item.id})">
-Delete
-</button>
-</td>
+<td>${deleteButton}</td>
 
 </tr>
 
@@ -2423,33 +3980,61 @@ Delete
 
 async function addGrade(){
 
-const student_id=
-document.getElementById("gradeStudent").value;
+if(!canManageGrades()){
 
-const subject_id=
-document.getElementById("gradeSubject").value;
+alert(
+"You do not have permission to manage grades."
+);
 
-const score=
-document.getElementById("gradeScore").value;
-
-const term=
-document.getElementById("gradeTerm").value;
-
-if(!student_id||!subject_id||score===""){
-
-alert("Please fill all grade fields.");
 return;
 
 }
+
+
+const student_id=
+document.getElementById(
+"gradeStudent"
+).value;
+
+const subject_id=
+document.getElementById(
+"gradeSubject"
+).value;
+
+const score=
+document.getElementById(
+"gradeScore"
+).value;
+
+const term=
+document.getElementById(
+"gradeTerm"
+).value;
+
+
+if(!student_id||
+!subject_id||
+score===""){
+
+alert(
+"Please fill all grade fields."
+);
+
+return;
+
+}
+
 
 const {error}=
 await supabaseClient
 .from("grades")
 .insert([{
+
 student_id:Number(student_id),
 subject_id:Number(subject_id),
 score:Number(score),
 term
+
 }]);
 
 
@@ -2460,11 +4045,24 @@ return;
 
 }
 
-alert("Grade saved successfully.");
 
-document.getElementById("gradeStudent").value="";
-document.getElementById("gradeSubject").value="";
-document.getElementById("gradeScore").value="";
+alert(
+"Grade saved successfully."
+);
+
+
+document.getElementById(
+"gradeStudent"
+).value="";
+
+document.getElementById(
+"gradeSubject"
+).value="";
+
+document.getElementById(
+"gradeScore"
+).value="";
+
 
 await loadGrades();
 
@@ -2473,13 +4071,29 @@ await loadGrades();
 
 async function deleteGrade(id){
 
-if(!confirm("Delete this grade?"))return;
+if(!canManageGrades()){
+
+alert(
+"You do not have permission to delete grades."
+);
+
+return;
+
+}
+
+
+if(!confirm(
+"Delete this grade?"
+))
+return;
+
 
 const {error}=
 await supabaseClient
 .from("grades")
 .delete()
 .eq("id",id);
+
 
 if(error){
 
@@ -2488,13 +4102,14 @@ return;
 
 }
 
+
 await loadGrades();
 
 }
 
 
 /* =====================================================
-   FEES
+FEES
 ===================================================== */
 
 async function loadFees(){
@@ -2505,6 +4120,7 @@ await supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
+
 if(error){
 
 console.error(error);
@@ -2513,11 +4129,14 @@ return;
 
 }
 
+
 fees=data||[];
 
 renderFees();
 
-document.getElementById("feeCount").textContent=
+document.getElementById(
+"feeCount"
+).textContent=
 fees.length;
 
 }
@@ -2526,11 +4145,14 @@ fees.length;
 function renderFees(){
 
 const table=
-document.getElementById("feesTable");
+document.getElementById(
+"feesTable"
+);
 
 if(!table)return;
 
 table.innerHTML="";
+
 
 if(fees.length===0){
 
@@ -2541,12 +4163,29 @@ return;
 
 }
 
+
 fees.forEach((item,index)=>{
 
 const student=
 students.find(s=>
-String(s.id)===String(item.student_id)
+String(s.id)===
+String(item.student_id)
 );
+
+
+const deleteButton=
+canManageFees()
+?
+`
+<button
+class="small-btn"
+onclick="deleteFee(${item.id})">
+Delete
+</button>
+`
+:
+"";
+
 
 table.innerHTML+=`
 
@@ -2554,7 +4193,11 @@ table.innerHTML+=`
 
 <td>${index+1}</td>
 
-<td>${escapeHtml(student?.full_name||"")}</td>
+<td>
+${escapeHtml(
+student?.full_name||""
+)}
+</td>
 
 <td>${escapeHtml(item.amount)}</td>
 
@@ -2562,12 +4205,7 @@ table.innerHTML+=`
 
 <td>${escapeHtml(item.status)}</td>
 
-<td>
-<button class="small-btn"
-onclick="deleteFee(${item.id})">
-Delete
-</button>
-</td>
+<td>${deleteButton}</td>
 
 </tr>
 
@@ -2580,33 +4218,61 @@ Delete
 
 async function addFee(){
 
-const student_id=
-document.getElementById("feeStudent").value;
+if(!canManageFees()){
 
-const amount=
-document.getElementById("feeAmount").value;
+alert(
+"You do not have permission to manage fees."
+);
 
-const payment_date=
-document.getElementById("feeDate").value;
-
-const status=
-document.getElementById("feeStatus").value;
-
-if(!student_id||!amount||!payment_date){
-
-alert("Please fill all fee fields.");
 return;
 
 }
+
+
+const student_id=
+document.getElementById(
+"feeStudent"
+).value;
+
+const amount=
+document.getElementById(
+"feeAmount"
+).value;
+
+const payment_date=
+document.getElementById(
+"feeDate"
+).value;
+
+const status=
+document.getElementById(
+"feeStatus"
+).value;
+
+
+if(!student_id||
+!amount||
+!payment_date){
+
+alert(
+"Please fill all fee fields."
+);
+
+return;
+
+}
+
 
 const {error}=
 await supabaseClient
 .from("fees")
 .insert([{
+
 student_id:Number(student_id),
 amount:Number(amount),
 payment_date,
 status
+
 }]);
 
 
@@ -2617,11 +4283,24 @@ return;
 
 }
 
-alert("Payment saved successfully.");
 
-document.getElementById("feeStudent").value="";
-document.getElementById("feeAmount").value="";
-document.getElementById("feeDate").value=today();
+alert(
+"Payment saved successfully."
+);
+
+
+document.getElementById(
+"feeStudent"
+).value="";
+
+document.getElementById(
+"feeAmount"
+).value="";
+
+document.getElementById(
+"feeDate"
+).value=today();
+
 
 await loadFees();
 
@@ -2630,13 +4309,29 @@ await loadFees();
 
 async function deleteFee(id){
 
-if(!confirm("Delete this payment?"))return;
+if(!canManageFees()){
+
+alert(
+"You do not have permission to delete payments."
+);
+
+return;
+
+}
+
+
+if(!confirm(
+"Delete this payment?"
+))
+return;
+
 
 const {error}=
 await supabaseClient
 .from("fees")
 .delete()
 .eq("id",id);
+
 
 if(error){
 
@@ -2645,13 +4340,14 @@ return;
 
 }
 
+
 await loadFees();
 
 }
 
 
 /* =====================================================
-   DROPDOWNS
+DROPDOWNS
 ===================================================== */
 
 function fillStudentDropdowns(){
@@ -2662,6 +4358,7 @@ const ids=[
 "feeStudent"
 ];
 
+
 ids.forEach(id=>{
 
 const select=
@@ -2669,10 +4366,13 @@ document.getElementById(id);
 
 if(!select)return;
 
-const oldValue=select.value;
+const oldValue=
+select.value;
+
 
 select.innerHTML=
 '<option value="">Select Student</option>';
+
 
 students.forEach(student=>{
 
@@ -2687,9 +4387,13 @@ ${escapeHtml(student.full_name)}
 
 });
 
+
 if(
 [...select.options]
-.some(option=>option.value===oldValue)
+.some(
+option=>
+option.value===oldValue
+)
 ){
 
 select.value=oldValue;
@@ -2700,14 +4404,20 @@ select.value=oldValue;
 
 
 const studentClass=
-document.getElementById("studentClass");
+document.getElementById(
+"studentClass"
+);
+
 
 if(studentClass){
 
-const oldValue=studentClass.value;
+const oldValue=
+studentClass.value;
+
 
 studentClass.innerHTML=
 '<option value="">Select Class</option>';
+
 
 classes.forEach(c=>{
 
@@ -2715,16 +4425,24 @@ studentClass.innerHTML+=`
 
 <option value="${c.id}">
 ${escapeHtml(c.name)}
-${c.section?" - "+escapeHtml(c.section):""}
+${c.section
+?
+" - "+escapeHtml(c.section)
+:
+""}
 </option>
 
 `;
 
 });
 
+
 if(
 [...studentClass.options]
-.some(option=>option.value===oldValue)
+.some(
+option=>
+option.value===oldValue
+)
 ){
 
 studentClass.value=oldValue;
@@ -2739,14 +4457,19 @@ studentClass.value=oldValue;
 function fillClassDropdown(){
 
 const select=
-document.getElementById("studentClass");
+document.getElementById(
+"studentClass"
+);
 
 if(!select)return;
 
-const oldValue=select.value;
+const oldValue=
+select.value;
+
 
 select.innerHTML=
 '<option value="">Select Class</option>';
+
 
 classes.forEach(c=>{
 
@@ -2760,9 +4483,13 @@ ${escapeHtml(c.name)}
 
 });
 
+
 if(
 [...select.options]
-.some(option=>option.value===oldValue)
+.some(
+option=>
+option.value===oldValue
+)
 ){
 
 select.value=oldValue;
@@ -2775,30 +4502,41 @@ select.value=oldValue;
 function fillTeacherDropdown(){
 
 const select=
-document.getElementById("classTeacher");
+document.getElementById(
+"classTeacher"
+);
 
 if(!select)return;
 
-const oldValue=select.value;
+const oldValue=
+select.value;
+
 
 select.innerHTML=
 '<option value="">Select Teacher</option>';
+
 
 teachers.forEach(teacher=>{
 
 select.innerHTML+=`
 
 <option value="${teacher.id}">
-${escapeHtml(teacher.full_name)}
+${escapeHtml(
+teacher.full_name
+)}
 </option>
 
 `;
 
 });
 
+
 if(
 [...select.options]
-.some(option=>option.value===oldValue)
+.some(
+option=>
+option.value===oldValue
+)
 ){
 
 select.value=oldValue;
@@ -2811,30 +4549,41 @@ select.value=oldValue;
 function fillSubjectDropdowns(){
 
 const select=
-document.getElementById("gradeSubject");
+document.getElementById(
+"gradeSubject"
+);
 
 if(!select)return;
 
-const oldValue=select.value;
+const oldValue=
+select.value;
+
 
 select.innerHTML=
 '<option value="">Select Subject</option>';
+
 
 subjects.forEach(subject=>{
 
 select.innerHTML+=`
 
 <option value="${subject.id}">
-${escapeHtml(subject.subject_name)}
+${escapeHtml(
+subject.subject_name
+)}
 </option>
 
 `;
 
 });
 
+
 if(
 [...select.options]
-.some(option=>option.value===oldValue)
+.some(
+option=>
+option.value===oldValue
+)
 ){
 
 select.value=oldValue;
@@ -2845,22 +4594,28 @@ select.value=oldValue;
 
 
 /* =====================================================
-   TEACHER DASHBOARD
+TEACHER DASHBOARD
 ===================================================== */
 
 async function loadTeacherDashboard(){
 
 const content=
-document.getElementById("teacherDashboardContent");
+document.getElementById(
+"teacherDashboardContent"
+);
 
 if(!content)return;
 
+
 if(currentUserRole!=="teacher"){
 
-content.innerHTML="Teacher profile not active.";
+content.innerHTML=
+"Teacher profile not active.";
+
 return;
 
 }
+
 
 const email=
 (currentUser?.email||"")
@@ -2871,7 +4626,9 @@ const phone=
 (currentUser?.phone||"")
 .trim();
 
+
 let teacher=null;
+
 
 if(email){
 
@@ -2879,38 +4636,49 @@ teacher=
 teachers.find(t=>
 (t.email||"")
 .trim()
-.toLowerCase()===email
+.toLowerCase()===
+email
 );
 
 }
+
 
 if(!teacher&&phone){
 
 teacher=
 teachers.find(t=>
-(t.phone||"").trim()===phone
+(t.phone||"")
+.trim()===
+phone
 );
 
 }
 
-currentTeacher=teacher||null;
+
+currentTeacher=
+teacher||null;
+
 
 if(!teacher){
 
 content.innerHTML=`
 
-<strong>Teacher profile not found.</strong>
+<strong>
+Teacher profile not found.
+</strong>
 
 <br><br>
 
 Please make sure your teacher
-email or phone matches your teacher profile.
+email or phone matches your
+teacher profile.
 
 `;
 
 return;
 
 }
+
 
 const assignedClasses=
 classes.filter(c=>
@@ -2945,12 +4713,15 @@ ${escapeHtml(teacher.phone)}
 
 <br>
 
-<h4>Assigned Classes</h4>
+<h4>
+Assigned Classes
+</h4>
 
 ${
 assignedClasses.length
 ?
-assignedClasses.map(c=>`
+assignedClasses
+.map(c=>`
 
 <div style="
 padding:8px;
@@ -2960,11 +4731,17 @@ border-radius:6px;
 ">
 
 ${escapeHtml(c.name)}
-${c.section?" - "+escapeHtml(c.section):""}
+${c.section
+?
+" - "+
+escapeHtml(c.section)
+:
+""}
 
 </div>
 
-`).join("")
+`)
+.join("")
 :
 "<p>No assigned classes found.</p>"
 }
@@ -2975,29 +4752,85 @@ ${c.section?" - "+escapeHtml(c.section):""}
 
 
 /* =====================================================
-   REFRESH ALL
+REFRESH ALL
 ===================================================== */
 
 async function refreshAll(){
 
-await Promise.all([
-loadClasses(),
-loadTeachers(),
-loadSubjects()
-]);
+/*
+Only load data that the current role is allowed
+to work with.
+*/
 
-await Promise.all([
-loadStudents(),
-loadAttendance(),
-loadGrades(),
-loadFees()
-]);
+const tasks=[];
 
-await loadTeacherDashboard();
+
+/* ADMIN */
 
 if(isAdmin()){
 
-await loadAdminUsers();
+tasks.push(loadClasses());
+tasks.push(loadTeachers());
+tasks.push(loadSubjects());
+tasks.push(loadStudents());
+tasks.push(loadAttendance());
+tasks.push(loadGrades());
+tasks.push(loadFees());
+tasks.push(loadAdminUsers());
+
+}
+
+
+/* TEACHER */
+
+else if(currentUserRole==="teacher"){
+
+tasks.push(loadClasses());
+tasks.push(loadTeachers());
+tasks.push(loadSubjects());
+tasks.push(loadStudents());
+tasks.push(loadAttendance());
+tasks.push(loadGrades());
+
+}
+
+
+/* STAFF */
+
+else if(currentUserRole==="staff"){
+
+tasks.push(loadClasses());
+tasks.push(loadStudents());
+tasks.push(loadAttendance());
+
+}
+
+
+/* FINANCE */
+
+else if(currentUserRole==="finance"){
+
+tasks.push(loadStudents());
+tasks.push(loadFees());
+
+}
+
+
+/*
+Student / Parent currently do not load
+school-wide records.
+
+Their own-data dashboard will be added
+after we connect their user account to
+their student/parent record.
+*/
+
+await Promise.all(tasks);
+
+
+if(currentUserRole==="teacher"){
+
+await loadTeacherDashboard();
 
 }
 
@@ -3005,13 +4838,14 @@ await loadAdminUsers();
 
 
 /* =====================================================
-   SESSION
+SESSION
 ===================================================== */
 
 async function checkSession(){
 
 const {data,error}=
 await supabaseClient.auth.getSession();
+
 
 if(error){
 
@@ -3020,9 +4854,11 @@ return;
 
 }
 
+
 if(data.session){
 
-currentUser=data.session.user;
+currentUser=
+data.session.user;
 
 await showApp();
 
@@ -3032,7 +4868,7 @@ await showApp();
 
 
 /* =====================================================
-   AUTH STATE
+AUTH STATE
 ===================================================== */
 
 supabaseClient.auth.onAuthStateChange(
@@ -3040,28 +4876,35 @@ async(event,session)=>{
 
 if(event==="PASSWORD_RECOVERY"){
 
-document.getElementById("loginPage")
+document
+.getElementById("loginPage")
 .classList.remove("hidden");
 
-document.getElementById("app")
+document
+.getElementById("app")
 .classList.add("hidden");
 
-document.getElementById("loginForm")
+document
+.getElementById("loginForm")
 .classList.add("hidden");
 
-document.getElementById("forgotForm")
+document
+.getElementById("forgotForm")
 .classList.add("hidden");
 
-document.getElementById("newPasswordForm")
+document
+.getElementById("newPasswordForm")
 .classList.remove("hidden");
 
 return;
 
 }
 
+
 if(session){
 
-currentUser=session.user;
+currentUser=
+session.user;
 
 await showApp();
 
@@ -3072,7 +4915,7 @@ await showApp();
 
 
 /* =====================================================
-   DEFAULT VALUES
+DEFAULT VALUES
 ===================================================== */
 
 document.addEventListener(
@@ -3080,16 +4923,25 @@ document.addEventListener(
 ()=>{
 
 const attendanceDate=
-document.getElementById("attendanceDate");
+document.getElementById(
+"attendanceDate"
+);
 
 const feeDate=
-document.getElementById("feeDate");
+document.getElementById(
+"feeDate"
+);
+
 
 if(attendanceDate)
-attendanceDate.value=today();
+attendanceDate.value=
+today();
+
 
 if(feeDate)
-feeDate.value=today();
+feeDate.value=
+today();
+
 
 checkSession();
 
@@ -3099,4 +4951,4 @@ checkSession();
 </script>
 
 </body>
-  </html>
+     </html>
