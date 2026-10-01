@@ -326,7 +326,6 @@ font-size:13px
 }
 
 @media(max-width:800px){
-
 .sidebar{
 width:160px
 }
@@ -342,11 +341,9 @@ grid-template-columns:1fr
 .admin-info{
 grid-template-columns:1fr
 }
-
 }
 
 @media(max-width:600px){
-
 .topbar{
 padding:0 10px
 }
@@ -394,7 +391,6 @@ gap:10px
 .card{
 padding:13px
 }
-
 }
 </style>
 </head>
@@ -402,7 +398,6 @@ padding:13px
 <body>
 
 <div id="loginPage" class="login-page">
-
 <div class="login-box">
 
 <img
@@ -411,18 +406,13 @@ class="login-logo"
 onerror="this.style.display='none'"
 >
 
-<h2 class="login-title">
-New Fortune School
-</h2>
+<h2 class="login-title">New Fortune School</h2>
 
-<div class="login-subtitle">
-Management System
-</div>
+<div class="login-subtitle">Management System</div>
 
 <div id="loginForm">
 
 <label>Email or Phone</label>
-
 <input
 id="loginEmail"
 type="text"
@@ -430,22 +420,17 @@ placeholder="Enter email or phone"
 >
 
 <label>Password</label>
-
 <input
 id="loginPassword"
 type="password"
 placeholder="Enter password"
 >
 
-<button
-class="primary-btn"
-onclick="login()">
+<button class="primary-btn" onclick="login()">
 🔐 Login
 </button>
 
-<button
-class="secondary-btn"
-onclick="showForgot()">
+<button class="secondary-btn" onclick="showForgot()">
 Forgot Password?
 </button>
 
@@ -453,9 +438,7 @@ Forgot Password?
 
 <div id="forgotForm" class="hidden">
 
-<h3 style="margin-bottom:15px">
-Reset Password
-</h3>
+<h3 style="margin-bottom:15px">Reset Password</h3>
 
 <label>Email</label>
 
@@ -465,15 +448,11 @@ type="email"
 placeholder="Enter your email"
 >
 
-<button
-class="primary-btn"
-onclick="sendReset()">
+<button class="primary-btn" onclick="sendReset()">
 Send Reset Link
 </button>
 
-<button
-class="secondary-btn"
-onclick="showLogin()">
+<button class="secondary-btn" onclick="showLogin()">
 Back to Login
 </button>
 
@@ -493,9 +472,7 @@ type="password"
 placeholder="Enter new password"
 >
 
-<button
-class="primary-btn"
-onclick="updatePassword()">
+<button class="primary-btn" onclick="updatePassword()">
 Update Password
 </button>
 
@@ -503,6 +480,7 @@ Update Password
 
 </div>
 </div>
+
 
 <div id="app" class="hidden">
 
@@ -516,18 +494,15 @@ New Fortune School Management System
 
 <span id="loggedUser"></span>
 
-<span id="loggedRole"
-style="font-weight:bold">
-</span>
+<span id="loggedRole" style="font-weight:bold"></span>
 
-<button
-class="logout-btn"
-onclick="logout()">
+<button class="logout-btn" onclick="logout()">
 Logout
 </button>
 
 </div>
 </div>
+
 
 <div class="layout">
 
@@ -605,13 +580,12 @@ onclick="showSection('fees',this)">
 
 </div>
 
+
 <div class="content">
 
 <section id="dashboard">
 
-<h2 class="section-title">
-Dashboard
-</h2>
+<h2 class="section-title">Dashboard</h2>
 
 <div class="cards">
 
@@ -651,12 +625,10 @@ Dashboard
 </div>
 
 </div>
-
 </section>
 
-<section
-id="teacherDashboard"
-class="hidden">
+
+<section id="teacherDashboard" class="hidden">
 
 <h2 class="section-title">
 Teacher Dashboard
@@ -670,9 +642,8 @@ Loading...
 
 </section>
 
-<section
-id="adminAccountManager"
-class="hidden">
+
+<section id="adminAccountManager" class="hidden">
 
 <h2 class="section-title">
 👑 Admin Account Manager
@@ -707,8 +678,8 @@ Current Admin
 </div>
 
 </div>
-
 </div>
+
 
 <div class="form-card">
 
@@ -724,26 +695,17 @@ Admin can create Admin, Teacher, Staff, Finance, Student or Parent accounts.
 
 <div>
 <label>Full Name</label>
-<input
-id="newUserFullName"
-type="text"
-placeholder="Enter full name">
+<input id="newUserFullName">
 </div>
 
 <div>
 <label>Email</label>
-<input
-id="newUserEmail"
-type="email"
-placeholder="Enter email">
+<input id="newUserEmail" type="email">
 </div>
 
 <div>
 <label>Phone</label>
-<input
-id="newUserPhone"
-type="text"
-placeholder="Enter phone">
+<input id="newUserPhone">
 </div>
 
 <div>
@@ -751,50 +713,24 @@ placeholder="Enter phone">
 
 <select id="newUserRole">
 
-<option value="admin">
-Admin
-</option>
-
-<option value="teacher">
-Teacher
-</option>
-
-<option value="staff">
-Staff
-</option>
-
-<option value="finance">
-Finance
-</option>
-
-<option value="student">
-Student
-</option>
-
-<option value="parent">
-Parent
-</option>
+<option value="admin">Admin</option>
+<option value="teacher">Teacher</option>
+<option value="staff">Staff</option>
+<option value="finance">Finance</option>
+<option value="student">Student</option>
+<option value="parent">Parent</option>
 
 </select>
-
 </div>
 
 <div>
 <label>Password</label>
-
-<input
-id="newUserPassword"
-type="password"
-placeholder="Minimum 6 characters">
+<input id="newUserPassword" type="password">
 </div>
 
 <div>
 <label>Confirm Password</label>
-
-<input
-id="newUserConfirmPassword"
-type="password"
-placeholder="Confirm password">
+<input id="newUserConfirmPassword" type="password">
 </div>
 
 </div>
@@ -808,6 +744,7 @@ onclick="createUserAccount()">
 
 </div>
 
+
 <div class="table-card">
 
 <h3 style="margin-bottom:15px">
@@ -817,7 +754,6 @@ System Users
 <table>
 
 <thead>
-
 <tr>
 <th>#</th>
 <th>Full Name</th>
@@ -826,18 +762,9 @@ System Users
 <th>Role</th>
 <th>Created</th>
 </tr>
-
 </thead>
 
-<tbody id="adminUsersTable">
-
-<tr>
-<td colspan="6">
-Loading users...
-</td>
-</tr>
-
-</tbody>
+<tbody id="adminUsersTable"></tbody>
 
 </table>
 
@@ -845,18 +772,12 @@ Loading users...
 
 </section>
 
-<section
-id="students"
-class="hidden">
+
+<section id="students" class="hidden">
 
 <h2 class="section-title">
 Students Management
 </h2>
-
-<div
-id="studentPermissionNote"
-class="permission-note hidden">
-</div>
 
 <div
 id="studentForm"
@@ -871,7 +792,7 @@ class="form-card">
 
 <div>
 <label>Student ID</label>
-<input id="studentId" type="number">
+<input id="studentId">
 </div>
 
 <div>
@@ -879,20 +800,11 @@ class="form-card">
 
 <select id="studentGender">
 
-<option value="">
-Select Gender
-</option>
-
-<option value="Male">
-Male
-</option>
-
-<option value="Female">
-Female
-</option>
+<option value="">Select Gender</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
 
 </select>
-
 </div>
 
 <div>
@@ -925,6 +837,7 @@ onclick="addStudent()">
 
 </div>
 
+
 <div class="table-card">
 
 <div class="search-box">
@@ -953,8 +866,7 @@ oninput="renderStudents()">
 
 </thead>
 
-<tbody id="studentsTable">
-</tbody>
+<tbody id="studentsTable"></tbody>
 
 </table>
 
@@ -962,9 +874,8 @@ oninput="renderStudents()">
 
 </section>
 
-<section
-id="teachers"
-class="hidden">
+
+<section id="teachers" class="hidden">
 
 <h2 class="section-title">
 Teachers Management
@@ -996,7 +907,7 @@ Teachers Management
 
 <div>
 <label>Email</label>
-<input id="teacherEmail" type="email">
+<input id="teacherEmail">
 </div>
 
 </div>
@@ -1027,8 +938,7 @@ onclick="addTeacher()">
 
 </thead>
 
-<tbody id="teachersTable">
-</tbody>
+<tbody id="teachersTable"></tbody>
 
 </table>
 
@@ -1036,9 +946,8 @@ onclick="addTeacher()">
 
 </section>
 
-<section
-id="classes"
-class="hidden">
+
+<section id="classes" class="hidden">
 
 <h2 class="section-title">
 Classes Management
@@ -1095,8 +1004,7 @@ onclick="addClass()">
 
 </thead>
 
-<tbody id="classesTable">
-</tbody>
+<tbody id="classesTable"></tbody>
 
 </table>
 
@@ -1104,9 +1012,8 @@ onclick="addClass()">
 
 </section>
 
-<section
-id="subjects"
-class="hidden">
+
+<section id="subjects" class="hidden">
 
 <h2 class="section-title">
 Subjects Management
@@ -1114,13 +1021,9 @@ Subjects Management
 
 <div class="form-card">
 
-<label>
-Subject Name
-</label>
+<label>Subject Name</label>
 
-<input
-id="subjectName"
-placeholder="Enter subject name">
+<input id="subjectName">
 
 <button
 class="success-btn"
@@ -1144,8 +1047,7 @@ onclick="addSubject()">
 
 </thead>
 
-<tbody id="subjectsTable">
-</tbody>
+<tbody id="subjectsTable"></tbody>
 
 </table>
 
@@ -1153,17 +1055,14 @@ onclick="addSubject()">
 
 </section>
 
-<section
-id="attendance"
-class="hidden">
+
+<section id="attendance" class="hidden">
 
 <h2 class="section-title">
 Attendance
 </h2>
 
-<div
-id="attendanceForm"
-class="form-card">
+<div id="attendanceForm" class="form-card">
 
 <div class="form-grid">
 
@@ -1174,9 +1073,7 @@ class="form-card">
 
 <div>
 <label>Date</label>
-<input
-id="attendanceDate"
-type="date">
+<input id="attendanceDate" type="date">
 </div>
 
 <div>
@@ -1184,17 +1081,9 @@ type="date">
 
 <select id="attendanceStatus">
 
-<option value="Present">
-Present
-</option>
-
-<option value="Absent">
-Absent
-</option>
-
-<option value="Late">
-Late
-</option>
+<option value="Present">Present</option>
+<option value="Absent">Absent</option>
+<option value="Late">Late</option>
 
 </select>
 
@@ -1209,6 +1098,7 @@ onclick="addAttendance()">
 </button>
 
 </div>
+
 
 <div class="table-card">
 
@@ -1226,8 +1116,7 @@ onclick="addAttendance()">
 
 </thead>
 
-<tbody id="attendanceTable">
-</tbody>
+<tbody id="attendanceTable"></tbody>
 
 </table>
 
@@ -1235,17 +1124,14 @@ onclick="addAttendance()">
 
 </section>
 
-<section
-id="grades"
-class="hidden">
+
+<section id="grades" class="hidden">
 
 <h2 class="section-title">
 Grades
 </h2>
 
-<div
-id="gradeForm"
-class="form-card">
+<div id="gradeForm" class="form-card">
 
 <div class="form-grid">
 
@@ -1261,11 +1147,7 @@ class="form-card">
 
 <div>
 <label>Score</label>
-<input
-id="gradeScore"
-type="number"
-min="0"
-max="100">
+<input id="gradeScore" type="number" min="0" max="100">
 </div>
 
 <div>
@@ -1273,17 +1155,9 @@ max="100">
 
 <select id="gradeTerm">
 
-<option value="Term 1">
-Term 1
-</option>
-
-<option value="Term 2">
-Term 2
-</option>
-
-<option value="Term 3">
-Term 3
-</option>
+<option value="Term 1">Term 1</option>
+<option value="Term 2">Term 2</option>
+<option value="Term 3">Term 3</option>
 
 </select>
 
@@ -1298,6 +1172,7 @@ onclick="addGrade()">
 </button>
 
 </div>
+
 
 <div class="table-card">
 
@@ -1316,8 +1191,7 @@ onclick="addGrade()">
 
 </thead>
 
-<tbody id="gradesTable">
-</tbody>
+<tbody id="gradesTable"></tbody>
 
 </table>
 
@@ -1325,9 +1199,8 @@ onclick="addGrade()">
 
 </section>
 
-<section
-id="fees"
-class="hidden">
+
+<section id="fees" class="hidden">
 
 <h2 class="section-title">
 💰 Fees / Payments
@@ -1338,9 +1211,7 @@ Only Admin and Finance accounts can manage school payments.
 Parent accounts can view payments for their linked student only.
 </div>
 
-<div
-id="feeForm"
-class="form-card">
+<div id="feeForm" class="form-card">
 
 <div class="form-grid">
 
@@ -1351,16 +1222,12 @@ class="form-card">
 
 <div>
 <label>Amount</label>
-<input
-id="feeAmount"
-type="number">
+<input id="feeAmount" type="number">
 </div>
 
 <div>
 <label>Payment Date</label>
-<input
-id="feeDate"
-type="date">
+<input id="feeDate" type="date">
 </div>
 
 <div>
@@ -1368,17 +1235,9 @@ type="date">
 
 <select id="feeStatus">
 
-<option value="Paid">
-Paid
-</option>
-
-<option value="Pending">
-Pending
-</option>
-
-<option value="Partial">
-Partial
-</option>
+<option value="Paid">Paid</option>
+<option value="Pending">Pending</option>
+<option value="Partial">Partial</option>
 
 </select>
 
@@ -1393,6 +1252,7 @@ onclick="addFee()">
 </button>
 
 </div>
+
 
 <div class="table-card">
 
@@ -1411,8 +1271,7 @@ onclick="addFee()">
 
 </thead>
 
-<tbody id="feesTable">
-</tbody>
+<tbody id="feesTable"></tbody>
 
 </table>
 
@@ -1423,6 +1282,7 @@ onclick="addFee()">
 </div>
 </div>
 </div>
+
 
 <script>
 
@@ -1451,10 +1311,16 @@ let fees=[];
 let adminUsers=[];
 
 let currentUser=null;
-let currentTeacher=null;
 let currentUserRole="";
+let currentUserStudentId=null;
+let currentTeacher=null;
 
 let appLoading=false;
+
+
+/* =========================
+ROLE PERMISSIONS
+========================= */
 
 const ROLE_PERMISSIONS={
 
@@ -1508,8 +1374,6 @@ student:[
 "dashboard"
 ],
 
-/* PARENT CAN NOW VIEW CHILD DATA */
-
 parent:[
 "dashboard",
 "students",
@@ -1519,6 +1383,11 @@ parent:[
 ]
 
 };
+
+
+/* =========================
+HELPERS
+========================= */
 
 function escapeHtml(value){
 
@@ -1551,48 +1420,81 @@ currentUserRole==="administrator";
 
 function hasPermission(section){
 
-const permissions=
-ROLE_PERMISSIONS[currentUserRole]||[];
-
-return permissions.includes(section);
+return (
+ROLE_PERMISSIONS[currentUserRole]||[]
+).includes(section);
 
 }
 
-/* STUDENT PERMISSIONS */
+
+/*
+IMPORTANT:
+
+This function finds the student name.
+
+For Parent accounts we already know
+the linked student from users.student_id.
+
+So even if a related lookup is delayed,
+the parent child name is still displayed.
+*/
+
+function getStudentName(studentId){
+
+const student=
+students.find(s=>
+String(s.id)===
+String(studentId)
+);
+
+if(student){
+
+return student.full_name||"";
+
+}
+
+if(
+currentUserRole==="parent" &&
+currentUserStudentId &&
+String(studentId)===
+String(currentUserStudentId)
+){
+
+return (
+students[0]?.full_name||
+""
+);
+
+}
+
+return "";
+
+}
+
+
+/* =========================
+PERMISSIONS
+========================= */
 
 function canAddStudents(){
-
 return isAdmin();
-
 }
 
 function canDeleteStudents(){
-
 return isAdmin();
-
 }
 
-/* OTHER ADMIN PERMISSIONS */
-
 function canManageTeachers(){
-
 return isAdmin();
-
 }
 
 function canManageClasses(){
-
 return isAdmin();
-
 }
 
 function canManageSubjects(){
-
 return isAdmin();
-
 }
-
-/* ATTENDANCE PERMISSIONS */
 
 function canManageAttendance(){
 
@@ -1602,12 +1504,8 @@ currentUserRole==="teacher";
 }
 
 function canDeleteAttendance(){
-
 return isAdmin();
-
 }
-
-/* GRADE PERMISSIONS */
 
 function canManageGrades(){
 
@@ -1617,12 +1515,8 @@ currentUserRole==="teacher";
 }
 
 function canDeleteGrades(){
-
 return isAdmin();
-
 }
-
-/* FEES PERMISSIONS */
 
 function canManageFees(){
 
@@ -1631,21 +1525,10 @@ currentUserRole==="finance";
 
 }
 
-function requirePermission(section){
 
-if(!hasPermission(section)){
-
-alert(
-"You do not have permission to access this section."
-);
-
-return false;
-
-}
-
-return true;
-
-}
+/* =========================
+LOGIN
+========================= */
 
 async function login(){
 
@@ -1677,7 +1560,7 @@ if(identifier.includes("@")){
 result=
 await supabaseClient.auth.signInWithPassword({
 email:identifier,
-password:password
+password
 });
 
 }else{
@@ -1685,7 +1568,7 @@ password:password
 result=
 await supabaseClient.auth.signInWithPassword({
 phone:identifier,
-password:password
+password
 });
 
 }
@@ -1703,17 +1586,19 @@ await showApp();
 
 }
 
+
 async function logout(){
 
 await supabaseClient.auth.signOut();
 
 currentUser=null;
 currentUserRole="";
-currentTeacher=null;
+currentUserStudentId=null;
 
 location.reload();
 
 }
+
 
 function showForgot(){
 
@@ -1726,6 +1611,7 @@ document
 .classList.remove("hidden");
 
 }
+
 
 function showLogin(){
 
@@ -1742,6 +1628,7 @@ document
 .classList.remove("hidden");
 
 }
+
 
 async function sendReset(){
 
@@ -1781,6 +1668,7 @@ alert(
 }
 
 }
+
 
 async function updatePassword(){
 
@@ -1824,11 +1712,17 @@ showLogin();
 
 }
 
+
+/* =========================
+CURRENT USER ROLE
+========================= */
+
 async function loadCurrentUserRole(){
 
 if(!currentUser){
 
 currentUserRole="";
+currentUserStudentId=null;
 return;
 
 }
@@ -1844,13 +1738,20 @@ currentUser.id;
 let data=null;
 let error=null;
 
+
+/*
+IMPORTANT:
+student_id is loaded here.
+This is the Parent -> Student link.
+*/
+
 if(authId){
 
 const result=
 await supabaseClient
 .from("users")
 .select(
-"id,full_name,email,phone,role,auth_id,created_at"
+"id,full_name,email,phone,role,auth_id,created_at,student_id"
 )
 .eq("auth_id",authId)
 .maybeSingle();
@@ -1866,7 +1767,7 @@ const result=
 await supabaseClient
 .from("users")
 .select(
-"id,full_name,email,phone,role,auth_id,created_at"
+"id,full_name,email,phone,role,auth_id,created_at,student_id"
 )
 .ilike("email",email)
 .maybeSingle();
@@ -1881,19 +1782,13 @@ if(error){
 console.error(error);
 
 currentUserRole="";
-
 return;
 
 }
 
 if(!data){
 
-console.warn(
-"Current user profile was not found."
-);
-
 currentUserRole="";
-
 return;
 
 }
@@ -1904,8 +1799,13 @@ currentUserRole=
 .trim()
 .toLowerCase();
 
-document.getElementById("loggedRole")
-.textContent=
+currentUserStudentId=
+data.student_id||
+null;
+
+document.getElementById(
+"loggedRole"
+).textContent=
 currentUserRole
 ?
 "("+
@@ -1917,6 +1817,11 @@ currentUserRole.toUpperCase()+
 applyRolePermissions();
 
 }
+
+
+/* =========================
+ROLE UI
+========================= */
 
 function applyRolePermissions(){
 
@@ -1934,9 +1839,7 @@ fees:"menuFees"
 
 };
 
-Object
-.keys(menuMap)
-.forEach(section=>{
+Object.keys(menuMap).forEach(section=>{
 
 const button=
 document.getElementById(
@@ -1957,7 +1860,6 @@ button.classList.add("hidden");
 
 });
 
-/* STUDENT FORM */
 
 const studentForm=
 document.getElementById("studentForm");
@@ -1976,7 +1878,6 @@ studentForm.classList.add("hidden");
 
 }
 
-/* ATTENDANCE FORM */
 
 const attendanceForm=
 document.getElementById("attendanceForm");
@@ -1995,7 +1896,6 @@ attendanceForm.classList.add("hidden");
 
 }
 
-/* GRADE FORM */
 
 const gradeForm=
 document.getElementById("gradeForm");
@@ -2014,7 +1914,6 @@ gradeForm.classList.add("hidden");
 
 }
 
-/* FEE FORM */
 
 const feeForm=
 document.getElementById("feeForm");
@@ -2035,6 +1934,11 @@ feeForm.classList.add("hidden");
 
 }
 
+
+/* =========================
+SHOW APP
+========================= */
+
 async function showApp(){
 
 if(!currentUser)return;
@@ -2053,9 +1957,9 @@ document
 .getElementById("app")
 .classList.remove("hidden");
 
-document
-.getElementById("loggedUser")
-.textContent=
+document.getElementById(
+"loggedUser"
+).textContent=
 currentUser.email||
 currentUser.phone||
 "";
@@ -2069,7 +1973,6 @@ alert(
 );
 
 await logout();
-
 return;
 
 }
@@ -2083,10 +1986,7 @@ document.getElementById("menuDashboard")
 
 }catch(error){
 
-console.error(
-"Application loading error:",
-error
-);
+console.error(error);
 
 }finally{
 
@@ -2095,6 +1995,11 @@ appLoading=false;
 }
 
 }
+
+
+/* =========================
+SECTION
+========================= */
 
 function showSection(id,button){
 
@@ -2129,19 +2034,18 @@ btn.classList.remove("active");
 if(button)
 button.classList.add("active");
 
-if(id==="adminAccountManager"){
-
+if(id==="adminAccountManager")
 loadAdminUsers();
 
-}
-
-if(id==="teacherDashboard"){
-
+if(id==="teacherDashboard")
 loadTeacherDashboard();
 
 }
 
-}
+
+/* =========================
+ADMIN USERS
+========================= */
 
 async function createUserAccount(){
 
@@ -2253,7 +2157,7 @@ sessionData?.session;
 if(!session){
 
 alert(
-"Your session has expired. Please login again."
+"Your session has expired."
 );
 
 return;
@@ -2293,13 +2197,11 @@ session.access_token
 },
 
 body:JSON.stringify({
-
 fullName,
 email,
 phone,
 password,
 role
-
 })
 
 }
@@ -2308,20 +2210,10 @@ role
 let result={};
 
 try{
+result=await response.json();
+}catch(e){}
 
-result=
-await response.json();
-
-}catch(e){
-
-result={};
-
-}
-
-if(
-!response.ok||
-!result.success
-){
+if(!response.ok||!result.success){
 
 throw new Error(
 result.error||
@@ -2334,38 +2226,19 @@ alert(
 "Account created successfully."
 );
 
-document.getElementById(
-"newUserFullName"
-).value="";
-
-document.getElementById(
-"newUserEmail"
-).value="";
-
-document.getElementById(
-"newUserPhone"
-).value="";
-
-document.getElementById(
-"newUserPassword"
-).value="";
-
-document.getElementById(
+[
+"newUserFullName",
+"newUserEmail",
+"newUserPhone",
+"newUserPassword",
 "newUserConfirmPassword"
-).value="";
-
-document.getElementById(
-"newUserRole"
-).value="teacher";
+].forEach(id=>{
+document.getElementById(id).value="";
+});
 
 await loadAdminUsers();
 
 }catch(error){
-
-console.error(
-"Create account error:",
-error
-);
 
 alert(
 error.message||
@@ -2377,7 +2250,6 @@ error.message||
 if(button){
 
 button.disabled=false;
-
 button.textContent=
 "➕ Create Account";
 
@@ -2386,6 +2258,7 @@ button.textContent=
 }
 
 }
+
 
 async function loadAdminUsers(){
 
@@ -2411,8 +2284,6 @@ await supabaseClient
 
 if(error){
 
-console.error(error);
-
 table.innerHTML=
 '<tr><td colspan="6">Could not load users.</td></tr>';
 
@@ -2425,6 +2296,7 @@ adminUsers=data||[];
 renderAdminUsers();
 
 }
+
 
 function renderAdminUsers(){
 
@@ -2454,31 +2326,21 @@ table.innerHTML+=`
 
 <td>${index+1}</td>
 
-<td>
-${escapeHtml(item.full_name)}
-</td>
+<td>${escapeHtml(item.full_name)}</td>
 
-<td>
-${escapeHtml(item.email)}
-</td>
+<td>${escapeHtml(item.email)}</td>
 
-<td>
-${escapeHtml(item.phone)}
-</td>
+<td>${escapeHtml(item.phone)}</td>
 
-<td>
-${escapeHtml(item.role)}
-</td>
+<td>${escapeHtml(item.role)}</td>
 
-<td>
-${escapeHtml(
+<td>${escapeHtml(
 item.created_at
 ?
 item.created_at.split("T")[0]
 :
 ""
-)}
-</td>
+)}</td>
 
 </tr>
 
@@ -2487,6 +2349,11 @@ item.created_at.split("T")[0]
 });
 
 }
+
+
+/* =========================
+STUDENTS
+========================= */
 
 async function loadStudents(){
 
@@ -2499,9 +2366,7 @@ await supabaseClient
 if(error){
 
 console.error(error);
-
 students=[];
-
 return;
 
 }
@@ -2509,7 +2374,6 @@ return;
 students=data||[];
 
 renderStudents();
-
 fillStudentDropdowns();
 
 document.getElementById(
@@ -2518,6 +2382,7 @@ document.getElementById(
 students.length;
 
 }
+
 
 function renderStudents(){
 
@@ -2613,6 +2478,7 @@ table.innerHTML+=`
 
 }
 
+
 async function addStudent(){
 
 if(!canAddStudents()){
@@ -2626,43 +2492,39 @@ return;
 }
 
 const full_name=
-document
-.getElementById("studentName")
-.value
-.trim();
+document.getElementById(
+"studentName"
+).value.trim();
 
 const student_id=
-document
-.getElementById("studentId")
-.value
-.trim();
+document.getElementById(
+"studentId"
+).value.trim();
 
 const gender=
-document
-.getElementById("studentGender")
-.value;
+document.getElementById(
+"studentGender"
+).value;
 
 const date_of_birth=
-document
-.getElementById("studentDOB")
-.value;
+document.getElementById(
+"studentDOB"
+).value;
 
 const class_id=
-document
-.getElementById("studentClass")
-.value;
+document.getElementById(
+"studentClass"
+).value;
 
 const parent_name=
-document
-.getElementById("parentName")
-.value
-.trim();
+document.getElementById(
+"parentName"
+).value.trim();
 
 const parent_phone=
-document
-.getElementById("parentPhone")
-.value
-.trim();
+document.getElementById(
+"parentPhone"
+).value.trim();
 
 if(!full_name||!student_id){
 
@@ -2684,15 +2546,9 @@ student_id,
 gender:gender||null,
 date_of_birth:date_of_birth||null,
 class_id:
-class_id
-?
-Number(class_id)
-:
-null,
-parent_name:
-parent_name||null,
-parent_phone:
-parent_phone||null
+class_id?Number(class_id):null,
+parent_name:parent_name||null,
+parent_phone:parent_phone||null
 
 }]);
 
@@ -2703,9 +2559,7 @@ return;
 
 }
 
-alert(
-"Student added successfully."
-);
+alert("Student added successfully.");
 
 [
 "studentName",
@@ -2715,14 +2569,14 @@ alert(
 "studentClass",
 "parentName",
 "parentPhone"
-]
-.forEach(id=>{
+].forEach(id=>{
 document.getElementById(id).value="";
 });
 
 await loadStudents();
 
 }
+
 
 async function deleteStudent(id){
 
@@ -2736,9 +2590,7 @@ return;
 
 }
 
-if(!confirm(
-"Delete this student?"
-))
+if(!confirm("Delete this student?"))
 return;
 
 const {error}=
@@ -2758,6 +2610,11 @@ await loadStudents();
 
 }
 
+
+/* =========================
+TEACHERS
+========================= */
+
 async function loadTeachers(){
 
 const {data,error}=
@@ -2768,10 +2625,7 @@ await supabaseClient
 
 if(error){
 
-console.error(error);
-
 teachers=[];
-
 return;
 
 }
@@ -2779,10 +2633,7 @@ return;
 teachers=data||[];
 
 renderTeachers();
-
 fillTeacherDropdown();
-
-await loadTeacherDashboard();
 
 document.getElementById(
 "teacherCount"
@@ -2790,6 +2641,7 @@ document.getElementById(
 teachers.length;
 
 }
+
 
 function renderTeachers(){
 
@@ -2831,17 +2683,11 @@ table.innerHTML+=`
 <tr>
 
 <td>${index+1}</td>
-
 <td>${escapeHtml(item.full_name)}</td>
-
 <td>${escapeHtml(item.teacher_id)}</td>
-
 <td>${escapeHtml(item.subject)}</td>
-
 <td>${escapeHtml(item.phone)}</td>
-
 <td>${escapeHtml(item.email)}</td>
-
 <td>${deleteButton}</td>
 
 </tr>
@@ -2851,6 +2697,7 @@ table.innerHTML+=`
 });
 
 }
+
 
 async function addTeacher(){
 
@@ -2865,36 +2712,23 @@ return;
 }
 
 const full_name=
-document.getElementById(
-"teacherName"
-).value.trim();
+document.getElementById("teacherName").value.trim();
 
 const teacher_id=
-document.getElementById(
-"teacherId"
-).value.trim();
+document.getElementById("teacherId").value.trim();
 
 const subject=
-document.getElementById(
-"teacherSubject"
-).value.trim();
+document.getElementById("teacherSubject").value.trim();
 
 const phone=
-document.getElementById(
-"teacherPhone"
-).value.trim();
+document.getElementById("teacherPhone").value.trim();
 
 const email=
-document.getElementById(
-"teacherEmail"
-).value.trim();
+document.getElementById("teacherEmail").value.trim();
 
 if(!full_name){
 
-alert(
-"Please enter teacher name."
-);
-
+alert("Please enter teacher name.");
 return;
 
 }
@@ -2903,13 +2737,11 @@ const {error}=
 await supabaseClient
 .from("teachers")
 .insert([{
-
 full_name,
 teacher_id:teacher_id||null,
 subject:subject||null,
 phone:phone||null,
 email:email||null
-
 }]);
 
 if(error){
@@ -2919,9 +2751,7 @@ return;
 
 }
 
-alert(
-"Teacher added successfully."
-);
+alert("Teacher added successfully.");
 
 [
 "teacherName",
@@ -2929,14 +2759,14 @@ alert(
 "teacherSubject",
 "teacherPhone",
 "teacherEmail"
-]
-.forEach(id=>{
+].forEach(id=>{
 document.getElementById(id).value="";
 });
 
 await loadTeachers();
 
 }
+
 
 async function deleteTeacher(id){
 
@@ -2950,9 +2780,7 @@ return;
 
 }
 
-if(!confirm(
-"Delete this teacher?"
-))
+if(!confirm("Delete this teacher?"))
 return;
 
 const {error}=
@@ -2972,6 +2800,11 @@ await loadTeachers();
 
 }
 
+
+/* =========================
+CLASSES
+========================= */
+
 async function loadClasses(){
 
 const {data,error}=
@@ -2982,10 +2815,7 @@ await supabaseClient
 
 if(error){
 
-console.error(error);
-
 classes=[];
-
 return;
 
 }
@@ -2993,9 +2823,7 @@ return;
 classes=data||[];
 
 renderClasses();
-
 fillClassDropdown();
-
 fillStudentDropdowns();
 
 document.getElementById(
@@ -3004,6 +2832,7 @@ document.getElementById(
 classes.length;
 
 }
+
 
 function renderClasses(){
 
@@ -3045,15 +2874,10 @@ table.innerHTML+=`
 <tr>
 
 <td>${index+1}</td>
-
 <td>${escapeHtml(item.name)}</td>
-
 <td>${escapeHtml(item.grade)}</td>
-
 <td>${escapeHtml(item.section)}</td>
-
 <td>${escapeHtml(item.teacher_name)}</td>
-
 <td>${deleteButton}</td>
 
 </tr>
@@ -3063,6 +2887,7 @@ table.innerHTML+=`
 });
 
 }
+
 
 async function addClass(){
 
@@ -3077,24 +2902,16 @@ return;
 }
 
 const name=
-document.getElementById(
-"className"
-).value.trim();
+document.getElementById("className").value.trim();
 
 const grade=
-document.getElementById(
-"classGrade"
-).value.trim();
+document.getElementById("classGrade").value.trim();
 
 const section=
-document.getElementById(
-"classSection"
-).value.trim();
+document.getElementById("classSection").value.trim();
 
 const teacherSelect=
-document.getElementById(
-"classTeacher"
-);
+document.getElementById("classTeacher");
 
 const teacher_name=
 teacherSelect
@@ -3104,10 +2921,7 @@ teacherSelect.selectedIndex
 
 if(!name){
 
-alert(
-"Please enter class name."
-);
-
+alert("Please enter class name.");
 return;
 
 }
@@ -3116,13 +2930,10 @@ const {error}=
 await supabaseClient
 .from("classes")
 .insert([{
-
 name,
 grade:grade||null,
 section:section||null,
-teacher_name:
-teacher_name||null
-
+teacher_name:teacher_name||null
 }]);
 
 if(error){
@@ -3132,23 +2943,21 @@ return;
 
 }
 
-alert(
-"Class added successfully."
-);
+alert("Class added successfully.");
 
 [
 "className",
 "classGrade",
 "classSection",
 "classTeacher"
-]
-.forEach(id=>{
+].forEach(id=>{
 document.getElementById(id).value="";
 });
 
 await loadClasses();
 
 }
+
 
 async function deleteClass(id){
 
@@ -3162,9 +2971,7 @@ return;
 
 }
 
-if(!confirm(
-"Delete this class?"
-))
+if(!confirm("Delete this class?"))
 return;
 
 const {error}=
@@ -3184,6 +2991,11 @@ await loadClasses();
 
 }
 
+
+/* =========================
+SUBJECTS
+========================= */
+
 async function loadSubjects(){
 
 const {data,error}=
@@ -3194,10 +3006,7 @@ await supabaseClient
 
 if(error){
 
-console.error(error);
-
 subjects=[];
-
 return;
 
 }
@@ -3205,7 +3014,6 @@ return;
 subjects=data||[];
 
 renderSubjects();
-
 fillSubjectDropdowns();
 
 document.getElementById(
@@ -3214,6 +3022,7 @@ document.getElementById(
 subjects.length;
 
 }
+
 
 function renderSubjects(){
 
@@ -3255,9 +3064,7 @@ table.innerHTML+=`
 <tr>
 
 <td>${index+1}</td>
-
 <td>${escapeHtml(item.subject_name)}</td>
-
 <td>${deleteButton}</td>
 
 </tr>
@@ -3267,6 +3074,7 @@ table.innerHTML+=`
 });
 
 }
+
 
 async function addSubject(){
 
@@ -3287,10 +3095,7 @@ document.getElementById(
 
 if(!subject_name){
 
-alert(
-"Enter subject name."
-);
-
+alert("Enter subject name.");
 return;
 
 }
@@ -3298,9 +3103,7 @@ return;
 const {error}=
 await supabaseClient
 .from("subjects")
-.insert([{
-subject_name
-}]);
+.insert([{subject_name}]);
 
 if(error){
 
@@ -3309,9 +3112,7 @@ return;
 
 }
 
-alert(
-"Subject added successfully."
-);
+alert("Subject added successfully.");
 
 document.getElementById(
 "subjectName"
@@ -3320,6 +3121,7 @@ document.getElementById(
 await loadSubjects();
 
 }
+
 
 async function deleteSubject(id){
 
@@ -3333,9 +3135,7 @@ return;
 
 }
 
-if(!confirm(
-"Delete this subject?"
-))
+if(!confirm("Delete this subject?"))
 return;
 
 const {error}=
@@ -3355,6 +3155,11 @@ await loadSubjects();
 
 }
 
+
+/* =========================
+ATTENDANCE
+========================= */
+
 async function loadAttendance(){
 
 const {data,error}=
@@ -3366,9 +3171,7 @@ await supabaseClient
 if(error){
 
 console.error(error);
-
 attendance=[];
-
 return;
 
 }
@@ -3383,6 +3186,7 @@ document.getElementById(
 attendance.length;
 
 }
+
 
 function renderAttendance(){
 
@@ -3406,11 +3210,14 @@ return;
 
 attendance.forEach((item,index)=>{
 
-const student=
-students.find(s=>
-String(s.id)===
-String(item.student_id)
-);
+/*
+FIX:
+Use getStudentName() instead of only
+students.find().
+*/
+
+const studentName=
+getStudentName(item.student_id);
 
 const deleteButton=
 canDeleteAttendance()
@@ -3432,15 +3239,11 @@ table.innerHTML+=`
 <td>${index+1}</td>
 
 <td>
-${escapeHtml(
-student?.full_name||""
-)}
+${escapeHtml(studentName)}
 </td>
 
 <td>
-${escapeHtml(
-item.attendance_date
-)}
+${escapeHtml(item.attendance_date)}
 </td>
 
 <td>
@@ -3458,6 +3261,7 @@ ${deleteButton}
 });
 
 }
+
 
 async function addAttendance(){
 
@@ -3500,11 +3304,9 @@ const {error}=
 await supabaseClient
 .from("attendance")
 .insert([{
-
 student_id:Number(student_id),
 attendance_date,
 status
-
 }]);
 
 if(error){
@@ -3514,9 +3316,7 @@ return;
 
 }
 
-alert(
-"Attendance saved successfully."
-);
+alert("Attendance saved successfully.");
 
 document.getElementById(
 "attendanceStudent"
@@ -3525,6 +3325,7 @@ document.getElementById(
 await loadAttendance();
 
 }
+
 
 async function deleteAttendance(id){
 
@@ -3560,6 +3361,11 @@ await loadAttendance();
 
 }
 
+
+/* =========================
+GRADES
+========================= */
+
 async function loadGrades(){
 
 const {data,error}=
@@ -3571,9 +3377,7 @@ await supabaseClient
 if(error){
 
 console.error(error);
-
 grades=[];
-
 return;
 
 }
@@ -3588,6 +3392,7 @@ document.getElementById(
 grades.length;
 
 }
+
 
 function renderGrades(){
 
@@ -3611,11 +3416,13 @@ return;
 
 grades.forEach((item,index)=>{
 
-const student=
-students.find(s=>
-String(s.id)===
-String(item.student_id)
-);
+/*
+FIX:
+Use getStudentName().
+*/
+
+const studentName=
+getStudentName(item.student_id);
 
 const subject=
 subjects.find(s=>
@@ -3643,9 +3450,7 @@ table.innerHTML+=`
 <td>${index+1}</td>
 
 <td>
-${escapeHtml(
-student?.full_name||""
-)}
+${escapeHtml(studentName)}
 </td>
 
 <td>
@@ -3654,11 +3459,17 @@ subject?.subject_name||""
 )}
 </td>
 
-<td>${escapeHtml(item.score)}</td>
+<td>
+${escapeHtml(item.score)}
+</td>
 
-<td>${escapeHtml(item.term)}</td>
+<td>
+${escapeHtml(item.term)}
+</td>
 
-<td>${deleteButton}</td>
+<td>
+${deleteButton}
+</td>
 
 </tr>
 
@@ -3667,6 +3478,7 @@ subject?.subject_name||""
 });
 
 }
+
 
 async function addGrade(){
 
@@ -3716,12 +3528,10 @@ const {error}=
 await supabaseClient
 .from("grades")
 .insert([{
-
 student_id:Number(student_id),
 subject_id:Number(subject_id),
 score:Number(score),
 term
-
 }]);
 
 if(error){
@@ -3731,9 +3541,7 @@ return;
 
 }
 
-alert(
-"Grade saved successfully."
-);
+alert("Grade saved successfully.");
 
 document.getElementById(
 "gradeStudent"
@@ -3751,6 +3559,7 @@ await loadGrades();
 
 }
 
+
 async function deleteGrade(id){
 
 if(!canDeleteGrades()){
@@ -3763,9 +3572,7 @@ return;
 
 }
 
-if(!confirm(
-"Delete this grade?"
-))
+if(!confirm("Delete this grade?"))
 return;
 
 const {error}=
@@ -3785,6 +3592,11 @@ await loadGrades();
 
 }
 
+
+/* =========================
+FEES
+========================= */
+
 async function loadFees(){
 
 const {data,error}=
@@ -3796,9 +3608,7 @@ await supabaseClient
 if(error){
 
 console.error(error);
-
 fees=[];
-
 return;
 
 }
@@ -3813,6 +3623,7 @@ document.getElementById(
 fees.length;
 
 }
+
 
 function renderFees(){
 
@@ -3836,11 +3647,13 @@ return;
 
 fees.forEach((item,index)=>{
 
-const student=
-students.find(s=>
-String(s.id)===
-String(item.student_id)
-);
+/*
+FIX:
+Use getStudentName().
+*/
+
+const studentName=
+getStudentName(item.student_id);
 
 const deleteButton=
 canManageFees()
@@ -3862,18 +3675,24 @@ table.innerHTML+=`
 <td>${index+1}</td>
 
 <td>
-${escapeHtml(
-student?.full_name||""
-)}
+${escapeHtml(studentName)}
 </td>
 
-<td>${escapeHtml(item.amount)}</td>
+<td>
+${escapeHtml(item.amount)}
+</td>
 
-<td>${escapeHtml(item.payment_date)}</td>
+<td>
+${escapeHtml(item.payment_date)}
+</td>
 
-<td>${escapeHtml(item.status)}</td>
+<td>
+${escapeHtml(item.status)}
+</td>
 
-<td>${deleteButton}</td>
+<td>
+${deleteButton}
+</td>
 
 </tr>
 
@@ -3882,6 +3701,7 @@ student?.full_name||""
 });
 
 }
+
 
 async function addFee(){
 
@@ -3931,12 +3751,10 @@ const {error}=
 await supabaseClient
 .from("fees")
 .insert([{
-
 student_id:Number(student_id),
 amount:Number(amount),
 payment_date,
 status
-
 }]);
 
 if(error){
@@ -3946,9 +3764,7 @@ return;
 
 }
 
-alert(
-"Payment saved successfully."
-);
+alert("Payment saved successfully.");
 
 document.getElementById(
 "feeStudent"
@@ -3966,6 +3782,7 @@ await loadFees();
 
 }
 
+
 async function deleteFee(id){
 
 if(!canManageFees()){
@@ -3978,9 +3795,7 @@ return;
 
 }
 
-if(!confirm(
-"Delete this payment?"
-))
+if(!confirm("Delete this payment?"))
 return;
 
 const {error}=
@@ -3999,6 +3814,11 @@ return;
 await loadFees();
 
 }
+
+
+/* =========================
+DROPDOWNS
+========================= */
 
 function fillStudentDropdowns(){
 
@@ -4036,10 +3856,7 @@ ${escapeHtml(student.full_name)}
 
 if(
 [...select.options]
-.some(
-option=>
-option.value===oldValue
-)
+.some(o=>o.value===oldValue)
 ){
 
 select.value=oldValue;
@@ -4047,6 +3864,7 @@ select.value=oldValue;
 }
 
 });
+
 
 const studentClass=
 document.getElementById(
@@ -4080,10 +3898,7 @@ ${c.section
 
 if(
 [...studentClass.options]
-.some(
-option=>
-option.value===oldValue
-)
+.some(o=>o.value===oldValue)
 ){
 
 studentClass.value=oldValue;
@@ -4093,6 +3908,7 @@ studentClass.value=oldValue;
 }
 
 }
+
 
 function fillClassDropdown(){
 
@@ -4123,10 +3939,7 @@ ${escapeHtml(c.name)}
 
 if(
 [...select.options]
-.some(
-option=>
-option.value===oldValue
-)
+.some(o=>o.value===oldValue)
 ){
 
 select.value=oldValue;
@@ -4134,6 +3947,7 @@ select.value=oldValue;
 }
 
 }
+
 
 function fillTeacherDropdown(){
 
@@ -4155,9 +3969,7 @@ teachers.forEach(teacher=>{
 select.innerHTML+=`
 
 <option value="${teacher.id}">
-${escapeHtml(
-teacher.full_name
-)}
+${escapeHtml(teacher.full_name)}
 </option>
 
 `;
@@ -4166,10 +3978,7 @@ teacher.full_name
 
 if(
 [...select.options]
-.some(
-option=>
-option.value===oldValue
-)
+.some(o=>o.value===oldValue)
 ){
 
 select.value=oldValue;
@@ -4177,6 +3986,7 @@ select.value=oldValue;
 }
 
 }
+
 
 function fillSubjectDropdowns(){
 
@@ -4198,9 +4008,7 @@ subjects.forEach(subject=>{
 select.innerHTML+=`
 
 <option value="${subject.id}">
-${escapeHtml(
-subject.subject_name
-)}
+${escapeHtml(subject.subject_name)}
 </option>
 
 `;
@@ -4209,10 +4017,7 @@ subject.subject_name
 
 if(
 [...select.options]
-.some(
-option=>
-option.value===oldValue
-)
+.some(o=>o.value===oldValue)
 ){
 
 select.value=oldValue;
@@ -4220,6 +4025,11 @@ select.value=oldValue;
 }
 
 }
+
+
+/* =========================
+TEACHER DASHBOARD
+========================= */
 
 async function loadTeacherDashboard(){
 
@@ -4335,8 +4145,7 @@ Assigned Classes
 ${
 assignedClasses.length
 ?
-assignedClasses
-.map(c=>`
+assignedClasses.map(c=>`
 
 <div style="
 padding:8px;
@@ -4348,15 +4157,13 @@ border-radius:6px;
 ${escapeHtml(c.name)}
 ${c.section
 ?
-" - "+
-escapeHtml(c.section)
+" - "+escapeHtml(c.section)
 :
 ""}
 
 </div>
 
-`)
-.join("")
+`).join("")
 :
 "<p>No assigned classes found.</p>"
 }
@@ -4365,28 +4172,22 @@ escapeHtml(c.section)
 
 }
 
-/* =====================================================
-DATA LOADING
-===================================================== */
+
+/* =========================
+REFRESH ALL
+========================= */
 
 async function refreshAll(){
 
 if(isAdmin()){
 
 await loadClasses();
-
 await loadTeachers();
-
 await loadSubjects();
-
 await loadStudents();
-
 await loadAttendance();
-
 await loadGrades();
-
 await loadFees();
-
 await loadAdminUsers();
 
 }
@@ -4394,15 +4195,10 @@ await loadAdminUsers();
 else if(currentUserRole==="teacher"){
 
 await loadClasses();
-
 await loadTeachers();
-
 await loadSubjects();
-
 await loadStudents();
-
 await loadAttendance();
-
 await loadGrades();
 
 }
@@ -4410,9 +4206,7 @@ await loadGrades();
 else if(currentUserRole==="staff"){
 
 await loadClasses();
-
 await loadStudents();
-
 await loadAttendance();
 
 }
@@ -4420,26 +4214,24 @@ await loadAttendance();
 else if(currentUserRole==="finance"){
 
 await loadStudents();
-
 await loadFees();
 
 }
 
-/* =====================================================
-PARENT DATA
-
-Parent gets data from Supabase RLS.
-
-The database automatically limits:
-Students      -> linked student
-Attendance    -> linked student
-Grades        -> linked student
-Fees          -> linked student
-
-Subjects are loaded so grade subject names can be shown.
-===================================================== */
-
 else if(currentUserRole==="parent"){
+
+/*
+IMPORTANT ORDER:
+
+1. Subjects
+2. Students
+3. Attendance
+4. Grades
+5. Fees
+
+This makes the Student Name lookup
+ready before rendering the records.
+*/
 
 await loadSubjects();
 
@@ -4452,8 +4244,6 @@ await loadGrades();
 await loadFees();
 
 }
-
-/* Teacher dashboard */
 
 if(currentUserRole==="teacher"){
 
@@ -4462,6 +4252,11 @@ await loadTeacherDashboard();
 }
 
 }
+
+
+/* =========================
+SESSION
+========================= */
 
 async function checkSession(){
 
@@ -4485,6 +4280,7 @@ await showApp();
 }
 
 }
+
 
 supabaseClient.auth.onAuthStateChange(
 async(event,session)=>{
@@ -4524,8 +4320,12 @@ await showApp();
 
 }
 
-}
-);
+});
+
+
+/* =========================
+START
+========================= */
 
 document.addEventListener(
 "DOMContentLoaded",
@@ -4542,17 +4342,14 @@ document.getElementById(
 );
 
 if(attendanceDate)
-attendanceDate.value=
-today();
+attendanceDate.value=today();
 
 if(feeDate)
-feeDate.value=
-today();
+feeDate.value=today();
 
 checkSession();
 
-}
-);
+});
 
 </script>
 
