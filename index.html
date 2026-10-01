@@ -1462,14 +1462,6 @@ return student.full_name;
 
 }
 
-
-/*
-Parent fallback.
-
-This is only used when the linked
-student name was loaded separately.
-*/
-
 if(
 currentUserRole==="parent" &&
 currentUserStudentId &&
@@ -1754,13 +1746,6 @@ currentUser.id;
 let data=null;
 let error=null;
 
-
-/*
-Load user profile.
-
-student_id is the Parent -> Student link.
-*/
-
 if(authId){
 
 const result=
@@ -1821,14 +1806,6 @@ null;
 
 currentUserStudentName="";
 
-
-/*
-For Parent, load the linked student name
-directly from students.
-
-No fallback to students[0].
-*/
-
 if(
 currentUserRole==="parent" &&
 currentUserStudentId
@@ -1852,7 +1829,6 @@ studentResult.data.full_name||"";
 }
 
 }
-
 
 document.getElementById(
 "loggedRole"
@@ -2414,20 +2390,6 @@ supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
-
-/*
-IMPORTANT PARENT FILTER:
-
-Parent receives only the student linked
-to users.student_id.
-
-If no student_id exists, no student
-records are loaded.
-
-Admin/Teacher/Staff/Finance keep the
-original behavior.
-*/
-
 if(currentUserRole==="parent"){
 
 if(
@@ -2468,12 +2430,6 @@ return;
 }
 
 students=data||[];
-
-
-/*
-If the linked student was found,
-keep the name available as a fallback.
-*/
 
 if(
 currentUserRole==="parent" &&
@@ -3282,12 +3238,6 @@ supabaseClient
 .select("*")
 .order("id",{ascending:false});
 
-
-/*
-Parent sees attendance only for
-the linked student.
-*/
-
 if(currentUserRole==="parent"){
 
 if(
@@ -3556,11 +3506,32 @@ await query;
 
 if(error){
 
-console.error(error);
+console.error(
+"GRADES ERROR:",
+error
+);
+
+alert(
+"Grades Error:\n\n"+
+error.message
+);
+
 grades=[];
+
+renderGrades();
+
+document.getElementById(
+"gradeCount"
+).textContent="0";
+
 return;
 
 }
+
+console.log(
+"GRADES DATA:",
+data
+);
 
 grades=data||[];
 
@@ -3779,12 +3750,6 @@ supabaseClient
 .from("fees")
 .select("*")
 .order("id",{ascending:false});
-
-
-/*
-Parent sees fees only for
-the linked student.
-*/
 
 if(currentUserRole==="parent"){
 
@@ -4046,16 +4011,6 @@ select.value;
 
 select.innerHTML=
 '<option value="">Select Student</option>';
-
-
-/*
-Parent dropdowns are restricted to
-the linked student too.
-
-Normally these forms are hidden for Parent,
-but this also prevents an accidental
-wrong selection.
-*/
 
 let dropdownStudents=students;
 
@@ -4447,17 +4402,6 @@ await loadFees();
 }
 
 else if(currentUserRole==="parent"){
-
-/*
-Parent needs classes as well so that
-the linked student's class can display.
-
-Only the linked student is loaded
-from students.
-
-Attendance, Grades and Fees are also
-filtered by the same student_id.
-*/
 
 await loadClasses();
 
