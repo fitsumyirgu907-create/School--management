@@ -4,362 +4,1835 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>New Fortune School Management System</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
-body{background:#f4f6fb;color:#222}
-.hidden{display:none!important}
-button{cursor:pointer;border:none}
-input,select{width:100%;padding:11px;border:1px solid #d5d9e2;border-radius:7px;margin-top:5px;margin-bottom:10px;background:#fff}
-label{font-size:13px;font-weight:bold;color:#444}
-.login-page{min-height:100vh;display:flex;justify-content:center;align-items:center;background:linear-gradient(rgba(0,40,100,.72),rgba(0,70,160,.72)),url("new-fortune-login-bg.webp");background-size:cover;background-position:center;padding:20px}
-.login-box{width:100%;max-width:420px;background:#fff;padding:30px;border-radius:15px;box-shadow:0 15px 40px rgba(0,0,0,.25)}
-.login-logo{width:100px;height:100px;object-fit:contain;display:block;margin:0 auto 15px}
-.login-title{text-align:center;color:#075bc9;margin-bottom:6px}
-.login-subtitle{text-align:center;color:#777;margin-bottom:25px;font-size:14px}
-.primary-btn{width:100%;padding:12px;background:#0866d5;color:#fff;border-radius:7px;font-weight:bold;margin-top:5px}
-.primary-btn:hover{background:#064fa8}
-.secondary-btn{width:100%;padding:11px;background:#eef2f7;color:#333;border-radius:7px;margin-top:8px}
-.danger-btn{background:#dc3545;color:#fff;padding:7px 12px;border-radius:5px}
-.success-btn{background:#198754;color:#fff;padding:8px 13px;border-radius:6px}
-.edit-btn{background:#0866d5;color:#fff;padding:6px 10px;border-radius:5px;margin-right:5px}
-.cancel-btn{background:#6c757d;color:#fff;padding:8px 13px;border-radius:6px;margin-left:6px}
-.topbar{height:58px;background:linear-gradient(90deg,#0755bd,#0879e8);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:100}
-.school-title{font-size:16px;font-weight:bold}
-.user-area{display:flex;align-items:center;gap:12px;font-size:13px}
-.logout-btn{background:#dc3545;color:#fff;padding:8px 12px;border-radius:6px}
-.layout{display:flex;min-height:calc(100vh - 58px)}
-.sidebar{width:190px;background:#fff;border-right:1px solid #e0e4eb;padding:10px 0;flex-shrink:0}
-.menu-btn{width:100%;text-align:left;background:#fff;padding:11px 15px;color:#333;font-size:13px}
-.menu-btn:hover{background:#eef5ff}
-.menu-btn.active{background:#e5efff;color:#075bc9;font-weight:bold}
-.content{flex:1;padding:20px;min-width:0}
-.section-title{font-size:21px;margin-bottom:18px;color:#222}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:20px}
-.card{background:#fff;border-radius:10px;padding:17px;box-shadow:0 2px 10px rgba(0,0,0,.07)}
-.card-title{font-size:12px;color:#666;margin-bottom:8px}
-.card-number{font-size:27px;font-weight:bold;color:#0866d5}
-.form-card{background:#fff;padding:18px;border-radius:10px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 15px}
-.table-card{background:#fff;padding:15px;border-radius:10px;overflow-x:auto;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-table{width:100%;border-collapse:collapse;min-width:650px}
-th,td{padding:10px;border-bottom:1px solid #e7e9ed;text-align:left;font-size:13px}
-th{background:#f3f6fa;color:#333}
-.small-btn{padding:6px 10px;border-radius:5px;background:#dc3545;color:#fff}
-.admin-info{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 15px}
-.admin-box{background:#f8fafc;padding:15px;border-radius:8px}
-.admin-box label{display:block}
-.search-box{margin-bottom:15px}
-.search-box input{max-width:400px}
-.teacher-dashboard-box{background:#eef6ff;border-left:4px solid #0866d5;padding:15px;border-radius:8px;margin-bottom:20px}
-.account-note{background:#fff8e1;border-left:4px solid #ffc107;padding:12px;border-radius:6px;margin-bottom:15px;font-size:13px;color:#664d03}
-.permission-note{background:#eef6ff;border-left:4px solid #0866d5;padding:12px;border-radius:6px;margin-bottom:15px;font-size:13px}
-.edit-mode-note{background:#fff8e1;border-left:4px solid #ffc107;padding:10px;border-radius:6px;margin-bottom:15px;font-size:13px;color:#664d03}
-@media(max-width:800px){.sidebar{width:160px}.cards{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr}.admin-info{grid-template-columns:1fr}}
-@media(max-width:600px){.topbar{padding:0 10px}.school-title{font-size:13px}.user-area{font-size:10px;gap:5px}.logout-btn{padding:6px 8px}.layout{display:block}.sidebar{width:100%;display:flex;overflow-x:auto;border-right:none;border-bottom:1px solid #ddd}.menu-btn{width:auto;white-space:nowrap;padding:10px 12px}.content{padding:12px}.cards{grid-template-columns:1fr 1fr;gap:10px}.card{padding:13px}}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif
+}
+
+body{
+  background:#f4f7fb;
+  color:#202938
+}
+
+.hidden{
+  display:none!important
+}
+
+button{
+  cursor:pointer;
+  border:none;
+  font-family:inherit
+}
+
+input,select{
+  width:100%;
+  padding:11px 12px;
+  border:1px solid #d6dce7;
+  border-radius:8px;
+  margin-top:5px;
+  margin-bottom:10px;
+  background:#fff;
+  color:#202938;
+  outline:none;
+  transition:.2s
+}
+
+input:focus,select:focus{
+  border-color:#0879e8;
+  box-shadow:0 0 0 3px rgba(8,121,232,.10)
+}
+
+label{
+  font-size:13px;
+  font-weight:bold;
+  color:#414b5b
+}
+
+/* =========================================================
+   LOGIN PAGE
+========================================================= */
+
+.login-page{
+  min-height:100vh;
+  min-height:100svh;
+  position:relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:25px 18px;
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(3,43,100,.72),
+      rgba(0,96,190,.52)
+    ),
+    url("new-fortune-login-bg.webp");
+
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+.login-page::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255,255,255,.15),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(0,180,255,.16),
+      transparent 35%
+    );
+  pointer-events:none;
+}
+
+.login-page::after{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+  right:-220px;
+  top:-220px;
+  pointer-events:none;
+}
+
+.login-box{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:430px;
+  padding:34px 32px 28px;
+  border-radius:24px;
+
+  background:rgba(255,255,255,.96);
+
+  border:1px solid rgba(255,255,255,.75);
+
+  box-shadow:
+    0 25px 70px rgba(0,0,0,.30),
+    0 5px 20px rgba(0,0,0,.12);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  animation:loginBoxIn .6s ease
+}
+
+@keyframes loginBoxIn{
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.98)
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1)
+  }
+}
+
+.login-logo{
+  width:108px;
+  height:108px;
+  object-fit:contain;
+  display:block;
+  margin:0 auto 14px;
+  filter:drop-shadow(0 7px 10px rgba(0,0,0,.14))
+}
+
+.login-title{
+  text-align:center;
+  color:#075bc9;
+  font-size:27px;
+  font-weight:800;
+  letter-spacing:-.4px;
+  margin-bottom:5px
+}
+
+.login-subtitle{
+  text-align:center;
+  color:#697386;
+  margin-bottom:25px;
+  font-size:14px;
+  font-weight:500
+}
+
+.login-welcome{
+  text-align:center;
+  color:#263244;
+  font-size:15px;
+  font-weight:bold;
+  margin-bottom:17px
+}
+
+.login-field{
+  margin-bottom:2px
+}
+
+.login-field label{
+  display:block;
+  margin-bottom:2px
+}
+
+.password-wrap{
+  position:relative
+}
+
+.password-wrap input{
+  padding-right:48px
+}
+
+.password-toggle{
+  position:absolute;
+  right:8px;
+  top:10px;
+  width:34px;
+  height:34px;
+  background:#f1f5f9;
+  color:#4b5563;
+  border-radius:7px;
+  font-size:15px
+}
+
+.password-toggle:hover{
+  background:#e4ebf4
+}
+
+.primary-btn{
+  width:100%;
+  padding:13px 15px;
+  color:#fff;
+  border-radius:9px;
+  font-weight:bold;
+  font-size:14px;
+  margin-top:7px;
+
+  background:linear-gradient(
+    135deg,
+    #075bc9,
+    #0879e8
+  );
+
+  box-shadow:0 7px 18px rgba(8,102,213,.24);
+  transition:.2s
+}
+
+.primary-btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 9px 22px rgba(8,102,213,.32)
+}
+
+.primary-btn:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+  transform:none
+}
+
+.secondary-btn{
+  width:100%;
+  padding:11px 15px;
+  background:#f1f4f8;
+  color:#354052;
+  border-radius:9px;
+  margin-top:9px;
+  font-weight:600;
+  transition:.2s
+}
+
+.secondary-btn:hover{
+  background:#e7edf5
+}
+
+.login-security{
+  margin-top:22px;
+  padding:12px 10px;
+  border-radius:10px;
+  background:#f1f7ff;
+  border:1px solid #dcecff;
+  text-align:center
+}
+
+.login-security-main{
+  color:#075bc9;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:4px
+}
+
+.login-security-sub{
+  color:#718096;
+  font-size:11px
+}
+
+.login-footer{
+  text-align:center;
+  margin-top:15px;
+  color:#8993a4;
+  font-size:10px
+}
+
+.reset-title{
+  text-align:center;
+  color:#075bc9;
+  margin-bottom:6px
+}
+
+.reset-description{
+  text-align:center;
+  color:#737d8d;
+  font-size:12px;
+  margin-bottom:17px;
+  line-height:1.5
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
+.topbar{
+  min-height:58px;
+  background:linear-gradient(90deg,#0755bd,#0879e8);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 2px 8px rgba(0,0,0,.12)
+}
+
+.school-title{
+  font-size:16px;
+  font-weight:bold
+}
+
+.user-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:13px
+}
+
+.logout-btn{
+  background:#dc3545;
+  color:#fff;
+  padding:8px 12px;
+  border-radius:6px;
+  font-weight:bold
+}
+
+.logout-btn:hover{
+  background:#bb2d3b
+}
+
+.layout{
+  display:flex;
+  min-height:calc(100vh - 58px)
+}
+
+.sidebar{
+  width:190px;
+  background:#fff;
+  border-right:1px solid #e0e4eb;
+  padding:10px 0;
+  flex-shrink:0
+}
+
+.menu-btn{
+  width:100%;
+  text-align:left;
+  background:#fff;
+  padding:11px 15px;
+  color:#333;
+  font-size:13px;
+  transition:.15s
+}
+
+.menu-btn:hover{
+  background:#eef5ff;
+  color:#075bc9
+}
+
+.menu-btn.active{
+  background:#e5efff;
+  color:#075bc9;
+  font-weight:bold;
+  border-right:3px solid #0879e8
+}
+
+.content{
+  flex:1;
+  padding:20px;
+  min-width:0
+}
+
+.section-title{
+  font-size:21px;
+  margin-bottom:18px;
+  color:#222
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+  margin-bottom:20px
+}
+
+.card{
+  background:#fff;
+  border-radius:10px;
+  padding:17px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07)
+}
+
+.card-title{
+  font-size:12px;
+  color:#666;
+  margin-bottom:8px
+}
+
+.card-number{
+  font-size:27px;
+  font-weight:bold;
+  color:#0866d5
+}
+
+.form-card{
+  background:#fff;
+  padding:18px;
+  border-radius:10px;
+  margin-bottom:20px;
+  box-shadow:0 2px 8px rgba(0,0,0,.05)
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px 15px
+}
+
+.table-card{
+  background:#fff;
+  padding:15px;
+  border-radius:10px;
+  overflow-x:auto;
+  box-shadow:0 2px 8px rgba(0,0,0,.05)
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px
+}
+
+th,td{
+  padding:10px;
+  border-bottom:1px solid #e7e9ed;
+  text-align:left;
+  font-size:13px
+}
+
+th{
+  background:#f3f6fa;
+  color:#333
+}
+
+.danger-btn{
+  background:#dc3545;
+  color:#fff;
+  padding:7px 12px;
+  border-radius:5px
+}
+
+.success-btn{
+  background:#198754;
+  color:#fff;
+  padding:8px 13px;
+  border-radius:6px;
+  font-weight:bold
+}
+
+.success-btn:hover{
+  background:#157347
+}
+
+.edit-btn{
+  background:#0866d5;
+  color:#fff;
+  padding:6px 10px;
+  border-radius:5px;
+  margin-right:5px
+}
+
+.cancel-btn{
+  background:#6c757d;
+  color:#fff;
+  padding:8px 13px;
+  border-radius:6px;
+  margin-left:6px
+}
+
+.small-btn{
+  padding:6px 10px;
+  border-radius:5px;
+  background:#dc3545;
+  color:#fff
+}
+
+.admin-info{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px 15px
+}
+
+.admin-box{
+  background:#f8fafc;
+  padding:15px;
+  border-radius:8px
+}
+
+.admin-box label{
+  display:block
+}
+
+.search-box{
+  margin-bottom:15px
+}
+
+.search-box input{
+  max-width:400px
+}
+
+.teacher-dashboard-box{
+  background:#eef6ff;
+  border-left:4px solid #0866d5;
+  padding:15px;
+  border-radius:8px;
+  margin-bottom:20px
+}
+
+.account-note{
+  background:#fff8e1;
+  border-left:4px solid #ffc107;
+  padding:12px;
+  border-radius:6px;
+  margin-bottom:15px;
+  font-size:13px;
+  color:#664d03
+}
+
+.permission-note{
+  background:#eef6ff;
+  border-left:4px solid #0866d5;
+  padding:12px;
+  border-radius:6px;
+  margin-bottom:15px;
+  font-size:13px
+}
+
+.edit-mode-note{
+  background:#fff8e1;
+  border-left:4px solid #ffc107;
+  padding:10px;
+  border-radius:6px;
+  margin-bottom:15px;
+  font-size:13px;
+  color:#664d03
+}
+
+@media(max-width:800px){
+  .sidebar{
+    width:160px
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr)
+  }
+
+  .form-grid{
+    grid-template-columns:1fr
+  }
+
+  .admin-info{
+    grid-template-columns:1fr
+  }
+}
+
+@media(max-width:600px){
+  .login-page{
+    padding:15px 12px
+  }
+
+  .login-box{
+    max-width:410px;
+    padding:28px 20px 22px;
+    border-radius:20px
+  }
+
+  .login-logo{
+    width:92px;
+    height:92px
+  }
+
+  .login-title{
+    font-size:23px
+  }
+
+  .topbar{
+    padding:0 10px
+  }
+
+  .school-title{
+    font-size:13px
+  }
+
+  .user-area{
+    font-size:10px;
+    gap:5px
+  }
+
+  .logout-btn{
+    padding:6px 8px
+  }
+
+  .layout{
+    display:block
+  }
+
+  .sidebar{
+    width:100%;
+    display:flex;
+    overflow-x:auto;
+    border-right:none;
+    border-bottom:1px solid #ddd
+  }
+
+  .menu-btn{
+    width:auto;
+    white-space:nowrap;
+    padding:10px 12px
+  }
+
+  .content{
+    padding:12px
+  }
+
+  .cards{
+    grid-template-columns:1fr 1fr;
+    gap:10px
+  }
+
+  .card{
+    padding:13px
+  }
+
+  .card-number{
+    font-size:23px
+  }
+}
 </style>
 </head>
 
 <body>
 
+<!-- =========================================================
+     LOGIN PAGE
+========================================================= -->
+
 <div id="loginPage" class="login-page">
-<div class="login-box">
-<img src="file_000000008cf0820ea9f8ecdca094bdda.png" class="login-logo" onerror="this.style.display='none'">
-<h2 class="login-title">New Fortune School</h2>
-<div class="login-subtitle">Management System</div>
 
-<div id="loginForm">
-<label>Email or Phone</label>
-<input id="loginEmail" type="text" placeholder="Enter email or phone">
-<label>Password</label>
-<input id="loginPassword" type="password" placeholder="Enter password">
-<button class="primary-btn" onclick="login()">🔐 Login</button>
-<button class="secondary-btn" onclick="showForgot()">Forgot Password?</button>
+  <div class="login-box">
+
+    <img
+      src="file_000000008cf0820ea9f8ecdca094bdda.png"
+      class="login-logo"
+      onerror="this.style.display='none'"
+      alt="New Fortune School Logo"
+    >
+
+    <h2 class="login-title">New Fortune School</h2>
+
+    <div class="login-subtitle">
+      Management System
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginForm">
+
+      <div class="login-welcome">
+        Welcome Back 👋
+      </div>
+
+      <div class="login-field">
+        <label>Email or Phone</label>
+        <input
+          id="loginEmail"
+          type="text"
+          placeholder="Enter email or phone"
+          autocomplete="username"
+        >
+      </div>
+
+      <div class="login-field">
+        <label>Password</label>
+
+        <div class="password-wrap">
+          <input
+            id="loginPassword"
+            type="password"
+            placeholder="Enter password"
+            autocomplete="current-password"
+          >
+
+          <button
+            type="button"
+            class="password-toggle"
+            onclick="togglePassword('loginPassword',this)"
+            aria-label="Show password"
+          >
+            👁️
+          </button>
+        </div>
+      </div>
+
+      <button
+        id="loginBtn"
+        class="primary-btn"
+        onclick="login()"
+      >
+        🔐 Login →
+      </button>
+
+      <button
+        class="secondary-btn"
+        onclick="showForgot()"
+      >
+        🔑 Forgot Password?
+      </button>
+
+      <div class="login-security">
+        <div class="login-security-main">
+          🛡️ Secure • Reliable • Always
+        </div>
+
+        <div class="login-security-sub">
+          Your child's future is our priority
+        </div>
+      </div>
+
+      <div class="login-footer">
+        New Fortune School © Management System
+      </div>
+
+    </div>
+
+    <!-- FORGOT PASSWORD -->
+    <div id="forgotForm" class="hidden">
+
+      <h3 class="reset-title">
+        Reset Password
+      </h3>
+
+      <div class="reset-description">
+        Enter your registered email and we will send you
+        a password reset link.
+      </div>
+
+      <label>Email</label>
+
+      <input
+        id="forgotEmail"
+        type="email"
+        placeholder="Enter your email"
+        autocomplete="email"
+      >
+
+      <button
+        class="primary-btn"
+        onclick="sendReset()"
+      >
+        📩 Send Reset Link
+      </button>
+
+      <button
+        class="secondary-btn"
+        onclick="showLogin()"
+      >
+        ← Back to Login
+      </button>
+
+    </div>
+
+    <!-- NEW PASSWORD -->
+    <div id="newPasswordForm" class="hidden">
+
+      <h3 class="reset-title">
+        Create New Password
+      </h3>
+
+      <div class="reset-description">
+        Choose a new secure password for your account.
+      </div>
+
+      <label>New Password</label>
+
+      <div class="password-wrap">
+        <input
+          id="newPassword"
+          type="password"
+          placeholder="Enter new password"
+          autocomplete="new-password"
+        >
+
+        <button
+          type="button"
+          class="password-toggle"
+          onclick="togglePassword('newPassword',this)"
+        >
+          👁️
+        </button>
+      </div>
+
+      <button
+        class="primary-btn"
+        onclick="updatePassword()"
+      >
+        🔐 Update Password
+      </button>
+
+    </div>
+
+  </div>
 </div>
 
-<div id="forgotForm" class="hidden">
-<h3 style="margin-bottom:15px">Reset Password</h3>
-<label>Email</label>
-<input id="forgotEmail" type="email" placeholder="Enter your email">
-<button class="primary-btn" onclick="sendReset()">Send Reset Link</button>
-<button class="secondary-btn" onclick="showLogin()">Back to Login</button>
-</div>
 
-<div id="newPasswordForm" class="hidden">
-<h3 style="margin-bottom:15px">Create New Password</h3>
-<label>New Password</label>
-<input id="newPassword" type="password" placeholder="Enter new password">
-<button class="primary-btn" onclick="updatePassword()">Update Password</button>
-</div>
-</div>
-</div>
+<!-- =========================================================
+     MAIN APPLICATION
+========================================================= -->
 
 <div id="app" class="hidden">
 
-<div class="topbar">
-<div class="school-title">New Fortune School Management System</div>
-<div class="user-area">
-<span id="loggedUser"></span>
-<span id="loggedRole" style="font-weight:bold"></span>
-<button class="logout-btn" onclick="logout()">Logout</button>
+  <div class="topbar">
+
+    <div class="school-title">
+      New Fortune School Management System
+    </div>
+
+    <div class="user-area">
+
+      <span id="loggedUser"></span>
+
+      <span
+        id="loggedRole"
+        style="font-weight:bold"
+      ></span>
+
+      <button
+        class="logout-btn"
+        onclick="logout()"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+      <button
+        id="menuDashboard"
+        class="menu-btn active"
+        onclick="showSection('dashboard',this)"
+      >
+        🏠 Dashboard
+      </button>
+
+      <button
+        id="menuTeacherDashboard"
+        class="menu-btn hidden"
+        onclick="showSection('teacherDashboard',this)"
+      >
+        👨‍🏫 Teacher Dashboard
+      </button>
+
+      <button
+        id="menuAdmin"
+        class="menu-btn hidden"
+        onclick="showSection('adminAccountManager',this)"
+      >
+        👑 Admin Account Manager
+      </button>
+
+      <button
+        id="menuStudents"
+        class="menu-btn hidden"
+        onclick="showSection('students',this)"
+      >
+        👨‍🎓 Students
+      </button>
+
+      <button
+        id="menuTeachers"
+        class="menu-btn hidden"
+        onclick="showSection('teachers',this)"
+      >
+        👨‍🏫 Teachers
+      </button>
+
+      <button
+        id="menuClasses"
+        class="menu-btn hidden"
+        onclick="showSection('classes',this)"
+      >
+        🏫 Classes
+      </button>
+
+      <button
+        id="menuSubjects"
+        class="menu-btn hidden"
+        onclick="showSection('subjects',this)"
+      >
+        📚 Subjects
+      </button>
+
+      <button
+        id="menuAttendance"
+        class="menu-btn hidden"
+        onclick="showSection('attendance',this)"
+      >
+        📋 Attendance
+      </button>
+
+      <button
+        id="menuGrades"
+        class="menu-btn hidden"
+        onclick="showSection('grades',this)"
+      >
+        📝 Grades
+      </button>
+
+      <button
+        id="menuFees"
+        class="menu-btn hidden"
+        onclick="showSection('fees',this)"
+      >
+        💰 Fees / Payments
+      </button>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+      <!-- DASHBOARD -->
+
+      <section id="dashboard">
+
+        <h2 class="section-title">
+          Dashboard
+        </h2>
+
+        <div class="cards">
+
+          <div class="card">
+            <div class="card-title">Students</div>
+            <div id="studentCount" class="card-number">0</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Teachers</div>
+            <div id="teacherCount" class="card-number">0</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Classes</div>
+            <div id="classCount" class="card-number">0</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Subjects</div>
+            <div id="subjectCount" class="card-number">0</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Attendance</div>
+            <div id="attendanceCount" class="card-number">0</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Grades</div>
+            <div id="gradeCount" class="card-number">0</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">Fees</div>
+            <div id="feeCount" class="card-number">0</div>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- TEACHER DASHBOARD -->
+
+      <section id="teacherDashboard" class="hidden">
+
+        <h2 class="section-title">
+          Teacher Dashboard
+        </h2>
+
+        <div
+          id="teacherDashboardContent"
+          class="teacher-dashboard-box"
+        >
+          Loading...
+        </div>
+
+      </section>
+
+
+      <!-- ADMIN ACCOUNT MANAGER -->
+
+      <section id="adminAccountManager" class="hidden">
+
+        <h2 class="section-title">
+          👑 Admin Account Manager
+        </h2>
+
+        <div class="form-card">
+
+          <h3 style="margin-bottom:15px">
+            Current Admin
+          </h3>
+
+          <div class="admin-info">
+
+            <div class="admin-box">
+              <label>Full Name</label>
+              <input id="adminCurrentName" readonly>
+            </div>
+
+            <div class="admin-box">
+              <label>Email</label>
+              <input id="adminCurrentEmail" readonly>
+            </div>
+
+            <div class="admin-box">
+              <label>Phone</label>
+              <input id="adminCurrentPhone" readonly>
+            </div>
+
+            <div class="admin-box">
+              <label>Role</label>
+              <input id="adminCurrentRole" readonly>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="form-card">
+
+          <h3 style="margin-bottom:15px">
+            ➕ Create New Account
+          </h3>
+
+          <div class="account-note">
+            Admin can create Admin, Teacher, Staff, Finance,
+            Student or Parent accounts.
+          </div>
+
+          <div class="form-grid">
+
+            <div>
+              <label>Full Name</label>
+              <input id="newUserFullName">
+            </div>
+
+            <div>
+              <label>Email</label>
+              <input id="newUserEmail" type="email">
+            </div>
+
+            <div>
+              <label>Phone</label>
+              <input id="newUserPhone">
+            </div>
+
+            <div>
+              <label>Role</label>
+
+              <select id="newUserRole">
+                <option value="admin">Admin</option>
+                <option value="teacher">Teacher</option>
+                <option value="staff">Staff</option>
+                <option value="finance">Finance</option>
+                <option value="student">Student</option>
+                <option value="parent">Parent</option>
+              </select>
+
+            </div>
+
+            <div>
+              <label>Password</label>
+              <input id="newUserPassword" type="password">
+            </div>
+
+            <div>
+              <label>Confirm Password</label>
+              <input id="newUserConfirmPassword" type="password">
+            </div>
+
+          </div>
+
+          <button
+            id="createAccountBtn"
+            class="success-btn"
+            onclick="createUserAccount()"
+          >
+            ➕ Create Account
+          </button>
+
+        </div>
+
+
+        <div class="table-card">
+
+          <h3 style="margin-bottom:15px">
+            System Users
+          </h3>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Role</th>
+                <th>Created</th>
+              </tr>
+            </thead>
+
+            <tbody id="adminUsersTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- STUDENTS -->
+
+      <section id="students" class="hidden">
+
+        <h2 class="section-title">
+          Students Management
+        </h2>
+
+        <div id="studentForm" class="form-card">
+
+          <div
+            id="studentEditNote"
+            class="edit-mode-note hidden"
+          >
+            ✏️ You are editing a student.
+            Make your changes and click
+            <strong>Update Student</strong>.
+          </div>
+
+          <div class="form-grid">
+
+            <div>
+              <label>Full Name</label>
+              <input id="studentName">
+            </div>
+
+            <div>
+              <label>Student ID</label>
+              <input id="studentId">
+            </div>
+
+            <div>
+              <label>Gender</label>
+
+              <select id="studentGender">
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+
+            </div>
+
+            <div>
+              <label>Date of Birth</label>
+              <input id="studentDOB" type="date">
+            </div>
+
+            <div>
+              <label>Class</label>
+              <select id="studentClass"></select>
+            </div>
+
+            <div>
+              <label>Parent Name</label>
+              <input id="parentName">
+            </div>
+
+            <div>
+              <label>Parent Phone</label>
+              <input id="parentPhone">
+            </div>
+
+          </div>
+
+          <button
+            id="studentSubmitBtn"
+            class="success-btn"
+            onclick="addStudent()"
+          >
+            + Add Student
+          </button>
+
+          <button
+            id="studentCancelBtn"
+            class="cancel-btn hidden"
+            onclick="cancelEditStudent()"
+          >
+            Cancel Edit
+          </button>
+
+        </div>
+
+
+        <div class="table-card">
+
+          <div class="search-box">
+            <input
+              id="studentSearch"
+              placeholder="Search students..."
+              oninput="renderStudents()"
+            >
+          </div>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Student ID</th>
+                <th>Gender</th>
+                <th>Class</th>
+                <th>Parent</th>
+                <th>Phone</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="studentsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- TEACHERS -->
+
+      <section id="teachers" class="hidden">
+
+        <h2 class="section-title">
+          Teachers Management
+        </h2>
+
+        <div class="form-card">
+
+          <div
+            id="teacherEditNote"
+            class="edit-mode-note hidden"
+          >
+            ✏️ You are editing a teacher.
+            Make your changes and click
+            <strong>Update Teacher</strong>.
+          </div>
+
+          <div class="form-grid">
+
+            <div>
+              <label>Full Name</label>
+              <input id="teacherName">
+            </div>
+
+            <div>
+              <label>Teacher ID</label>
+              <input id="teacherId">
+            </div>
+
+            <div>
+              <label>Subject</label>
+              <input id="teacherSubject">
+            </div>
+
+            <div>
+              <label>Phone</label>
+              <input id="teacherPhone">
+            </div>
+
+            <div>
+              <label>Email</label>
+              <input id="teacherEmail">
+            </div>
+
+          </div>
+
+          <button
+            id="teacherSubmitBtn"
+            class="success-btn"
+            onclick="addTeacher()"
+          >
+            + Add Teacher
+          </button>
+
+          <button
+            id="teacherCancelBtn"
+            class="cancel-btn hidden"
+            onclick="cancelEditTeacher()"
+          >
+            Cancel Edit
+          </button>
+
+        </div>
+
+
+        <div class="table-card">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Teacher ID</th>
+                <th>Subject</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="teachersTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- CLASSES -->
+
+      <section id="classes" class="hidden">
+
+        <h2 class="section-title">
+          Classes Management
+        </h2>
+
+        <div class="form-card">
+
+          <div
+            id="classEditNote"
+            class="edit-mode-note hidden"
+          >
+            ✏️ You are editing a class.
+            Make your changes and click
+            <strong>Update Class</strong>.
+          </div>
+
+          <div class="form-grid">
+
+            <div>
+              <label>Class Name</label>
+              <input id="className">
+            </div>
+
+            <div>
+              <label>Grade</label>
+              <input id="classGrade">
+            </div>
+
+            <div>
+              <label>Section</label>
+              <input id="classSection">
+            </div>
+
+            <div>
+              <label>Class Teacher</label>
+              <select id="classTeacher"></select>
+            </div>
+
+          </div>
+
+          <button
+            id="classSubmitBtn"
+            class="success-btn"
+            onclick="addClass()"
+          >
+            + Add Class
+          </button>
+
+          <button
+            id="classCancelBtn"
+            class="cancel-btn hidden"
+            onclick="cancelEditClass()"
+          >
+            Cancel Edit
+          </button>
+
+        </div>
+
+
+        <div class="table-card">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Section</th>
+                <th>Teacher</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="classesTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- SUBJECTS -->
+
+      <section id="subjects" class="hidden">
+
+        <h2 class="section-title">
+          Subjects Management
+        </h2>
+
+        <div class="form-card">
+
+          <div
+            id="subjectEditNote"
+            class="edit-mode-note hidden"
+          >
+            ✏️ You are editing a subject.
+            Make your changes and click
+            <strong>Update Subject</strong>.
+          </div>
+
+          <label>Subject Name</label>
+
+          <input id="subjectName">
+
+          <button
+            id="subjectSubmitBtn"
+            class="success-btn"
+            onclick="addSubject()"
+          >
+            + Add Subject
+          </button>
+
+          <button
+            id="subjectCancelBtn"
+            class="cancel-btn hidden"
+            onclick="cancelEditSubject()"
+          >
+            Cancel Edit
+          </button>
+
+        </div>
+
+
+        <div class="table-card">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Subject</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="subjectsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- ATTENDANCE -->
+
+      <section id="attendance" class="hidden">
+
+        <h2 class="section-title">
+          Attendance
+        </h2>
+
+        <div id="attendanceForm" class="form-card">
+
+          <div
+            id="attendanceEditNote"
+            class="edit-mode-note hidden"
+          >
+            ✏️ You are editing attendance.
+            Make your changes and click
+            <strong>Update Attendance</strong>.
+          </div>
+
+          <div class="form-grid">
+
+            <div>
+              <label>Student</label>
+              <select id="attendanceStudent"></select>
+            </div>
+
+            <div>
+              <label>Date</label>
+              <input id="attendanceDate" type="date">
+            </div>
+
+            <div>
+              <label>Status</label>
+
+              <select id="attendanceStatus">
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="Late">Late</option>
+              </select>
+
+            </div>
+
+          </div>
+
+          <button
+            id="attendanceSubmitBtn"
+            class="success-btn"
+            onclick="addAttendance()"
+          >
+            + Save Attendance
+          </button>
+
+          <button
+            id="attendanceCancelBtn"
+            class="cancel-btn hidden"
+            onclick="cancelEditAttendance()"
+          >
+            Cancel Edit
+          </button>
+
+        </div>
+
+
+        <div class="table-card">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="attendanceTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- GRADES -->
+
+      <section id="grades" class="hidden">
+
+        <h2 class="section-title">
+          Grades
+        </h2>
+
+        <div id="gradeForm" class="form-card">
+
+          <div
+            id="gradeEditNote"
+            class="edit-mode-note hidden"
+          >
+            ✏️ You are editing a grade.
+            Make your changes and click
+            <strong>Update Grade</strong>.
+          </div>
+
+          <div class="form-grid">
+
+            <div>
+              <label>Student</label>
+              <select id="gradeStudent"></select>
+            </div>
+
+            <div>
+              <label>Subject</label>
+              <select id="gradeSubject"></select>
+            </div>
+
+            <div>
+              <label>Score</label>
+              <input
+                id="gradeScore"
+                type="number"
+                min="0"
+                max="100"
+              >
+            </div>
+
+            <div>
+              <label>Term</label>
+
+              <select id="gradeTerm">
+                <option value="Term 1">Term 1</option>
+                <option value="Term 2">Term 2</option>
+                <option value="Term 3">Term 3</option>
+              </select>
+
+            </div>
+
+          </div>
+
+          <button
+            id="gradeSubmitBtn"
+            class="success-btn"
+            onclick="addGrade()"
+          >
+            + Save Grade
+          </button>
+
+          <button
+            id="gradeCancelBtn"
+            class="cancel-btn hidden"
+            onclick="cancelEditGrade()"
+          >
+            Cancel Edit
+          </button>
+
+        </div>
+
+
+        <div class="table-card">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Subject</th>
+                <th>Score</th>
+                <th>Term</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="gradesTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <!-- FEES -->
+
+      <section id="fees" class="hidden">
+
+        <h2 class="section-title">
+          💰 Fees / Payments
+        </h2>
+
+        <div class="permission-note">
+          Only Admin and Finance accounts can manage school payments.
+          Parent accounts can view payments for their linked student only.
+        </div>
+
+        <div id="feeForm" class="form-card">
+
+          <div
+            id="feeEditNote"
+            class="edit-mode-note hidden"
+          >
+            ✏️ You are editing a payment.
+            Make your changes and click
+            <strong>Update Payment</strong>.
+          </div>
+
+          <div class="form-grid">
+
+            <div>
+              <label>Student</label>
+              <select id="feeStudent"></select>
+            </div>
+
+            <div>
+              <label>Amount</label>
+              <input id="feeAmount" type="number">
+            </div>
+
+            <div>
+              <label>Payment Date</label>
+              <input id="feeDate" type="date">
+            </div>
+
+            <div>
+              <label>Status</label>
+
+              <select id="feeStatus">
+                <option value="Paid">Paid</option>
+                <option value="Pending">Pending</option>
+                <option value="Partial">Partial</option>
+              </select>
+
+            </div>
+
+          </div>
+
+          <button
+            id="feeSubmitBtn"
+            class="success-btn"
+            onclick="addFee()"
+          >
+            + Save Payment
+          </button>
+
+          <button
+            id="feeCancelBtn"
+            class="cancel-btn hidden"
+            onclick="cancelEditFee()"
+          >
+            Cancel Edit
+          </button>
+
+        </div>
+
+
+        <div class="table-card">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Student</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="feesTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </div>
+  </div>
 </div>
-</div>
 
-<div class="layout">
-
-<div class="sidebar">
-
-<button id="menuDashboard" class="menu-btn active" onclick="showSection('dashboard',this)">🏠 Dashboard</button>
-<button id="menuTeacherDashboard" class="menu-btn hidden" onclick="showSection('teacherDashboard',this)">👨‍🏫 Teacher Dashboard</button>
-<button id="menuAdmin" class="menu-btn hidden" onclick="showSection('adminAccountManager',this)">👑 Admin Account Manager</button>
-<button id="menuStudents" class="menu-btn hidden" onclick="showSection('students',this)">👨‍🎓 Students</button>
-<button id="menuTeachers" class="menu-btn hidden" onclick="showSection('teachers',this)">👨‍🏫 Teachers</button>
-<button id="menuClasses" class="menu-btn hidden" onclick="showSection('classes',this)">🏫 Classes</button>
-<button id="menuSubjects" class="menu-btn hidden" onclick="showSection('subjects',this)">📚 Subjects</button>
-<button id="menuAttendance" class="menu-btn hidden" onclick="showSection('attendance',this)">📋 Attendance</button>
-<button id="menuGrades" class="menu-btn hidden" onclick="showSection('grades',this)">📝 Grades</button>
-<button id="menuFees" class="menu-btn hidden" onclick="showSection('fees',this)">💰 Fees / Payments</button>
-
-</div>
-
-<div class="content">
-
-<section id="dashboard">
-<h2 class="section-title">Dashboard</h2>
-<div class="cards">
-<div class="card"><div class="card-title">Students</div><div id="studentCount" class="card-number">0</div></div>
-<div class="card"><div class="card-title">Teachers</div><div id="teacherCount" class="card-number">0</div></div>
-<div class="card"><div class="card-title">Classes</div><div id="classCount" class="card-number">0</div></div>
-<div class="card"><div class="card-title">Subjects</div><div id="subjectCount" class="card-number">0</div></div>
-<div class="card"><div class="card-title">Attendance</div><div id="attendanceCount" class="card-number">0</div></div>
-<div class="card"><div class="card-title">Grades</div><div id="gradeCount" class="card-number">0</div></div>
-<div class="card"><div class="card-title">Fees</div><div id="feeCount" class="card-number">0</div></div>
-</div>
-</section>
-
-<section id="teacherDashboard" class="hidden">
-<h2 class="section-title">Teacher Dashboard</h2>
-<div id="teacherDashboardContent" class="teacher-dashboard-box">Loading...</div>
-</section>
-
-<section id="adminAccountManager" class="hidden">
-<h2 class="section-title">👑 Admin Account Manager</h2>
-
-<div class="form-card">
-<h3 style="margin-bottom:15px">Current Admin</h3>
-<div class="admin-info">
-<div class="admin-box"><label>Full Name</label><input id="adminCurrentName" readonly></div>
-<div class="admin-box"><label>Email</label><input id="adminCurrentEmail" readonly></div>
-<div class="admin-box"><label>Phone</label><input id="adminCurrentPhone" readonly></div>
-<div class="admin-box"><label>Role</label><input id="adminCurrentRole" readonly></div>
-</div>
-</div>
-
-<div class="form-card">
-<h3 style="margin-bottom:15px">➕ Create New Account</h3>
-<div class="account-note">Admin can create Admin, Teacher, Staff, Finance, Student or Parent accounts.</div>
-<div class="form-grid">
-<div><label>Full Name</label><input id="newUserFullName"></div>
-<div><label>Email</label><input id="newUserEmail" type="email"></div>
-<div><label>Phone</label><input id="newUserPhone"></div>
-<div><label>Role</label><select id="newUserRole"><option value="admin">Admin</option><option value="teacher">Teacher</option><option value="staff">Staff</option><option value="finance">Finance</option><option value="student">Student</option><option value="parent">Parent</option></select></div>
-<div><label>Password</label><input id="newUserPassword" type="password"></div>
-<div><label>Confirm Password</label><input id="newUserConfirmPassword" type="password"></div>
-</div>
-<button id="createAccountBtn" class="success-btn" onclick="createUserAccount()">➕ Create Account</button>
-</div>
-
-<div class="table-card">
-<h3 style="margin-bottom:15px">System Users</h3>
-<table>
-<thead><tr><th>#</th><th>Full Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Created</th></tr></thead>
-<tbody id="adminUsersTable"></tbody>
-</table>
-</div>
-</section>
-
-<!-- STUDENTS -->
-<section id="students" class="hidden">
-<h2 class="section-title">Students Management</h2>
-
-<div id="studentForm" class="form-card">
-<div id="studentEditNote" class="edit-mode-note hidden">✏️ You are editing a student. Make your changes and click <strong>Update Student</strong>.</div>
-<div class="form-grid">
-<div><label>Full Name</label><input id="studentName"></div>
-<div><label>Student ID</label><input id="studentId"></div>
-<div><label>Gender</label><select id="studentGender"><option value="">Select Gender</option><option value="Male">Male</option><option value="Female">Female</option></select></div>
-<div><label>Date of Birth</label><input id="studentDOB" type="date"></div>
-<div><label>Class</label><select id="studentClass"></select></div>
-<div><label>Parent Name</label><input id="parentName"></div>
-<div><label>Parent Phone</label><input id="parentPhone"></div>
-</div>
-<button id="studentSubmitBtn" class="success-btn" onclick="addStudent()">+ Add Student</button>
-<button id="studentCancelBtn" class="cancel-btn hidden" onclick="cancelEditStudent()">Cancel Edit</button>
-</div>
-
-<div class="table-card">
-<div class="search-box"><input id="studentSearch" placeholder="Search students..." oninput="renderStudents()"></div>
-<table>
-<thead><tr><th>#</th><th>Name</th><th>Student ID</th><th>Gender</th><th>Class</th><th>Parent</th><th>Phone</th><th>Action</th></tr></thead>
-<tbody id="studentsTable"></tbody>
-</table>
-</div>
-</section>
-
-<!-- TEACHERS -->
-<section id="teachers" class="hidden">
-<h2 class="section-title">Teachers Management</h2>
-
-<div class="form-card">
-<div id="teacherEditNote" class="edit-mode-note hidden">✏️ You are editing a teacher. Make your changes and click <strong>Update Teacher</strong>.</div>
-<div class="form-grid">
-<div><label>Full Name</label><input id="teacherName"></div>
-<div><label>Teacher ID</label><input id="teacherId"></div>
-<div><label>Subject</label><input id="teacherSubject"></div>
-<div><label>Phone</label><input id="teacherPhone"></div>
-<div><label>Email</label><input id="teacherEmail"></div>
-</div>
-<button id="teacherSubmitBtn" class="success-btn" onclick="addTeacher()">+ Add Teacher</button>
-<button id="teacherCancelBtn" class="cancel-btn hidden" onclick="cancelEditTeacher()">Cancel Edit</button>
-</div>
-
-<div class="table-card">
-<table>
-<thead><tr><th>#</th><th>Name</th><th>Teacher ID</th><th>Subject</th><th>Phone</th><th>Email</th><th>Action</th></tr></thead>
-<tbody id="teachersTable"></tbody>
-</table>
-</div>
-</section>
-
-<!-- CLASSES -->
-<section id="classes" class="hidden">
-<h2 class="section-title">Classes Management</h2>
-
-<div class="form-card">
-<div id="classEditNote" class="edit-mode-note hidden">✏️ You are editing a class. Make your changes and click <strong>Update Class</strong>.</div>
-<div class="form-grid">
-<div><label>Class Name</label><input id="className"></div>
-<div><label>Grade</label><input id="classGrade"></div>
-<div><label>Section</label><input id="classSection"></div>
-<div><label>Class Teacher</label><select id="classTeacher"></select></div>
-</div>
-<button id="classSubmitBtn" class="success-btn" onclick="addClass()">+ Add Class</button>
-<button id="classCancelBtn" class="cancel-btn hidden" onclick="cancelEditClass()">Cancel Edit</button>
-</div>
-
-<div class="table-card">
-<table>
-<thead><tr><th>#</th><th>Name</th><th>Grade</th><th>Section</th><th>Teacher</th><th>Action</th></tr></thead>
-<tbody id="classesTable"></tbody>
-</table>
-</div>
-</section>
-
-<!-- SUBJECTS -->
-<section id="subjects" class="hidden">
-<h2 class="section-title">Subjects Management</h2>
-
-<div class="form-card">
-<div id="subjectEditNote" class="edit-mode-note hidden">✏️ You are editing a subject. Make your changes and click <strong>Update Subject</strong>.</div>
-<label>Subject Name</label>
-<input id="subjectName">
-<button id="subjectSubmitBtn" class="success-btn" onclick="addSubject()">+ Add Subject</button>
-<button id="subjectCancelBtn" class="cancel-btn hidden" onclick="cancelEditSubject()">Cancel Edit</button>
-</div>
-
-<div class="table-card">
-<table>
-<thead><tr><th>#</th><th>Subject</th><th>Action</th></tr></thead>
-<tbody id="subjectsTable"></tbody>
-</table>
-</div>
-</section>
-
-<!-- ATTENDANCE -->
-<section id="attendance" class="hidden">
-<h2 class="section-title">Attendance</h2>
-
-<div id="attendanceForm" class="form-card">
-<div id="attendanceEditNote" class="edit-mode-note hidden">✏️ You are editing attendance. Make your changes and click <strong>Update Attendance</strong>.</div>
-<div class="form-grid">
-<div><label>Student</label><select id="attendanceStudent"></select></div>
-<div><label>Date</label><input id="attendanceDate" type="date"></div>
-<div><label>Status</label><select id="attendanceStatus"><option value="Present">Present</option><option value="Absent">Absent</option><option value="Late">Late</option></select></div>
-</div>
-<button id="attendanceSubmitBtn" class="success-btn" onclick="addAttendance()">+ Save Attendance</button>
-<button id="attendanceCancelBtn" class="cancel-btn hidden" onclick="cancelEditAttendance()">Cancel Edit</button>
-</div>
-
-<div class="table-card">
-<table>
-<thead><tr><th>#</th><th>Student</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
-<tbody id="attendanceTable"></tbody>
-</table>
-</div>
-</section>
-
-<!-- GRADES -->
-<section id="grades" class="hidden">
-<h2 class="section-title">Grades</h2>
-
-<div id="gradeForm" class="form-card">
-<div id="gradeEditNote" class="edit-mode-note hidden">✏️ You are editing a grade. Make your changes and click <strong>Update Grade</strong>.</div>
-<div class="form-grid">
-<div><label>Student</label><select id="gradeStudent"></select></div>
-<div><label>Subject</label><select id="gradeSubject"></select></div>
-<div><label>Score</label><input id="gradeScore" type="number" min="0" max="100"></div>
-<div><label>Term</label><select id="gradeTerm"><option value="Term 1">Term 1</option><option value="Term 2">Term 2</option><option value="Term 3">Term 3</option></select></div>
-</div>
-<button id="gradeSubmitBtn" class="success-btn" onclick="addGrade()">+ Save Grade</button>
-<button id="gradeCancelBtn" class="cancel-btn hidden" onclick="cancelEditGrade()">Cancel Edit</button>
-</div>
-
-<div class="table-card">
-<table>
-<thead><tr><th>#</th><th>Student</th><th>Subject</th><th>Score</th><th>Term</th><th>Action</th></tr></thead>
-<tbody id="gradesTable"></tbody>
-</table>
-</div>
-</section>
-
-<!-- FEES -->
-<section id="fees" class="hidden">
-<h2 class="section-title">💰 Fees / Payments</h2>
-<div class="permission-note">Only Admin and Finance accounts can manage school payments. Parent accounts can view payments for their linked student only.</div>
-
-<div id="feeForm" class="form-card">
-<div id="feeEditNote" class="edit-mode-note hidden">✏️ You are editing a payment. Make your changes and click <strong>Update Payment</strong>.</div>
-<div class="form-grid">
-<div><label>Student</label><select id="feeStudent"></select></div>
-<div><label>Amount</label><input id="feeAmount" type="number"></div>
-<div><label>Payment Date</label><input id="feeDate" type="date"></div>
-<div><label>Status</label><select id="feeStatus"><option value="Paid">Paid</option><option value="Pending">Pending</option><option value="Partial">Partial</option></select></div>
-</div>
-<button id="feeSubmitBtn" class="success-btn" onclick="addFee()">+ Save Payment</button>
-<button id="feeCancelBtn" class="cancel-btn hidden" onclick="cancelEditFee()">Cancel Edit</button>
-</div>
-
-<div class="table-card">
-<table>
-<thead><tr><th>#</th><th>Student</th><th>Amount</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
-<tbody id="feesTable"></tbody>
-</table>
-</div>
-</section>
-
-</div>
-</div>
-</div>
 
 <script>
-const SUPABASE_URL="https://ykvkxxxssmfgydqzijby.supabase.co";
-const SUPABASE_KEY="sb_publishable_7ii_IQ4dR_JiFOFP86RA8g_T9tx98jr";
-const SMOOTH_HANDLER_URL="https://ykvkxxxssmfgydqzijby.supabase.co/functions/v1/smooth-handler";
-const supabaseClient=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-let students=[],teachers=[],classes=[],subjects=[],attendance=[],grades=[],fees=[],adminUsers=[];
-let currentUser=null,currentUserRole="",currentUserStudentId=null,currentUserStudentName="",currentTeacher=null,appLoading=false;
+/* =========================================================
+   SUPABASE CONFIG
+========================================================= */
+
+const SUPABASE_URL =
+"https://ykvkxxxssmfgydqzijby.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_7ii_IQ4dR_JiFOFP86RA8g_T9tx98jr";
+
+const SMOOTH_HANDLER_URL =
+"https://ykvkxxxssmfgydqzijby.supabase.co/functions/v1/smooth-handler";
+
+const supabaseClient =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* =========================================================
+   GLOBAL STATE
+========================================================= */
+
+let students=[];
+let teachers=[];
+let classes=[];
+let subjects=[];
+let attendance=[];
+let grades=[];
+let fees=[];
+let adminUsers=[];
+
+let currentUser=null;
+let currentUserRole="";
+let currentUserStudentId=null;
+let currentUserStudentName="";
+let currentTeacher=null;
+let appLoading=false;
 
 let editingStudentId=null;
 let editingTeacherId=null;
@@ -369,1084 +1842,5336 @@ let editingAttendanceId=null;
 let editingGradeId=null;
 let editingFeeId=null;
 
+
+/* =========================================================
+   ROLE PERMISSIONS
+========================================================= */
+
 const ROLE_PERMISSIONS={
-admin:["dashboard","teacherDashboard","adminAccountManager","students","teachers","classes","subjects","attendance","grades","fees"],
-administrator:["dashboard","teacherDashboard","adminAccountManager","students","teachers","classes","subjects","attendance","grades","fees"],
-teacher:["dashboard","teacherDashboard","students","attendance","grades"],
-staff:["dashboard","students","attendance"],
-finance:["dashboard","students","fees"],
-student:["dashboard"],
-parent:["dashboard","students","attendance","grades","fees"]
+
+  admin:[
+    "dashboard",
+    "teacherDashboard",
+    "adminAccountManager",
+    "students",
+    "teachers",
+    "classes",
+    "subjects",
+    "attendance",
+    "grades",
+    "fees"
+  ],
+
+  administrator:[
+    "dashboard",
+    "teacherDashboard",
+    "adminAccountManager",
+    "students",
+    "teachers",
+    "classes",
+    "subjects",
+    "attendance",
+    "grades",
+    "fees"
+  ],
+
+  teacher:[
+    "dashboard",
+    "teacherDashboard",
+    "students",
+    "attendance",
+    "grades"
+  ],
+
+  staff:[
+    "dashboard",
+    "students",
+    "attendance"
+  ],
+
+  finance:[
+    "dashboard",
+    "students",
+    "fees"
+  ],
+
+  student:[
+    "dashboard"
+  ],
+
+  parent:[
+    "dashboard",
+    "students",
+    "attendance",
+    "grades",
+    "fees"
+  ]
+
 };
 
+
+/* =========================================================
+   UTILITY
+========================================================= */
+
 function escapeHtml(value){
-if(value===null||value===undefined)return "";
-return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+
+  if(value===null || value===undefined)
+    return "";
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
-function today(){return new Date().toISOString().split("T")[0]}
-function isAdmin(){return currentUserRole==="admin"||currentUserRole==="administrator"}
-function hasPermission(section){return (ROLE_PERMISSIONS[currentUserRole]||[]).includes(section)}
+
+function today(){
+
+  return new Date()
+    .toISOString()
+    .split("T")[0];
+
+}
+
+
+function isAdmin(){
+
+  return (
+    currentUserRole==="admin" ||
+    currentUserRole==="administrator"
+  );
+
+}
+
+
+function hasPermission(section){
+
+  return (
+    ROLE_PERMISSIONS[currentUserRole] || []
+  ).includes(section);
+
+}
+
 
 function getStudentName(studentId){
-if(studentId===null||studentId===undefined||studentId==="")return "";
-const student=students.find(s=>String(s.id)===String(studentId));
-if(student&&student.full_name)return student.full_name;
-if(currentUserRole==="parent"&&currentUserStudentId&&String(studentId)===String(currentUserStudentId))return currentUserStudentName||"";
-return "";
+
+  if(
+    studentId===null ||
+    studentId===undefined ||
+    studentId===""
+  ) return "";
+
+  const student=
+    students.find(
+      s=>String(s.id)===String(studentId)
+    );
+
+  if(student && student.full_name)
+    return student.full_name;
+
+  if(
+    currentUserRole==="parent" &&
+    currentUserStudentId &&
+    String(studentId)===String(currentUserStudentId)
+  ){
+    return currentUserStudentName || "";
+  }
+
+  return "";
+
 }
 
-function canAddStudents(){return isAdmin()}
-function canEditStudents(){return isAdmin()}
-function canDeleteStudents(){return isAdmin()}
-function canManageTeachers(){return isAdmin()}
-function canManageClasses(){return isAdmin()}
-function canManageSubjects(){return isAdmin()}
-function canManageAttendance(){return isAdmin()||currentUserRole==="teacher"}
-function canDeleteAttendance(){return isAdmin()}
-function canManageGrades(){return isAdmin()||currentUserRole==="teacher"}
-function canDeleteGrades(){return isAdmin()}
-function canManageFees(){return isAdmin()||currentUserRole==="finance"}
+
+function canAddStudents(){
+  return isAdmin();
+}
+
+function canEditStudents(){
+  return isAdmin();
+}
+
+function canDeleteStudents(){
+  return isAdmin();
+}
+
+function canManageTeachers(){
+  return isAdmin();
+}
+
+function canManageClasses(){
+  return isAdmin();
+}
+
+function canManageSubjects(){
+  return isAdmin();
+}
+
+function canManageAttendance(){
+  return (
+    isAdmin() ||
+    currentUserRole==="teacher"
+  );
+}
+
+function canDeleteAttendance(){
+  return isAdmin();
+}
+
+function canManageGrades(){
+  return (
+    isAdmin() ||
+    currentUserRole==="teacher"
+  );
+}
+
+function canDeleteGrades(){
+  return isAdmin();
+}
+
+function canManageFees(){
+  return (
+    isAdmin() ||
+    currentUserRole==="finance"
+  );
+}
+
+
+/* =========================================================
+   PASSWORD TOGGLE
+========================================================= */
+
+function togglePassword(inputId,button){
+
+  const input=
+    document.getElementById(inputId);
+
+  if(!input)return;
+
+  if(input.type==="password"){
+
+    input.type="text";
+
+    if(button)
+      button.textContent="🙈";
+
+  }else{
+
+    input.type="password";
+
+    if(button)
+      button.textContent="👁️";
+
+  }
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
 
 async function login(){
-const identifier=document.getElementById("loginEmail").value.trim();
-const password=document.getElementById("loginPassword").value;
-if(!identifier||!password){alert("Please enter your email or phone and password.");return}
-let result;
-if(identifier.includes("@"))result=await supabaseClient.auth.signInWithPassword({email:identifier,password});
-else result=await supabaseClient.auth.signInWithPassword({phone:identifier,password});
-if(result.error){alert(result.error.message);return}
-currentUser=result.data.user;
-await showApp();
+
+  const identifier=
+    document.getElementById("loginEmail")
+      .value
+      .trim();
+
+  const password=
+    document.getElementById("loginPassword")
+      .value;
+
+  if(!identifier || !password){
+
+    alert(
+      "Please enter your email or phone and password."
+    );
+
+    return;
+  }
+
+  const button=
+    document.getElementById("loginBtn");
+
+  if(button){
+
+    button.disabled=true;
+    button.textContent="⏳ Signing in...";
+
+  }
+
+  try{
+
+    let result;
+
+    if(identifier.includes("@")){
+
+      result=
+        await supabaseClient.auth.signInWithPassword({
+          email:identifier,
+          password
+        });
+
+    }else{
+
+      result=
+        await supabaseClient.auth.signInWithPassword({
+          phone:identifier,
+          password
+        });
+
+    }
+
+    if(result.error){
+
+      alert(result.error.message);
+      return;
+
+    }
+
+    currentUser=result.data.user;
+
+    await showApp();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      error.message ||
+      "Login failed."
+    );
+
+  }finally{
+
+    if(button){
+
+      button.disabled=false;
+      button.textContent="🔐 Login →";
+
+    }
+
+  }
+
 }
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 async function logout(){
-await supabaseClient.auth.signOut();
-currentUser=null;currentUserRole="";currentUserStudentId=null;currentUserStudentName="";
-location.reload();
+
+  await supabaseClient.auth.signOut();
+
+  currentUser=null;
+  currentUserRole="";
+  currentUserStudentId=null;
+  currentUserStudentName="";
+
+  location.reload();
+
 }
+
+
+/* =========================================================
+   LOGIN / RESET SCREENS
+========================================================= */
 
 function showForgot(){
-document.getElementById("loginForm").classList.add("hidden");
-document.getElementById("forgotForm").classList.remove("hidden");
+
+  document
+    .getElementById("loginForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("newPasswordForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("forgotForm")
+    .classList.remove("hidden");
+
 }
+
 
 function showLogin(){
-document.getElementById("forgotForm").classList.add("hidden");
-document.getElementById("newPasswordForm").classList.add("hidden");
-document.getElementById("loginForm").classList.remove("hidden");
+
+  document
+    .getElementById("forgotForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("newPasswordForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("loginForm")
+    .classList.remove("hidden");
+
 }
+
 
 async function sendReset(){
-const email=document.getElementById("forgotEmail").value.trim();
-if(!email){alert("Enter your email.");return}
-const redirectTo=window.location.origin+window.location.pathname;
-const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo});
-if(error)alert(error.message);else alert("Password reset link has been sent to your email.");
+
+  const email=
+    document.getElementById("forgotEmail")
+      .value
+      .trim();
+
+  if(!email){
+
+    alert("Enter your email.");
+
+    return;
+  }
+
+  const redirectTo=
+    window.location.origin +
+    window.location.pathname;
+
+  const {error}=
+    await supabaseClient.auth
+      .resetPasswordForEmail(
+        email,
+        {redirectTo}
+      );
+
+  if(error){
+
+    alert(error.message);
+
+  }else{
+
+    alert(
+      "Password reset link has been sent to your email."
+    );
+
+  }
+
 }
+
 
 async function updatePassword(){
-const password=document.getElementById("newPassword").value;
-if(!password){alert("Enter new password.");return}
-if(password.length<6){alert("Password must be at least 6 characters.");return}
-const {error}=await supabaseClient.auth.updateUser({password});
-if(error){alert(error.message);return}
-alert("Password updated successfully.");
-showLogin();
+
+  const password=
+    document.getElementById("newPassword")
+      .value;
+
+  if(!password){
+
+    alert("Enter new password.");
+
+    return;
+  }
+
+  if(password.length<6){
+
+    alert(
+      "Password must be at least 6 characters."
+    );
+
+    return;
+  }
+
+  const {error}=
+    await supabaseClient.auth
+      .updateUser({password});
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+  alert(
+    "Password updated successfully."
+  );
+
+  showLogin();
+
 }
+
+
+/* =========================================================
+   LOAD CURRENT USER ROLE
+========================================================= */
 
 async function loadCurrentUserRole(){
-if(!currentUser){currentUserRole="";currentUserStudentId=null;currentUserStudentName="";return}
-const email=(currentUser.email||"").trim().toLowerCase();
-const authId=currentUser.id;
-let data=null,error=null;
 
-if(authId){
-const result=await supabaseClient.from("users").select("id,full_name,email,phone,role,auth_id,created_at,student_id").eq("auth_id",authId).maybeSingle();
-data=result.data;error=result.error;
+  if(!currentUser){
+
+    currentUserRole="";
+    currentUserStudentId=null;
+    currentUserStudentName="";
+
+    return;
+  }
+
+  const email=
+    (currentUser.email||"")
+      .trim()
+      .toLowerCase();
+
+  const authId=
+    currentUser.id;
+
+  let data=null;
+  let error=null;
+
+
+  if(authId){
+
+    const result=
+      await supabaseClient
+        .from("users")
+        .select(
+          "id,full_name,email,phone,role,auth_id,created_at,student_id"
+        )
+        .eq("auth_id",authId)
+        .maybeSingle();
+
+    data=result.data;
+    error=result.error;
+
+  }
+
+
+  if(!data && email){
+
+    const result=
+      await supabaseClient
+        .from("users")
+        .select(
+          "id,full_name,email,phone,role,auth_id,created_at,student_id"
+        )
+        .ilike("email",email)
+        .maybeSingle();
+
+    data=result.data;
+    error=result.error;
+
+  }
+
+
+  if(error){
+
+    console.error(error);
+
+    currentUserRole="";
+
+    return;
+  }
+
+
+  if(!data){
+
+    currentUserRole="";
+
+    return;
+  }
+
+
+  currentUserRole=
+    (data.role||"")
+      .toString()
+      .trim()
+      .toLowerCase();
+
+  currentUserStudentId=
+    data.student_id || null;
+
+  currentUserStudentName="";
+
+
+  if(
+    currentUserRole==="parent" &&
+    currentUserStudentId
+  ){
+
+    const studentResult=
+      await supabaseClient
+        .from("students")
+        .select("id,full_name")
+        .eq("id",currentUserStudentId)
+        .maybeSingle();
+
+    if(
+      !studentResult.error &&
+      studentResult.data
+    ){
+
+      currentUserStudentName=
+        studentResult.data.full_name || "";
+
+    }
+
+  }
+
+
+  document.getElementById("loggedRole")
+    .textContent=
+      currentUserRole
+        ? "("+currentUserRole.toUpperCase()+")"
+        : "";
+
+
+  document.getElementById("adminCurrentName")
+    .value=data.full_name||"";
+
+  document.getElementById("adminCurrentEmail")
+    .value=data.email||"";
+
+  document.getElementById("adminCurrentPhone")
+    .value=data.phone||"";
+
+  document.getElementById("adminCurrentRole")
+    .value=data.role||"";
+
+
+  applyRolePermissions();
+
 }
 
-if(!data&&email){
-const result=await supabaseClient.from("users").select("id,full_name,email,phone,role,auth_id,created_at,student_id").ilike("email",email).maybeSingle();
-data=result.data;error=result.error;
-}
 
-if(error){console.error(error);currentUserRole="";return}
-if(!data){currentUserRole="";return}
-
-currentUserRole=(data.role||"").toString().trim().toLowerCase();
-currentUserStudentId=data.student_id||null;
-currentUserStudentName="";
-
-if(currentUserRole==="parent"&&currentUserStudentId){
-const studentResult=await supabaseClient.from("students").select("id,full_name").eq("id",currentUserStudentId).maybeSingle();
-if(!studentResult.error&&studentResult.data)currentUserStudentName=studentResult.data.full_name||"";
-}
-
-document.getElementById("loggedRole").textContent=currentUserRole?"("+currentUserRole.toUpperCase()+")":"";
-applyRolePermissions();
-}
+/* =========================================================
+   ROLE PERMISSIONS UI
+========================================================= */
 
 function applyRolePermissions(){
-const menuMap={teacherDashboard:"menuTeacherDashboard",adminAccountManager:"menuAdmin",students:"menuStudents",teachers:"menuTeachers",classes:"menuClasses",subjects:"menuSubjects",attendance:"menuAttendance",grades:"menuGrades",fees:"menuFees"};
 
-Object.keys(menuMap).forEach(section=>{
-const button=document.getElementById(menuMap[section]);
-if(!button)return;
-if(hasPermission(section))button.classList.remove("hidden");else button.classList.add("hidden");
-});
+  const menuMap={
 
-const sf=document.getElementById("studentForm");
-if(sf){if(canAddStudents())sf.classList.remove("hidden");else sf.classList.add("hidden")}
+    teacherDashboard:
+      "menuTeacherDashboard",
 
-const af=document.getElementById("attendanceForm");
-if(af){if(canManageAttendance())af.classList.remove("hidden");else af.classList.add("hidden")}
+    adminAccountManager:
+      "menuAdmin",
 
-const gf=document.getElementById("gradeForm");
-if(gf){if(canManageGrades())gf.classList.remove("hidden");else gf.classList.add("hidden")}
+    students:
+      "menuStudents",
 
-const ff=document.getElementById("feeForm");
-if(ff){if(canManageFees())ff.classList.remove("hidden");else ff.classList.add("hidden")}
+    teachers:
+      "menuTeachers",
+
+    classes:
+      "menuClasses",
+
+    subjects:
+      "menuSubjects",
+
+    attendance:
+      "menuAttendance",
+
+    grades:
+      "menuGrades",
+
+    fees:
+      "menuFees"
+
+  };
+
+
+  Object.keys(menuMap).forEach(section=>{
+
+    const button=
+      document.getElementById(
+        menuMap[section]
+      );
+
+    if(!button)return;
+
+    if(hasPermission(section))
+      button.classList.remove("hidden");
+    else
+      button.classList.add("hidden");
+
+  });
+
+
+  const sf=
+    document.getElementById("studentForm");
+
+  if(sf){
+
+    if(canAddStudents())
+      sf.classList.remove("hidden");
+    else
+      sf.classList.add("hidden");
+
+  }
+
+
+  const af=
+    document.getElementById("attendanceForm");
+
+  if(af){
+
+    if(canManageAttendance())
+      af.classList.remove("hidden");
+    else
+      af.classList.add("hidden");
+
+  }
+
+
+  const gf=
+    document.getElementById("gradeForm");
+
+  if(gf){
+
+    if(canManageGrades())
+      gf.classList.remove("hidden");
+    else
+      gf.classList.add("hidden");
+
+  }
+
+
+  const ff=
+    document.getElementById("feeForm");
+
+  if(ff){
+
+    if(canManageFees())
+      ff.classList.remove("hidden");
+    else
+      ff.classList.add("hidden");
+
+  }
+
 }
+
+
+/* =========================================================
+   SHOW APP
+========================================================= */
 
 async function showApp(){
-if(!currentUser||appLoading)return;
-appLoading=true;
-try{
-document.getElementById("loginPage").classList.add("hidden");
-document.getElementById("app").classList.remove("hidden");
-document.getElementById("loggedUser").textContent=currentUser.email||currentUser.phone||"";
-await loadCurrentUserRole();
-if(!currentUserRole){alert("Your account role was not found.");await logout();return}
-await refreshAll();
-showSection("dashboard",document.getElementById("menuDashboard"));
-}catch(error){console.error(error)}
-finally{appLoading=false}
+
+  if(!currentUser || appLoading)
+    return;
+
+  appLoading=true;
+
+  try{
+
+    document
+      .getElementById("loginPage")
+      .classList.add("hidden");
+
+    document
+      .getElementById("app")
+      .classList.remove("hidden");
+
+
+    document.getElementById("loggedUser")
+      .textContent=
+        currentUser.email ||
+        currentUser.phone ||
+        "";
+
+
+    await loadCurrentUserRole();
+
+
+    if(!currentUserRole){
+
+      alert(
+        "Your account role was not found."
+      );
+
+      await logout();
+
+      return;
+    }
+
+
+    await refreshAll();
+
+
+    showSection(
+      "dashboard",
+      document.getElementById("menuDashboard")
+    );
+
+  }catch(error){
+
+    console.error(error);
+
+  }finally{
+
+    appLoading=false;
+
+  }
+
 }
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
 
 function showSection(id,button){
-if(!hasPermission(id)){alert("You do not have permission to access this section.");return}
-document.querySelectorAll(".content>section").forEach(section=>section.classList.add("hidden"));
-const target=document.getElementById(id);
-if(target)target.classList.remove("hidden");
-document.querySelectorAll(".menu-btn").forEach(btn=>btn.classList.remove("active"));
-if(button)button.classList.add("active");
-if(id==="adminAccountManager")loadAdminUsers();
-if(id==="teacherDashboard")loadTeacherDashboard();
+
+  if(!hasPermission(id)){
+
+    alert(
+      "You do not have permission to access this section."
+    );
+
+    return;
+  }
+
+
+  document
+    .querySelectorAll(".content>section")
+    .forEach(section=>
+      section.classList.add("hidden")
+    );
+
+
+  const target=
+    document.getElementById(id);
+
+  if(target)
+    target.classList.remove("hidden");
+
+
+  document
+    .querySelectorAll(".menu-btn")
+    .forEach(btn=>
+      btn.classList.remove("active")
+    );
+
+
+  if(button)
+    button.classList.add("active");
+
+
+  if(id==="adminAccountManager")
+    loadAdminUsers();
+
+  if(id==="teacherDashboard")
+    loadTeacherDashboard();
+
 }
 
-/* ADMIN USERS */
+
+/* =========================================================
+   ADMIN USERS
+========================================================= */
+
 async function createUserAccount(){
-if(!isAdmin()){alert("Admin access required.");return}
-const fullName=document.getElementById("newUserFullName").value.trim();
-const email=document.getElementById("newUserEmail").value.trim();
-const phone=document.getElementById("newUserPhone").value.trim();
-const role=document.getElementById("newUserRole").value.trim().toLowerCase();
-const password=document.getElementById("newUserPassword").value;
-const confirmPassword=document.getElementById("newUserConfirmPassword").value;
 
-if(!fullName||!email||!password){alert("Full Name, Email and Password are required.");return}
-if(password.length<6){alert("Password must be at least 6 characters.");return}
-if(password!==confirmPassword){alert("Passwords do not match.");return}
+  if(!isAdmin()){
 
-const allowedRoles=["admin","administrator","teacher","staff","finance","student","parent"];
-if(!allowedRoles.includes(role)){alert("Invalid role.");return}
+    alert("Admin access required.");
 
-const {data:sessionData,error:sessionError}=await supabaseClient.auth.getSession();
-if(sessionError){alert(sessionError.message);return}
-const session=sessionData?.session;
-if(!session){alert("Your session has expired.");return}
+    return;
+  }
 
-const button=document.getElementById("createAccountBtn");
-if(button){button.disabled=true;button.textContent="Creating..."}
 
-try{
-const response=await fetch(SMOOTH_HANDLER_URL,{
-method:"POST",
-headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+session.access_token},
-body:JSON.stringify({fullName,email,phone,password,role})
-});
-let result={};
-try{result=await response.json()}catch(e){}
-if(!response.ok||!result.success)throw new Error(result.error||"Account creation failed.");
-alert("Account created successfully.");
-["newUserFullName","newUserEmail","newUserPhone","newUserPassword","newUserConfirmPassword"].forEach(id=>document.getElementById(id).value="");
-await loadAdminUsers();
-}catch(error){alert(error.message||"Could not create account.")}
-finally{if(button){button.disabled=false;button.textContent="➕ Create Account"}}
+  const fullName=
+    document.getElementById("newUserFullName")
+      .value.trim();
+
+  const email=
+    document.getElementById("newUserEmail")
+      .value.trim();
+
+  const phone=
+    document.getElementById("newUserPhone")
+      .value.trim();
+
+  const role=
+    document.getElementById("newUserRole")
+      .value
+      .trim()
+      .toLowerCase();
+
+  const password=
+    document.getElementById("newUserPassword")
+      .value;
+
+  const confirmPassword=
+    document.getElementById("newUserConfirmPassword")
+      .value;
+
+
+  if(!fullName || !email || !password){
+
+    alert(
+      "Full Name, Email and Password are required."
+    );
+
+    return;
+  }
+
+
+  if(password.length<6){
+
+    alert(
+      "Password must be at least 6 characters."
+    );
+
+    return;
+  }
+
+
+  if(password!==confirmPassword){
+
+    alert("Passwords do not match.");
+
+    return;
+  }
+
+
+  const allowedRoles=[
+    "admin",
+    "administrator",
+    "teacher",
+    "staff",
+    "finance",
+    "student",
+    "parent"
+  ];
+
+
+  if(!allowedRoles.includes(role)){
+
+    alert("Invalid role.");
+
+    return;
+  }
+
+
+  const {
+    data:sessionData,
+    error:sessionError
+  }=
+    await supabaseClient.auth.getSession();
+
+
+  if(sessionError){
+
+    alert(sessionError.message);
+
+    return;
+  }
+
+
+  const session=
+    sessionData?.session;
+
+
+  if(!session){
+
+    alert(
+      "Your session has expired."
+    );
+
+    return;
+  }
+
+
+  const button=
+    document.getElementById("createAccountBtn");
+
+
+  if(button){
+
+    button.disabled=true;
+    button.textContent="Creating...";
+
+  }
+
+
+  try{
+
+    const response=
+      await fetch(
+        SMOOTH_HANDLER_URL,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":"application/json",
+            "apikey":SUPABASE_KEY,
+            "Authorization":
+              "Bearer "+session.access_token
+          },
+
+          body:JSON.stringify({
+            fullName,
+            email,
+            phone,
+            password,
+            role
+          })
+        }
+      );
+
+
+    let result={};
+
+    try{
+
+      result=await response.json();
+
+    }catch(e){}
+
+
+    if(
+      !response.ok ||
+      !result.success
+    ){
+
+      throw new Error(
+        result.error ||
+        "Account creation failed."
+      );
+
+    }
+
+
+    alert(
+      "Account created successfully."
+    );
+
+
+    [
+      "newUserFullName",
+      "newUserEmail",
+      "newUserPhone",
+      "newUserPassword",
+      "newUserConfirmPassword"
+    ].forEach(id=>
+      document.getElementById(id).value=""
+    );
+
+
+    await loadAdminUsers();
+
+
+  }catch(error){
+
+    alert(
+      error.message ||
+      "Could not create account."
+    );
+
+  }finally{
+
+    if(button){
+
+      button.disabled=false;
+      button.textContent=
+        "➕ Create Account";
+
+    }
+
+  }
+
 }
+
 
 async function loadAdminUsers(){
-if(!isAdmin())return;
-const table=document.getElementById("adminUsersTable");
-if(!table)return;
-table.innerHTML='<tr><td colspan="6">Loading users...</td></tr>';
-const {data,error}=await supabaseClient.from("users").select("id,full_name,email,phone,role,auth_id,created_at").order("id",{ascending:false});
-if(error){table.innerHTML='<tr><td colspan="6">Could not load users.</td></tr>';return}
-adminUsers=data||[];renderAdminUsers();
+
+  if(!isAdmin())
+    return;
+
+
+  const table=
+    document.getElementById(
+      "adminUsersTable"
+    );
+
+  if(!table)return;
+
+
+  table.innerHTML=
+    '<tr><td colspan="6">Loading users...</td></tr>';
+
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient
+      .from("users")
+      .select(
+        "id,full_name,email,phone,role,auth_id,created_at"
+      )
+      .order(
+        "id",
+        {ascending:false}
+      );
+
+
+  if(error){
+
+    table.innerHTML=
+      '<tr><td colspan="6">Could not load users.</td></tr>';
+
+    return;
+  }
+
+
+  adminUsers=data||[];
+
+  renderAdminUsers();
+
 }
+
 
 function renderAdminUsers(){
-const table=document.getElementById("adminUsersTable");
-if(!table)return;
-table.innerHTML="";
-if(adminUsers.length===0){table.innerHTML='<tr><td colspan="6">No users found.</td></tr>';return}
-adminUsers.forEach((item,index)=>{
-table.innerHTML+=`<tr><td>${index+1}</td><td>${escapeHtml(item.full_name)}</td><td>${escapeHtml(item.email)}</td><td>${escapeHtml(item.phone)}</td><td>${escapeHtml(item.role)}</td><td>${escapeHtml(item.created_at?item.created_at.split("T")[0]:"")}</td></tr>`;
-});
+
+  const table=
+    document.getElementById(
+      "adminUsersTable"
+    );
+
+  if(!table)return;
+
+
+  table.innerHTML="";
+
+
+  if(adminUsers.length===0){
+
+    table.innerHTML=
+      '<tr><td colspan="6">No users found.</td></tr>';
+
+    return;
+  }
+
+
+  adminUsers.forEach((item,index)=>{
+
+    table.innerHTML+=`
+
+      <tr>
+
+        <td>${index+1}</td>
+
+        <td>${escapeHtml(item.full_name)}</td>
+
+        <td>${escapeHtml(item.email)}</td>
+
+        <td>${escapeHtml(item.phone)}</td>
+
+        <td>${escapeHtml(item.role)}</td>
+
+        <td>
+          ${escapeHtml(
+            item.created_at
+              ? item.created_at.split("T")[0]
+              : ""
+          )}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
 }
 
-/* STUDENTS */
+
+/* =========================================================
+   STUDENTS
+========================================================= */
+
 async function loadStudents(){
-let query=supabaseClient.from("students").select("*").order("id",{ascending:false});
-if(currentUserRole==="parent"){
-if(currentUserStudentId===null||currentUserStudentId===undefined||currentUserStudentId===""){
-students=[];renderStudents();fillStudentDropdowns();document.getElementById("studentCount").textContent="0";return;
+
+  let query=
+    supabaseClient
+      .from("students")
+      .select("*")
+      .order(
+        "id",
+        {ascending:false}
+      );
+
+
+  if(currentUserRole==="parent"){
+
+    if(
+      currentUserStudentId===null ||
+      currentUserStudentId===undefined ||
+      currentUserStudentId===""
+    ){
+
+      students=[];
+
+      renderStudents();
+
+      fillStudentDropdowns();
+
+      document.getElementById(
+        "studentCount"
+      ).textContent="0";
+
+      return;
+    }
+
+
+    query=
+      query.eq(
+        "id",
+        currentUserStudentId
+      );
+
+  }
+
+
+  const {
+    data,
+    error
+  }=
+    await query;
+
+
+  if(error){
+
+    console.error(error);
+
+    students=[];
+
+    return;
+  }
+
+
+  students=data||[];
+
+
+  if(
+    currentUserRole==="parent" &&
+    students.length>0
+  ){
+
+    currentUserStudentName=
+      students[0].full_name ||
+      currentUserStudentName ||
+      "";
+
+  }
+
+
+  renderStudents();
+
+  fillStudentDropdowns();
+
+
+  document.getElementById(
+    "studentCount"
+  ).textContent=
+    students.length;
+
 }
-query=query.eq("id",currentUserStudentId);
-}
-const {data,error}=await query;
-if(error){console.error(error);students=[];return}
-students=data||[];
-if(currentUserRole==="parent"&&students.length>0)currentUserStudentName=students[0].full_name||currentUserStudentName||"";
-renderStudents();fillStudentDropdowns();
-document.getElementById("studentCount").textContent=students.length;
-}
+
 
 function renderStudents(){
-const table=document.getElementById("studentsTable");
-if(!table)return;
-const search=(document.getElementById("studentSearch")?.value||"").toLowerCase().trim();
-table.innerHTML="";
-const filtered=students.filter(student=>(`${student.full_name||""} ${student.student_id||""} ${student.parent_name||""} ${student.parent_phone||""}`).toLowerCase().includes(search));
-if(filtered.length===0){table.innerHTML='<tr><td colspan="8">No students found.</td></tr>';return}
-filtered.forEach((item,index)=>{
-const classItem=classes.find(c=>String(c.id)===String(item.class_id));
-const editButton=canEditStudents()?`<button class="edit-btn" onclick="startEditStudent(${item.id})">Edit</button>`:"";
-const deleteButton=canDeleteStudents()?`<button class="small-btn" onclick="deleteStudent(${item.id})">Delete</button>`:"";
-table.innerHTML+=`<tr><td>${index+1}</td><td>${escapeHtml(item.full_name)}</td><td>${escapeHtml(item.student_id)}</td><td>${escapeHtml(item.gender)}</td><td>${escapeHtml(classItem?.name||"")}</td><td>${escapeHtml(item.parent_name)}</td><td>${escapeHtml(item.parent_phone)}</td><td>${editButton}${deleteButton}</td></tr>`;
-});
+
+  const table=
+    document.getElementById(
+      "studentsTable"
+    );
+
+  if(!table)return;
+
+
+  const search=
+    (
+      document.getElementById(
+        "studentSearch"
+      )?.value || ""
+    )
+    .toLowerCase()
+    .trim();
+
+
+  table.innerHTML="";
+
+
+  const filtered=
+    students.filter(student=>
+      (
+        `${student.full_name||""}
+         ${student.student_id||""}
+         ${student.parent_name||""}
+         ${student.parent_phone||""}`
+      )
+      .toLowerCase()
+      .includes(search)
+    );
+
+
+  if(filtered.length===0){
+
+    table.innerHTML=
+      '<tr><td colspan="8">No students found.</td></tr>';
+
+    return;
+  }
+
+
+  filtered.forEach((item,index)=>{
+
+    const classItem=
+      classes.find(
+        c=>String(c.id)===String(item.class_id)
+      );
+
+
+    const editButton=
+      canEditStudents()
+      ?
+      `<button
+        class="edit-btn"
+        onclick="startEditStudent(${item.id})"
+      >
+        Edit
+      </button>`
+      :"";
+
+
+    const deleteButton=
+      canDeleteStudents()
+      ?
+      `<button
+        class="small-btn"
+        onclick="deleteStudent(${item.id})"
+      >
+        Delete
+      </button>`
+      :"";
+
+
+    table.innerHTML+=`
+
+      <tr>
+
+        <td>${index+1}</td>
+
+        <td>${escapeHtml(item.full_name)}</td>
+
+        <td>${escapeHtml(item.student_id)}</td>
+
+        <td>${escapeHtml(item.gender)}</td>
+
+        <td>${escapeHtml(classItem?.name||"")}</td>
+
+        <td>${escapeHtml(item.parent_name)}</td>
+
+        <td>${escapeHtml(item.parent_phone)}</td>
+
+        <td>
+          ${editButton}
+          ${deleteButton}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
 }
+
 
 function startEditStudent(id){
-if(!canEditStudents()){alert("You do not have permission to edit students.");return}
-const student=students.find(s=>Number(s.id)===Number(id));
-if(!student){alert("Student not found.");return}
-editingStudentId=student.id;
-document.getElementById("studentName").value=student.full_name||"";
-document.getElementById("studentId").value=student.student_id||"";
-document.getElementById("studentGender").value=student.gender||"";
-document.getElementById("studentDOB").value=student.date_of_birth||"";
-document.getElementById("studentClass").value=student.class_id!==null&&student.class_id!==undefined?String(student.class_id):"";
-document.getElementById("parentName").value=student.parent_name||"";
-document.getElementById("parentPhone").value=student.parent_phone||"";
-document.getElementById("studentSubmitBtn").textContent="✏️ Update Student";
-document.getElementById("studentSubmitBtn").onclick=updateStudent;
-document.getElementById("studentCancelBtn").classList.remove("hidden");
-document.getElementById("studentEditNote").classList.remove("hidden");
-document.getElementById("studentForm").scrollIntoView({behavior:"smooth",block:"start"});
+
+  if(!canEditStudents()){
+
+    alert(
+      "You do not have permission to edit students."
+    );
+
+    return;
+  }
+
+
+  const student=
+    students.find(
+      s=>Number(s.id)===Number(id)
+    );
+
+
+  if(!student){
+
+    alert("Student not found.");
+
+    return;
+  }
+
+
+  editingStudentId=
+    student.id;
+
+
+  document.getElementById("studentName")
+    .value=
+      student.full_name||"";
+
+  document.getElementById("studentId")
+    .value=
+      student.student_id||"";
+
+  document.getElementById("studentGender")
+    .value=
+      student.gender||"";
+
+  document.getElementById("studentDOB")
+    .value=
+      student.date_of_birth||"";
+
+  document.getElementById("studentClass")
+    .value=
+      student.class_id!==null &&
+      student.class_id!==undefined
+        ? String(student.class_id)
+        :"";
+
+  document.getElementById("parentName")
+    .value=
+      student.parent_name||"";
+
+  document.getElementById("parentPhone")
+    .value=
+      student.parent_phone||"";
+
+
+  document.getElementById(
+    "studentSubmitBtn"
+  ).textContent=
+    "✏️ Update Student";
+
+
+  document.getElementById(
+    "studentSubmitBtn"
+  ).onclick=
+    updateStudent;
+
+
+  document.getElementById(
+    "studentCancelBtn"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "studentEditNote"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "studentForm"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
 }
+
 
 async function updateStudent(){
-if(!canEditStudents()){alert("You do not have permission to update students.");return}
-if(!editingStudentId){alert("No student is selected for editing.");return}
 
-const full_name=document.getElementById("studentName").value.trim();
-const student_id=document.getElementById("studentId").value.trim();
-const gender=document.getElementById("studentGender").value;
-const date_of_birth=document.getElementById("studentDOB").value;
-const class_id=document.getElementById("studentClass").value;
-const parent_name=document.getElementById("parentName").value.trim();
-const parent_phone=document.getElementById("parentPhone").value.trim();
+  if(!canEditStudents()){
 
-if(!full_name||!student_id){alert("Please enter student name and student ID.");return}
+    alert(
+      "You do not have permission to update students."
+    );
 
-const {error}=await supabaseClient.from("students").update({
-full_name,student_id,gender:gender||null,date_of_birth:date_of_birth||null,class_id:class_id?Number(class_id):null,parent_name:parent_name||null,parent_phone:parent_phone||null
-}).eq("id",editingStudentId);
+    return;
+  }
 
-if(error){console.error(error);alert("Student update failed:\n\n"+error.message);return}
-alert("Student updated successfully.");
-cancelEditStudent();
-await loadStudents();
+
+  if(!editingStudentId){
+
+    alert(
+      "No student is selected for editing."
+    );
+
+    return;
+  }
+
+
+  const full_name=
+    document.getElementById(
+      "studentName"
+    ).value.trim();
+
+  const student_id=
+    document.getElementById(
+      "studentId"
+    ).value.trim();
+
+  const gender=
+    document.getElementById(
+      "studentGender"
+    ).value;
+
+  const date_of_birth=
+    document.getElementById(
+      "studentDOB"
+    ).value;
+
+  const class_id=
+    document.getElementById(
+      "studentClass"
+    ).value;
+
+  const parent_name=
+    document.getElementById(
+      "parentName"
+    ).value.trim();
+
+  const parent_phone=
+    document.getElementById(
+      "parentPhone"
+    ).value.trim();
+
+
+  if(!full_name || !student_id){
+
+    alert(
+      "Please enter student name and student ID."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("students")
+      .update({
+
+        full_name,
+        student_id,
+        gender:gender||null,
+        date_of_birth:
+          date_of_birth||null,
+        class_id:
+          class_id
+            ? Number(class_id)
+            : null,
+        parent_name:
+          parent_name||null,
+        parent_phone:
+          parent_phone||null
+
+      })
+      .eq(
+        "id",
+        editingStudentId
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    alert(
+      "Student update failed:\n\n"+
+      error.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "Student updated successfully."
+  );
+
+
+  cancelEditStudent();
+
+  await loadStudents();
+
 }
+
 
 function cancelEditStudent(){
-editingStudentId=null;
-["studentName","studentId","studentDOB","parentName","parentPhone"].forEach(id=>document.getElementById(id).value="");
-document.getElementById("studentGender").value="";
-document.getElementById("studentClass").value="";
-document.getElementById("studentSubmitBtn").textContent="+ Add Student";
-document.getElementById("studentSubmitBtn").onclick=addStudent;
-document.getElementById("studentCancelBtn").classList.add("hidden");
-document.getElementById("studentEditNote").classList.add("hidden");
+
+  editingStudentId=null;
+
+
+  [
+    "studentName",
+    "studentId",
+    "studentDOB",
+    "parentName",
+    "parentPhone"
+  ].forEach(id=>
+    document.getElementById(id).value=""
+  );
+
+
+  document.getElementById(
+    "studentGender"
+  ).value="";
+
+  document.getElementById(
+    "studentClass"
+  ).value="";
+
+
+  document.getElementById(
+    "studentSubmitBtn"
+  ).textContent=
+    "+ Add Student";
+
+
+  document.getElementById(
+    "studentSubmitBtn"
+  ).onclick=
+    addStudent;
+
+
+  document.getElementById(
+    "studentCancelBtn"
+  ).classList.add("hidden");
+
+
+  document.getElementById(
+    "studentEditNote"
+  ).classList.add("hidden");
+
 }
+
 
 async function addStudent(){
-if(!canAddStudents()){alert("You do not have permission to add students.");return}
-if(editingStudentId){await updateStudent();return}
 
-const full_name=document.getElementById("studentName").value.trim();
-const student_id=document.getElementById("studentId").value.trim();
-const gender=document.getElementById("studentGender").value;
-const date_of_birth=document.getElementById("studentDOB").value;
-const class_id=document.getElementById("studentClass").value;
-const parent_name=document.getElementById("parentName").value.trim();
-const parent_phone=document.getElementById("parentPhone").value.trim();
+  if(!canAddStudents()){
 
-if(!full_name||!student_id){alert("Please enter student name and student ID.");return}
+    alert(
+      "You do not have permission to add students."
+    );
 
-const {error}=await supabaseClient.from("students").insert([{full_name,student_id,gender:gender||null,date_of_birth:date_of_birth||null,class_id:class_id?Number(class_id):null,parent_name:parent_name||null,parent_phone:parent_phone||null}]);
-if(error){alert(error.message);return}
-alert("Student added successfully.");
-cancelEditStudent();
-await loadStudents();
+    return;
+  }
+
+
+  if(editingStudentId){
+
+    await updateStudent();
+
+    return;
+  }
+
+
+  const full_name=
+    document.getElementById(
+      "studentName"
+    ).value.trim();
+
+  const student_id=
+    document.getElementById(
+      "studentId"
+    ).value.trim();
+
+  const gender=
+    document.getElementById(
+      "studentGender"
+    ).value;
+
+  const date_of_birth=
+    document.getElementById(
+      "studentDOB"
+    ).value;
+
+  const class_id=
+    document.getElementById(
+      "studentClass"
+    ).value;
+
+  const parent_name=
+    document.getElementById(
+      "parentName"
+    ).value.trim();
+
+  const parent_phone=
+    document.getElementById(
+      "parentPhone"
+    ).value.trim();
+
+
+  if(!full_name || !student_id){
+
+    alert(
+      "Please enter student name and student ID."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("students")
+      .insert([{
+
+        full_name,
+        student_id,
+        gender:gender||null,
+        date_of_birth:
+          date_of_birth||null,
+        class_id:
+          class_id
+            ? Number(class_id)
+            : null,
+        parent_name:
+          parent_name||null,
+        parent_phone:
+          parent_phone||null
+
+      }]);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  alert(
+    "Student added successfully."
+  );
+
+
+  cancelEditStudent();
+
+  await loadStudents();
+
 }
+
 
 async function deleteStudent(id){
-if(!canDeleteStudents()){alert("You do not have permission to delete students.");return}
-if(!confirm("Delete this student?"))return;
-const {error}=await supabaseClient.from("students").delete().eq("id",id);
-if(error){alert(error.message);return}
-await loadStudents();
+
+  if(!canDeleteStudents()){
+
+    alert(
+      "You do not have permission to delete students."
+    );
+
+    return;
+  }
+
+
+  if(!confirm("Delete this student?"))
+    return;
+
+
+  const {error}=
+    await supabaseClient
+      .from("students")
+      .delete()
+      .eq("id",id);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  await loadStudents();
+
 }
 
-/* TEACHERS */
+
+/* =========================================================
+   TEACHERS
+========================================================= */
+
 async function loadTeachers(){
-const {data,error}=await supabaseClient.from("teachers").select("*").order("id",{ascending:false});
-if(error){teachers=[];return}
-teachers=data||[];
-renderTeachers();fillTeacherDropdown();
-document.getElementById("teacherCount").textContent=teachers.length;
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient
+      .from("teachers")
+      .select("*")
+      .order(
+        "id",
+        {ascending:false}
+      );
+
+
+  if(error){
+
+    teachers=[];
+
+    return;
+  }
+
+
+  teachers=data||[];
+
+  renderTeachers();
+
+  fillTeacherDropdown();
+
+
+  document.getElementById(
+    "teacherCount"
+  ).textContent=
+    teachers.length;
+
 }
+
 
 function renderTeachers(){
-const table=document.getElementById("teachersTable");
-if(!table)return;
-table.innerHTML="";
-if(teachers.length===0){table.innerHTML='<tr><td colspan="7">No teachers found.</td></tr>';return}
-teachers.forEach((item,index)=>{
-const editButton=canManageTeachers()?`<button class="edit-btn" onclick="startEditTeacher(${item.id})">Edit</button>`:"";
-const deleteButton=canManageTeachers()?`<button class="small-btn" onclick="deleteTeacher(${item.id})">Delete</button>`:"";
-table.innerHTML+=`<tr><td>${index+1}</td><td>${escapeHtml(item.full_name)}</td><td>${escapeHtml(item.teacher_id)}</td><td>${escapeHtml(item.subject)}</td><td>${escapeHtml(item.phone)}</td><td>${escapeHtml(item.email)}</td><td>${editButton}${deleteButton}</td></tr>`;
-});
+
+  const table=
+    document.getElementById(
+      "teachersTable"
+    );
+
+  if(!table)return;
+
+
+  table.innerHTML="";
+
+
+  if(teachers.length===0){
+
+    table.innerHTML=
+      '<tr><td colspan="7">No teachers found.</td></tr>';
+
+    return;
+  }
+
+
+  teachers.forEach((item,index)=>{
+
+    const editButton=
+      canManageTeachers()
+      ?
+      `<button
+        class="edit-btn"
+        onclick="startEditTeacher(${item.id})"
+      >
+        Edit
+      </button>`
+      :"";
+
+
+    const deleteButton=
+      canManageTeachers()
+      ?
+      `<button
+        class="small-btn"
+        onclick="deleteTeacher(${item.id})"
+      >
+        Delete
+      </button>`
+      :"";
+
+
+    table.innerHTML+=`
+
+      <tr>
+
+        <td>${index+1}</td>
+
+        <td>${escapeHtml(item.full_name)}</td>
+
+        <td>${escapeHtml(item.teacher_id)}</td>
+
+        <td>${escapeHtml(item.subject)}</td>
+
+        <td>${escapeHtml(item.phone)}</td>
+
+        <td>${escapeHtml(item.email)}</td>
+
+        <td>
+          ${editButton}
+          ${deleteButton}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
 }
+
 
 function startEditTeacher(id){
-if(!canManageTeachers()){alert("You do not have permission to edit teachers.");return}
-const item=teachers.find(t=>Number(t.id)===Number(id));
-if(!item){alert("Teacher not found.");return}
-editingTeacherId=item.id;
-document.getElementById("teacherName").value=item.full_name||"";
-document.getElementById("teacherId").value=item.teacher_id||"";
-document.getElementById("teacherSubject").value=item.subject||"";
-document.getElementById("teacherPhone").value=item.phone||"";
-document.getElementById("teacherEmail").value=item.email||"";
-document.getElementById("teacherSubmitBtn").textContent="✏️ Update Teacher";
-document.getElementById("teacherSubmitBtn").onclick=updateTeacher;
-document.getElementById("teacherCancelBtn").classList.remove("hidden");
-document.getElementById("teacherEditNote").classList.remove("hidden");
-document.getElementById("teachers").scrollIntoView({behavior:"smooth",block:"start"});
+
+  if(!canManageTeachers()){
+
+    alert(
+      "You do not have permission to edit teachers."
+    );
+
+    return;
+  }
+
+
+  const item=
+    teachers.find(
+      t=>Number(t.id)===Number(id)
+    );
+
+
+  if(!item){
+
+    alert("Teacher not found.");
+
+    return;
+  }
+
+
+  editingTeacherId=
+    item.id;
+
+
+  document.getElementById(
+    "teacherName"
+  ).value=
+    item.full_name||"";
+
+  document.getElementById(
+    "teacherId"
+  ).value=
+    item.teacher_id||"";
+
+  document.getElementById(
+    "teacherSubject"
+  ).value=
+    item.subject||"";
+
+  document.getElementById(
+    "teacherPhone"
+  ).value=
+    item.phone||"";
+
+  document.getElementById(
+    "teacherEmail"
+  ).value=
+    item.email||"";
+
+
+  document.getElementById(
+    "teacherSubmitBtn"
+  ).textContent=
+    "✏️ Update Teacher";
+
+
+  document.getElementById(
+    "teacherSubmitBtn"
+  ).onclick=
+    updateTeacher;
+
+
+  document.getElementById(
+    "teacherCancelBtn"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "teacherEditNote"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "teachers"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
 }
+
 
 async function updateTeacher(){
-if(!canManageTeachers()){alert("You do not have permission to update teachers.");return}
-if(!editingTeacherId){alert("No teacher is selected for editing.");return}
 
-const full_name=document.getElementById("teacherName").value.trim();
-const teacher_id=document.getElementById("teacherId").value.trim();
-const subject=document.getElementById("teacherSubject").value.trim();
-const phone=document.getElementById("teacherPhone").value.trim();
-const email=document.getElementById("teacherEmail").value.trim();
+  if(!canManageTeachers()){
 
-if(!full_name){alert("Please enter teacher name.");return}
+    alert(
+      "You do not have permission to update teachers."
+    );
 
-const {error}=await supabaseClient.from("teachers").update({
-full_name,teacher_id:teacher_id||null,subject:subject||null,phone:phone||null,email:email||null
-}).eq("id",editingTeacherId);
+    return;
+  }
 
-if(error){alert("Teacher update failed:\n\n"+error.message);return}
-alert("Teacher updated successfully.");
-cancelEditTeacher();
-await loadTeachers();
-await loadClasses();
+
+  if(!editingTeacherId){
+
+    alert(
+      "No teacher is selected for editing."
+    );
+
+    return;
+  }
+
+
+  const full_name=
+    document.getElementById(
+      "teacherName"
+    ).value.trim();
+
+  const teacher_id=
+    document.getElementById(
+      "teacherId"
+    ).value.trim();
+
+  const subject=
+    document.getElementById(
+      "teacherSubject"
+    ).value.trim();
+
+  const phone=
+    document.getElementById(
+      "teacherPhone"
+    ).value.trim();
+
+  const email=
+    document.getElementById(
+      "teacherEmail"
+    ).value.trim();
+
+
+  if(!full_name){
+
+    alert(
+      "Please enter teacher name."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("teachers")
+      .update({
+
+        full_name,
+        teacher_id:
+          teacher_id||null,
+        subject:
+          subject||null,
+        phone:
+          phone||null,
+        email:
+          email||null
+
+      })
+      .eq(
+        "id",
+        editingTeacherId
+      );
+
+
+  if(error){
+
+    alert(
+      "Teacher update failed:\n\n"+
+      error.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "Teacher updated successfully."
+  );
+
+
+  cancelEditTeacher();
+
+  await loadTeachers();
+
+  await loadClasses();
+
 }
+
 
 function cancelEditTeacher(){
-editingTeacherId=null;
-["teacherName","teacherId","teacherSubject","teacherPhone","teacherEmail"].forEach(id=>document.getElementById(id).value="");
-document.getElementById("teacherSubmitBtn").textContent="+ Add Teacher";
-document.getElementById("teacherSubmitBtn").onclick=addTeacher;
-document.getElementById("teacherCancelBtn").classList.add("hidden");
-document.getElementById("teacherEditNote").classList.add("hidden");
+
+  editingTeacherId=null;
+
+
+  [
+    "teacherName",
+    "teacherId",
+    "teacherSubject",
+    "teacherPhone",
+    "teacherEmail"
+  ].forEach(id=>
+    document.getElementById(id).value=""
+  );
+
+
+  document.getElementById(
+    "teacherSubmitBtn"
+  ).textContent=
+    "+ Add Teacher";
+
+
+  document.getElementById(
+    "teacherSubmitBtn"
+  ).onclick=
+    addTeacher;
+
+
+  document.getElementById(
+    "teacherCancelBtn"
+  ).classList.add("hidden");
+
+
+  document.getElementById(
+    "teacherEditNote"
+  ).classList.add("hidden");
+
 }
+
 
 async function addTeacher(){
-if(!canManageTeachers()){alert("You do not have permission to manage teachers.");return}
-if(editingTeacherId){await updateTeacher();return}
 
-const full_name=document.getElementById("teacherName").value.trim();
-const teacher_id=document.getElementById("teacherId").value.trim();
-const subject=document.getElementById("teacherSubject").value.trim();
-const phone=document.getElementById("teacherPhone").value.trim();
-const email=document.getElementById("teacherEmail").value.trim();
+  if(!canManageTeachers()){
 
-if(!full_name){alert("Please enter teacher name.");return}
+    alert(
+      "You do not have permission to manage teachers."
+    );
 
-const {error}=await supabaseClient.from("teachers").insert([{full_name,teacher_id:teacher_id||null,subject:subject||null,phone:phone||null,email:email||null}]);
-if(error){alert(error.message);return}
-alert("Teacher added successfully.");
-cancelEditTeacher();
-await loadTeachers();
+    return;
+  }
+
+
+  if(editingTeacherId){
+
+    await updateTeacher();
+
+    return;
+  }
+
+
+  const full_name=
+    document.getElementById(
+      "teacherName"
+    ).value.trim();
+
+  const teacher_id=
+    document.getElementById(
+      "teacherId"
+    ).value.trim();
+
+  const subject=
+    document.getElementById(
+      "teacherSubject"
+    ).value.trim();
+
+  const phone=
+    document.getElementById(
+      "teacherPhone"
+    ).value.trim();
+
+  const email=
+    document.getElementById(
+      "teacherEmail"
+    ).value.trim();
+
+
+  if(!full_name){
+
+    alert(
+      "Please enter teacher name."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("teachers")
+      .insert([{
+
+        full_name,
+        teacher_id:
+          teacher_id||null,
+        subject:
+          subject||null,
+        phone:
+          phone||null,
+        email:
+          email||null
+
+      }]);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  alert(
+    "Teacher added successfully."
+  );
+
+
+  cancelEditTeacher();
+
+  await loadTeachers();
+
 }
+
 
 async function deleteTeacher(id){
-if(!canManageTeachers()){alert("You do not have permission to delete teachers.");return}
-if(!confirm("Delete this teacher?"))return;
-const {error}=await supabaseClient.from("teachers").delete().eq("id",id);
-if(error){alert(error.message);return}
-await loadTeachers();
+
+  if(!canManageTeachers()){
+
+    alert(
+      "You do not have permission to delete teachers."
+    );
+
+    return;
+  }
+
+
+  if(!confirm("Delete this teacher?"))
+    return;
+
+
+  const {error}=
+    await supabaseClient
+      .from("teachers")
+      .delete()
+      .eq("id",id);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  await loadTeachers();
+
 }
 
-/* CLASSES */
+
+/* =========================================================
+   CLASSES
+========================================================= */
+
 async function loadClasses(){
-const {data,error}=await supabaseClient.from("classes").select("*").order("id",{ascending:false});
-if(error){classes=[];return}
-classes=data||[];
-renderClasses();fillClassDropdown();fillStudentDropdowns();
-document.getElementById("classCount").textContent=classes.length;
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient
+      .from("classes")
+      .select("*")
+      .order(
+        "id",
+        {ascending:false}
+      );
+
+
+  if(error){
+
+    classes=[];
+
+    return;
+  }
+
+
+  classes=data||[];
+
+  renderClasses();
+
+  fillClassDropdown();
+
+  fillStudentDropdowns();
+
+
+  document.getElementById(
+    "classCount"
+  ).textContent=
+    classes.length;
+
 }
+
 
 function renderClasses(){
-const table=document.getElementById("classesTable");
-if(!table)return;
-table.innerHTML="";
-if(classes.length===0){table.innerHTML='<tr><td colspan="6">No classes found.</td></tr>';return}
-classes.forEach((item,index)=>{
-const editButton=canManageClasses()?`<button class="edit-btn" onclick="startEditClass(${item.id})">Edit</button>`:"";
-const deleteButton=canManageClasses()?`<button class="small-btn" onclick="deleteClass(${item.id})">Delete</button>`:"";
-table.innerHTML+=`<tr><td>${index+1}</td><td>${escapeHtml(item.name)}</td><td>${escapeHtml(item.grade)}</td><td>${escapeHtml(item.section)}</td><td>${escapeHtml(item.teacher_name)}</td><td>${editButton}${deleteButton}</td></tr>`;
-});
+
+  const table=
+    document.getElementById(
+      "classesTable"
+    );
+
+  if(!table)return;
+
+
+  table.innerHTML="";
+
+
+  if(classes.length===0){
+
+    table.innerHTML=
+      '<tr><td colspan="6">No classes found.</td></tr>';
+
+    return;
+  }
+
+
+  classes.forEach((item,index)=>{
+
+    const editButton=
+      canManageClasses()
+      ?
+      `<button
+        class="edit-btn"
+        onclick="startEditClass(${item.id})"
+      >
+        Edit
+      </button>`
+      :"";
+
+
+    const deleteButton=
+      canManageClasses()
+      ?
+      `<button
+        class="small-btn"
+        onclick="deleteClass(${item.id})"
+      >
+        Delete
+      </button>`
+      :"";
+
+
+    table.innerHTML+=`
+
+      <tr>
+
+        <td>${index+1}</td>
+
+        <td>${escapeHtml(item.name)}</td>
+
+        <td>${escapeHtml(item.grade)}</td>
+
+        <td>${escapeHtml(item.section)}</td>
+
+        <td>${escapeHtml(item.teacher_name)}</td>
+
+        <td>
+          ${editButton}
+          ${deleteButton}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
 }
+
 
 function startEditClass(id){
-if(!canManageClasses()){alert("You do not have permission to edit classes.");return}
-const item=classes.find(c=>Number(c.id)===Number(id));
-if(!item){alert("Class not found.");return}
-editingClassId=item.id;
-document.getElementById("className").value=item.name||"";
-document.getElementById("classGrade").value=item.grade||"";
-document.getElementById("classSection").value=item.section||"";
-const teacher=teachers.find(t=>(t.full_name||"").trim().toLowerCase()===(item.teacher_name||"").trim().toLowerCase());
-document.getElementById("classTeacher").value=teacher?String(teacher.id):"";
-document.getElementById("classSubmitBtn").textContent="✏️ Update Class";
-document.getElementById("classSubmitBtn").onclick=updateClass;
-document.getElementById("classCancelBtn").classList.remove("hidden");
-document.getElementById("classEditNote").classList.remove("hidden");
-document.getElementById("classes").scrollIntoView({behavior:"smooth",block:"start"});
+
+  if(!canManageClasses()){
+
+    alert(
+      "You do not have permission to edit classes."
+    );
+
+    return;
+  }
+
+
+  const item=
+    classes.find(
+      c=>Number(c.id)===Number(id)
+    );
+
+
+  if(!item){
+
+    alert("Class not found.");
+
+    return;
+  }
+
+
+  editingClassId=
+    item.id;
+
+
+  document.getElementById(
+    "className"
+  ).value=
+    item.name||"";
+
+  document.getElementById(
+    "classGrade"
+  ).value=
+    item.grade||"";
+
+  document.getElementById(
+    "classSection"
+  ).value=
+    item.section||"";
+
+
+  const teacher=
+    teachers.find(
+      t=>
+        (t.full_name||"")
+          .trim()
+          .toLowerCase() ===
+        (item.teacher_name||"")
+          .trim()
+          .toLowerCase()
+    );
+
+
+  document.getElementById(
+    "classTeacher"
+  ).value=
+    teacher
+      ? String(teacher.id)
+      :"";
+
+
+  document.getElementById(
+    "classSubmitBtn"
+  ).textContent=
+    "✏️ Update Class";
+
+
+  document.getElementById(
+    "classSubmitBtn"
+  ).onclick=
+    updateClass;
+
+
+  document.getElementById(
+    "classCancelBtn"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "classEditNote"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "classes"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
 }
+
 
 async function updateClass(){
-if(!canManageClasses()){alert("You do not have permission to update classes.");return}
-if(!editingClassId){alert("No class is selected for editing.");return}
 
-const name=document.getElementById("className").value.trim();
-const grade=document.getElementById("classGrade").value.trim();
-const section=document.getElementById("classSection").value.trim();
-const teacherSelect=document.getElementById("classTeacher");
-const teacher_name=teacherSelect.options[teacherSelect.selectedIndex]?.text||"";
+  if(!canManageClasses()){
 
-if(!name){alert("Please enter class name.");return}
+    alert(
+      "You do not have permission to update classes."
+    );
 
-const {error}=await supabaseClient.from("classes").update({
-name,grade:grade||null,section:section||null,teacher_name:teacher_name&&teacher_name!=="Select Teacher"?teacher_name:null
-}).eq("id",editingClassId);
+    return;
+  }
 
-if(error){alert("Class update failed:\n\n"+error.message);return}
-alert("Class updated successfully.");
-cancelEditClass();
-await loadClasses();
+
+  if(!editingClassId){
+
+    alert(
+      "No class is selected for editing."
+    );
+
+    return;
+  }
+
+
+  const name=
+    document.getElementById(
+      "className"
+    ).value.trim();
+
+  const grade=
+    document.getElementById(
+      "classGrade"
+    ).value.trim();
+
+  const section=
+    document.getElementById(
+      "classSection"
+    ).value.trim();
+
+  const teacherSelect=
+    document.getElementById(
+      "classTeacher"
+    );
+
+  const teacher_name=
+    teacherSelect
+      .options[
+        teacherSelect.selectedIndex
+      ]?.text || "";
+
+
+  if(!name){
+
+    alert(
+      "Please enter class name."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("classes")
+      .update({
+
+        name,
+        grade:
+          grade||null,
+        section:
+          section||null,
+        teacher_name:
+          teacher_name &&
+          teacher_name!=="Select Teacher"
+            ? teacher_name
+            : null
+
+      })
+      .eq(
+        "id",
+        editingClassId
+      );
+
+
+  if(error){
+
+    alert(
+      "Class update failed:\n\n"+
+      error.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "Class updated successfully."
+  );
+
+
+  cancelEditClass();
+
+  await loadClasses();
+
 }
+
 
 function cancelEditClass(){
-editingClassId=null;
-["className","classGrade","classSection","classTeacher"].forEach(id=>document.getElementById(id).value="");
-document.getElementById("classSubmitBtn").textContent="+ Add Class";
-document.getElementById("classSubmitBtn").onclick=addClass;
-document.getElementById("classCancelBtn").classList.add("hidden");
-document.getElementById("classEditNote").classList.add("hidden");
+
+  editingClassId=null;
+
+
+  [
+    "className",
+    "classGrade",
+    "classSection",
+    "classTeacher"
+  ].forEach(id=>
+    document.getElementById(id).value=""
+  );
+
+
+  document.getElementById(
+    "classSubmitBtn"
+  ).textContent=
+    "+ Add Class";
+
+
+  document.getElementById(
+    "classSubmitBtn"
+  ).onclick=
+    addClass;
+
+
+  document.getElementById(
+    "classCancelBtn"
+  ).classList.add("hidden");
+
+
+  document.getElementById(
+    "classEditNote"
+  ).classList.add("hidden");
+
 }
+
 
 async function addClass(){
-if(!canManageClasses()){alert("You do not have permission to manage classes.");return}
-if(editingClassId){await updateClass();return}
 
-const name=document.getElementById("className").value.trim();
-const grade=document.getElementById("classGrade").value.trim();
-const section=document.getElementById("classSection").value.trim();
-const teacherSelect=document.getElementById("classTeacher");
-const teacher_name=teacherSelect.options[teacherSelect.selectedIndex]?.text||"";
+  if(!canManageClasses()){
 
-if(!name){alert("Please enter class name.");return}
+    alert(
+      "You do not have permission to manage classes."
+    );
 
-const {error}=await supabaseClient.from("classes").insert([{name,grade:grade||null,section:section||null,teacher_name:teacher_name&&teacher_name!=="Select Teacher"?teacher_name:null}]);
-if(error){alert(error.message);return}
-alert("Class added successfully.");
-cancelEditClass();
-await loadClasses();
+    return;
+  }
+
+
+  if(editingClassId){
+
+    await updateClass();
+
+    return;
+  }
+
+
+  const name=
+    document.getElementById(
+      "className"
+    ).value.trim();
+
+  const grade=
+    document.getElementById(
+      "classGrade"
+    ).value.trim();
+
+  const section=
+    document.getElementById(
+      "classSection"
+    ).value.trim();
+
+  const teacherSelect=
+    document.getElementById(
+      "classTeacher"
+    );
+
+  const teacher_name=
+    teacherSelect
+      .options[
+        teacherSelect.selectedIndex
+      ]?.text || "";
+
+
+  if(!name){
+
+    alert(
+      "Please enter class name."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("classes")
+      .insert([{
+
+        name,
+        grade:
+          grade||null,
+        section:
+          section||null,
+        teacher_name:
+          teacher_name &&
+          teacher_name!=="Select Teacher"
+            ? teacher_name
+            : null
+
+      }]);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  alert(
+    "Class added successfully."
+  );
+
+
+  cancelEditClass();
+
+  await loadClasses();
+
 }
+
 
 async function deleteClass(id){
-if(!canManageClasses()){alert("You do not have permission to delete classes.");return}
-if(!confirm("Delete this class?"))return;
-const {error}=await supabaseClient.from("classes").delete().eq("id",id);
-if(error){alert(error.message);return}
-await loadClasses();
+
+  if(!canManageClasses()){
+
+    alert(
+      "You do not have permission to delete classes."
+    );
+
+    return;
+  }
+
+
+  if(!confirm("Delete this class?"))
+    return;
+
+
+  const {error}=
+    await supabaseClient
+      .from("classes")
+      .delete()
+      .eq("id",id);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  await loadClasses();
+
 }
 
-/* SUBJECTS */
+
+/* =========================================================
+   SUBJECTS
+========================================================= */
+
 async function loadSubjects(){
-const {data,error}=await supabaseClient.from("subjects").select("*").order("id",{ascending:false});
-if(error){subjects=[];return}
-subjects=data||[];
-renderSubjects();fillSubjectDropdowns();
-document.getElementById("subjectCount").textContent=subjects.length;
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient
+      .from("subjects")
+      .select("*")
+      .order(
+        "id",
+        {ascending:false}
+      );
+
+
+  if(error){
+
+    subjects=[];
+
+    return;
+  }
+
+
+  subjects=data||[];
+
+  renderSubjects();
+
+  fillSubjectDropdowns();
+
+
+  document.getElementById(
+    "subjectCount"
+  ).textContent=
+    subjects.length;
+
 }
+
 
 function renderSubjects(){
-const table=document.getElementById("subjectsTable");
-if(!table)return;
-table.innerHTML="";
-if(subjects.length===0){table.innerHTML='<tr><td colspan="3">No subjects found.</td></tr>';return}
-subjects.forEach((item,index)=>{
-const editButton=canManageSubjects()?`<button class="edit-btn" onclick="startEditSubject(${item.id})">Edit</button>`:"";
-const deleteButton=canManageSubjects()?`<button class="small-btn" onclick="deleteSubject(${item.id})">Delete</button>`:"";
-table.innerHTML+=`<tr><td>${index+1}</td><td>${escapeHtml(item.subject_name)}</td><td>${editButton}${deleteButton}</td></tr>`;
-});
+
+  const table=
+    document.getElementById(
+      "subjectsTable"
+    );
+
+  if(!table)return;
+
+
+  table.innerHTML="";
+
+
+  if(subjects.length===0){
+
+    table.innerHTML=
+      '<tr><td colspan="3">No subjects found.</td></tr>';
+
+    return;
+  }
+
+
+  subjects.forEach((item,index)=>{
+
+    const editButton=
+      canManageSubjects()
+      ?
+      `<button
+        class="edit-btn"
+        onclick="startEditSubject(${item.id})"
+      >
+        Edit
+      </button>`
+      :"";
+
+
+    const deleteButton=
+      canManageSubjects()
+      ?
+      `<button
+        class="small-btn"
+        onclick="deleteSubject(${item.id})"
+      >
+        Delete
+      </button>`
+      :"";
+
+
+    table.innerHTML+=`
+
+      <tr>
+
+        <td>${index+1}</td>
+
+        <td>
+          ${escapeHtml(item.subject_name)}
+        </td>
+
+        <td>
+          ${editButton}
+          ${deleteButton}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
 }
+
 
 function startEditSubject(id){
-if(!canManageSubjects()){alert("You do not have permission to edit subjects.");return}
-const item=subjects.find(s=>Number(s.id)===Number(id));
-if(!item){alert("Subject not found.");return}
-editingSubjectId=item.id;
-document.getElementById("subjectName").value=item.subject_name||"";
-document.getElementById("subjectSubmitBtn").textContent="✏️ Update Subject";
-document.getElementById("subjectSubmitBtn").onclick=updateSubject;
-document.getElementById("subjectCancelBtn").classList.remove("hidden");
-document.getElementById("subjectEditNote").classList.remove("hidden");
-document.getElementById("subjects").scrollIntoView({behavior:"smooth",block:"start"});
+
+  if(!canManageSubjects()){
+
+    alert(
+      "You do not have permission to edit subjects."
+    );
+
+    return;
+  }
+
+
+  const item=
+    subjects.find(
+      s=>Number(s.id)===Number(id)
+    );
+
+
+  if(!item){
+
+    alert("Subject not found.");
+
+    return;
+  }
+
+
+  editingSubjectId=
+    item.id;
+
+
+  document.getElementById(
+    "subjectName"
+  ).value=
+    item.subject_name||"";
+
+
+  document.getElementById(
+    "subjectSubmitBtn"
+  ).textContent=
+    "✏️ Update Subject";
+
+
+  document.getElementById(
+    "subjectSubmitBtn"
+  ).onclick=
+    updateSubject;
+
+
+  document.getElementById(
+    "subjectCancelBtn"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "subjectEditNote"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "subjects"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
 }
+
 
 async function updateSubject(){
-if(!canManageSubjects()){alert("You do not have permission to update subjects.");return}
-if(!editingSubjectId){alert("No subject is selected for editing.");return}
-const subject_name=document.getElementById("subjectName").value.trim();
-if(!subject_name){alert("Enter subject name.");return}
-const {error}=await supabaseClient.from("subjects").update({subject_name}).eq("id",editingSubjectId);
-if(error){alert("Subject update failed:\n\n"+error.message);return}
-alert("Subject updated successfully.");
-cancelEditSubject();
-await loadSubjects();
+
+  if(!canManageSubjects()){
+
+    alert(
+      "You do not have permission to update subjects."
+    );
+
+    return;
+  }
+
+
+  if(!editingSubjectId){
+
+    alert(
+      "No subject is selected for editing."
+    );
+
+    return;
+  }
+
+
+  const subject_name=
+    document.getElementById(
+      "subjectName"
+    ).value.trim();
+
+
+  if(!subject_name){
+
+    alert(
+      "Enter subject name."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("subjects")
+      .update({subject_name})
+      .eq(
+        "id",
+        editingSubjectId
+      );
+
+
+  if(error){
+
+    alert(
+      "Subject update failed:\n\n"+
+      error.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "Subject updated successfully."
+  );
+
+
+  cancelEditSubject();
+
+  await loadSubjects();
+
 }
+
 
 function cancelEditSubject(){
-editingSubjectId=null;
-document.getElementById("subjectName").value="";
-document.getElementById("subjectSubmitBtn").textContent="+ Add Subject";
-document.getElementById("subjectSubmitBtn").onclick=addSubject;
-document.getElementById("subjectCancelBtn").classList.add("hidden");
-document.getElementById("subjectEditNote").classList.add("hidden");
+
+  editingSubjectId=null;
+
+
+  document.getElementById(
+    "subjectName"
+  ).value="";
+
+
+  document.getElementById(
+    "subjectSubmitBtn"
+  ).textContent=
+    "+ Add Subject";
+
+
+  document.getElementById(
+    "subjectSubmitBtn"
+  ).onclick=
+    addSubject;
+
+
+  document.getElementById(
+    "subjectCancelBtn"
+  ).classList.add("hidden");
+
+
+  document.getElementById(
+    "subjectEditNote"
+  ).classList.add("hidden");
+
 }
+
 
 async function addSubject(){
-if(!canManageSubjects()){alert("You do not have permission to manage subjects.");return}
-if(editingSubjectId){await updateSubject();return}
-const subject_name=document.getElementById("subjectName").value.trim();
-if(!subject_name){alert("Enter subject name.");return}
-const {error}=await supabaseClient.from("subjects").insert([{subject_name}]);
-if(error){alert(error.message);return}
-alert("Subject added successfully.");
-cancelEditSubject();
-await loadSubjects();
+
+  if(!canManageSubjects()){
+
+    alert(
+      "You do not have permission to manage subjects."
+    );
+
+    return;
+  }
+
+
+  if(editingSubjectId){
+
+    await updateSubject();
+
+    return;
+  }
+
+
+  const subject_name=
+    document.getElementById(
+      "subjectName"
+    ).value.trim();
+
+
+  if(!subject_name){
+
+    alert(
+      "Enter subject name."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("subjects")
+      .insert([{subject_name}]);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  alert(
+    "Subject added successfully."
+  );
+
+
+  cancelEditSubject();
+
+  await loadSubjects();
+
 }
+
 
 async function deleteSubject(id){
-if(!canManageSubjects()){alert("You do not have permission to delete subjects.");return}
-if(!confirm("Delete this subject?"))return;
-const {error}=await supabaseClient.from("subjects").delete().eq("id",id);
-if(error){alert(error.message);return}
-await loadSubjects();
+
+  if(!canManageSubjects()){
+
+    alert(
+      "You do not have permission to delete subjects."
+    );
+
+    return;
+  }
+
+
+  if(!confirm("Delete this subject?"))
+    return;
+
+
+  const {error}=
+    await supabaseClient
+      .from("subjects")
+      .delete()
+      .eq("id",id);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  await loadSubjects();
+
 }
 
-/* ATTENDANCE */
+
+/* =========================================================
+   ATTENDANCE
+========================================================= */
+
 async function loadAttendance(){
-let query=supabaseClient.from("attendance").select("*").order("id",{ascending:false});
-if(currentUserRole==="parent"){
-if(currentUserStudentId===null||currentUserStudentId===undefined||currentUserStudentId===""){
-attendance=[];renderAttendance();document.getElementById("attendanceCount").textContent="0";return;
+
+  let query=
+    supabaseClient
+      .from("attendance")
+      .select("*")
+      .order(
+        "id",
+        {ascending:false}
+      );
+
+
+  if(currentUserRole==="parent"){
+
+    if(
+      currentUserStudentId===null ||
+      currentUserStudentId===undefined ||
+      currentUserStudentId===""
+    ){
+
+      attendance=[];
+
+      renderAttendance();
+
+      document.getElementById(
+        "attendanceCount"
+      ).textContent="0";
+
+      return;
+    }
+
+
+    query=
+      query.eq(
+        "student_id",
+        currentUserStudentId
+      );
+
+  }
+
+
+  const {
+    data,
+    error
+  }=
+    await query;
+
+
+  if(error){
+
+    console.error(error);
+
+    attendance=[];
+
+    return;
+  }
+
+
+  attendance=data||[];
+
+  renderAttendance();
+
+
+  document.getElementById(
+    "attendanceCount"
+  ).textContent=
+    attendance.length;
+
 }
-query=query.eq("student_id",currentUserStudentId);
-}
-const {data,error}=await query;
-if(error){console.error(error);attendance=[];return}
-attendance=data||[];
-renderAttendance();
-document.getElementById("attendanceCount").textContent=attendance.length;
-}
+
 
 function renderAttendance(){
-const table=document.getElementById("attendanceTable");
-if(!table)return;
-table.innerHTML="";
-if(attendance.length===0){table.innerHTML='<tr><td colspan="5">No attendance records found.</td></tr>';return}
-attendance.forEach((item,index)=>{
-const studentName=getStudentName(item.student_id);
-const editButton=canManageAttendance()?`<button class="edit-btn" onclick="startEditAttendance(${item.id})">Edit</button>`:"";
-const deleteButton=canDeleteAttendance()?`<button class="small-btn" onclick="deleteAttendance(${item.id})">Delete</button>`:"";
-table.innerHTML+=`<tr><td>${index+1}</td><td>${escapeHtml(studentName)}</td><td>${escapeHtml(item.attendance_date)}</td><td>${escapeHtml(item.status)}</td><td>${editButton}${deleteButton}</td></tr>`;
-});
+
+  const table=
+    document.getElementById(
+      "attendanceTable"
+    );
+
+  if(!table)return;
+
+
+  table.innerHTML="";
+
+
+  if(attendance.length===0){
+
+    table.innerHTML=
+      '<tr><td colspan="5">No attendance records found.</td></tr>';
+
+    return;
+  }
+
+
+  attendance.forEach((item,index)=>{
+
+    const studentName=
+      getStudentName(
+        item.student_id
+      );
+
+
+    const editButton=
+      canManageAttendance()
+      ?
+      `<button
+        class="edit-btn"
+        onclick="startEditAttendance(${item.id})"
+      >
+        Edit
+      </button>`
+      :"";
+
+
+    const deleteButton=
+      canDeleteAttendance()
+      ?
+      `<button
+        class="small-btn"
+        onclick="deleteAttendance(${item.id})"
+      >
+        Delete
+      </button>`
+      :"";
+
+
+    table.innerHTML+=`
+
+      <tr>
+
+        <td>${index+1}</td>
+
+        <td>${escapeHtml(studentName)}</td>
+
+        <td>
+          ${escapeHtml(item.attendance_date)}
+        </td>
+
+        <td>
+          ${escapeHtml(item.status)}
+        </td>
+
+        <td>
+          ${editButton}
+          ${deleteButton}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
 }
+
 
 function startEditAttendance(id){
-if(!canManageAttendance()){alert("You do not have permission to edit attendance.");return}
-const item=attendance.find(a=>Number(a.id)===Number(id));
-if(!item){alert("Attendance record not found.");return}
-editingAttendanceId=item.id;
-document.getElementById("attendanceStudent").value=String(item.student_id);
-document.getElementById("attendanceDate").value=item.attendance_date||"";
-document.getElementById("attendanceStatus").value=item.status||"Present";
-document.getElementById("attendanceSubmitBtn").textContent="✏️ Update Attendance";
-document.getElementById("attendanceSubmitBtn").onclick=updateAttendance;
-document.getElementById("attendanceCancelBtn").classList.remove("hidden");
-document.getElementById("attendanceEditNote").classList.remove("hidden");
-document.getElementById("attendance").scrollIntoView({behavior:"smooth",block:"start"});
+
+  if(!canManageAttendance()){
+
+    alert(
+      "You do not have permission to edit attendance."
+    );
+
+    return;
+  }
+
+
+  const item=
+    attendance.find(
+      a=>Number(a.id)===Number(id)
+    );
+
+
+  if(!item){
+
+    alert(
+      "Attendance record not found."
+    );
+
+    return;
+  }
+
+
+  editingAttendanceId=
+    item.id;
+
+
+  document.getElementById(
+    "attendanceStudent"
+  ).value=
+    String(item.student_id);
+
+
+  document.getElementById(
+    "attendanceDate"
+  ).value=
+    item.attendance_date||"";
+
+
+  document.getElementById(
+    "attendanceStatus"
+  ).value=
+    item.status||"Present";
+
+
+  document.getElementById(
+    "attendanceSubmitBtn"
+  ).textContent=
+    "✏️ Update Attendance";
+
+
+  document.getElementById(
+    "attendanceSubmitBtn"
+  ).onclick=
+    updateAttendance;
+
+
+  document.getElementById(
+    "attendanceCancelBtn"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "attendanceEditNote"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "attendance"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
 }
+
 
 async function updateAttendance(){
-if(!canManageAttendance()){alert("You do not have permission to update attendance.");return}
-if(!editingAttendanceId){alert("No attendance record is selected for editing.");return}
 
-const student_id=document.getElementById("attendanceStudent").value;
-const attendance_date=document.getElementById("attendanceDate").value;
-const status=document.getElementById("attendanceStatus").value;
+  if(!canManageAttendance()){
 
-if(!student_id||!attendance_date){alert("Please fill all attendance fields.");return}
+    alert(
+      "You do not have permission to update attendance."
+    );
 
-const {error}=await supabaseClient.from("attendance").update({
-student_id:Number(student_id),attendance_date,status
-}).eq("id",editingAttendanceId);
+    return;
+  }
 
-if(error){alert("Attendance update failed:\n\n"+error.message);return}
-alert("Attendance updated successfully.");
-cancelEditAttendance();
-await loadAttendance();
+
+  if(!editingAttendanceId){
+
+    alert(
+      "No attendance record is selected for editing."
+    );
+
+    return;
+  }
+
+
+  const student_id=
+    document.getElementById(
+      "attendanceStudent"
+    ).value;
+
+  const attendance_date=
+    document.getElementById(
+      "attendanceDate"
+    ).value;
+
+  const status=
+    document.getElementById(
+      "attendanceStatus"
+    ).value;
+
+
+  if(!student_id || !attendance_date){
+
+    alert(
+      "Please fill all attendance fields."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("attendance")
+      .update({
+
+        student_id:
+          Number(student_id),
+
+        attendance_date,
+
+        status
+
+      })
+      .eq(
+        "id",
+        editingAttendanceId
+      );
+
+
+  if(error){
+
+    alert(
+      "Attendance update failed:\n\n"+
+      error.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "Attendance updated successfully."
+  );
+
+
+  cancelEditAttendance();
+
+  await loadAttendance();
+
 }
+
 
 function cancelEditAttendance(){
-editingAttendanceId=null;
-document.getElementById("attendanceStudent").value="";
-document.getElementById("attendanceDate").value=today();
-document.getElementById("attendanceStatus").value="Present";
-document.getElementById("attendanceSubmitBtn").textContent="+ Save Attendance";
-document.getElementById("attendanceSubmitBtn").onclick=addAttendance;
-document.getElementById("attendanceCancelBtn").classList.add("hidden");
-document.getElementById("attendanceEditNote").classList.add("hidden");
+
+  editingAttendanceId=null;
+
+
+  document.getElementById(
+    "attendanceStudent"
+  ).value="";
+
+
+  document.getElementById(
+    "attendanceDate"
+  ).value=
+    today();
+
+
+  document.getElementById(
+    "attendanceStatus"
+  ).value=
+    "Present";
+
+
+  document.getElementById(
+    "attendanceSubmitBtn"
+  ).textContent=
+    "+ Save Attendance";
+
+
+  document.getElementById(
+    "attendanceSubmitBtn"
+  ).onclick=
+    addAttendance;
+
+
+  document.getElementById(
+    "attendanceCancelBtn"
+  ).classList.add("hidden");
+
+
+  document.getElementById(
+    "attendanceEditNote"
+  ).classList.add("hidden");
+
 }
+
 
 async function addAttendance(){
-if(!canManageAttendance()){alert("You do not have permission to add attendance.");return}
-if(editingAttendanceId){await updateAttendance();return}
 
-const student_id=document.getElementById("attendanceStudent").value;
-const attendance_date=document.getElementById("attendanceDate").value;
-const status=document.getElementById("attendanceStatus").value;
-if(!student_id||!attendance_date){alert("Please fill all attendance fields.");return}
+  if(!canManageAttendance()){
 
-const {error}=await supabaseClient.from("attendance").insert([{student_id:Number(student_id),attendance_date,status}]);
-if(error){alert(error.message);return}
-alert("Attendance saved successfully.");
-cancelEditAttendance();
-await loadAttendance();
+    alert(
+      "You do not have permission to add attendance."
+    );
+
+    return;
+  }
+
+
+  if(editingAttendanceId){
+
+    await updateAttendance();
+
+    return;
+  }
+
+
+  const student_id=
+    document.getElementById(
+      "attendanceStudent"
+    ).value;
+
+  const attendance_date=
+    document.getElementById(
+      "attendanceDate"
+    ).value;
+
+  const status=
+    document.getElementById(
+      "attendanceStatus"
+    ).value;
+
+
+  if(!student_id || !attendance_date){
+
+    alert(
+      "Please fill all attendance fields."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("attendance")
+      .insert([{
+
+        student_id:
+          Number(student_id),
+
+        attendance_date,
+
+        status
+
+      }]);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  alert(
+    "Attendance saved successfully."
+  );
+
+
+  cancelEditAttendance();
+
+  await loadAttendance();
+
 }
+
 
 async function deleteAttendance(id){
-if(!canDeleteAttendance()){alert("You do not have permission to delete attendance.");return}
-if(!confirm("Delete this attendance record?"))return;
-const {error}=await supabaseClient.from("attendance").delete().eq("id",id);
-if(error){alert(error.message);return}
-await loadAttendance();
+
+  if(!canDeleteAttendance()){
+
+    alert(
+      "You do not have permission to delete attendance."
+    );
+
+    return;
+  }
+
+
+  if(!confirm(
+    "Delete this attendance record?"
+  ))
+    return;
+
+
+  const {error}=
+    await supabaseClient
+      .from("attendance")
+      .delete()
+      .eq("id",id);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  await loadAttendance();
+
 }
 
-/* GRADES */
+
+/* =========================================================
+   GRADES
+========================================================= */
+
 async function loadGrades(){
-let query=supabaseClient.from("grades").select("*").order("id",{ascending:false});
-if(currentUserRole==="parent"){
-if(currentUserStudentId===null||currentUserStudentId===undefined||currentUserStudentId===""){
-grades=[];renderGrades();document.getElementById("gradeCount").textContent="0";return;
+
+  let query=
+    supabaseClient
+      .from("grades")
+      .select("*")
+      .order(
+        "id",
+        {ascending:false}
+      );
+
+
+  if(currentUserRole==="parent"){
+
+    if(
+      currentUserStudentId===null ||
+      currentUserStudentId===undefined ||
+      currentUserStudentId===""
+    ){
+
+      grades=[];
+
+      renderGrades();
+
+      document.getElementById(
+        "gradeCount"
+      ).textContent="0";
+
+      return;
+    }
+
+
+    query=
+      query.eq(
+        "student_id",
+        currentUserStudentId
+      );
+
+  }
+
+
+  const {
+    data,
+    error
+  }=
+    await query;
+
+
+  if(error){
+
+    console.error(
+      "GRADES ERROR:",
+      error
+    );
+
+    alert(
+      "Grades Error:\n\n"+
+      error.message
+    );
+
+    grades=[];
+
+    renderGrades();
+
+    document.getElementById(
+      "gradeCount"
+    ).textContent="0";
+
+    return;
+  }
+
+
+  grades=data||[];
+
+  renderGrades();
+
+
+  document.getElementById(
+    "gradeCount"
+  ).textContent=
+    grades.length;
+
 }
-query=query.eq("student_id",currentUserStudentId);
-}
-const {data,error}=await query;
-if(error){
-console.error("GRADES ERROR:",error);
-alert("Grades Error:\n\n"+error.message);
-grades=[];renderGrades();document.getElementById("gradeCount").textContent="0";return;
-}
-grades=data||[];
-renderGrades();
-document.getElementById("gradeCount").textContent=grades.length;
-}
+
 
 function renderGrades(){
-const table=document.getElementById("gradesTable");
-if(!table)return;
-table.innerHTML="";
-if(grades.length===0){table.innerHTML='<tr><td colspan="6">No grades found.</td></tr>';return}
-grades.forEach((item,index)=>{
-const studentName=getStudentName(item.student_id);
-const subject=subjects.find(s=>String(s.id)===String(item.subject_id));
-const editButton=canManageGrades()?`<button class="edit-btn" onclick="startEditGrade(${item.id})">Edit</button>`:"";
-const deleteButton=canDeleteGrades()?`<button class="small-btn" onclick="deleteGrade(${item.id})">Delete</button>`:"";
-table.innerHTML+=`<tr><td>${index+1}</td><td>${escapeHtml(studentName)}</td><td>${escapeHtml(subject?.subject_name||"")}</td><td>${escapeHtml(item.score)}</td><td>${escapeHtml(item.term)}</td><td>${editButton}${deleteButton}</td></tr>`;
-});
+
+  const table=
+    document.getElementById(
+      "gradesTable"
+    );
+
+  if(!table)return;
+
+
+  table.innerHTML="";
+
+
+  if(grades.length===0){
+
+    table.innerHTML=
+      '<tr><td colspan="6">No grades found.</td></tr>';
+
+    return;
+  }
+
+
+  grades.forEach((item,index)=>{
+
+    const studentName=
+      getStudentName(
+        item.student_id
+      );
+
+
+    const subject=
+      subjects.find(
+        s=>String(s.id)===
+          String(item.subject_id)
+      );
+
+
+    const editButton=
+      canManageGrades()
+      ?
+      `<button
+        class="edit-btn"
+        onclick="startEditGrade(${item.id})"
+      >
+        Edit
+      </button>`
+      :"";
+
+
+    const deleteButton=
+      canDeleteGrades()
+      ?
+      `<button
+        class="small-btn"
+        onclick="deleteGrade(${item.id})"
+      >
+        Delete
+      </button>`
+      :"";
+
+
+    table.innerHTML+=`
+
+      <tr>
+
+        <td>${index+1}</td>
+
+        <td>${escapeHtml(studentName)}</td>
+
+        <td>
+          ${escapeHtml(
+            subject?.subject_name||""
+          )}
+        </td>
+
+        <td>${escapeHtml(item.score)}</td>
+
+        <td>${escapeHtml(item.term)}</td>
+
+        <td>
+          ${editButton}
+          ${deleteButton}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
 }
+
 
 function startEditGrade(id){
-if(!canManageGrades()){alert("You do not have permission to edit grades.");return}
-const item=grades.find(g=>Number(g.id)===Number(id));
-if(!item){alert("Grade not found.");return}
-editingGradeId=item.id;
-document.getElementById("gradeStudent").value=String(item.student_id);
-document.getElementById("gradeSubject").value=String(item.subject_id);
-document.getElementById("gradeScore").value=item.score;
-document.getElementById("gradeTerm").value=item.term||"Term 1";
-document.getElementById("gradeSubmitBtn").textContent="✏️ Update Grade";
-document.getElementById("gradeSubmitBtn").onclick=updateGrade;
-document.getElementById("gradeCancelBtn").classList.remove("hidden");
-document.getElementById("gradeEditNote").classList.remove("hidden");
-document.getElementById("grades").scrollIntoView({behavior:"smooth",block:"start"});
+
+  if(!canManageGrades()){
+
+    alert(
+      "You do not have permission to edit grades."
+    );
+
+    return;
+  }
+
+
+  const item=
+    grades.find(
+      g=>Number(g.id)===Number(id)
+    );
+
+
+  if(!item){
+
+    alert("Grade not found.");
+
+    return;
+  }
+
+
+  editingGradeId=
+    item.id;
+
+
+  document.getElementById(
+    "gradeStudent"
+  ).value=
+    String(item.student_id);
+
+
+  document.getElementById(
+    "gradeSubject"
+  ).value=
+    String(item.subject_id);
+
+
+  document.getElementById(
+    "gradeScore"
+  ).value=
+    item.score;
+
+
+  document.getElementById(
+    "gradeTerm"
+  ).value=
+    item.term||"Term 1";
+
+
+  document.getElementById(
+    "gradeSubmitBtn"
+  ).textContent=
+    "✏️ Update Grade";
+
+
+  document.getElementById(
+    "gradeSubmitBtn"
+  ).onclick=
+    updateGrade;
+
+
+  document.getElementById(
+    "gradeCancelBtn"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "gradeEditNote"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "grades"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
 }
+
 
 async function updateGrade(){
-if(!canManageGrades()){alert("You do not have permission to update grades.");return}
-if(!editingGradeId){alert("No grade is selected for editing.");return}
 
-const student_id=document.getElementById("gradeStudent").value;
-const subject_id=document.getElementById("gradeSubject").value;
-const score=document.getElementById("gradeScore").value;
-const term=document.getElementById("gradeTerm").value;
+  if(!canManageGrades()){
 
-if(!student_id||!subject_id||score===""){alert("Please fill all grade fields.");return}
-if(Number(score)<0||Number(score)>100){alert("Score must be between 0 and 100.");return}
+    alert(
+      "You do not have permission to update grades."
+    );
 
-const {error}=await supabaseClient.from("grades").update({
-student_id:Number(student_id),subject_id:Number(subject_id),score:Number(score),term
-}).eq("id",editingGradeId);
+    return;
+  }
 
-if(error){alert("Grade update failed:\n\n"+error.message);return}
-alert("Grade updated successfully.");
-cancelEditGrade();
-await loadGrades();
+
+  if(!editingGradeId){
+
+    alert(
+      "No grade is selected for editing."
+    );
+
+    return;
+  }
+
+
+  const student_id=
+    document.getElementById(
+      "gradeStudent"
+    ).value;
+
+  const subject_id=
+    document.getElementById(
+      "gradeSubject"
+    ).value;
+
+  const score=
+    document.getElementById(
+      "gradeScore"
+    ).value;
+
+  const term=
+    document.getElementById(
+      "gradeTerm"
+    ).value;
+
+
+  if(
+    !student_id ||
+    !subject_id ||
+    score===""
+  ){
+
+    alert(
+      "Please fill all grade fields."
+    );
+
+    return;
+  }
+
+
+  if(
+    Number(score)<0 ||
+    Number(score)>100
+  ){
+
+    alert(
+      "Score must be between 0 and 100."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("grades")
+      .update({
+
+        student_id:
+          Number(student_id),
+
+        subject_id:
+          Number(subject_id),
+
+        score:
+          Number(score),
+
+        term
+
+      })
+      .eq(
+        "id",
+        editingGradeId
+      );
+
+
+  if(error){
+
+    alert(
+      "Grade update failed:\n\n"+
+      error.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "Grade updated successfully."
+  );
+
+
+  cancelEditGrade();
+
+  await loadGrades();
+
 }
+
 
 function cancelEditGrade(){
-editingGradeId=null;
-document.getElementById("gradeStudent").value="";
-document.getElementById("gradeSubject").value="";
-document.getElementById("gradeScore").value="";
-document.getElementById("gradeTerm").value="Term 1";
-document.getElementById("gradeSubmitBtn").textContent="+ Save Grade";
-document.getElementById("gradeSubmitBtn").onclick=addGrade;
-document.getElementById("gradeCancelBtn").classList.add("hidden");
-document.getElementById("gradeEditNote").classList.add("hidden");
+
+  editingGradeId=null;
+
+
+  document.getElementById(
+    "gradeStudent"
+  ).value="";
+
+  document.getElementById(
+    "gradeSubject"
+  ).value="";
+
+  document.getElementById(
+    "gradeScore"
+  ).value="";
+
+  document.getElementById(
+    "gradeTerm"
+  ).value=
+    "Term 1";
+
+
+  document.getElementById(
+    "gradeSubmitBtn"
+  ).textContent=
+    "+ Save Grade";
+
+
+  document.getElementById(
+    "gradeSubmitBtn"
+  ).onclick=
+    addGrade;
+
+
+  document.getElementById(
+    "gradeCancelBtn"
+  ).classList.add("hidden");
+
+
+  document.getElementById(
+    "gradeEditNote"
+  ).classList.add("hidden");
+
 }
+
 
 async function addGrade(){
-if(!canManageGrades()){alert("You do not have permission to add grades.");return}
-if(editingGradeId){await updateGrade();return}
 
-const student_id=document.getElementById("gradeStudent").value;
-const subject_id=document.getElementById("gradeSubject").value;
-const score=document.getElementById("gradeScore").value;
-const term=document.getElementById("gradeTerm").value;
+  if(!canManageGrades()){
 
-if(!student_id||!subject_id||score===""){alert("Please fill all grade fields.");return}
-if(Number(score)<0||Number(score)>100){alert("Score must be between 0 and 100.");return}
+    alert(
+      "You do not have permission to add grades."
+    );
 
-const {error}=await supabaseClient.from("grades").insert([{student_id:Number(student_id),subject_id:Number(subject_id),score:Number(score),term}]);
-if(error){alert(error.message);return}
-alert("Grade saved successfully.");
-cancelEditGrade();
-await loadGrades();
+    return;
+  }
+
+
+  if(editingGradeId){
+
+    await updateGrade();
+
+    return;
+  }
+
+
+  const student_id=
+    document.getElementById(
+      "gradeStudent"
+    ).value;
+
+  const subject_id=
+    document.getElementById(
+      "gradeSubject"
+    ).value;
+
+  const score=
+    document.getElementById(
+      "gradeScore"
+    ).value;
+
+  const term=
+    document.getElementById(
+      "gradeTerm"
+    ).value;
+
+
+  if(
+    !student_id ||
+    !subject_id ||
+    score===""
+  ){
+
+    alert(
+      "Please fill all grade fields."
+    );
+
+    return;
+  }
+
+
+  if(
+    Number(score)<0 ||
+    Number(score)>100
+  ){
+
+    alert(
+      "Score must be between 0 and 100."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("grades")
+      .insert([{
+
+        student_id:
+          Number(student_id),
+
+        subject_id:
+          Number(subject_id),
+
+        score:
+          Number(score),
+
+        term
+
+      }]);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  alert(
+    "Grade saved successfully."
+  );
+
+
+  cancelEditGrade();
+
+  await loadGrades();
+
 }
+
 
 async function deleteGrade(id){
-if(!canDeleteGrades()){alert("You do not have permission to delete grades.");return}
-if(!confirm("Delete this grade?"))return;
-const {error}=await supabaseClient.from("grades").delete().eq("id",id);
-if(error){alert(error.message);return}
-await loadGrades();
+
+  if(!canDeleteGrades()){
+
+    alert(
+      "You do not have permission to delete grades."
+    );
+
+    return;
+  }
+
+
+  if(!confirm(
+    "Delete this grade?"
+  ))
+    return;
+
+
+  const {error}=
+    await supabaseClient
+      .from("grades")
+      .delete()
+      .eq("id",id);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  await loadGrades();
+
 }
 
-/* FEES */
+
+/* =========================================================
+   FEES
+========================================================= */
+
 async function loadFees(){
-let query=supabaseClient.from("fees").select("*").order("id",{ascending:false});
-if(currentUserRole==="parent"){
-if(currentUserStudentId===null||currentUserStudentId===undefined||currentUserStudentId===""){
-fees=[];renderFees();document.getElementById("feeCount").textContent="0";return;
+
+  let query=
+    supabaseClient
+      .from("fees")
+      .select("*")
+      .order(
+        "id",
+        {ascending:false}
+      );
+
+
+  if(currentUserRole==="parent"){
+
+    if(
+      currentUserStudentId===null ||
+      currentUserStudentId===undefined ||
+      currentUserStudentId===""
+    ){
+
+      fees=[];
+
+      renderFees();
+
+      document.getElementById(
+        "feeCount"
+      ).textContent="0";
+
+      return;
+    }
+
+
+    query=
+      query.eq(
+        "student_id",
+        currentUserStudentId
+      );
+
+  }
+
+
+  const {
+    data,
+    error
+  }=
+    await query;
+
+
+  if(error){
+
+    console.error(error);
+
+    fees=[];
+
+    return;
+  }
+
+
+  fees=data||[];
+
+  renderFees();
+
+
+  document.getElementById(
+    "feeCount"
+  ).textContent=
+    fees.length;
+
 }
-query=query.eq("student_id",currentUserStudentId);
-}
-const {data,error}=await query;
-if(error){console.error(error);fees=[];return}
-fees=data||[];
-renderFees();
-document.getElementById("feeCount").textContent=fees.length;
-}
+
 
 function renderFees(){
-const table=document.getElementById("feesTable");
-if(!table)return;
-table.innerHTML="";
-if(fees.length===0){table.innerHTML='<tr><td colspan="6">No payment records found.</td></tr>';return}
-fees.forEach((item,index)=>{
-const studentName=getStudentName(item.student_id);
-const editButton=canManageFees()?`<button class="edit-btn" onclick="startEditFee(${item.id})">Edit</button>`:"";
-const deleteButton=canManageFees()?`<button class="small-btn" onclick="deleteFee(${item.id})">Delete</button>`:"";
-table.innerHTML+=`<tr><td>${index+1}</td><td>${escapeHtml(studentName)}</td><td>${escapeHtml(item.amount)}</td><td>${escapeHtml(item.payment_date)}</td><td>${escapeHtml(item.status)}</td><td>${editButton}${deleteButton}</td></tr>`;
-});
+
+  const table=
+    document.getElementById(
+      "feesTable"
+    );
+
+  if(!table)return;
+
+
+  table.innerHTML="";
+
+
+  if(fees.length===0){
+
+    table.innerHTML=
+      '<tr><td colspan="6">No payment records found.</td></tr>';
+
+    return;
+  }
+
+
+  fees.forEach((item,index)=>{
+
+    const studentName=
+      getStudentName(
+        item.student_id
+      );
+
+
+    const editButton=
+      canManageFees()
+      ?
+      `<button
+        class="edit-btn"
+        onclick="startEditFee(${item.id})"
+      >
+        Edit
+      </button>`
+      :"";
+
+
+    const deleteButton=
+      canManageFees()
+      ?
+      `<button
+        class="small-btn"
+        onclick="deleteFee(${item.id})"
+      >
+        Delete
+      </button>`
+      :"";
+
+
+    table.innerHTML+=`
+
+      <tr>
+
+        <td>${index+1}</td>
+
+        <td>${escapeHtml(studentName)}</td>
+
+        <td>${escapeHtml(item.amount)}</td>
+
+        <td>${escapeHtml(item.payment_date)}</td>
+
+        <td>${escapeHtml(item.status)}</td>
+
+        <td>
+          ${editButton}
+          ${deleteButton}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
 }
+
 
 function startEditFee(id){
-if(!canManageFees()){alert("You do not have permission to edit payments.");return}
-const item=fees.find(f=>Number(f.id)===Number(id));
-if(!item){alert("Payment not found.");return}
-editingFeeId=item.id;
-document.getElementById("feeStudent").value=String(item.student_id);
-document.getElementById("feeAmount").value=item.amount;
-document.getElementById("feeDate").value=item.payment_date||"";
-document.getElementById("feeStatus").value=item.status||"Paid";
-document.getElementById("feeSubmitBtn").textContent="✏️ Update Payment";
-document.getElementById("feeSubmitBtn").onclick=updateFee;
-document.getElementById("feeCancelBtn").classList.remove("hidden");
-document.getElementById("feeEditNote").classList.remove("hidden");
-document.getElementById("fees").scrollIntoView({behavior:"smooth",block:"start"});
+
+  if(!canManageFees()){
+
+    alert(
+      "You do not have permission to edit payments."
+    );
+
+    return;
+  }
+
+
+  const item=
+    fees.find(
+      f=>Number(f.id)===Number(id)
+    );
+
+
+  if(!item){
+
+    alert("Payment not found.");
+
+    return;
+  }
+
+
+  editingFeeId=
+    item.id;
+
+
+  document.getElementById(
+    "feeStudent"
+  ).value=
+    String(item.student_id);
+
+
+  document.getElementById(
+    "feeAmount"
+  ).value=
+    item.amount;
+
+
+  document.getElementById(
+    "feeDate"
+  ).value=
+    item.payment_date||"";
+
+
+  document.getElementById(
+    "feeStatus"
+  ).value=
+    item.status||"Paid";
+
+
+  document.getElementById(
+    "feeSubmitBtn"
+  ).textContent=
+    "✏️ Update Payment";
+
+
+  document.getElementById(
+    "feeSubmitBtn"
+  ).onclick=
+    updateFee;
+
+
+  document.getElementById(
+    "feeCancelBtn"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "feeEditNote"
+  ).classList.remove("hidden");
+
+
+  document.getElementById(
+    "fees"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
 }
+
 
 async function updateFee(){
-if(!canManageFees()){alert("You do not have permission to update payments.");return}
-if(!editingFeeId){alert("No payment is selected for editing.");return}
 
-const student_id=document.getElementById("feeStudent").value;
-const amount=document.getElementById("feeAmount").value;
-const payment_date=document.getElementById("feeDate").value;
-const status=document.getElementById("feeStatus").value;
+  if(!canManageFees()){
 
-if(!student_id||!amount||!payment_date){alert("Please fill all fee fields.");return}
-if(Number(amount)<0){alert("Amount cannot be negative.");return}
+    alert(
+      "You do not have permission to update payments."
+    );
 
-const {error}=await supabaseClient.from("fees").update({
-student_id:Number(student_id),amount:Number(amount),payment_date,status
-}).eq("id",editingFeeId);
+    return;
+  }
 
-if(error){alert("Payment update failed:\n\n"+error.message);return}
-alert("Payment updated successfully.");
-cancelEditFee();
-await loadFees();
+
+  if(!editingFeeId){
+
+    alert(
+      "No payment is selected for editing."
+    );
+
+    return;
+  }
+
+
+  const student_id=
+    document.getElementById(
+      "feeStudent"
+    ).value;
+
+  const amount=
+    document.getElementById(
+      "feeAmount"
+    ).value;
+
+  const payment_date=
+    document.getElementById(
+      "feeDate"
+    ).value;
+
+  const status=
+    document.getElementById(
+      "feeStatus"
+    ).value;
+
+
+  if(
+    !student_id ||
+    !amount ||
+    !payment_date
+  ){
+
+    alert(
+      "Please fill all fee fields."
+    );
+
+    return;
+  }
+
+
+  if(Number(amount)<0){
+
+    alert(
+      "Amount cannot be negative."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("fees")
+      .update({
+
+        student_id:
+          Number(student_id),
+
+        amount:
+          Number(amount),
+
+        payment_date,
+
+        status
+
+      })
+      .eq(
+        "id",
+        editingFeeId
+      );
+
+
+  if(error){
+
+    alert(
+      "Payment update failed:\n\n"+
+      error.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "Payment updated successfully."
+  );
+
+
+  cancelEditFee();
+
+  await loadFees();
+
 }
+
 
 function cancelEditFee(){
-editingFeeId=null;
-document.getElementById("feeStudent").value="";
-document.getElementById("feeAmount").value="";
-document.getElementById("feeDate").value=today();
-document.getElementById("feeStatus").value="Paid";
-document.getElementById("feeSubmitBtn").textContent="+ Save Payment";
-document.getElementById("feeSubmitBtn").onclick=addFee;
-document.getElementById("feeCancelBtn").classList.add("hidden");
-document.getElementById("feeEditNote").classList.add("hidden");
+
+  editingFeeId=null;
+
+
+  document.getElementById(
+    "feeStudent"
+  ).value="";
+
+  document.getElementById(
+    "feeAmount"
+  ).value="";
+
+  document.getElementById(
+    "feeDate"
+  ).value=
+    today();
+
+  document.getElementById(
+    "feeStatus"
+  ).value=
+    "Paid";
+
+
+  document.getElementById(
+    "feeSubmitBtn"
+  ).textContent=
+    "+ Save Payment";
+
+
+  document.getElementById(
+    "feeSubmitBtn"
+  ).onclick=
+    addFee;
+
+
+  document.getElementById(
+    "feeCancelBtn"
+  ).classList.add("hidden");
+
+
+  document.getElementById(
+    "feeEditNote"
+  ).classList.add("hidden");
+
 }
+
 
 async function addFee(){
-if(!canManageFees()){alert("You do not have permission to manage fees.");return}
-if(editingFeeId){await updateFee();return}
 
-const student_id=document.getElementById("feeStudent").value;
-const amount=document.getElementById("feeAmount").value;
-const payment_date=document.getElementById("feeDate").value;
-const status=document.getElementById("feeStatus").value;
+  if(!canManageFees()){
 
-if(!student_id||!amount||!payment_date){alert("Please fill all fee fields.");return}
-if(Number(amount)<0){alert("Amount cannot be negative.");return}
+    alert(
+      "You do not have permission to manage fees."
+    );
 
-const {error}=await supabaseClient.from("fees").insert([{student_id:Number(student_id),amount:Number(amount),payment_date,status}]);
-if(error){alert(error.message);return}
-alert("Payment saved successfully.");
-cancelEditFee();
-await loadFees();
+    return;
+  }
+
+
+  if(editingFeeId){
+
+    await updateFee();
+
+    return;
+  }
+
+
+  const student_id=
+    document.getElementById(
+      "feeStudent"
+    ).value;
+
+  const amount=
+    document.getElementById(
+      "feeAmount"
+    ).value;
+
+  const payment_date=
+    document.getElementById(
+      "feeDate"
+    ).value;
+
+  const status=
+    document.getElementById(
+      "feeStatus"
+    ).value;
+
+
+  if(
+    !student_id ||
+    !amount ||
+    !payment_date
+  ){
+
+    alert(
+      "Please fill all fee fields."
+    );
+
+    return;
+  }
+
+
+  if(Number(amount)<0){
+
+    alert(
+      "Amount cannot be negative."
+    );
+
+    return;
+  }
+
+
+  const {error}=
+    await supabaseClient
+      .from("fees")
+      .insert([{
+
+        student_id:
+          Number(student_id),
+
+        amount:
+          Number(amount),
+
+        payment_date,
+
+        status
+
+      }]);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  alert(
+    "Payment saved successfully."
+  );
+
+
+  cancelEditFee();
+
+  await loadFees();
+
 }
+
 
 async function deleteFee(id){
-if(!canManageFees()){alert("You do not have permission to delete payments.");return}
-if(!confirm("Delete this payment?"))return;
-const {error}=await supabaseClient.from("fees").delete().eq("id",id);
-if(error){alert(error.message);return}
-await loadFees();
+
+  if(!canManageFees()){
+
+    alert(
+      "You do not have permission to delete payments."
+    );
+
+    return;
+  }
+
+
+  if(!confirm(
+    "Delete this payment?"
+  ))
+    return;
+
+
+  const {error}=
+    await supabaseClient
+      .from("fees")
+      .delete()
+      .eq("id",id);
+
+
+  if(error){
+
+    alert(error.message);
+
+    return;
+  }
+
+
+  await loadFees();
+
 }
 
-/* DROPDOWNS */
+
+/* =========================================================
+   DROPDOWNS
+========================================================= */
+
 function fillStudentDropdowns(){
-const ids=["attendanceStudent","gradeStudent","feeStudent"];
 
-ids.forEach(id=>{
-const select=document.getElementById(id);
-if(!select)return;
-const oldValue=select.value;
-select.innerHTML='<option value="">Select Student</option>';
+  const ids=[
+    "attendanceStudent",
+    "gradeStudent",
+    "feeStudent"
+  ];
 
-let dropdownStudents=students;
-if(currentUserRole==="parent")dropdownStudents=students.filter(student=>String(student.id)===String(currentUserStudentId));
 
-dropdownStudents.forEach(student=>{
-select.innerHTML+=`<option value="${student.id}">${escapeHtml(student.full_name)} - ${escapeHtml(student.student_id)}</option>`;
-});
+  ids.forEach(id=>{
 
-if([...select.options].some(o=>o.value===oldValue))select.value=oldValue;
-});
+    const select=
+      document.getElementById(id);
 
-const studentClass=document.getElementById("studentClass");
-if(studentClass){
-const oldValue=studentClass.value;
-studentClass.innerHTML='<option value="">Select Class</option>';
-classes.forEach(c=>{
-studentClass.innerHTML+=`<option value="${c.id}">${escapeHtml(c.name)}${c.section?" - "+escapeHtml(c.section):""}</option>`;
-});
-if([...studentClass.options].some(o=>o.value===oldValue))studentClass.value=oldValue;
+    if(!select)return;
+
+
+    const oldValue=
+      select.value;
+
+
+    select.innerHTML=
+      '<option value="">Select Student</option>';
+
+
+    let dropdownStudents=
+      students;
+
+
+    if(currentUserRole==="parent"){
+
+      dropdownStudents=
+        students.filter(
+          student=>
+            String(student.id)===
+            String(currentUserStudentId)
+        );
+
+    }
+
+
+    dropdownStudents.forEach(student=>{
+
+      select.innerHTML+=`
+
+        <option value="${student.id}">
+          ${escapeHtml(student.full_name)}
+          -
+          ${escapeHtml(student.student_id)}
+        </option>
+
+      `;
+
+    });
+
+
+    if(
+      [...select.options]
+        .some(o=>o.value===oldValue)
+    ){
+
+      select.value=oldValue;
+
+    }
+
+  });
+
+
+  const studentClass=
+    document.getElementById(
+      "studentClass"
+    );
+
+
+  if(studentClass){
+
+    const oldValue=
+      studentClass.value;
+
+
+    studentClass.innerHTML=
+      '<option value="">Select Class</option>';
+
+
+    classes.forEach(c=>{
+
+      studentClass.innerHTML+=`
+
+        <option value="${c.id}">
+          ${escapeHtml(c.name)}
+          ${c.section
+            ? " - "+escapeHtml(c.section)
+            :""
+          }
+        </option>
+
+      `;
+
+    });
+
+
+    if(
+      [...studentClass.options]
+        .some(o=>o.value===oldValue)
+    ){
+
+      studentClass.value=
+        oldValue;
+
+    }
+
+  }
+
 }
-}
+
 
 function fillClassDropdown(){
-const select=document.getElementById("studentClass");
-if(!select)return;
-const oldValue=select.value;
-select.innerHTML='<option value="">Select Class</option>';
-classes.forEach(c=>select.innerHTML+=`<option value="${c.id}">${escapeHtml(c.name)}</option>`);
-if([...select.options].some(o=>o.value===oldValue))select.value=oldValue;
+
+  const select=
+    document.getElementById(
+      "studentClass"
+    );
+
+  if(!select)return;
+
+
+  const oldValue=
+    select.value;
+
+
+  select.innerHTML=
+    '<option value="">Select Class</option>';
+
+
+  classes.forEach(c=>{
+
+    select.innerHTML+=`
+
+      <option value="${c.id}">
+        ${escapeHtml(c.name)}
+      </option>
+
+    `;
+
+  });
+
+
+  if(
+    [...select.options]
+      .some(o=>o.value===oldValue)
+  ){
+
+    select.value=oldValue;
+
+  }
+
 }
+
 
 function fillTeacherDropdown(){
-const select=document.getElementById("classTeacher");
-if(!select)return;
-const oldValue=select.value;
-select.innerHTML='<option value="">Select Teacher</option>';
-teachers.forEach(teacher=>select.innerHTML+=`<option value="${teacher.id}">${escapeHtml(teacher.full_name)}</option>`);
-if([...select.options].some(o=>o.value===oldValue))select.value=oldValue;
+
+  const select=
+    document.getElementById(
+      "classTeacher"
+    );
+
+  if(!select)return;
+
+
+  const oldValue=
+    select.value;
+
+
+  select.innerHTML=
+    '<option value="">Select Teacher</option>';
+
+
+  teachers.forEach(teacher=>{
+
+    select.innerHTML+=`
+
+      <option value="${teacher.id}">
+        ${escapeHtml(teacher.full_name)}
+      </option>
+
+    `;
+
+  });
+
+
+  if(
+    [...select.options]
+      .some(o=>o.value===oldValue)
+  ){
+
+    select.value=
+      oldValue;
+
+  }
+
 }
+
 
 function fillSubjectDropdowns(){
-const select=document.getElementById("gradeSubject");
-if(!select)return;
-const oldValue=select.value;
-select.innerHTML='<option value="">Select Subject</option>';
-subjects.forEach(subject=>select.innerHTML+=`<option value="${subject.id}">${escapeHtml(subject.subject_name)}</option>`);
-if([...select.options].some(o=>o.value===oldValue))select.value=oldValue;
+
+  const select=
+    document.getElementById(
+      "gradeSubject"
+    );
+
+  if(!select)return;
+
+
+  const oldValue=
+    select.value;
+
+
+  select.innerHTML=
+    '<option value="">Select Subject</option>';
+
+
+  subjects.forEach(subject=>{
+
+    select.innerHTML+=`
+
+      <option value="${subject.id}">
+        ${escapeHtml(
+          subject.subject_name
+        )}
+      </option>
+
+    `;
+
+  });
+
+
+  if(
+    [...select.options]
+      .some(o=>o.value===oldValue)
+  ){
+
+    select.value=
+      oldValue;
+
+  }
+
 }
 
-/* TEACHER DASHBOARD */
+
+/* =========================================================
+   TEACHER DASHBOARD
+========================================================= */
+
 async function loadTeacherDashboard(){
-const content=document.getElementById("teacherDashboardContent");
-if(!content)return;
-if(currentUserRole!=="teacher"){content.innerHTML="Teacher profile not active.";return}
 
-const email=(currentUser?.email||"").trim().toLowerCase();
-const phone=(currentUser?.phone||"").trim();
-let teacher=null;
+  const content=
+    document.getElementById(
+      "teacherDashboardContent"
+    );
 
-if(email)teacher=teachers.find(t=>(t.email||"").trim().toLowerCase()===email);
-if(!teacher&&phone)teacher=teachers.find(t=>(t.phone||"").trim()===phone);
-currentTeacher=teacher||null;
 
-if(!teacher){
-content.innerHTML=`<strong>Teacher profile not found.</strong><br><br>Please make sure your teacher email or phone matches your teacher profile.`;
-return;
+  if(!content)return;
+
+
+  if(currentUserRole!=="teacher"){
+
+    content.innerHTML=
+      "Teacher profile not active.";
+
+    return;
+  }
+
+
+  const email=
+    (currentUser?.email||"")
+      .trim()
+      .toLowerCase();
+
+
+  const phone=
+    (currentUser?.phone||"")
+      .trim();
+
+
+  let teacher=null;
+
+
+  if(email){
+
+    teacher=
+      teachers.find(
+        t=>
+          (t.email||"")
+            .trim()
+            .toLowerCase()===
+          email
+      );
+
+  }
+
+
+  if(!teacher && phone){
+
+    teacher=
+      teachers.find(
+        t=>
+          (t.phone||"").trim()===
+          phone
+      );
+
+  }
+
+
+  currentTeacher=
+    teacher||null;
+
+
+  if(!teacher){
+
+    content.innerHTML=`
+
+      <strong>
+        Teacher profile not found.
+      </strong>
+
+      <br><br>
+
+      Please make sure your teacher email
+      or phone matches your teacher profile.
+
+    `;
+
+    return;
+  }
+
+
+  const assignedClasses=
+    classes.filter(
+      c=>
+        (c.teacher_name||"")
+          .trim()
+          .toLowerCase()===
+        (teacher.full_name||"")
+          .trim()
+          .toLowerCase()
+    );
+
+
+  content.innerHTML=`
+
+    <h3>
+      Welcome,
+      ${escapeHtml(teacher.full_name)}
+    </h3>
+
+    <p>
+      Subject:
+      <strong>
+        ${escapeHtml(teacher.subject)}
+      </strong>
+    </p>
+
+    <p>
+      Phone:
+      ${escapeHtml(teacher.phone)}
+    </p>
+
+    <br>
+
+    <h4>
+      Assigned Classes
+    </h4>
+
+    ${
+      assignedClasses.length
+
+      ?
+
+      assignedClasses
+        .map(c=>`
+
+          <div
+            style="
+              padding:8px;
+              background:white;
+              margin-top:7px;
+              border-radius:6px;
+            "
+          >
+            ${escapeHtml(c.name)}
+            ${
+              c.section
+                ? " - "+
+                  escapeHtml(c.section)
+                :""
+            }
+          </div>
+
+        `)
+        .join("")
+
+      :
+
+      "<p>No assigned classes found.</p>"
+    }
+
+  `;
+
 }
 
-const assignedClasses=classes.filter(c=>(c.teacher_name||"").trim().toLowerCase()===(teacher.full_name||"").trim().toLowerCase());
 
-content.innerHTML=`
-<h3>Welcome, ${escapeHtml(teacher.full_name)}</h3>
-<p>Subject: <strong>${escapeHtml(teacher.subject)}</strong></p>
-<p>Phone: ${escapeHtml(teacher.phone)}</p>
-<br>
-<h4>Assigned Classes</h4>
-${assignedClasses.length?assignedClasses.map(c=>`<div style="padding:8px;background:white;margin-top:7px;border-radius:6px;">${escapeHtml(c.name)}${c.section?" - "+escapeHtml(c.section):""}</div>`).join(""):"<p>No assigned classes found.</p>"}
-`;
-}
+/* =========================================================
+   REFRESH ALL
+========================================================= */
 
-/* REFRESH */
 async function refreshAll(){
-if(isAdmin()){
-await loadClasses();
-await loadTeachers();
-await loadSubjects();
-await loadStudents();
-await loadAttendance();
-await loadGrades();
-await loadFees();
-await loadAdminUsers();
-}else if(currentUserRole==="teacher"){
-await loadClasses();
-await loadTeachers();
-await loadSubjects();
-await loadStudents();
-await loadAttendance();
-await loadGrades();
-}else if(currentUserRole==="staff"){
-await loadClasses();
-await loadStudents();
-await loadAttendance();
-}else if(currentUserRole==="finance"){
-await loadStudents();
-await loadFees();
-}else if(currentUserRole==="parent"){
-await loadClasses();
-await loadSubjects();
-await loadStudents();
-await loadAttendance();
-await loadGrades();
-await loadFees();
-}
-if(currentUserRole==="teacher")await loadTeacherDashboard();
+
+  if(isAdmin()){
+
+    await loadClasses();
+    await loadTeachers();
+    await loadSubjects();
+    await loadStudents();
+    await loadAttendance();
+    await loadGrades();
+    await loadFees();
+    await loadAdminUsers();
+
+  }else if(currentUserRole==="teacher"){
+
+    await loadClasses();
+    await loadTeachers();
+    await loadSubjects();
+    await loadStudents();
+    await loadAttendance();
+    await loadGrades();
+
+  }else if(currentUserRole==="staff"){
+
+    await loadClasses();
+    await loadStudents();
+    await loadAttendance();
+
+  }else if(currentUserRole==="finance"){
+
+    await loadStudents();
+    await loadFees();
+
+  }else if(currentUserRole==="parent"){
+
+    await loadClasses();
+    await loadSubjects();
+    await loadStudents();
+    await loadAttendance();
+    await loadGrades();
+    await loadFees();
+
+  }
+
+
+  if(currentUserRole==="teacher")
+    await loadTeacherDashboard();
+
 }
 
-/* SESSION */
+
+/* =========================================================
+   SESSION
+========================================================= */
+
 async function checkSession(){
-const {data,error}=await supabaseClient.auth.getSession();
-if(error){console.error(error);return}
-if(data.session){currentUser=data.session.user;await showApp()}
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient.auth.getSession();
+
+
+  if(error){
+
+    console.error(error);
+
+    return;
+  }
+
+
+  if(data.session){
+
+    currentUser=
+      data.session.user;
+
+    await showApp();
+
+  }
+
 }
 
-supabaseClient.auth.onAuthStateChange(async(event,session)=>{
-if(event==="PASSWORD_RECOVERY"){
-document.getElementById("loginPage").classList.remove("hidden");
-document.getElementById("app").classList.add("hidden");
-document.getElementById("loginForm").classList.add("hidden");
-document.getElementById("forgotForm").classList.add("hidden");
-document.getElementById("newPasswordForm").classList.remove("hidden");
-return;
-}
-if(session){currentUser=session.user;await showApp()}
-});
 
-/* START */
-document.addEventListener("DOMContentLoaded",()=>{
-const attendanceDate=document.getElementById("attendanceDate");
-const feeDate=document.getElementById("feeDate");
-if(attendanceDate)attendanceDate.value=today();
-if(feeDate)feeDate.value=today();
-checkSession();
-});
+supabaseClient.auth.onAuthStateChange(
+  async(event,session)=>{
+
+    if(event==="PASSWORD_RECOVERY"){
+
+      document
+        .getElementById("loginPage")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("app")
+        .classList.add("hidden");
+
+      document
+        .getElementById("loginForm")
+        .classList.add("hidden");
+
+      document
+        .getElementById("forgotForm")
+        .classList.add("hidden");
+
+      document
+        .getElementById("newPasswordForm")
+        .classList.remove("hidden");
+
+      return;
+    }
+
+
+    if(session){
+
+      currentUser=
+        session.user;
+
+      await showApp();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ENTER KEY LOGIN
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key==="Enter" &&
+      !document
+        .getElementById("loginForm")
+        .classList.contains("hidden")
+    ){
+
+      login();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
+
+    const attendanceDate=
+      document.getElementById(
+        "attendanceDate"
+      );
+
+    const feeDate=
+      document.getElementById(
+        "feeDate"
+      );
+
+
+    if(attendanceDate)
+      attendanceDate.value=
+        today();
+
+
+    if(feeDate)
+      feeDate.value=
+        today();
+
+
+    checkSession();
+
+  }
+);
+
 </script>
 
 </body>
