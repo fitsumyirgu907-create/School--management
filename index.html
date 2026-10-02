@@ -125,6 +125,22 @@ padding:8px 13px;
 border-radius:6px
 }
 
+.edit-btn{
+background:#0866d5;
+color:#fff;
+padding:6px 10px;
+border-radius:5px;
+margin-right:5px
+}
+
+.cancel-btn{
+background:#6c757d;
+color:#fff;
+padding:8px 13px;
+border-radius:6px;
+margin-left:6px
+}
+
 .topbar{
 height:58px;
 background:linear-gradient(90deg,#0755bd,#0879e8);
@@ -323,6 +339,16 @@ padding:12px;
 border-radius:6px;
 margin-bottom:15px;
 font-size:13px
+}
+
+.edit-mode-note{
+background:#fff8e1;
+border-left:4px solid #ffc107;
+padding:10px;
+border-radius:6px;
+margin-bottom:15px;
+font-size:13px;
+color:#664d03
 }
 
 @media(max-width:800px){
@@ -783,6 +809,13 @@ Students Management
 id="studentForm"
 class="form-card">
 
+<div
+id="studentEditNote"
+class="edit-mode-note hidden">
+✏️ You are editing a student. Make your changes and click
+<strong>Update Student</strong>.
+</div>
+
 <div class="form-grid">
 
 <div>
@@ -830,9 +863,17 @@ class="form-card">
 </div>
 
 <button
+id="studentSubmitBtn"
 class="success-btn"
 onclick="addStudent()">
 + Add Student
+</button>
+
+<button
+id="studentCancelBtn"
+class="cancel-btn hidden"
+onclick="cancelEditStudent()">
+Cancel Edit
 </button>
 
 </div>
@@ -1318,6 +1359,9 @@ let currentTeacher=null;
 
 let appLoading=false;
 
+/* STUDENT EDIT MODE */
+let editingStudentId=null;
+
 
 /* =========================
 ROLE PERMISSIONS
@@ -1483,6 +1527,10 @@ PERMISSIONS
 ========================= */
 
 function canAddStudents(){
+return isAdmin();
+}
+
+function canEditStudents(){
 return isAdmin();
 }
 
@@ -2507,6 +2555,19 @@ String(c.id)===
 String(item.class_id)
 );
 
+const editButton=
+canEditStudents()
+?
+`
+<button
+class="edit-btn"
+onclick="startEditStudent(${item.id})">
+Edit
+</button>
+`
+:
+"";
+
 const deleteButton=
 canDeleteStudents()
 ?
@@ -2538,7 +2599,10 @@ table.innerHTML+=`
 
 <td>${escapeHtml(item.parent_phone)}</td>
 
-<td>${deleteButton}</td>
+<td>
+${editButton}
+${deleteButton}
+</td>
 
 </tr>
 
@@ -2549,6 +2613,335 @@ table.innerHTML+=`
 }
 
 
+/* =========================
+START EDIT STUDENT
+========================= */
+
+function startEditStudent(id){
+
+if(!canEditStudents()){
+
+alert(
+"You do not have permission to edit students."
+);
+
+return;
+
+}
+
+const student=
+students.find(s=>
+Number(s.id)===
+Number(id)
+);
+
+if(!student){
+
+alert("Student not found.");
+return;
+
+}
+
+editingStudentId=
+student.id;
+
+document.getElementById(
+"studentName"
+).value=
+student.full_name||"";
+
+document.getElementById(
+"studentId"
+).value=
+student.student_id||"";
+
+document.getElementById(
+"studentGender"
+).value=
+student.gender||"";
+
+document.getElementById(
+"studentDOB"
+).value=
+student.date_of_birth||"";
+
+document.getElementById(
+"studentClass"
+).value=
+student.class_id!==null &&
+student.class_id!==undefined
+?
+String(student.class_id)
+:
+"";
+
+document.getElementById(
+"parentName"
+).value=
+student.parent_name||"";
+
+document.getElementById(
+"parentPhone"
+).value=
+student.parent_phone||"";
+
+
+const submitButton=
+document.getElementById(
+"studentSubmitBtn"
+);
+
+if(submitButton){
+
+submitButton.textContent=
+"✏️ Update Student";
+
+submitButton.onclick=
+updateStudent;
+
+}
+
+
+const cancelButton=
+document.getElementById(
+"studentCancelBtn"
+);
+
+if(cancelButton){
+
+cancelButton.classList.remove("hidden");
+
+}
+
+
+const note=
+document.getElementById(
+"studentEditNote"
+);
+
+if(note){
+
+note.classList.remove("hidden");
+
+}
+
+
+/* Scroll to the form on mobile */
+
+document.getElementById(
+"studentForm"
+).scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+
+/* =========================
+UPDATE STUDENT
+========================= */
+
+async function updateStudent(){
+
+if(!canEditStudents()){
+
+alert(
+"You do not have permission to update students."
+);
+
+return;
+
+}
+
+if(!editingStudentId){
+
+alert(
+"No student is selected for editing."
+);
+
+return;
+
+}
+
+const full_name=
+document.getElementById(
+"studentName"
+).value.trim();
+
+const student_id=
+document.getElementById(
+"studentId"
+).value.trim();
+
+const gender=
+document.getElementById(
+"studentGender"
+).value;
+
+const date_of_birth=
+document.getElementById(
+"studentDOB"
+).value;
+
+const class_id=
+document.getElementById(
+"studentClass"
+).value;
+
+const parent_name=
+document.getElementById(
+"parentName"
+).value.trim();
+
+const parent_phone=
+document.getElementById(
+"parentPhone"
+).value.trim();
+
+if(!full_name||!student_id){
+
+alert(
+"Please enter student name and student ID."
+);
+
+return;
+
+}
+
+const {error}=
+await supabaseClient
+.from("students")
+.update({
+
+full_name,
+student_id,
+gender:gender||null,
+date_of_birth:date_of_birth||null,
+class_id:
+class_id
+?
+Number(class_id)
+:
+null,
+parent_name:
+parent_name||null,
+parent_phone:
+parent_phone||null
+
+})
+.eq(
+"id",
+editingStudentId
+);
+
+if(error){
+
+console.error(error);
+
+alert(
+"Student update failed:\n\n"+
+error.message
+);
+
+return;
+
+}
+
+alert(
+"Student updated successfully."
+);
+
+cancelEditStudent();
+
+await loadStudents();
+
+}
+
+
+/* =========================
+CANCEL EDIT STUDENT
+========================= */
+
+function cancelEditStudent(){
+
+editingStudentId=null;
+
+document.getElementById(
+"studentName"
+).value="";
+
+document.getElementById(
+"studentId"
+).value="";
+
+document.getElementById(
+"studentGender"
+).value="";
+
+document.getElementById(
+"studentDOB"
+).value="";
+
+document.getElementById(
+"studentClass"
+).value="";
+
+document.getElementById(
+"parentName"
+).value="";
+
+document.getElementById(
+"parentPhone"
+).value="";
+
+
+const submitButton=
+document.getElementById(
+"studentSubmitBtn"
+);
+
+if(submitButton){
+
+submitButton.textContent=
+"+ Add Student";
+
+submitButton.onclick=
+addStudent;
+
+}
+
+
+const cancelButton=
+document.getElementById(
+"studentCancelBtn"
+);
+
+if(cancelButton){
+
+cancelButton.classList.add("hidden");
+
+}
+
+
+const note=
+document.getElementById(
+"studentEditNote"
+);
+
+if(note){
+
+note.classList.add("hidden");
+
+}
+
+}
+
+
+/* =========================
+ADD STUDENT
+========================= */
+
 async function addStudent(){
 
 if(!canAddStudents()){
@@ -2557,6 +2950,18 @@ alert(
 "You do not have permission to add students."
 );
 
+return;
+
+}
+
+/*
+If edit mode is active,
+send the action to updateStudent.
+*/
+
+if(editingStudentId){
+
+await updateStudent();
 return;
 
 }
@@ -2631,22 +3036,16 @@ return;
 
 alert("Student added successfully.");
 
-[
-"studentName",
-"studentId",
-"studentGender",
-"studentDOB",
-"studentClass",
-"parentName",
-"parentPhone"
-].forEach(id=>{
-document.getElementById(id).value="";
-});
+cancelEditStudent();
 
 await loadStudents();
 
 }
 
+
+/* =========================
+DELETE STUDENT
+========================= */
 
 async function deleteStudent(id){
 
