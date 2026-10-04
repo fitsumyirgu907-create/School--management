@@ -65,6 +65,11 @@ label{
    background while keeping the real Supabase login controls active.
 ========================================================= */
 
+/* =========================================================
+   LOGIN PAGE — NEW FORTUNE PROFESSIONAL GRAPHICS
+   The supplied New Fortune artwork is the visual background;
+   the real form controls below remain connected to Supabase.
+========================================================= */
 .login-page{
   min-height:100vh;
   min-height:100svh;
@@ -73,30 +78,21 @@ label{
   justify-content:center;
   align-items:flex-start;
   padding:0;
-  overflow-x:hidden;
-  overflow-y:auto;
-  background-color:#062b67;
-  background-image:url("new-fortune-login-bg.webp");
-  background-size:100% 100%;
-  background-position:center center;
-  background-repeat:no-repeat;
+  overflow:hidden;
+  background:#0755bd url("new-fortune-login-bg.webp") center center / cover no-repeat;
 }
 
 .login-page::before,
-.login-page::after{
-  display:none;
-}
+.login-page::after{display:none;}
 
-/* Transparent overlay: the artwork already contains the card,
-   logo, school name and decorative elements. */
 .login-box{
   position:absolute;
   z-index:5;
-  left:50%;
-  top:62.8%;
-  transform:translateX(-50%);
-  width:51.5%;
-  max-width:530px;
+  left:60.1%;
+  top:31.8%;
+  transform:none;
+  width:31.8%;
+  max-width:560px;
   padding:0;
   border:0;
   border-radius:0;
@@ -107,207 +103,111 @@ label{
   animation:none;
 }
 
-.login-logo,
-.login-title,
-.login-subtitle,
-.login-welcome{
-  display:none;
-}
+.login-logo,.login-title,.login-subtitle,.login-welcome{display:none;}
 
-.login-field{
-  margin:0 0 13px;
-}
-
-.login-field label{
-  display:none;
-}
+.login-field{margin:0 0 24px;}
+.login-field label{display:none;}
 
 .login-field input{
   width:100%;
-  height:55px;
+  height:66px;
   margin:0;
-  padding:0 16px;
-  border:1px solid #d6dce7;
-  border-radius:12px;
+  padding:0 20px;
+  border:1px solid #cfdbea;
+  border-radius:13px;
   background:rgba(255,255,255,.97);
   color:#202938;
-  font-size:15px;
+  font-size:16px;
   box-shadow:0 2px 5px rgba(0,0,0,.05);
+  box-sizing:border-box;
 }
-
-.login-field input::placeholder{
-  color:#8a94a3;
-}
-
-.password-wrap input{
-  padding-right:54px;
-}
+.login-field input::placeholder{color:#8a94a3;}
+.password-wrap input{padding-right:58px;}
 
 .password-toggle{
   position:absolute;
-  right:9px;
-  top:10px;
-  width:36px;
-  height:36px;
+  right:10px;
+  top:calc(66px + 24px + 10px);
+  width:40px;
+  height:40px;
   background:#f1f5f9;
   color:#64748b;
-  border-radius:8px;
+  border-radius:9px;
   font-size:15px;
 }
-
-.password-toggle:hover{
-  background:#e4ebf4;
-}
+.password-toggle:hover{background:#e4ebf4;}
 
 .primary-btn{
   width:100%;
-  height:55px;
+  height:67px;
   padding:0 15px;
   color:#fff;
-  border-radius:28px;
+  border-radius:34px;
   font-weight:bold;
-  font-size:16px;
-  margin-top:2px;
+  font-size:19px;
+  margin-top:64px;
   background:linear-gradient(135deg,#075bc9,#0879e8);
   box-shadow:0 7px 18px rgba(8,102,213,.24);
   transition:.2s;
 }
-
-.primary-btn:hover{
-  transform:translateY(-1px);
-  box-shadow:0 9px 22px rgba(8,102,213,.32);
-}
-
-.primary-btn:disabled{
-  opacity:.65;
-  cursor:not-allowed;
-  transform:none;
-}
+.primary-btn:hover{transform:translateY(-1px);box-shadow:0 9px 22px rgba(8,102,213,.32);}
+.primary-btn:disabled{opacity:.65;cursor:not-allowed;transform:none;}
 
 .secondary-btn{
+  position:absolute;
+  left:0;
+  top:188px;
   width:100%;
-  height:29px;
+  height:32px;
   padding:0;
   background:transparent;
-  color:#64748b;
+  color:#075bc9;
   border-radius:8px;
-  margin-top:4px;
-  font-size:12px;
-  font-weight:600;
+  margin:0;
+  font-size:14px;
+  font-weight:700;
 }
-
-.secondary-btn:hover{
-  background:rgba(255,255,255,.45);
-}
+.secondary-btn:hover{background:rgba(255,255,255,.45);}
 
 .login-security{
-  margin-top:7px;
-  padding:11px 10px;
-  min-height:58px;
-  border-radius:12px;
+  margin-top:78px;
+  padding:16px 10px;
+  min-height:72px;
+  border-radius:14px;
   background:rgba(239,247,255,.96);
   border:1px solid #dcecff;
   text-align:center;
+  box-sizing:border-box;
 }
+.login-security-main{color:#075bc9;font-size:14px;font-weight:bold;margin-bottom:5px;}
+.login-security-sub{color:#718096;font-size:12px;}
+.login-footer{display:none;}
 
-.login-security-main{
-  color:#075bc9;
-  font-size:12px;
-  font-weight:bold;
-  margin-bottom:4px;
-}
-
-.login-security-sub{
-  color:#718096;
-  font-size:11px;
-}
-
-.login-footer{
-  text-align:center;
-  margin-top:11px;
-  color:rgba(255,255,255,.9);
-  font-size:10px;
-  display:none;
-}
-
-/* Forgot/reset forms become a real white card because the background
-   artwork is only intended for the normal login state. */
-#forgotForm,
-#newPasswordForm{
+#forgotForm,#newPasswordForm{
   background:rgba(255,255,255,.98);
   border-radius:22px;
   padding:28px 24px 24px;
   box-shadow:0 18px 50px rgba(0,0,0,.22);
 }
+.reset-title{text-align:center;color:#075bc9;margin-bottom:6px;}
+.reset-description{text-align:center;color:#737d8d;font-size:12px;margin-bottom:17px;line-height:1.5;}
 
-.reset-title{
-  text-align:center;
-  color:#075bc9;
-  margin-bottom:6px;
-}
-
-.reset-description{
-  text-align:center;
-  color:#737d8d;
-  font-size:12px;
-  margin-bottom:17px;
-  line-height:1.5;
+@media(max-width:900px){
+  .login-page{overflow-y:auto;background-size:auto 100%;background-position:center top;}
+  .login-box{left:57.5%;top:31.8%;width:38%;max-width:none;}
+  .login-field{margin-bottom:16px;}
+  .login-field input{height:52px;padding:0 13px;border-radius:10px;font-size:13px;}
+  .password-toggle{top:calc(52px + 16px + 7px);right:6px;width:34px;height:34px;}
+  .primary-btn{height:52px;font-size:15px;margin-top:54px;}
+  .secondary-btn{top:148px;height:25px;font-size:11px;}
+  .login-security{margin-top:58px;padding:10px 6px;min-height:52px;}
+  .login-security-main{font-size:10px;}
+  .login-security-sub{font-size:9px;}
 }
 
 @media(max-width:600px){
-  .login-page{
-    min-height:100svh;
-    background-size:100% 100%;
-    background-position:center center;
-  }
-
-  .login-box{
-    width:51.5%;
-    top:62.7%;
-    max-width:none;
-  }
-
-  .login-field{
-    margin-bottom:10px;
-  }
-
-  .login-field input{
-    height:48px;
-    padding:0 12px;
-    border-radius:10px;
-    font-size:13px;
-  }
-
-  .password-toggle{
-    top:6px;
-    right:6px;
-    width:34px;
-    height:34px;
-  }
-
-  .primary-btn{
-    height:48px;
-    font-size:14px;
-  }
-
-  .secondary-btn{
-    height:25px;
-    font-size:11px;
-  }
-
-  .login-security{
-    margin-top:5px;
-    padding:9px 6px;
-    min-height:52px;
-  }
-
-  .login-security-main{
-    font-size:10px;
-  }
-
-  .login-security-sub{
-    font-size:9px;
-  }
+  .login-page{background-size:auto 100%;background-position:center top;}
+  .login-box{left:57.2%;top:32%;width:38.5%;}
 }
 
 /* =========================================================
